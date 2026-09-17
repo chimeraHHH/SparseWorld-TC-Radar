@@ -219,3 +219,31 @@ class SaveAtIterHook(Hook):
             filename = f'{self.out_dir}/iter_{self.save_iter}.pth'
             runner.save_checkpoint(self.out_dir, filename_tmpl=f'iter_{self.save_iter}.pth')
             print(f'\n[SaveAtIterHook] Saved checkpoint at iter {self.save_iter} to {filename}\n')
+
+@HOOKS.register_module()
+class RadarLearningAuditHook(Hook):
+    """Record real radar gradient and parameter updates after accumulation steps."""
+    def __init__(self, interval=8):
+        self.interval = interval
+
+    def before_run(self, runner):
+        self.params = {n:p for n,p in runner.model.named_parameters() if 'radar_fusion' in n}
+        self.previous = {n:p.detach().clone() for n,p in self.params.items()}
+        self.updates = 0
+
+    def after_train_iter(self, runner):
+        if not self.params or (runner.iter + 1) % self.interval:
+            return
+        grad_sq = 0.0
+        delta_sq = 0.0
+        for name, param in self.params.items():
+            if param.grad is not None:
+                if not torch.isfinite(param.grad).all():
+                    raise FloatingPointError('Nonfinite radar gradient: ' + name)
+                grad_sq += float(param.grad.float().square().sum())
+            delta_sq += float((param.detach().float() - self.previous[name].float()).square().sum())
+            self.previous[name].copy_(param.detach())
+        if delta_sq > 0:
+            self.updates += 1
+        runner.logger.info('RADAR_LEARNING iter=%d grad_norm=%.6g parameter_delta=%.6g successful_updates=%d',
+                           runner.iter + 1, grad_sq ** .5, delta_sq ** .5, self.updates)

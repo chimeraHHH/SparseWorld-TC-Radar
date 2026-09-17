@@ -27,20 +27,10 @@ def msmv_sampling_pytorch(mlvl_feats, sampling_locations, scale_weights):
 
     final = torch.zeros([B, C, Q, P], device=mlvl_feats[0].device)
 
-    # for lvl, feat in enumerate(mlvl_feats):
-    #     out = F.grid_sample(
-    #         feat, sampling_locations, mode='bilinear',
-    #         padding_mode='zeros', align_corners=True,
-    #     )[..., 0]  # [B, C, Q, P]
-    #     out = out * scale_weights[..., lvl].reshape(B, 1, Q, P)
-    #     final += out
-    feat = mlvl_feats[-1]
-    out = F.grid_sample(
-        feat, sampling_locations, mode='bilinear',
-        padding_mode='zeros', align_corners=True,
-    )[..., 0]  # [B, C, Q, P]
-
-    final = out * scale_weights[..., -1].reshape(B, 1, Q, P)
+    for lvl, feat in enumerate(mlvl_feats):
+        out = F.grid_sample(feat, sampling_locations, mode='bilinear',
+                            padding_mode='zeros', align_corners=True)[..., 0]
+        final = final + out * scale_weights[..., lvl].reshape(B, 1, Q, P)
 
     return final.permute(0, 2, 1, 3)
 

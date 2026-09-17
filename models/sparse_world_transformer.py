@@ -13,6 +13,7 @@ from .utils import inverse_sigmoid, DUMP, MLN
 from .sparse_world_sampling import sampling_4d
 from .checkpoint import checkpoint as cp
 from .csrc.wrapper import MSMV_CUDA
+from .radar_fusion import RadarQueryFusion
 
 
 @TRANSFORMER.register_module()
@@ -30,6 +31,7 @@ class SparseWorldTransformer(BaseModule):
                  num_refines=[1, 2, 4, 8, 16, 32],
                  scales=[1.0],
                  pc_range=[],
+                 radar_cfg=None,
                  init_cfg=None):
         assert init_cfg is None, 'To prevent abnormal initialization ' \
                             'behavior, init_cfg is not allowed to be set'
@@ -42,7 +44,7 @@ class SparseWorldTransformer(BaseModule):
 
         self.decoder = SparseWorldTransformerDecoder(
             embed_dims, num_frames, future_frames, num_views, num_points, num_layers, num_levels,
-            num_classes, num_refines, num_groups, scales, pc_range=pc_range)
+            num_classes, num_refines, num_groups, scales, pc_range=pc_range, radar_cfg=radar_cfg)
 
     @torch.no_grad()
     def init_weights(self):
@@ -52,8 +54,12 @@ class SparseWorldTransformer(BaseModule):
         cls_scores, refine_pts = self.decoder(
             query_points, query_feat, mlvl_feats, img_metas, fut2cur, fut_list)
 
-        cls_scores = [torch.nan_to_num(score) for score in cls_scores]
-        refine_pts = [torch.nan_to_num(pts) for pts in refine_pts]
+        if self.training:
+            if not all(torch.isfinite(x).all() for x in cls_scores + refine_pts):
+                raise FloatingPointError('Nonfinite decoder output; refusing to hide it')
+        else:
+            cls_scores = [torch.nan_to_num(score) for score in cls_scores]
+            refine_pts = [torch.nan_to_num(pts) for pts in refine_pts]
 
         return cls_scores, refine_pts
 
@@ -72,8 +78,10 @@ class SparseWorldTransformerDecoder(BaseModule):
                  num_groups=4,
                  scales=[1.0],
                  pc_range=[],
+                 radar_cfg=None,
                  init_cfg=None):
         super().__init__(init_cfg)
+        self.radar_enabled = radar_cfg is not None
         self.num_layers = num_layers
         self.pc_range = pc_range
         self.num_frames = num_frames
@@ -97,7 +105,7 @@ class SparseWorldTransformerDecoder(BaseModule):
                 SparseWorldTransformerDecoderLayer(
                     embed_dims, num_frames, future_frames, num_views, num_points, num_levels, num_classes, 
                     num_groups, num_refines[i], last_refines[i], layer_idx=i, 
-                    scale=scales[i], pc_range=pc_range)
+                    scale=scales[i], pc_range=pc_range, radar_cfg=radar_cfg)
             )
         
         ## embedding for fut2cur, pos_enc, pos_attn
@@ -112,7 +120,11 @@ class SparseWorldTransformerDecoder(BaseModule):
         sinusoidal_embedding
         future_frames = [0, 2, 4, 6]
         """
-        frames = torch.tensor(future_frames, dtype=torch.float32)
+        frames = torch.stack([torch.as_tensor(frame).float().reshape(-1)[0] for frame in future_frames])
+        for frame in future_frames:
+            values = torch.as_tensor(frame).reshape(-1)
+            if not torch.all(values == values[0]):
+                raise ValueError('Each batch must share forecasting horizons')
         
         half_dim = self.embed_dims // 2
         embeddings = math.log(10000) / (half_dim - 1)
@@ -138,6 +150,15 @@ class SparseWorldTransformerDecoder(BaseModule):
             L: num of layers of feature pyramid (typically it is 4: C2, C3, C4, C5)
         """
         cls_scores, refine_pts = [], []
+        radar = valid = None
+        if self.radar_enabled:
+            arrays = [torch.as_tensor(m['radar_points'], device=query_feat.device, dtype=query_feat.dtype) for m in img_metas]
+            max_points = max(len(a) for a in arrays)
+            radar = query_feat.new_zeros(len(arrays), max_points, 10)
+            valid = torch.zeros(len(arrays), max_points, device=query_feat.device, dtype=torch.bool)
+            for b, array in enumerate(arrays):
+                radar[b, :len(array)] = array
+                valid[b, :len(array)] = True
         FT = len(fut2cur)
         # organize projections matrix and copy to CUDA
         lidar2img = np.asarray([m['lidar2img'] for m in img_metas]).astype(np.float32)
@@ -195,7 +216,7 @@ class SparseWorldTransformerDecoder(BaseModule):
 
             query_points = query_points.detach()
             query_feat, cls_score, query_points = decoder_layer(
-                query_points, query_feat, mlvl_feats, occ2img, img_metas, fut2cur)
+                query_points, query_feat, mlvl_feats, occ2img, img_metas, fut2cur, radar, valid)
 
             cls_scores.append(cls_score)
             refine_pts.append(query_points)
@@ -220,9 +241,13 @@ class SparseWorldTransformerDecoderLayer(BaseModule):
                  layer_idx=0,
                  scale=1.0,
                  pc_range=[],
+                 radar_cfg=None,
                  init_cfg=None):
         super().__init__(init_cfg)
 
+        # Keep the shared camera/world initialization identical for matched seeds.
+        with torch.random.fork_rng(devices=[]):
+            self.radar_fusion = RadarQueryFusion(embed_dims=embed_dims, **radar_cfg) if radar_cfg is not None else None
         self.embed_dims = embed_dims
         self.future_frames = future_frames
         self.num_classes = num_classes
@@ -292,7 +317,7 @@ class SparseWorldTransformerDecoderLayer(BaseModule):
         new_points = points_proposal + points_delta
         return encode_points(new_points, self.pc_range)
 
-    def forward(self, query_points, query_feat, mlvl_feats, occ2img, img_metas, fut2cur):
+    def forward(self, query_points, query_feat, mlvl_feats, occ2img, img_metas, fut2cur, radar=None, radar_valid=None):
         # query_points: [B*FT, Q, _, 3], [x, y, z]
         FT = len(fut2cur)
         query_pos = self.position_encoder(query_points.flatten(2, 3))
@@ -304,9 +329,15 @@ class SparseWorldTransformerDecoderLayer(BaseModule):
 
         query_feat = self.norm1(self.mixing(sampled_feat, query_feat))
         BT, Q, C = query_feat.shape
-        query_feat = query_feat.reshape(int(BT/FT), FT * Q, C)
+        batch_size = BT // FT
+        if self.radar_fusion is not None:
+            centers = decode_points(query_points[:batch_size], self.pc_range).mean(dim=2)
+            current = self.radar_fusion(query_feat[:batch_size], centers, radar, radar_valid)
+            query_feat = torch.cat([current, query_feat[batch_size:]], dim=0)
+        # Features/targets are horizon-major [FT,B,Q,C]; attend within each scene.
+        query_feat = query_feat.reshape(FT, batch_size, Q, C).permute(1, 0, 2, 3).reshape(batch_size, FT * Q, C)
         query_feat = self.ln(self.ffn(self.tempo_attn(query_feat)))
-        query_feat = query_feat.reshape(BT, Q, C)
+        query_feat = query_feat.reshape(batch_size, FT, Q, C).permute(1, 0, 2, 3).reshape(BT, Q, C)
         query_feat = self.norm2(self.self_attn(query_points, query_feat))
         query_feat = self.norm3(self.ffn(query_feat))
     

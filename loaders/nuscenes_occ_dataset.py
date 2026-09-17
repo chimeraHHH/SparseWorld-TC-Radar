@@ -16,10 +16,11 @@ from .old_metrics import Metric_mIoU
 
 @DATASETS.register_module()
 class NuScenesOccDataset(NuScenesDataset):    
-    def __init__(self, future_frames, *args, **kwargs):
+    def __init__(self, future_frames, *args, occ_root="data/nuscenes/gts", **kwargs):
         super().__init__(filter_empty_gt=False, *args, **kwargs)
         self.data_infos = self.load_annotations(self.ann_file)
         self.future_frames = future_frames
+        self.occ_root = occ_root
         if self.future_frames != None:
             print('future_frames: ', self.future_frames)
         else:
@@ -28,11 +29,15 @@ class NuScenesOccDataset(NuScenesDataset):
     def collect_cam_sweeps(self, index, into_past=150, into_future=0):
         all_sweeps_prev = []
         curr_index = index
-        while len(all_sweeps_prev) < into_past:
+        while len(all_sweeps_prev) < into_past and curr_index >= 0:
+            if self.data_infos[curr_index]['scene_name'] != self.data_infos[index]['scene_name']:
+                break
             curr_sweeps = self.data_infos[curr_index]['cam_sweeps']
             if len(curr_sweeps) == 0:
                 break
             all_sweeps_prev.extend(curr_sweeps)
+            if curr_index == 0 or self.data_infos[curr_index - 1]['scene_name'] != self.data_infos[index]['scene_name']:
+                break
             all_sweeps_prev.append(self.data_infos[curr_index - 1]['cams'])
             curr_index = curr_index - 1
         
@@ -178,22 +183,16 @@ class NuScenesOccDataset(NuScenesDataset):
         for i in tqdm(range(len(occ_results))):
             result_dict = occ_results[i]
 
-            target_index = i
-            curr_info = self.get_data_info(i)
-            for j in range(fut_index):
-                if i+1+j < len(self.data_infos):
-                    next_info = self.get_data_info(i+1+j)
-                    if next_info['scene_name'] == curr_info['scene_name']:
-                        target_index = target_index + 1
-
-            if target_index - i != fut_index:
-                continue
-
-            info = self.get_data_info(target_index)
-            token = info['sample_idx']
-            scene_name = info['scene_name']
-            occ_root = 'data/nuscenes/gts/'
-            occ_file = osp.join(occ_root, scene_name, token, 'labels.npz')
+            from .pipelines.loading import get_nusc
+            nusc = get_nusc(self.data_root)
+            info = self.data_infos[i]
+            target = nusc.get('sample', info['token'])
+            for _ in range(fut_index):
+                if not target['next']:
+                    raise ValueError('Evaluation anchor has no required future target')
+                target = nusc.get('sample', target['next'])
+            assert target['scene_token'] == nusc.get('sample', info['token'])['scene_token']
+            occ_file = osp.join(self.occ_root, info['scene_name'], target['token'], 'labels.npz')
             occ_infos = np.load(occ_file)
 
             occ_labels = occ_infos['semantics']
@@ -209,7 +208,14 @@ class NuScenesOccDataset(NuScenesDataset):
             metric.add_batch(occ_pred, occ_labels, mask_lidar, mask_camera)
             iou_metric.add_batch(occ_pred, occ_labels, mask_lidar, mask_camera)
         
-        return {'Semantic mIoU': metric.count_miou(), 'Binary IoU': iou_metric.count_miou()}
+        metric.count_miou()
+        iou_metric.count_miou()
+        per_class = metric.per_class_iu(metric.hist)
+        result = {'Semantic mIoU': float(np.nanmean(per_class[:17]) * 100),
+                  'Binary IoU': float(iou_metric.per_class_iu(iou_metric.hist)[0] * 100),
+                  'evaluated_samples': metric.cnt}
+        result.update({name + '_IoU': float(value * 100) for name, value in zip(metric.class_names[:17], per_class[:17])})
+        return result
     
     def eval_riou(self, occ_results, fut_index, runner=None, show_dir=None, **eval_kwargs):
         occ_gts = []

@@ -8,7 +8,6 @@ from mmcv.runner.fp16_utils import cast_tensor_type
 from mmdet.models import DETECTORS
 from mmdet3d.core import bbox3d2result
 from mmdet3d.models.detectors.mvx_two_stage import MVXTwoStageDetector
-from transformers import AutoImageProcessor, AutoModel
 from .utils import GridMask, pad_multiple, GpuPhotoMetricDistortion
 # from vis_id import vis_iter
 

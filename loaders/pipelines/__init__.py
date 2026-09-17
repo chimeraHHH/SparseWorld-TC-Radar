@@ -9,3 +9,4 @@ __all__ = [
     'LoadOccGTFromFileWaymo', 'MyLoadMultiViewImageFromFiles',
     'CustomCollect3D', 'RandomScaleImageMultiViewImage',
 ]
+from .radar import LoadCausalRadar

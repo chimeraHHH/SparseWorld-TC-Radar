@@ -10,7 +10,7 @@ import torch.distributed as dist
 from datetime import datetime
 from mmcv import Config, DictAction
 from mmcv.parallel import MMDataParallel, MMDistributedDataParallel
-from mmcv.runner import EpochBasedRunner, build_optimizer, load_checkpoint
+from mmcv.runner import EpochBasedRunner, IterBasedRunner, build_optimizer, load_checkpoint
 from mmdet.apis import set_random_seed
 from mmdet.core import DistEvalHook, EvalHook
 from mmdet3d.datasets import build_dataset
@@ -61,7 +61,7 @@ def main():
     else:
         run_name = osp.splitext(osp.split(args.config)[-1])[0]
         run_name += '_' + datetime.now().strftime("%Y-%m-%d/%H-%M-%S")
-        work_dir = os.path.join('/lpai/output/models/outputs', cfgs.model.type, run_name)  # todo, ${LPAI_MODEL_DIR}
+        work_dir = cfgs.get('work_dir', os.path.join('outputs', cfgs.model.type, run_name))
 
     if local_rank == 0:
         # if os.path.exists(work_dir):  # must be an empty dir
@@ -71,6 +71,7 @@ def main():
         # init logging, backup code
         utils.init_logging(os.path.join(work_dir, 'train.log'), cfgs.debug)
         utils.backup_code(work_dir)
+        cfgs.dump(os.path.join(work_dir, 'resolved_config.py'))
         logging.info('Logs will be saved to %s' % work_dir)
     else:
         # disable logging on other workers
@@ -83,8 +84,10 @@ def main():
         logging.info('Initializing DDP with %d GPUs...' % world_size)
         dist.init_process_group('nccl', init_method='env://')
 
-    logging.info('Setting random seed: 0')
-    set_random_seed(0, deterministic=True)
+    seed = cfgs.get('seed', 0)
+    logging.info('Setting random seed: %d', seed)
+    set_random_seed(seed, deterministic=True)
+    assert cfgs.batch_size >= world_size and cfgs.batch_size % world_size == 0
 
     logging.info('Loading training set from %s' % cfgs.dataset_root)
     train_dataset = build_dataset(cfgs.data.train)
@@ -95,19 +98,10 @@ def main():
         num_gpus=world_size,
         dist=world_size > 1,
         shuffle=True,
-        seed=0,
+        seed=seed,
     )
 
-    logging.info('Loading validation set from %s' % cfgs.dataset_root)
-    val_dataset = build_dataset(cfgs.data.val)
-    val_loader = build_dataloader(
-        val_dataset,
-        samples_per_gpu=1,
-        workers_per_gpu=cfgs.data.workers_per_gpu,
-        num_gpus=world_size,
-        dist=world_size > 1,
-        shuffle=False
-    )
+    logging.info('Training samples: %d', len(train_dataset))
 
     logging.info('Creating model: %s' % cfgs.model.type)
     model = build_model(cfgs.model)
@@ -127,14 +121,10 @@ def main():
     logging.info('Creating optimizer: %s' % cfgs.optimizer.type)
     optimizer = build_optimizer(model, cfgs.optimizer)
 
-    runner = EpochBasedRunner(
-        model,
-        optimizer=optimizer,
-        work_dir=work_dir,
-        logger=logging.root,
-        max_epochs=cfgs.total_epochs,
-        meta=dict(),
-    )
+    runner_class = IterBasedRunner if cfgs.get('max_iters') else EpochBasedRunner
+    duration = dict(max_iters=cfgs.max_iters) if cfgs.get('max_iters') else dict(max_epochs=cfgs.total_epochs)
+    runner = runner_class(model, optimizer=optimizer, work_dir=work_dir,
+                          logger=logging.root, meta=dict(seed=seed), **duration)
 
     runner.register_lr_hook(cfgs.lr_config)
     runner.register_optimizer_hook(cfgs.optimizer_config)

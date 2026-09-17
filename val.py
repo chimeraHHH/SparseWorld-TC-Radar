@@ -1,4 +1,5 @@
 import os
+import json
 import utils
 import logging
 import argparse
@@ -7,7 +8,7 @@ import torch
 import torch.distributed
 import torch.distributed as dist
 import torch.backends.cudnn as cudnn
-from mmcv import Config
+from mmcv import Config, DictAction
 from mmcv.parallel import MMDataParallel, MMDistributedDataParallel
 from mmcv.runner import load_checkpoint
 from mmdet.apis import set_random_seed, multi_gpu_test, single_gpu_test
@@ -52,6 +53,8 @@ def main():
     parser = argparse.ArgumentParser(description='Validate a detector')
     parser.add_argument('--config', required=True)
     parser.add_argument('--weights', required=True)
+    parser.add_argument('--override', nargs='+', action=DictAction)
+    parser.add_argument('--out', default=None)
     parser.add_argument('--local_rank', type=int, default=0)
     parser.add_argument('--world_size', type=int, default=1)
     parser.add_argument('--batch_size', type=int, default=1)
@@ -59,6 +62,8 @@ def main():
 
     # parse configs
     cfgs = Config.fromfile(args.config)
+    if args.override:
+        cfgs.merge_from_dict(args.override)
 
     # register custom module
     importlib.import_module('models')
@@ -135,10 +140,13 @@ def main():
         results = single_gpu_test(model, val_loader)
 
     if local_rank == 0:
-        i = 0
-        for fut_index in cfgs.future_frames:
-            evaluate(val_dataset, results[i::len(cfgs.future_frames)], fut_index, -1)
-            i = i + 1
+        metrics = {}
+        for i, fut_index in enumerate(cfgs.future_frames):
+            metrics[str(fut_index * .5) + 's'] = evaluate(val_dataset, results[i::len(cfgs.future_frames)], fut_index, -1)
+        if args.out:
+            with open(args.out, 'w') as f:
+                json.dump(metrics, f, indent=2)
+        logging.info('Forecast metrics: %s', metrics)
 
 
 if __name__ == '__main__':

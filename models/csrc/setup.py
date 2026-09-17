@@ -12,17 +12,7 @@ def get_ext_modules():
                 'msmv_sampling/msmv_sampling_backward.cu'
             ],
             include_dirs=['msmv_sampling'],
-            extra_compile_args=dict(
-                nvcc=[
-                    "-gencode=arch=compute_60,code=sm_60",
-                    "-gencode=arch=compute_61,code=sm_61",
-                    "-gencode=arch=compute_70,code=sm_70",
-                    "-gencode=arch=compute_75,code=sm_75",
-                    "-gencode=arch=compute_80,code=sm_80",
-                    "-gencode=arch=compute_86,code=sm_86",
-                    "-gencode=arch=compute_86,code=compute_86",
-                ]
-            )
+            extra_compile_args=dict(nvcc=['-O3'])
         )
     ]
 

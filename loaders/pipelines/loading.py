@@ -12,7 +12,14 @@ from mmdet3d.core.points import BasePoints
 from nuscenes import NuScenes
 from pyquaternion import Quaternion
 from nuscenes.utils.geometry_utils import transform_matrix
-nusc = NuScenes(version='v1.0-trainval', dataroot='data/nuscenes')
+_NUSC = {}
+
+
+def get_nusc(data_root='data/nuscenes', version='v1.0-trainval'):
+    key = (os.path.realpath(data_root), version)
+    if key not in _NUSC:
+        _NUSC[key] = NuScenes(version=version, dataroot=data_root, verbose=False)
+    return _NUSC[key]
 import mmengine
 # pred_trajs = mmengine.load('data/nuscenes/pred_trajs.json')['trajs']
 
@@ -79,8 +86,10 @@ def generate_random_occ_index(n, a, b):
 @PIPELINES.register_module()
 class LoadOccFromFile:
 
-    def __init__(self, occ_root, future_frames=[0], pred_traj=False, ignore_class_names=[]):
+    def __init__(self, occ_root, future_frames=[0], pred_traj=False, ignore_class_names=[], data_root="data/nuscenes", load_labels=True):
         self.occ_root = occ_root
+        self.data_root = data_root
+        self.load_labels = load_labels
         self.future_frames = future_frames
         self.pred_traj = pred_traj
         self.ignore_class_names = ignore_class_names
@@ -93,6 +102,7 @@ class LoadOccFromFile:
 
     def __call__(self, results):
         
+        nusc = get_nusc(self.data_root)
         if self.future_frames == None:
             # fut_nums = random.randint(3, 6)
             fut_nums = 3  # it depends on your GPU memory
@@ -112,7 +122,7 @@ class LoadOccFromFile:
         occ_file_list.append(occ_file_curr)
 
         current_sample = nusc.get('sample', sample_idx)
-        cur_cam_token = current_sample['data']['CAM_FRONT']
+        cur_cam_token = current_sample['data']['LIDAR_TOP']
         cur_cam_data = nusc.get('sample_data', cur_cam_token)
         cur_ego_pose = nusc.get('ego_pose', cur_cam_data['ego_pose_token'])
 
@@ -123,15 +133,16 @@ class LoadOccFromFile:
         for i in range(fut_list[-1]):  # self.future_frames[-1]
             curr_sample = nusc.get('sample', sample_idx)
             next_sample_idx = curr_sample['next']
-            if next_sample_idx != '':
-                sample_idx = next_sample_idx
+            if not next_sample_idx:
+                raise ValueError('Missing future target: use full-horizon eligible metadata')
+            sample_idx = next_sample_idx
 
             if i+1 in fut_list:  # self.future_frames
                 occ_file = osp.join(self.occ_root, scene_name, sample_idx, 'labels.npz')
                 occ_file_list.append(occ_file)
 
                 fut_sample = nusc.get('sample', sample_idx)
-                fut_cam_token = fut_sample['data']['CAM_FRONT']
+                fut_cam_token = fut_sample['data']['LIDAR_TOP']
                 fut_cam_data = nusc.get('sample_data', fut_cam_token)
                 fut_ego_pose = nusc.get('ego_pose', fut_cam_data['ego_pose_token'])
                 
@@ -139,7 +150,7 @@ class LoadOccFromFile:
                 fut2cur_list.append(fut2cur)
         
         # load lidar and camera visible label
-        for occ_file in occ_file_list:
+        for occ_file in occ_file_list if self.load_labels else []:
             occ_labels = np.load(occ_file)
             mask_lidar = occ_labels['mask_lidar'].astype(np.bool_)  # [200, 200, 16]
             mask_camera = occ_labels['mask_camera'].astype(np.bool_)  # [200, 200, 16]
