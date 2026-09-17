@@ -4,6 +4,7 @@ import glob
 import torch
 import shutil
 import logging
+import math
 import datetime
 from mmcv.runner.hooks import HOOKS, Hook
 from mmcv.runner.hooks.logger import LoggerHook, TextLoggerHook
@@ -230,20 +231,41 @@ class RadarLearningAuditHook(Hook):
         self.params = {n:p for n,p in runner.model.named_parameters() if 'radar_fusion' in n}
         self.previous = {n:p.detach().clone() for n,p in self.params.items()}
         self.updates = 0
+        self.grad_sq = {}
+        self.grad_scale = 1.0
+        self.handles = []
+        for name, param in self.params.items():
+            def record(grad, name=name):
+                # Backward hooks run before MMCV clips/clears the gradients.
+                self.grad_sq[name] = (grad.detach().float() / self.grad_scale).square().sum()
+            self.handles.append(param.register_hook(record))
+
+    def before_train_iter(self, runner):
+        self.grad_sq.clear()
+        self.grad_scale = 1.0
+        for hook in runner.hooks:
+            scaler = getattr(hook, 'loss_scaler', None)
+            if scaler is not None and hasattr(scaler, 'get_scale'):
+                self.grad_scale = scaler.get_scale()
+                break
 
     def after_train_iter(self, runner):
         if not self.params or (runner.iter + 1) % self.interval:
             return
-        grad_sq = 0.0
+        grad_sq = float(torch.stack(list(self.grad_sq.values())).sum()) if self.grad_sq else 0.0
+        if not math.isfinite(grad_sq):
+            raise FloatingPointError('Nonfinite radar backward gradient')
         delta_sq = 0.0
         for name, param in self.params.items():
-            if param.grad is not None:
-                if not torch.isfinite(param.grad).all():
-                    raise FloatingPointError('Nonfinite radar gradient: ' + name)
-                grad_sq += float(param.grad.float().square().sum())
+            if not torch.isfinite(param).all():
+                raise FloatingPointError('Nonfinite radar parameter: ' + name)
             delta_sq += float((param.detach().float() - self.previous[name].float()).square().sum())
             self.previous[name].copy_(param.detach())
         if delta_sq > 0:
             self.updates += 1
-        runner.logger.info('RADAR_LEARNING iter=%d grad_norm=%.6g parameter_delta=%.6g successful_updates=%d',
+        runner.logger.info('RADAR_LEARNING iter=%d microstep_grad_norm=%.6g parameter_delta=%.6g successful_updates=%d',
                            runner.iter + 1, grad_sq ** .5, delta_sq ** .5, self.updates)
+
+    def after_run(self, runner):
+        for handle in self.handles:
+            handle.remove()

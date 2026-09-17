@@ -1,4 +1,5 @@
 import numpy as np
+import pytest
 import torch
 from loaders.pipelines.radar import transform_radar, LoadCausalRadar
 from models.sparse_world_transformer import SparseWorldTransformer
@@ -56,25 +57,29 @@ def synthetic_inputs(batch, device):
     return points,query,feats,meta,poses,horizons
 
 
-def test_empty_radar_full_decoder_matches_camera_and_batch_isolation():
+@pytest.mark.parametrize('device', ['cpu', 'cuda'])
+def test_empty_radar_full_decoder_matches_camera_and_batch_isolation(device):
+    if device == 'cuda' and not torch.cuda.is_available():
+        pytest.skip('CUDA device unavailable')
     # CPU tests use the corrected all-level PyTorch sampler explicitly.
     import models.sparse_world_transformer as transformer_module
     import models.sparse_world_sampling as sampling_module
     original_cuda=transformer_module.MSMV_CUDA
-    transformer_module.MSMV_CUDA=False
     original_sampler=sampling_module.msmv_sampling
-    sampling_module.msmv_sampling=sampling_module.msmv_sampling_pytorch
+    if device == 'cpu':
+        transformer_module.MSMV_CUDA=False
+        sampling_module.msmv_sampling=sampling_module.msmv_sampling_pytorch
     try:
         args=dict(embed_dims=256,num_frames=2,future_frames=[0,2],num_layers=2,
             num_refines=[1,4],num_classes=17,num_points=2,pc_range=[-40,-40,-1,40,40,5.4])
         torch.manual_seed(10)
-        camera=SparseWorldTransformer(**args).eval()
+        camera=SparseWorldTransformer(**args).to(device).eval()
         torch.manual_seed(10)
-        radar=SparseWorldTransformer(**args,radar_cfg={}).eval()
+        radar=SparseWorldTransformer(**args,radar_cfg={}).to(device).eval()
         for name, value in camera.state_dict().items():
             torch.testing.assert_close(value, radar.state_dict()[name], rtol=0, atol=0)
         radar.load_state_dict(camera.state_dict(),strict=False)
-        inputs=synthetic_inputs(2,'cpu')
+        inputs=synthetic_inputs(2,device)
         def run(net, inp):
             p,q,f,m,t,h=inp
             return net(p,q,[x.clone() for x in f],m,t,h)

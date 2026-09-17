@@ -128,13 +128,13 @@ class SparseWorldTransformerDecoder(BaseModule):
         
         half_dim = self.embed_dims // 2
         embeddings = math.log(10000) / (half_dim - 1)
-        embeddings = torch.exp(torch.arange(half_dim, dtype=torch.float32) * -embeddings)
+        embeddings = torch.exp(torch.arange(half_dim, dtype=torch.float32, device=frames.device) * -embeddings)
         embeddings = frames[:, None] * embeddings[None, :]
         
         embeddings = torch.cat([torch.sin(embeddings), torch.cos(embeddings)], dim=-1)
         
         if self.embed_dims % 2 == 1:
-            embeddings = torch.cat([embeddings, torch.zeros(len(future_frames), 1)], dim=-1)
+            embeddings = torch.cat([embeddings, embeddings.new_zeros(len(future_frames), 1)], dim=-1)
             
         return embeddings
 
