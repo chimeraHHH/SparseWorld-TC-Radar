@@ -131,7 +131,10 @@ def main():
     runner.register_checkpoint_hook(cfgs.checkpoint_config)
     runner.register_logger_hooks(cfgs.log_config)
     runner.register_timer_hook(dict(type='IterTimerHook'))
-    runner.register_custom_hooks(dict(type='DistSamplerSeedHook'))
+    # IterBasedRunner's IterLoader advances sampler epochs itself and has no
+    # data_loader attribute when its initial before_epoch hooks run.
+    if isinstance(runner, EpochBasedRunner):
+        runner.register_custom_hooks(dict(type='DistSamplerSeedHook'))
     if cfgs.get('custom_hooks', None) is not None:
         for hook_cfg in cfgs.custom_hooks:
             runner.register_custom_hooks(hook_cfg)
