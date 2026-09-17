@@ -39,7 +39,7 @@ data = dict(workers_per_gpu=4,
 batch_size = 1
 optimizer = dict(lr=2e-4)
 lr_config = dict(warmup_iters=4000)  # 500 optimizer updates at accumulation=8
-optimizer_config = dict(type='GradientCumulativeFp16OptimizerHook', cumulative_iters=8, loss_scale='dynamic', grad_clip=dict(max_norm=35, norm_type=2))
+optimizer_config = dict(_delete_=True, type='GradientCumulativeFp16OptimizerHook', cumulative_iters=8, loss_scale=dict(init_scale=512., growth_interval=2000), grad_clip=dict(max_norm=35, norm_type=2))
 load_from = project_root + '/checkpoints/cascade_mask_rcnn_r50_fpn_coco-20e_20e_nuim_20201009_124951-40963960.pth'
 revise_keys = [('^backbone\\.', 'img_backbone.')]
 checkpoint_config = dict(interval=1, max_keep_ckpts=3)

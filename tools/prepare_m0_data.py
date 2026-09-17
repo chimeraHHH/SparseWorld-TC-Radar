@@ -28,7 +28,7 @@ def camera_info(nusc, sd, root, global_to_lidar):
         sensor2ego_rotation=sensor_to_ego[:3, :3], sensor2ego_translation=sensor_to_ego[:3, 3],
         sensor2global_rotation=sensor_to_global[:3, :3].T,
         sensor2global_translation=sensor_to_global[:3, 3],
-        sensor2lidar_rotation=sensor_to_lidar[:3, :3].T,
+        sensor2lidar_rotation=sensor_to_lidar[:3, :3],
         sensor2lidar_translation=sensor_to_lidar[:3, 3])
 
 

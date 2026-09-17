@@ -92,3 +92,25 @@ def test_empty_radar_full_decoder_matches_camera_and_batch_isolation():
     finally:
         sampling_module.msmv_sampling=original_sampler
         transformer_module.MSMV_CUDA=original_cuda
+
+
+def test_camera_metadata_rotation_matches_loader_projection():
+    import importlib.util
+    from pathlib import Path
+    from pyquaternion import Quaternion
+    path = Path(__file__).parents[1] / 'tools/prepare_m0_data.py'
+    spec = importlib.util.spec_from_file_location('prepare_m0_data_test', path)
+    prep = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(prep)
+    class Tables:
+        def get(self, table, token):
+            if table == 'calibrated_sensor':
+                return dict(translation=[1,2,0], rotation=Quaternion(axis=[0,0,1], angle=np.pi/2).elements,
+                            camera_intrinsic=np.eye(3).tolist())
+            return dict(translation=[0,0,0], rotation=[1,0,0,0])
+    cam=prep.camera_info(Tables(),dict(calibrated_sensor_token='c',ego_pose_token='e',timestamp=0,filename='x'),Path('.'),np.eye(4))
+    lidar2cam_r=np.linalg.inv(cam['sensor2lidar_rotation'])
+    lidar_point=np.array([1.,3.,2.])
+    projected=lidar2cam_r @ (lidar_point-cam['sensor2lidar_translation'])
+    # 90deg camera-to-ego rotation: (0,1,2) ego offset -> (1,0,2) camera.
+    np.testing.assert_allclose(projected,[1,0,2],atol=1e-8)

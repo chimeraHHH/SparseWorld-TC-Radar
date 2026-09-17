@@ -471,13 +471,13 @@ class SparseWorldSampling(BaseModule):
 
         return sampled_feats
 
-    def forward(self, query_points, query_feat, mlvl_feats, occ2img, fut2cur, img_metas):
+    def forward(self, query_points, query_feat, mlvl_feats, occ2img, img_metas, fut2cur):
         if self.training and query_feat.requires_grad:
             return cp(self.inner_forward, query_points, query_feat, mlvl_feats,
-                      occ2img, fut2cur, img_metas, use_reentrant=False)
+                      occ2img, img_metas, fut2cur, use_reentrant=False)
         else:
             return self.inner_forward(query_points, query_feat, mlvl_feats,
-                                      occ2img, fut2cur, img_metas)
+                                      occ2img, img_metas, fut2cur)
 
 
 class AdaptiveMixing(nn.Module):

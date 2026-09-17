@@ -35,9 +35,9 @@
 - H200 / huayiming，GPU 仅在启动前验证空闲后指定 UUID。
 - 8 帧 × 6相机，256×704；所有预测尺度保持上游配置。
 - 官方 R50 backbone 初始化，SHA256：4096396018c0cf59fbe0eb1afe6e269f4676b34460bed5eedde5d7680d58bb4e。
-- AdamW，lr=2e-4，weight_decay=.01，batch=1/GPU，累积8步形成 effective batch8；FP16 dynamic loss scale，clip norm35，70epochs，warmup4000 microsteps=500optimizer updates，seed0。此处是计划配置，实际以 resolved config 为准。
+- AdamW，lr=2e-4，weight_decay=.01，batch=1/GPU，累积8步形成 effective batch8；FP16 dynamic loss scale (initial512)，clip norm35，70epochs，warmup4000 microsteps=500optimizer updates，seed0。此处是计划配置，实际以 resolved config 为准。
 - 先用相同分辨率/完整结构和真实数据跑16次迭代、确认2次有效更新和checkpoint，再新启动完整 M0。
-- `sw-camera-control.py` 保持训练数据、初始化、优化、预测尺度和修复相同，禁用 radar branch。相机对照首版仅准备配置，后续另行运行；不能从单个M0 loss推断正收益。
+- `sw-camera-control.py` 保持训练数据、初始化、优化、预测尺度和修复相同，禁用 radar branch。相机对照首版仅准备配置，后续另行运行；完整horizon筛选和共享修复意味着不能把这组结果直接称为原论文指标复现；不能从单个M0 loss推断正收益。
 
 ## 研究通过条件与停止条件
 
@@ -55,3 +55,7 @@
 - `bash tools/run_h200.sh configs/sw-radar-m0.py`：正式训练，工作目录非空时禁止覆盖，须人工或代理检查后显式恢复。
 - `python val.py --config configs/sw-radar-m0.py --weights CHECKPOINT --out METRICS_JSON`：固定完整horizon验证，按真实sample.next解析目标token，禁止在已筛选索引中用i+offset找目标。
 - 首epoch完成后应评估并根据动态类别与未来指标决定继续；当前70epoch仅为最大训练配置，不代表已完成或已取得正收益。
+
+## 环境说明
+
+实际运行使用 Python3.10 / PyTorch2.0.1cu118 / 源码编译MMCV1.7.0 sm90 / MMDetection2.28.2 / MMDetection3D1.0.0rc6。NumPy固定1.23.5、OpenCV4.8.0.76。旧版MMDetection3D声明的numba/networkx/trimesh依赖钉死值与本环境不同；未伪造版本或绕过MMCV支持范围检查，验证范围以本M0实际使用路径的单元测试和GPU正反向为准，不声称整个旧版工具箱均兼容。冻结依赖列表保存在服务器logs/environment.freeze.txt。
