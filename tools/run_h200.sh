@@ -7,7 +7,10 @@ export PATH="$ENV_DIR/bin:/usr/local/cuda-11.8/bin:$PATH"
 export CUDA_HOME=/usr/local/cuda-11.8
 export CUDA_VISIBLE_DEVICES=GPU-000b6236-3632-a001-9667-1f02cbb61c8b
 export TORCH_EXTENSIONS_DIR="$ROOT/cache/torch_extensions"
-export TMPDIR="$ROOT/cache/tmp"
+# Multiprocessing sockets need local storage; durable caches stay on the NAS.
+runtime_tmp=$(mktemp -d /tmp/huayiming-sparseworld.XXXXXX)
+export TMPDIR="$runtime_tmp"
+trap 'rm -rf -- "$runtime_tmp"' EXIT
 export OMP_NUM_THREADS=8
 export OPENBLAS_NUM_THREADS=1
 export MKL_NUM_THREADS=8
