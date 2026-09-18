@@ -3,6 +3,7 @@ import utils
 import shutil
 import logging
 import argparse
+import json
 import importlib
 import os.path as osp
 import torch
@@ -34,6 +35,8 @@ def main():
     # register custom module
     importlib.import_module('models')
     importlib.import_module('loaders')
+    if cfgs.get('official_finetune', False):
+        importlib.import_module('finetune_hooks')
 
     # MMCV, please shut up
     from mmcv.utils.logging import logger_initialized
@@ -169,6 +172,14 @@ def main():
                 resumed_iter=runner.iter, completed_epochs=runner.epoch,
                 new_world_size=world_size, new_batch_size=cfgs.batch_size)
             logging.info('RESUME_PARALLELISM_CHANGE %s', runner.meta['resume_parallelism_change'])
+
+    elif cfgs.get('official_finetune', False):
+        from official_init import initialize_official
+        report = initialize_official(model.module, cfgs.load_from)
+        with open(osp.join(work_dir, 'official_initialization.json'), 'w') as handle:
+            json.dump(report, handle, indent=2)
+        runner.meta['official_initialization'] = report
+        logging.info('OFFICIAL_INITIALIZATION %s', json.dumps(report))
 
     elif cfgs.load_from is not None:
         logging.info('Loading checkpoint from %s' % cfgs.load_from)

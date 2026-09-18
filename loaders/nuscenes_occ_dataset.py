@@ -170,7 +170,7 @@ class NuScenesOccDataset(NuScenesDataset):
         #     self.eval_riou(occ_results, fut_index, runner=runner, show_dir=show_dir, **eval_kwargs))
         return results_dict
 
-    def eval_miou(self, occ_results, fut_index, runner=None, show_dir=None, **eval_kwargs):
+    def eval_miou(self, occ_results, fut_index, runner=None, show_dir=None, sample_indices=None, **eval_kwargs):
         occ_gts = []
         occ_preds = []
         lidar_origins = []
@@ -179,13 +179,17 @@ class NuScenesOccDataset(NuScenesDataset):
         metric = Metric_mIoU(use_image_mask=True)
         iou_metric = Metric_mIoU(num_classes=2, use_image_mask=True)  # for binary iou
 
+        if sample_indices is None:
+            sample_indices = list(range(len(occ_results)))
+        if len(sample_indices) != len(occ_results) or len(set(sample_indices)) != len(sample_indices):
+            raise ValueError('Evaluation requires one unique dataset index per result')
         from tqdm import tqdm
         for i in tqdm(range(len(occ_results))):
             result_dict = occ_results[i]
 
             from .pipelines.loading import get_nusc
             nusc = get_nusc(self.data_root)
-            info = self.data_infos[i]
+            info = self.data_infos[sample_indices[i]]
             target = nusc.get('sample', info['token'])
             for _ in range(fut_index):
                 if not target['next']:
