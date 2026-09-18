@@ -57,7 +57,7 @@ def main():
     # resume or start a new run
     if cfgs.resume_from is not None:
         assert os.path.isfile(cfgs.resume_from)
-        work_dir = os.path.dirname(cfgs.resume_from)
+        work_dir = cfgs.get('work_dir', os.path.dirname(cfgs.resume_from))
     else:
         run_name = osp.splitext(osp.split(args.config)[-1])[0]
         run_name += '_' + datetime.now().strftime("%Y-%m-%d/%H-%M-%S")
@@ -91,6 +91,10 @@ def main():
 
     logging.info('Loading training set from %s' % cfgs.dataset_root)
     train_dataset = build_dataset(cfgs.data.train)
+    if cfgs.get('preload_nuscenes', False):
+        # Fork workers after loading once per rank, sharing read-only SDK tables.
+        from loaders.pipelines.loading import get_nusc
+        get_nusc(cfgs.dataset_root)
     train_loader = build_dataloader(
         train_dataset,
         samples_per_gpu=cfgs.batch_size // world_size,
@@ -99,6 +103,7 @@ def main():
         dist=world_size > 1,
         shuffle=True,
         seed=seed,
+        **cfgs.get('dataloader_options', {}),
     )
 
     logging.info('Training samples: %d', len(train_dataset))
@@ -114,7 +119,9 @@ def main():
     logging.info('Batch size per GPU: %d' % (cfgs.batch_size // world_size))
 
     if world_size > 1:
-        model = MMDistributedDataParallel(model, [local_rank], broadcast_buffers=False, find_unused_parameters=True)  # find_unused_parameters=True
+        model = MMDistributedDataParallel(
+            model, [local_rank], broadcast_buffers=False,
+            find_unused_parameters=cfgs.get('find_unused_parameters', True))
     else:
         model = MMDataParallel(model, [0])
 
@@ -149,6 +156,19 @@ def main():
     if cfgs.resume_from is not None:
         logging.info('Resuming from %s' % cfgs.resume_from)
         runner.resume(cfgs.resume_from)
+        if cfgs.get('resume_epoch_boundary', False):
+            if not isinstance(runner, EpochBasedRunner):
+                raise ValueError('Epoch-boundary remapping requires EpochBasedRunner')
+            previous_iter = runner.iter
+            previous_epoch_length = cfgs.resume_previous_iters_per_epoch
+            if previous_iter != runner.epoch * previous_epoch_length:
+                raise ValueError('Only a completed-epoch checkpoint may change parallelism')
+            runner._iter = runner.epoch * len(train_loader)
+            runner.meta['resume_parallelism_change'] = dict(
+                checkpoint=cfgs.resume_from, previous_iter=previous_iter,
+                resumed_iter=runner.iter, completed_epochs=runner.epoch,
+                new_world_size=world_size, new_batch_size=cfgs.batch_size)
+            logging.info('RESUME_PARALLELISM_CHANGE %s', runner.meta['resume_parallelism_change'])
 
     elif cfgs.load_from is not None:
         logging.info('Loading checkpoint from %s' % cfgs.load_from)

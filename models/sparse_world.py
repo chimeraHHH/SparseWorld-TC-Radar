@@ -32,13 +32,15 @@ class SparseWorld(MVXTwoStageDetector):
                  img_rpn_head=None,
                  train_cfg=None,
                  test_cfg=None,
-                 pretrained=None):
+                 pretrained=None,
+                 samplewise_loss=False):
         super().__init__(pts_voxel_layer, pts_voxel_encoder, pts_middle_encoder,
                          pts_fusion_layer, img_backbone, pts_backbone, img_neck,
                          pts_neck, pts_bbox_head, img_roi_head, img_rpn_head,
                          train_cfg, test_cfg, pretrained)
         self.data_aug = data_aug
         self.stop_prev_grad = stop_prev_grad
+        self.samplewise_loss = samplewise_loss
         self.color_aug = GpuPhotoMetricDistortion()
         self.grid_mask = GridMask(ratio=0.5, prob=0.7)
         self.use_grid_mask = use_grid_mask
@@ -222,8 +224,23 @@ class SparseWorld(MVXTwoStageDetector):
 
         voxel_semantics = torch.cat(voxel_semantics, dim=0)
         mask_camera = torch.cat(mask_camera, dim=0)
-        loss_inputs = [voxel_semantics, mask_camera, outs]
-        losses = self.pts_bbox_head.loss(*loss_inputs)
+        batch_size = len(img_metas)
+        if self.samplewise_loss and batch_size > 1:
+            # Preserve the original batch=1 objective: each scene's four
+            # horizons are reduced together, then scenes have equal weight.
+            # Otherwise scenes with more occupied voxels gain extra weight.
+            losses = {}
+            for b in range(batch_size):
+                scene_outs = dict(
+                    init_points=outs['init_points'][b::batch_size],
+                    all_cls_scores=[x[b::batch_size] for x in outs['all_cls_scores']],
+                    all_refine_pts=[x[b::batch_size] for x in outs['all_refine_pts']])
+                scene_losses = self.pts_bbox_head.loss(
+                    voxel_semantics[b::batch_size], mask_camera[b::batch_size], scene_outs)
+                for key, value in scene_losses.items():
+                    losses[key] = losses.get(key, 0) + value / batch_size
+        else:
+            losses = self.pts_bbox_head.loss(voxel_semantics, mask_camera, outs)
 
         return losses
 

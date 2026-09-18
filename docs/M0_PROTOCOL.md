@@ -59,3 +59,22 @@
 ## 环境说明
 
 实际运行使用 Python3.10 / PyTorch2.0.1cu118 / 源码编译MMCV1.7.0 sm90 / MMDetection2.28.2 / MMDetection3D1.0.0rc6。NumPy固定1.23.5、OpenCV4.8.0.76。旧版MMDetection3D声明的numba/networkx/trimesh依赖钉死值与本环境不同；未伪造版本或绕过MMCV支持范围检查，验证范围以本M0实际使用路径的单元测试和GPU正反向为准，不声称整个旧版工具箱均兼容。冻结依赖列表保存在服务器logs/environment.freeze.txt。
+
+## 2026-09-18 双卡续训与吞吐核验
+
+用户随后明确要求加速并使用两张 H200。首轮 `epoch_1.pth` 已完成：23,930 microsteps、2,991 次优化器更新；权重、优化器状态与FP16 scale1024均核验有限。旧进程在检查点完整保存后停止，原目录与检查点保留。
+
+候选续训配置 `sw-radar-m0-dual.py` 使用2GPU×4样本/GPU×累积1步，effective batch仍为8；每卡12个loader workers，pin memory（含自定义DataContainer）、persistent workers和prefetch2；每个rank先载入nuScenes表再fork，共享只读元数据；取消backbone激活重计算以使用显存换取少量计算提速。
+
+原loss对batch内所有占用点统一归一化，直接增大batch会让占用更密的场景获得不同权重。因此新增可选samplewise_loss：每个场景的四个时刻先按原batch1方式计算，再对场景均值，保持原训练目标。相机对照若采用加速配置，须同样启用此项。
+
+真实样本的batch1/2、backbone checkpointing开关梯度对照（仅等价性测试关闭随机dropout与颜色增强，正式训练保留）通过：FP32梯度相对L2误差约6.07e-5、FP16约4.30e-5，575组梯度。初版对照误留随机dropout，曾产生约3.5%的梯度差异；诊断结果保留，不能将该差异解释为批处理实现错误或浮点精度问题。
+
+双卡ABBA benchmark使用同一随机样本集合、样本索引决定的CPU增强、完整模型及epoch1权重；每组预热208样本，再计时320样本；四组均重新初始化测试状态，不把benchmark权重用于正式续训。A1旧配置1.778samples/s，B1加速4.982，B2加速4.977，A2旧配置4.366。A1/A2差异显示明显缓存影响；不能声称2.8倍全由配置带来。热缓存条件下B比A2约快14%，正式全量数据上的提升必须另测。
+
+续训保留epoch、模型、AdamW动量和FP16 scaler；按新loader长度把runner.iter重映射到epoch1结束位置，cosine仍按epoch，warmup按等效样本数折算且首轮已结束warmup。两点可复现性边界：
+
+- 原epoch长度23930不能被累积8整除，原框架epoch检查点未保存最后2个microsteps尚未提交的梯度；续训基于已保存的2,991次更新。
+- DDP采样器每轮补齐到23,936个样本（6个重复项），并行度/worker数变化会改变抽样及增强随机序列，不声称逐位一致的原进程延续。
+
+正式输出使用独立的`m0_seed0_dual`目录。若加速配置失败或无实际收益，可从原保留检查点回退。性能结论以正式续训的稳定窗口为准。
