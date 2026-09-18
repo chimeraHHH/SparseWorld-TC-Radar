@@ -1,11 +1,13 @@
 """Strictly causal nuScenes radar loading into the current LiDAR-time ego frame."""
 import os
+import logging
 import numpy as np
 from mmdet.datasets.builder import PIPELINES
 from nuscenes.utils.data_classes import RadarPointCloud
 from nuscenes.utils.geometry_utils import transform_matrix
 from pyquaternion import Quaternion
 from .loading import get_nusc
+from .radar_cache import RadarCache
 
 RADAR_CHANNELS = ('RADAR_FRONT', 'RADAR_FRONT_LEFT', 'RADAR_FRONT_RIGHT',
                   'RADAR_BACK_LEFT', 'RADAR_BACK_RIGHT')
@@ -35,21 +37,17 @@ class LoadCausalRadar:
         self.max_points = max_points
         self.xy_limit = xy_limit
         self.cache_root = cache_root
+        self.cache = RadarCache(cache_root, self) if cache_root else None
+        if self.cache is not None:
+            logging.info('RADAR_CACHE_ENABLED root=%s samples=%d protocol=%s',
+                         cache_root, len(self.cache.entries), self.cache.protocol_sha256)
 
     def __call__(self, results):
-        if self.cache_root:
-            path = os.path.join(self.cache_root, results['sample_idx'] + '.npz')
-            with np.load(path) as data:
-                if str(data['schema']) != 'causal_lidar_ego_v1':
-                    raise ValueError('Wrong radar cache schema')
-                reference_us = int(data['reference_timestamp_us'])
-                if abs(reference_us / 1e6 - results['timestamp']) > 1e-5:
-                    raise ValueError('Radar/reference timestamp mismatch')
-                points = data['points']
-            if not np.isfinite(points).all() or np.any(points[:, 6] < 0):
-                raise ValueError('Invalid/noncausal radar cache')
-            results['radar_points'] = points
-            return results
+        if self.cache is not None:
+            return self.cache.load(results)
+        return self._load_online(results)
+
+    def _load_online(self, results):
         nusc = get_nusc(self.data_root)
         sample = nusc.get('sample', results['sample_idx'])
         ref_sd = nusc.get('sample_data', sample['data']['LIDAR_TOP'])

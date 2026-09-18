@@ -32,11 +32,18 @@ apps=subprocess.check_output(['nvidia-smi','--query-compute-apps=gpu_uuid,pid','
 assert all(gpu not in apps for gpu in os.environ['CUDA_VISIBLE_DEVICES'].split(',')),'Selected GPU occupied'
 import torch
 c=torch.load(cfg.resume_from,map_location='cpu')
-assert c['meta']['epoch']==1 and c['meta']['iter']==23930,c['meta']
+assert c['meta']['epoch'] >= 1,c['meta']
+assert c['meta']['iter'] == c['meta']['epoch'] * cfg.resume_previous_iters_per_epoch,c['meta']
 assert 'optimizer' in c and 'fp16' in c['meta']
 assert all(torch.isfinite(v).all() for v in c['state_dict'].values())
+steps=sorted(set(float(state['step']) for state in c['optimizer']['state'].values()))
+assert len(steps)==1 and steps[0]>0,steps
+if cfg.get('radar_cache_root'):
+    ready=json.loads((Path(cfg.radar_cache_root)/'COMPLETE.json').read_text())
+    assert ready['samples']==ready['production_reader_verified_samples']
+    assert ready['independent_online_rechecks']>=128
 work.mkdir(parents=True,exist_ok=True)
-(work/'launch.json').write_text(json.dumps(dict(config=sys.argv[1],gpu_uuids=os.environ['CUDA_VISIBLE_DEVICES'].split(','),launcher_pid=os.getppid(),git_revision=manifest['git_revision'],resume_from=cfg.resume_from,previous_meta=c['meta']),indent=2))
+(work/'launch.json').write_text(json.dumps(dict(config=sys.argv[1],gpu_uuids=os.environ['CUDA_VISIBLE_DEVICES'].split(','),launcher_pid=os.getppid(),git_revision=manifest['git_revision'],resume_from=cfg.resume_from,previous_meta=c['meta'],optimizer_steps=steps,radar_cache_root=cfg.get('radar_cache_root')),indent=2))
 (work/'code_manifest.json').write_text(json.dumps(manifest,indent=2))
 print('SINGLE_BS8_LAUNCH_PREFLIGHT_PASSED',work,flush=True)
 PY
