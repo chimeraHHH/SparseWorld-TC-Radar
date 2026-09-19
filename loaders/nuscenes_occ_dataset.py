@@ -170,7 +170,8 @@ class NuScenesOccDataset(NuScenesDataset):
         #     self.eval_riou(occ_results, fut_index, runner=runner, show_dir=show_dir, **eval_kwargs))
         return results_dict
 
-    def eval_miou(self, occ_results, fut_index, runner=None, show_dir=None, sample_indices=None, **eval_kwargs):
+    def eval_miou(self, occ_results, fut_index, runner=None, show_dir=None, sample_indices=None,
+                  confusion_path=None, **eval_kwargs):
         occ_gts = []
         occ_preds = []
         lidar_origins = []
@@ -178,6 +179,7 @@ class NuScenesOccDataset(NuScenesDataset):
         print('\nStarting Evaluation...')
         metric = Metric_mIoU(use_image_mask=True)
         iou_metric = Metric_mIoU(num_classes=2, use_image_mask=True)  # for binary iou
+        scene_histograms = {}
 
         if sample_indices is None:
             sample_indices = list(range(len(occ_results)))
@@ -209,7 +211,12 @@ class NuScenesOccDataset(NuScenesDataset):
                 dense_shape=occ_labels.shape,
                 empty_value=17)
             
+            previous_histogram = metric.hist.copy() if confusion_path else None
             metric.add_batch(occ_pred, occ_labels, mask_lidar, mask_camera)
+            if confusion_path:
+                name = info['scene_name']
+                scene_histograms.setdefault(name, np.zeros_like(metric.hist))
+                scene_histograms[name] += metric.hist - previous_histogram
             iou_metric.add_batch(occ_pred, occ_labels, mask_lidar, mask_camera)
         
         metric.count_miou()
@@ -219,6 +226,12 @@ class NuScenesOccDataset(NuScenesDataset):
                   'Binary IoU': float(iou_metric.per_class_iu(iou_metric.hist)[0] * 100),
                   'evaluated_samples': metric.cnt}
         result.update({name + '_IoU': float(value * 100) for name, value in zip(metric.class_names[:17], per_class[:17])})
+        if confusion_path:
+            names = sorted(scene_histograms)
+            histograms = np.stack([scene_histograms[name] for name in names]).astype(np.int64)
+            assert np.array_equal(histograms.sum(0), metric.hist)
+            np.savez_compressed(confusion_path, scene_names=np.array(names), histograms=histograms,
+                                sample_indices=np.asarray(sample_indices), horizon=fut_index)
         return result
     
     def eval_riou(self, occ_results, fut_index, runner=None, show_dir=None, **eval_kwargs):

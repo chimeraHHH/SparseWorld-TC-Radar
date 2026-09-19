@@ -25,7 +25,7 @@ def json_safe(value):
     return value
 
 
-def evaluate_subset(model, dataset, indices, workers=4, logger=None):
+def evaluate_subset(model, dataset, indices, workers=4, logger=None, confusion_dir=None):
     """Keep full dataset history while selecting anchors; restore training RNG."""
     rng = (random.getstate(), np.random.get_state(), torch.get_rng_state(),
            torch.cuda.get_rng_state_all())
@@ -50,8 +50,12 @@ def evaluate_subset(model, dataset, indices, workers=4, logger=None):
                 results.extend(prediction)
                 if logger and ((i + 1) % 64 == 0 or i + 1 == len(indices)):
                     logger.info('FINETUNE_VALIDATION_PROGRESS %d/%d', i + 1, len(indices))
+        if confusion_dir is not None:
+            Path(confusion_dir).mkdir(parents=True, exist_ok=True)
         metrics = {str(h * .5) + 's': dataset.evaluate(
-            results[j::len(dataset.future_frames)], h, sample_indices=indices)
+            results[j::len(dataset.future_frames)], h, sample_indices=indices,
+            confusion_path=(str(Path(confusion_dir) / ('%.1fs.npz' % (h * .5)))
+                            if confusion_dir is not None else None))
             for j, h in enumerate(dataset.future_frames)}
         return metrics
     finally:
@@ -67,10 +71,13 @@ def evaluate_subset(model, dataset, indices, workers=4, logger=None):
 
 @HOOKS.register_module()
 class FinetuneValidationHook(Hook):
-    def __init__(self, config, samples=256, full_at_end=True):
+    def __init__(self, config, samples=256, full_at_end=True, keep_best_trained=False,
+                 save_scene_confusions=False):
         self.config = config
         self.samples = samples
         self.full_at_end = full_at_end
+        self.keep_best_trained = keep_best_trained
+        self.save_scene_confusions = save_scene_confusions
 
     def before_run(self, runner):
         cfg = Config.fromfile(self.config)
@@ -80,10 +87,16 @@ class FinetuneValidationHook(Hook):
         self.best = -float('inf')
         if runner.epoch == 0:
             self._evaluate(runner, 0, self.indices, 'subset')
+            if self.keep_best_trained:
+                # Keep the best trained checkpoint even for a negative experiment.
+                self.best = -float('inf')
 
     def _evaluate(self, runner, epoch, indices, scope):
         started = time.monotonic()
-        metrics = evaluate_subset(runner.model, self.dataset, indices, logger=runner.logger)
+        confusion_dir = (Path(runner.work_dir) / ('confusions_epoch_%02d_%s' % (epoch, scope))
+                         if self.save_scene_confusions else None)
+        metrics = evaluate_subset(runner.model, self.dataset, indices, logger=runner.logger,
+                                  confusion_dir=confusion_dir)
         score = float(np.mean([metrics[h]['Semantic mIoU'] for h in ('1.0s', '2.0s', '3.0s')]))
         if not math.isfinite(score):
             raise FloatingPointError('Nonfinite validation future mIoU')
@@ -100,6 +113,8 @@ class FinetuneValidationHook(Hook):
             self.best = score
             if epoch > 0:
                 runner.save_checkpoint(runner.work_dir, filename_tmpl='best_future.pth', create_symlink=False)
+                Path(runner.work_dir, 'best_future.json').write_text(json.dumps(
+                    dict(epoch=epoch, future_mean_miou=score, samples=len(indices)), indent=2))
         return report
 
     def after_train_epoch(self, runner):

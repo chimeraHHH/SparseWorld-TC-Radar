@@ -13,7 +13,7 @@ from .utils import inverse_sigmoid, DUMP, MLN
 from .sparse_world_sampling import sampling_4d
 from .checkpoint import checkpoint as cp
 from .csrc.wrapper import MSMV_CUDA
-from .radar_fusion import RadarQueryFusion
+from .radar_fusion import RadarQueryFusion, centers_to_current
 
 
 @TRANSFORMER.register_module()
@@ -216,7 +216,7 @@ class SparseWorldTransformerDecoder(BaseModule):
 
             query_points = query_points.detach()
             query_feat, cls_score, query_points = decoder_layer(
-                query_points, query_feat, mlvl_feats, occ2img, img_metas, fut2cur, radar, valid)
+                query_points, query_feat, mlvl_feats, occ2img, img_metas, fut2cur, radar, valid, fut_list)
 
             cls_scores.append(cls_score)
             refine_pts.append(query_points)
@@ -317,7 +317,7 @@ class SparseWorldTransformerDecoderLayer(BaseModule):
         new_points = points_proposal + points_delta
         return encode_points(new_points, self.pc_range)
 
-    def forward(self, query_points, query_feat, mlvl_feats, occ2img, img_metas, fut2cur, radar=None, radar_valid=None):
+    def forward(self, query_points, query_feat, mlvl_feats, occ2img, img_metas, fut2cur, radar=None, radar_valid=None, fut_list=None):
         # query_points: [B*FT, Q, _, 3], [x, y, z]
         FT = len(fut2cur)
         query_pos = self.position_encoder(query_points.flatten(2, 3))
@@ -331,9 +331,25 @@ class SparseWorldTransformerDecoderLayer(BaseModule):
         BT, Q, C = query_feat.shape
         batch_size = BT // FT
         if self.radar_fusion is not None:
-            centers = decode_points(query_points[:batch_size], self.pc_range).mean(dim=2)
-            current = self.radar_fusion(query_feat[:batch_size], centers, radar, radar_valid)
-            query_feat = torch.cat([current, query_feat[batch_size:]], dim=0)
+            if self.radar_fusion.mode == 'transport':
+                if fut_list is None or len(fut_list) != FT:
+                    raise ValueError('Transport fusion requires explicit horizon timestamps')
+                fused_horizons = []
+                for horizon in range(FT):
+                    start, end = horizon * batch_size, (horizon + 1) * batch_size
+                    frames = torch.as_tensor(fut_list[horizon]).reshape(-1)
+                    if not torch.all(frames == frames[0]):
+                        raise ValueError('A batch must share forecasting horizons')
+                    seconds = float(frames[0]) * .5
+                    centers = decode_points(query_points[start:end], self.pc_range).mean(dim=2)
+                    centers = centers_to_current(centers, fut2cur[horizon])
+                    fused_horizons.append(self.radar_fusion(
+                        query_feat[start:end], centers, radar, radar_valid, seconds))
+                query_feat = torch.cat(fused_horizons, dim=0)
+            else:
+                centers = decode_points(query_points[:batch_size], self.pc_range).mean(dim=2)
+                current = self.radar_fusion(query_feat[:batch_size], centers, radar, radar_valid)
+                query_feat = torch.cat([current, query_feat[batch_size:]], dim=0)
         # Features/targets are horizon-major [FT,B,Q,C]; attend within each scene.
         query_feat = query_feat.reshape(FT, batch_size, Q, C).permute(1, 0, 2, 3).reshape(batch_size, FT * Q, C)
         query_feat = self.ln(self.ffn(self.tempo_attn(query_feat)))

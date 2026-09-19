@@ -9,6 +9,7 @@ from mmdet.models import HEADS
 from mmdet.models.utils import build_transformer
 from mmdet.models.builder import build_loss
 from .bbox.utils import decode_points
+from .forecast_objective import normalized_movable_weights, weighted_horizon_mean
 # from .utils import calc_dcd
 # from .metrics import cd
 # cham_loss = cd()
@@ -38,6 +39,7 @@ class SparseWorldHead(BaseModule):
                  loss_pts=dict(type='L1Loss'),  # dict(type='L1Loss'), loss_pts='dcd'
                  init_cfg=None,
                  use_can_bus=False,
+                 forecast_objective=None,
                  **kwargs):
         super().__init__(init_cfg)
         self.num_query = num_query
@@ -45,6 +47,11 @@ class SparseWorldHead(BaseModule):
         self.num_classes = num_classes
         self.in_channels = in_channels
         self.train_cfg = train_cfg
+        self.forecast_objective = forecast_objective
+        if forecast_objective is not None:
+            weights = forecast_objective['horizon_weights']
+            if len(weights) != len(future_frames) or any(w <= 0 for w in weights):
+                raise ValueError('Forecast objective must match configured horizons')
         self.test_cfg = test_cfg
         self.fp16_enabled = False
         self.empty_label = empty_label
@@ -183,7 +190,8 @@ class SparseWorldHead(BaseModule):
                     refine_pts,
                     gt_points_list,
                     gt_masks_list,
-                    gt_labels_list):
+                    gt_labels_list,
+                    movable_weight=1.):
         # start_time_loss = time.perf_counter()
         num_imgs = cls_scores.size(0) # B
         cls_scores = cls_scores.reshape(num_imgs, -1, self.num_classes)
@@ -237,6 +245,15 @@ class SparseWorldHead(BaseModule):
          gt_pts_weights) = multi_apply(
              self._get_target_single, refine_pts_list, gt_points_list, 
              gt_masks_list, gt_labels_list)
+        pred_motion_weights = None
+        if movable_weight != 1.:
+            pred_motion_weights = [normalized_movable_weights(labels, movable_weight)
+                                   for labels in labels_list]
+            cls_weights = [weight * motion[:, None] for weight, motion in
+                           zip(cls_weights, pred_motion_weights)]
+            gt_pts_weights = [weight * normalized_movable_weights(labels, movable_weight)
+                              for weight, labels in zip(gt_pts_weights, gt_labels_list)]
+            pred_motion_weights = torch.cat(pred_motion_weights)
         # elapsed_knn = time.perf_counter() - start_time_knn
         # print(f'runtime of calculating loss_knn: {elapsed_knn} s')
         
@@ -280,12 +297,33 @@ class SparseWorldHead(BaseModule):
                                   avg_factor=gt_pts.shape[0])
         loss_pts += self.loss_pts(pred_pts, 
                                   pred_paired_pts,
+                                  weight=(pred_motion_weights[:, None]
+                                          if pred_motion_weights is not None else None),
                                   avg_factor=pred_pts.shape[0])
 
         # elapsed_loss = time.perf_counter() - start_time_loss
         # print(f'runtime of calculating loss: {elapsed_loss} s')
 
         return loss_cls, loss_pts
+
+    def loss_decoder(self, cls_scores, refine_pts, gt_points, gt_masks, gt_labels):
+        if self.forecast_objective is None:
+            return self.loss_single(cls_scores, refine_pts, gt_points, gt_masks, gt_labels)
+        weights = self.forecast_objective['horizon_weights']
+        if cls_scores.shape[0] != len(weights):
+            raise ValueError('Future-balanced loss requires scene-wise horizon reduction')
+        losses_cls, losses_pts = [], []
+        for horizon in range(len(weights)):
+            movement = (self.forecast_objective.get('movable_weight', 2.)
+                        if self.future_frames[horizon] > 0 else 1.)
+            cls, pts = self.loss_single(
+                cls_scores[horizon:horizon+1], refine_pts[horizon:horizon+1],
+                gt_points[horizon:horizon+1], gt_masks[horizon:horizon+1],
+                gt_labels[horizon:horizon+1], movable_weight=movement)
+            losses_cls.append(cls)
+            losses_pts.append(pts)
+        return (weighted_horizon_mean(losses_cls, weights),
+                weighted_horizon_mean(losses_pts, weights))
     
     @force_fp32(apply_to=('preds_dicts'))
     def loss(self, voxel_semantics, mask_camera, preds_dicts):
@@ -302,7 +340,7 @@ class SparseWorldHead(BaseModule):
         all_gt_labels_list = [gt_labels_list for _ in range(num_dec_layers)]
 
         losses_cls, losses_pts = multi_apply(
-            self.loss_single, all_cls_scores, all_refine_pts, 
+            self.loss_decoder, all_cls_scores, all_refine_pts,
             all_gt_points_list, all_gt_masks_list, all_gt_labels_list)
 
         loss_dict = dict()
@@ -310,7 +348,7 @@ class SparseWorldHead(BaseModule):
         if init_points is not None:
             pseudo_scores = init_points.new_zeros(
                 *init_points.shape[:-1], self.num_classes)
-            _, init_loss_pts = self.loss_single(
+            _, init_loss_pts = self.loss_decoder(
                 pseudo_scores, init_points, gt_points_list, 
                 gt_masks_list, gt_labels_list)
             loss_dict['init_loss_pts'] = init_loss_pts

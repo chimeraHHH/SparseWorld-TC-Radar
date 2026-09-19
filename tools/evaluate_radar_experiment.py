@@ -97,7 +97,8 @@ def main():
         started = time.monotonic()
         try:
             metrics = evaluate_subset(model, dataset, indices, workers=args.workers,
-                                      logger=logging.getLogger())
+                                      logger=logging.getLogger(),
+                                      confusion_dir=output / ('confusions_' + mode))
         finally:
             if hook is not None:
                 hook.remove()
