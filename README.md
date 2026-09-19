@@ -11,6 +11,9 @@ checkpoint. The upstream license, attribution and Git history are retained.
   coverage, initialization parity, differential learning rates and validation.
 - [Completed experiment, 2026-09-20](docs/EXPERIMENT_STATUS_2026-09-20.md): ten-epoch
   single-H200 / batch-eight run and its measured limitations.
+- [Two forecasting improvement arms](docs/FORECAST_IMPROVEMENTS.md): causal
+  motion transport versus future/category-balanced supervision, with independent
+  single-GPU training and automatic checkpoint evaluation.
 
 The latest experiment uses `configs/sw-radar-m0-official-ft.py`. Historical
 single- and dual-GPU configurations are retained for reproducibility. The H200

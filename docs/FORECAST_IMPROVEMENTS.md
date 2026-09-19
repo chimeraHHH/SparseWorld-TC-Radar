@@ -7,6 +7,20 @@ The matched 256-anchor diagnostic improved current-frame semantic mIoU from
 The best future score occurred at epoch 1, not epoch 10. This supports a plateau
 in this run; it does not establish that radar is intrinsically unhelpful.
 
+Follow-up inference interventions on the same 256 anchors strengthen the routing
+diagnosis: normal radar gives current/future-mean mIoU 31.9767/24.45424; removing
+radar gives 30.1292/24.45256; zeroing its velocity gives 31.7147/24.44859. Thus
+the current prediction depends materially on the branch, while future-mean
+differences are tiny. These interventions use the already jointly trained
+model, and do not replace a separately trained camera-only control.
+
+A deterministic sample of 1,024 training anchors contains 491,824 radar returns;
+5.84% have compensated speed over 2 m/s. For those returns, historical motion
+displacement has median 0.89 m and 95th percentile 2.97 m. On 64 sampled training
+anchors, movable semantic categories account for 7.02% of occupied voxels and
+5.66% of camera-visible occupied voxels. These are input/target statistics,
+not measured fractions of the optimizer gradient.
+
 Inspection of the executed implementation identifies three mechanisms worth
 testing:
 

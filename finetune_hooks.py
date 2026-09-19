@@ -15,6 +15,14 @@ from torch.utils.data import Subset
 from loaders.builder import build_dataloader
 
 
+@HOOKS.register_module()
+class FiniteTrainingLossHook(Hook):
+    """Fail before the optimizer on a nonfinite objective; AMP overflow is separate."""
+    def after_train_iter(self, runner):
+        if not torch.isfinite(runner.outputs['loss']).all():
+            raise FloatingPointError('Nonfinite training loss')
+
+
 def json_safe(value):
     if isinstance(value, dict):
         return {k: json_safe(v) for k, v in value.items()}

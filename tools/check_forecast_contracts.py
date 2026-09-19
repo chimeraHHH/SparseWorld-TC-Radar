@@ -40,7 +40,8 @@ def main():
     assert initialization['loaded_tensors'] == 669
     assert initialization['new_radar_tensors'] == 102
     assert len(initialization['zero_residual_outputs']) == 6
-    report = dict(config=args.config, device=args.device, initialization=initialization)
+    report = dict(config=args.config, device=args.device, initialization=initialization,
+                  git_revision=json.loads(Path('code_manifest.json').read_text())['git_revision'])
     if args.device == 'cpu':
         assert not torch.cuda.is_available(), 'CPU audit must hide CUDA devices'
         optimizer = build_optimizer(module, cfg.optimizer)
