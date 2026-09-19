@@ -1,3 +1,29 @@
+# SparseWorld-TC Radar
+
+Research extension of [SparseWorld-TC](https://github.com/MrPicklesGG/SparseWorld-TC)
+with a causal radar branch and joint fine-tuning from the complete official
+checkpoint. The upstream license, attribution and Git history are retained.
+
+- [Radar M0 protocol](docs/M0_PROTOCOL.md): causal radar loading and query fusion.
+- [Offline radar cache](docs/RADAR_CACHE.md): precompute and verify deterministic
+  sweep accumulation and coordinate transformations.
+- [Official-model fine-tuning](docs/OFFICIAL_FINETUNE.md): exact pretrained weight
+  coverage, initialization parity, differential learning rates and validation.
+- [Completed experiment, 2026-09-20](docs/EXPERIMENT_STATUS_2026-09-20.md): ten-epoch
+  single-H200 / batch-eight run and its measured limitations.
+
+The latest experiment uses `configs/sw-radar-m0-official-ft.py`. Historical
+single- and dual-GPU configurations are retained for reproducibility. The H200
+launch scripts contain the original server paths, GPU UUID and ownership checks;
+adapt those settings before using another machine. Datasets, checkpoints,
+compiled extensions, environments and generated launch/audit receipts are not
+included. Recreate the receipts for the actual checkout before using the guarded
+launcher; old receipts are not substitutes for fresh checks.
+
+The original project README follows.
+
+---
+
 <p align="center">
   <h2 align="center">SparseWorld-TC: Trajectory-Conditioned Sparse Occupancy World Model</h2>
   <p align="center">
