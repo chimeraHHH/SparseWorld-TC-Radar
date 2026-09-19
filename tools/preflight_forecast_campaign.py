@@ -20,7 +20,8 @@ try:
         subprocess.run([sys.executable, '-m', 'pytest', '-q', 'tests/test_forecast_improvements.py',
                         'tests/test_forecast_comparison.py', 'tests/test_radar_fusion.py',
                         'tests/test_official_init.py', 'tests/test_radar_cache.py',
-                        'tests/test_m0_contracts.py', '--junitxml='+str(root/'cpu_tests.xml')],
+                        'tests/test_m0_contracts.py', 'tests/test_gpu_capacity.py',
+                        '--junitxml='+str(root/'cpu_tests.xml')],
                        stdout=log, stderr=subprocess.STDOUT, check=True)
     for arm in ('transport', 'balanced'):
         with (root/('cpu_'+arm+'.log')).open('wb') as log:

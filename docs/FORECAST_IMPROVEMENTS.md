@@ -14,6 +14,19 @@ the current prediction depends materially on the branch, while future-mean
 differences are tiny. These interventions use the already jointly trained
 model, and do not replace a separately trained camera-only control.
 
+This is not just cancellation in the overall mean: removing radar changes the
+future average over eight movable categories by -0.0145 percentage points
+(car -0.0624, pedestrian +0.0405), versus current car/pedestrian changes of
+-4.6731/-4.4046 points. The largest absolute future class/horizon change in this
+subset is 0.1931 points. Substantial gains within a narrower distance, occlusion
+or motion stratum have not been tested by these aggregate interventions.
+
+Full validation (5,119 anchors) confirms the plateau: official future mean
+25.383372%, M0 epoch1 25.370820%, M0 epoch10 25.358946%. Their current-frame mIoUs
+are 31.002407%, 32.137228% and 32.791439%. The small future differences are point
+estimates without paired intervals at this stage. Epoch1 was selected on the
+256-anchor subset, not proven to be the best checkpoint over all full-set epochs.
+
 A deterministic sample of 1,024 training anchors contains 491,824 radar returns;
 5.84% have compensated speed over 2 m/s. For those returns, historical motion
 displacement has median 0.89 m and 95th percentile 2.97 m. On 64 sampled training
@@ -100,7 +113,11 @@ Expected signature: improved future category accuracy without changing the
 information path. Risks: sacrificing current/static accuracy or amplifying
 label noise. If B helps but A does not, the optimization budget may be the more
 immediate limitation; if A helps but B does not, direct evidence routing is
-better supported. These interpretations remain conditional on this one seed.
+better supported. These interpretations remain conditional on this one seed. A changes both
+motion compensation and direct routing; B changes both horizon and category
+weighting. Positive results for an arm do not isolate its internal components;
+component ablations would be a follow-up. The fixed constants are engineering
+choices, not claimed official or optimal settings.
 
 ## Shared protocol and evaluation
 
@@ -125,9 +142,14 @@ better supported. These interpretations remain conditional on this one seed.
   0.3-point current-frame regression. Also inspect movable-category changes,
   paired uncertainty, best-vs-final behavior and runtime; this threshold alone
   is not a statistical significance claim.
+- Before every GPU stage, require at least 132,000 MiB free for 60 seconds.
+  A tiny resident CUDA context need not block a full BS8 job; a large competing
+  allocation does. This also avoids treating short gaps between another user's
+  jobs as training capacity. The per-GPU lock prevents our two arms from sharing
+  one GPU. The check cannot reserve memory against later external allocations.
 - Stop an arm on a failed preflight, OOM, nonfinite model/loss, or process error.
-  Do not silently reduce batch size, change input resolution, restart from
-  scratch or occupy another user's GPU.
+  Do not silently reduce batch size, change input resolution, restart trained
+  weights from scratch, or terminate another user's process.
 
 Both changes are initially hypotheses. Runtime success, gradients and successful
 checkpoint writes will be reported separately from evaluated model benefit.

@@ -17,6 +17,8 @@ import time
 import traceback
 from pathlib import Path
 
+from gpu_capacity import CapacityWindow, memory_snapshot
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -52,9 +54,6 @@ def main():
         record(state='waiting_for_gpu_lock')
         lock = open(root/f'forecast_gpu{args.gpu}.lock', 'w')
         fcntl.flock(lock, fcntl.LOCK_EX)
-        apps = subprocess.check_output(['nvidia-smi', '--query-compute-apps=gpu_uuid',
-                                        '--format=csv,noheader'], text=True)
-        assert uuid not in apps, 'Selected GPU has another process; stopping without interference'
         env = dict(os.environ, CUDA_VISIBLE_DEVICES=uuid, OMP_NUM_THREADS='4',
                    OPENBLAS_NUM_THREADS='1', MKL_NUM_THREADS='4', PYTHONPATH=str(code),
                    PYTHONUNBUFFERED='1', TMPDIR='/tmp',
@@ -68,6 +67,21 @@ def main():
             assert not directory.exists() or not any(directory.iterdir()), directory
         telemetry = campaign/(args.arm + '_gpu.jsonl')
         def run(stage, arguments):
+            # Other users may allocate between stages. Short gaps between their
+            # jobs are not evidence of sustained capacity for a BS8 launch.
+            window = CapacityWindow()
+            while True:
+                snapshot = memory_snapshot(uuid)
+                now = time.monotonic()
+                if window.observe(snapshot['free_mib'], now):
+                    break
+                record(state='waiting_for_gpu_memory', stage=stage, child_pid=None,
+                       memory_admission=dict(**snapshot,
+                           minimum_free_mib=window.minimum_free_mib,
+                           required_stable_seconds=window.quiet_seconds,
+                           observed_stable_seconds=(now-window.sufficient_since
+                               if window.sufficient_since is not None else 0.)))
+                time.sleep(15)
             log_path = campaign/(args.arm + '_' + stage + '.log')
             command = [python] + arguments
             with log_path.open('wb') as log:

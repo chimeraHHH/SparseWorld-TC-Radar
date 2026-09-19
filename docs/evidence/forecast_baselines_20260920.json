@@ -1,0 +1,890 @@
+{
+  "at_utc": "2026-09-19T17:36:22.145940+00:00",
+  "evaluations": {
+    "m0_best_full/normal.json": {
+      "config": "configs/sw-radar-m0-official-ft.py",
+      "checkpoint": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/m0_official_ft_seed0/best_future.pth",
+      "checkpoint_meta": {
+        "epoch": 1,
+        "iter": 2992
+      },
+      "mode": "normal",
+      "samples": 5119,
+      "future_mean_miou": 25.37082011003008,
+      "metrics": {
+        "0.0s": {
+          "Semantic mIoU": 32.13722767497059,
+          "Binary IoU": 52.144103200818016,
+          "evaluated_samples": 5119,
+          "others_IoU": 10.14187968365866,
+          "barrier_IoU": 36.86433760509346,
+          "bicycle_IoU": 17.701708787258752,
+          "bus_IoU": 35.73208707896624,
+          "car_IoU": 44.538323240350415,
+          "construction_vehicle_IoU": 22.336881407677865,
+          "motorcycle_IoU": 18.241728607304783,
+          "pedestrian_IoU": 15.067038877547773,
+          "traffic_cone_IoU": 17.768389936135716,
+          "trailer_IoU": 24.140844345866416,
+          "truck_IoU": 31.267137391687054,
+          "driveable_surface_IoU": 74.1553530933542,
+          "other_flat_IoU": 41.396089870362516,
+          "sidewalk_IoU": 45.99574943585941,
+          "terrain_IoU": 44.105493109478964,
+          "manmade_IoU": 33.88970787699059,
+          "vegetation_IoU": 32.990120126907186
+        },
+        "1.0s": {
+          "Semantic mIoU": 27.67874082827289,
+          "Binary IoU": 50.08627069827028,
+          "evaluated_samples": 5119,
+          "others_IoU": 9.461337152307154,
+          "barrier_IoU": 34.78651639386216,
+          "bicycle_IoU": 11.706942425322984,
+          "bus_IoU": 24.45353954254876,
+          "car_IoU": 30.155581170586053,
+          "construction_vehicle_IoU": 19.975874037077794,
+          "motorcycle_IoU": 9.367330734805831,
+          "pedestrian_IoU": 6.3106937538844,
+          "traffic_cone_IoU": 14.562532109272041,
+          "trailer_IoU": 20.908552327850792,
+          "truck_IoU": 23.415085608514577,
+          "driveable_surface_IoU": 73.4354503928757,
+          "other_flat_IoU": 40.9694156177464,
+          "sidewalk_IoU": 45.36798323176269,
+          "terrain_IoU": 43.47048204691778,
+          "manmade_IoU": 31.25203117428589,
+          "vegetation_IoU": 30.939246361018157
+        },
+        "2.0s": {
+          "Semantic mIoU": 25.27250219705171,
+          "Binary IoU": 48.70529048295448,
+          "evaluated_samples": 5119,
+          "others_IoU": 9.067612510460796,
+          "barrier_IoU": 32.60895101609304,
+          "bicycle_IoU": 8.730978640234538,
+          "bus_IoU": 17.809799812008812,
+          "car_IoU": 24.142915254118417,
+          "construction_vehicle_IoU": 18.077085469569937,
+          "motorcycle_IoU": 7.683462843789989,
+          "pedestrian_IoU": 3.4817255018084134,
+          "traffic_cone_IoU": 12.13976321108865,
+          "trailer_IoU": 18.28701339021923,
+          "truck_IoU": 19.2833738516159,
+          "driveable_surface_IoU": 72.40694550251342,
+          "other_flat_IoU": 39.87006299268948,
+          "sidewalk_IoU": 44.21819177482994,
+          "terrain_IoU": 42.316173548771076,
+          "manmade_IoU": 29.884486034233284,
+          "vegetation_IoU": 29.623995995834107
+        },
+        "3.0s": {
+          "Semantic mIoU": 23.16121730476565,
+          "Binary IoU": 47.00549771305991,
+          "evaluated_samples": 5119,
+          "others_IoU": 8.49980274719363,
+          "barrier_IoU": 30.27896932966331,
+          "bicycle_IoU": 6.0159169352768345,
+          "bus_IoU": 13.714468362991319,
+          "car_IoU": 20.508111019531672,
+          "construction_vehicle_IoU": 16.18983149461812,
+          "motorcycle_IoU": 6.191013348373755,
+          "pedestrian_IoU": 2.073698552719561,
+          "traffic_cone_IoU": 9.32579097824507,
+          "trailer_IoU": 15.982561775858544,
+          "truck_IoU": 16.43359654228306,
+          "driveable_surface_IoU": 70.86001233454911,
+          "other_flat_IoU": 38.083284180355186,
+          "sidewalk_IoU": 42.592043498716805,
+          "terrain_IoU": 40.67252355858348,
+          "manmade_IoU": 28.294994949518603,
+          "vegetation_IoU": 28.024074572537987
+        }
+      },
+      "elapsed_seconds": 2946.9244344800245,
+      "git_revision": "ccccb00987ec4dd026684342801120431727ebb9"
+    },
+    "m0_final_counterfactual/drop.json": {
+      "config": "configs/sw-radar-m0-official-ft.py",
+      "checkpoint": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/m0_official_ft_seed0/epoch_10.pth",
+      "checkpoint_meta": {
+        "epoch": 10,
+        "iter": 29920
+      },
+      "mode": "drop",
+      "samples": 256,
+      "future_mean_miou": 24.452563976491174,
+      "metrics": {
+        "0.0s": {
+          "Semantic mIoU": 30.129237251409517,
+          "Binary IoU": 51.246941550430336,
+          "evaluated_samples": 256,
+          "others_IoU": 8.865721434528774,
+          "barrier_IoU": 30.81512802443035,
+          "bicycle_IoU": 11.624365482233502,
+          "bus_IoU": 33.313684458722626,
+          "car_IoU": 41.73027740006774,
+          "construction_vehicle_IoU": 21.3089802130898,
+          "motorcycle_IoU": 13.77928483353884,
+          "pedestrian_IoU": 14.219160430192792,
+          "traffic_cone_IoU": 14.054533362890712,
+          "trailer_IoU": 19.859961807765757,
+          "truck_IoU": 33.268883267076255,
+          "driveable_surface_IoU": 74.9683189892004,
+          "other_flat_IoU": 42.04328829056801,
+          "sidewalk_IoU": 46.45102015066349,
+          "terrain_IoU": 42.07398888249952,
+          "manmade_IoU": 32.33150105145474,
+          "vegetation_IoU": 31.488935195038533
+        },
+        "1.0s": {
+          "Semantic mIoU": 26.824503836890045,
+          "Binary IoU": 49.89645704992979,
+          "evaluated_samples": 256,
+          "others_IoU": 9.220929199609133,
+          "barrier_IoU": 31.616385833921907,
+          "bicycle_IoU": 8.915145005370569,
+          "bus_IoU": 21.47980472904792,
+          "car_IoU": 30.564230397580065,
+          "construction_vehicle_IoU": 20.175735045623522,
+          "motorcycle_IoU": 11.168639053254438,
+          "pedestrian_IoU": 7.162383816293056,
+          "traffic_cone_IoU": 11.023071545094384,
+          "trailer_IoU": 14.219569542412733,
+          "truck_IoU": 25.199037872669017,
+          "driveable_surface_IoU": 74.22651180860377,
+          "other_flat_IoU": 41.908811717458065,
+          "sidewalk_IoU": 45.92353810703118,
+          "terrain_IoU": 41.397103401818796,
+          "manmade_IoU": 31.410633899952966,
+          "vegetation_IoU": 30.405034251389225
+        },
+        "2.0s": {
+          "Semantic mIoU": 24.445796453778428,
+          "Binary IoU": 48.39420744808966,
+          "evaluated_samples": 256,
+          "others_IoU": 8.365645599069408,
+          "barrier_IoU": 28.959036144578317,
+          "bicycle_IoU": 7.57825370675453,
+          "bus_IoU": 15.52868658131816,
+          "car_IoU": 25.189604101134417,
+          "construction_vehicle_IoU": 18.77228731533367,
+          "motorcycle_IoU": 7.9149871747892995,
+          "pedestrian_IoU": 3.562034195528277,
+          "traffic_cone_IoU": 10.824372759856631,
+          "trailer_IoU": 12.200451868587725,
+          "truck_IoU": 19.79242934543857,
+          "driveable_surface_IoU": 73.21543872003002,
+          "other_flat_IoU": 39.74374064670175,
+          "sidewalk_IoU": 44.733118948484446,
+          "terrain_IoU": 40.30755634639962,
+          "manmade_IoU": 29.90297055575309,
+          "vegetation_IoU": 28.987925704475327
+        },
+        "3.0s": {
+          "Semantic mIoU": 22.087391638805045,
+          "Binary IoU": 46.28344093451083,
+          "evaluated_samples": 256,
+          "others_IoU": 6.588689773580857,
+          "barrier_IoU": 26.31655232389603,
+          "bicycle_IoU": 4.794520547945205,
+          "bus_IoU": 11.056523897875454,
+          "car_IoU": 22.09757394117701,
+          "construction_vehicle_IoU": 13.18567226163696,
+          "motorcycle_IoU": 8.182141586623978,
+          "pedestrian_IoU": 1.8557300756253634,
+          "traffic_cone_IoU": 8.598574821852733,
+          "trailer_IoU": 10.30404775228502,
+          "truck_IoU": 17.25021085762482,
+          "driveable_surface_IoU": 71.07908114321171,
+          "other_flat_IoU": 37.50940556809631,
+          "sidewalk_IoU": 42.79710664859353,
+          "terrain_IoU": 38.4405831466565,
+          "manmade_IoU": 28.198492019933557,
+          "vegetation_IoU": 27.23075149307077
+        }
+      },
+      "elapsed_seconds": 68.11826477001887,
+      "git_revision": "ccccb00987ec4dd026684342801120431727ebb9"
+    },
+    "m0_final_counterfactual/normal.json": {
+      "config": "configs/sw-radar-m0-official-ft.py",
+      "checkpoint": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/m0_official_ft_seed0/epoch_10.pth",
+      "checkpoint_meta": {
+        "epoch": 10,
+        "iter": 29920
+      },
+      "mode": "normal",
+      "samples": 256,
+      "future_mean_miou": 24.45424288944386,
+      "metrics": {
+        "0.0s": {
+          "Semantic mIoU": 31.97673766644651,
+          "Binary IoU": 52.740956481913116,
+          "evaluated_samples": 256,
+          "others_IoU": 9.559253993476624,
+          "barrier_IoU": 33.37924483495607,
+          "bicycle_IoU": 13.074204946996467,
+          "bus_IoU": 38.007368929693165,
+          "car_IoU": 46.403411941796286,
+          "construction_vehicle_IoU": 22.12602641913602,
+          "motorcycle_IoU": 17.774976363063345,
+          "pedestrian_IoU": 18.623740476775623,
+          "traffic_cone_IoU": 14.770191878625614,
+          "trailer_IoU": 20.702025886325266,
+          "truck_IoU": 35.26527418943998,
+          "driveable_surface_IoU": 75.14442302241193,
+          "other_flat_IoU": 41.91969653350493,
+          "sidewalk_IoU": 46.637104574419666,
+          "terrain_IoU": 42.091307337735905,
+          "manmade_IoU": 35.11666772723163,
+          "vegetation_IoU": 33.00962127400223
+        },
+        "1.0s": {
+          "Semantic mIoU": 26.84802679516941,
+          "Binary IoU": 49.928248729858495,
+          "evaluated_samples": 256,
+          "others_IoU": 9.23951670220327,
+          "barrier_IoU": 31.448602844749317,
+          "bicycle_IoU": 9.071274298056156,
+          "bus_IoU": 21.51393332786392,
+          "car_IoU": 30.667590299978002,
+          "construction_vehicle_IoU": 20.368803924885807,
+          "motorcycle_IoU": 11.324944485566247,
+          "pedestrian_IoU": 7.073522823435711,
+          "traffic_cone_IoU": 11.043943269007208,
+          "trailer_IoU": 14.068523255395036,
+          "truck_IoU": 25.285673475217823,
+          "driveable_surface_IoU": 74.25267866617878,
+          "other_flat_IoU": 41.93298274002157,
+          "sidewalk_IoU": 45.93570487483531,
+          "terrain_IoU": 41.357085752441066,
+          "manmade_IoU": 31.406961607096928,
+          "vegetation_IoU": 30.424713170947854
+        },
+        "2.0s": {
+          "Semantic mIoU": 24.4298311299234,
+          "Binary IoU": 48.40932230064106,
+          "evaluated_samples": 256,
+          "others_IoU": 8.408583357607535,
+          "barrier_IoU": 28.840230991337823,
+          "bicycle_IoU": 7.472527472527473,
+          "bus_IoU": 15.565613254989149,
+          "car_IoU": 25.22217014511134,
+          "construction_vehicle_IoU": 18.752119362495762,
+          "motorcycle_IoU": 7.748538011695906,
+          "pedestrian_IoU": 3.533413804455174,
+          "traffic_cone_IoU": 10.944563407090174,
+          "trailer_IoU": 12.226783534894043,
+          "truck_IoU": 19.784282092648077,
+          "driveable_surface_IoU": 73.21102457948525,
+          "other_flat_IoU": 39.73625782143578,
+          "sidewalk_IoU": 44.73635727182283,
+          "terrain_IoU": 40.25840477760135,
+          "manmade_IoU": 29.867705960352758,
+          "vegetation_IoU": 28.9985533631474
+        },
+        "3.0s": {
+          "Semantic mIoU": 22.08487074323877,
+          "Binary IoU": 46.29498098629497,
+          "evaluated_samples": 256,
+          "others_IoU": 6.502145922746781,
+          "barrier_IoU": 26.43933539412674,
+          "bicycle_IoU": 4.734740444951512,
+          "bus_IoU": 11.066778664426712,
+          "car_IoU": 22.148943406285333,
+          "construction_vehicle_IoU": 13.224716179911605,
+          "motorcycle_IoU": 8.187967248131008,
+          "pedestrian_IoU": 1.8518518518518516,
+          "traffic_cone_IoU": 8.4979766722209,
+          "trailer_IoU": 10.366652934347028,
+          "truck_IoU": 17.23672135204529,
+          "driveable_surface_IoU": 71.07999853011428,
+          "other_flat_IoU": 37.46965708229341,
+          "sidewalk_IoU": 42.82100964570024,
+          "terrain_IoU": 38.39391068044481,
+          "manmade_IoU": 28.188234808156015,
+          "vegetation_IoU": 27.232161817305546
+        }
+      },
+      "elapsed_seconds": 165.98117931000888,
+      "git_revision": "ccccb00987ec4dd026684342801120431727ebb9"
+    },
+    "m0_final_counterfactual/zero_velocity.json": {
+      "config": "configs/sw-radar-m0-official-ft.py",
+      "checkpoint": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/m0_official_ft_seed0/epoch_10.pth",
+      "checkpoint_meta": {
+        "epoch": 10,
+        "iter": 29920
+      },
+      "mode": "zero_velocity",
+      "samples": 256,
+      "future_mean_miou": 24.448592001509592,
+      "metrics": {
+        "0.0s": {
+          "Semantic mIoU": 31.714661937097272,
+          "Binary IoU": 52.68340150939209,
+          "evaluated_samples": 256,
+          "others_IoU": 9.487222315015869,
+          "barrier_IoU": 33.30956455599924,
+          "bicycle_IoU": 12.908086388749373,
+          "bus_IoU": 36.540598996665565,
+          "car_IoU": 45.227102008112574,
+          "construction_vehicle_IoU": 22.14687249040778,
+          "motorcycle_IoU": 16.911994989038522,
+          "pedestrian_IoU": 18.484908265930162,
+          "traffic_cone_IoU": 14.7347302719572,
+          "trailer_IoU": 20.625638496494876,
+          "truck_IoU": 34.904341828214626,
+          "driveable_surface_IoU": 75.09878183222223,
+          "other_flat_IoU": 41.90862944162437,
+          "sidewalk_IoU": 46.64118065433855,
+          "terrain_IoU": 42.094357860969744,
+          "manmade_IoU": 35.11557092869353,
+          "vegetation_IoU": 33.009671606219335
+        },
+        "1.0s": {
+          "Semantic mIoU": 26.840700803348323,
+          "Binary IoU": 49.921146595553374,
+          "evaluated_samples": 256,
+          "others_IoU": 9.269288821805914,
+          "barrier_IoU": 31.485218444152963,
+          "bicycle_IoU": 8.909287257019438,
+          "bus_IoU": 21.460987478812402,
+          "car_IoU": 30.588246291328204,
+          "construction_vehicle_IoU": 20.41507835662855,
+          "motorcycle_IoU": 11.366160681229175,
+          "pedestrian_IoU": 7.177700348432056,
+          "traffic_cone_IoU": 11.002558734589439,
+          "trailer_IoU": 14.151970389723493,
+          "truck_IoU": 25.203027850173008,
+          "driveable_surface_IoU": 74.2373930906605,
+          "other_flat_IoU": 41.91342428836112,
+          "sidewalk_IoU": 45.93649694923235,
+          "terrain_IoU": 41.35704149027263,
+          "manmade_IoU": 31.403925622559015,
+          "vegetation_IoU": 30.41410756194119
+        },
+        "2.0s": {
+          "Semantic mIoU": 24.423831825580557,
+          "Binary IoU": 48.410058124575436,
+          "evaluated_samples": 256,
+          "others_IoU": 8.394869801787797,
+          "barrier_IoU": 28.859674467880186,
+          "bicycle_IoU": 7.48074807480748,
+          "bus_IoU": 15.558964322551638,
+          "car_IoU": 25.218461425429233,
+          "construction_vehicle_IoU": 18.70022030164379,
+          "motorcycle_IoU": 7.681053401609364,
+          "pedestrian_IoU": 3.544581618655693,
+          "traffic_cone_IoU": 10.899571632555926,
+          "trailer_IoU": 12.234711232714634,
+          "truck_IoU": 19.738833001678145,
+          "driveable_surface_IoU": 73.22239355902308,
+          "other_flat_IoU": 39.77483087072128,
+          "sidewalk_IoU": 44.76564953670318,
+          "terrain_IoU": 40.278945715574196,
+          "manmade_IoU": 29.86265878391341,
+          "vegetation_IoU": 28.988973287620457
+        },
+        "3.0s": {
+          "Semantic mIoU": 22.081243375599904,
+          "Binary IoU": 46.29501638817715,
+          "evaluated_samples": 256,
+          "others_IoU": 6.513574417855993,
+          "barrier_IoU": 26.409710803752777,
+          "bicycle_IoU": 4.734740444951512,
+          "bus_IoU": 11.154532102391942,
+          "car_IoU": 22.116863735506833,
+          "construction_vehicle_IoU": 13.183000867302688,
+          "motorcycle_IoU": 8.185053380782918,
+          "pedestrian_IoU": 1.8534708865186222,
+          "traffic_cone_IoU": 8.444338725023787,
+          "trailer_IoU": 10.369594493490947,
+          "truck_IoU": 17.246458923512748,
+          "driveable_surface_IoU": 71.07238465172432,
+          "other_flat_IoU": 37.463888271594385,
+          "sidewalk_IoU": 42.8198756228132,
+          "terrain_IoU": 38.380508297827966,
+          "manmade_IoU": 28.1945809739634,
+          "vegetation_IoU": 27.23856078618433
+        }
+      },
+      "elapsed_seconds": 67.53586924995761,
+      "git_revision": "ccccb00987ec4dd026684342801120431727ebb9"
+    },
+    "official_full/normal.json": {
+      "config": "configs/sw-radar-m0-official-ft.py",
+      "checkpoint": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+      "checkpoint_meta": {
+        "loaded_tensors": 669,
+        "loaded_numel": 79478272,
+        "new_radar_tensors": 102,
+        "zero_residual_outputs": [
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.output",
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.output",
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.output",
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.output",
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.output",
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.output"
+        ],
+        "all_camera_tensors_exact": true,
+        "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+        "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
+        "source_epoch": 70,
+        "source_iter": 246190,
+        "optimizer_restored": false,
+        "epoch_reset_to": 0
+      },
+      "mode": "normal",
+      "samples": 5119,
+      "future_mean_miou": 25.383372381803184,
+      "metrics": {
+        "0.0s": {
+          "Semantic mIoU": 31.002406834919462,
+          "Binary IoU": 51.326730617158866,
+          "evaluated_samples": 5119,
+          "others_IoU": 9.569834097797232,
+          "barrier_IoU": 36.69906356123951,
+          "bicycle_IoU": 16.77401443642421,
+          "bus_IoU": 33.60204333431181,
+          "car_IoU": 41.94913459930255,
+          "construction_vehicle_IoU": 21.229726081448717,
+          "motorcycle_IoU": 15.568750845851941,
+          "pedestrian_IoU": 12.524422162421203,
+          "traffic_cone_IoU": 16.6934777061584,
+          "trailer_IoU": 22.759340761518075,
+          "truck_IoU": 29.610873887209276,
+          "driveable_surface_IoU": 74.2819717420638,
+          "other_flat_IoU": 41.190240560292324,
+          "sidewalk_IoU": 45.92505770275522,
+          "terrain_IoU": 44.31226235849206,
+          "manmade_IoU": 32.32607983858272,
+          "vegetation_IoU": 32.024622517761784
+        },
+        "1.0s": {
+          "Semantic mIoU": 27.70953258999954,
+          "Binary IoU": 50.198031554345256,
+          "evaluated_samples": 5119,
+          "others_IoU": 9.230756031435533,
+          "barrier_IoU": 35.46750804703409,
+          "bicycle_IoU": 11.27056546384626,
+          "bus_IoU": 24.742692596788025,
+          "car_IoU": 30.345906559136242,
+          "construction_vehicle_IoU": 20.012482796146337,
+          "motorcycle_IoU": 9.374435329406237,
+          "pedestrian_IoU": 6.279994083026774,
+          "traffic_cone_IoU": 14.622414622414622,
+          "trailer_IoU": 20.61160854875645,
+          "truck_IoU": 23.244401653870046,
+          "driveable_surface_IoU": 73.70133560674662,
+          "other_flat_IoU": 40.845727416523374,
+          "sidewalk_IoU": 45.45041718177262,
+          "terrain_IoU": 43.61845831817078,
+          "manmade_IoU": 31.260416872744173,
+          "vegetation_IoU": 30.98293290217396
+        },
+        "2.0s": {
+          "Semantic mIoU": 25.275155808581275,
+          "Binary IoU": 48.82754165600211,
+          "evaluated_samples": 5119,
+          "others_IoU": 8.867586422867483,
+          "barrier_IoU": 33.21896952844541,
+          "bicycle_IoU": 8.277373493298867,
+          "bus_IoU": 18.000114266358963,
+          "car_IoU": 24.260157381274112,
+          "construction_vehicle_IoU": 17.96627131412107,
+          "motorcycle_IoU": 7.626035239842144,
+          "pedestrian_IoU": 3.520604196099661,
+          "traffic_cone_IoU": 12.139915308312547,
+          "trailer_IoU": 17.961324986694375,
+          "truck_IoU": 19.061860847886337,
+          "driveable_surface_IoU": 72.66451418896457,
+          "other_flat_IoU": 39.75865972626391,
+          "sidewalk_IoU": 44.324948645729656,
+          "terrain_IoU": 42.48925756107786,
+          "manmade_IoU": 29.88922450758792,
+          "vegetation_IoU": 29.650831131056815
+        },
+        "3.0s": {
+          "Semantic mIoU": 23.16542874682873,
+          "Binary IoU": 47.121586993781065,
+          "evaluated_samples": 5119,
+          "others_IoU": 8.427627043030377,
+          "barrier_IoU": 30.712173607978748,
+          "bicycle_IoU": 5.729928053429644,
+          "bus_IoU": 13.842010375192995,
+          "car_IoU": 20.569180577681735,
+          "construction_vehicle_IoU": 16.096690169308843,
+          "motorcycle_IoU": 6.149294235154439,
+          "pedestrian_IoU": 2.093880780187247,
+          "traffic_cone_IoU": 9.423535712546864,
+          "trailer_IoU": 15.57613032115546,
+          "truck_IoU": 16.3061915233379,
+          "driveable_surface_IoU": 71.10977647635704,
+          "other_flat_IoU": 37.951957566820134,
+          "sidewalk_IoU": 42.646736749423,
+          "terrain_IoU": 40.87675775573199,
+          "manmade_IoU": 28.258822897418646,
+          "vegetation_IoU": 28.0415948513334
+        }
+      },
+      "elapsed_seconds": 3265.9541655000066,
+      "git_revision": "ccccb00987ec4dd026684342801120431727ebb9"
+    }
+  },
+  "counterfactual_perclass": {
+    "drop": {
+      "rows": [
+        {
+          "category": "others",
+          "normal_minus_intervention_pp": [
+            0.6935325589478492,
+            0.018587502594137106,
+            0.04293775853812676,
+            -0.0865438508340759
+          ],
+          "future_mean": -0.008339529900604012
+        },
+        {
+          "category": "barrier",
+          "normal_minus_intervention_pp": [
+            2.564116810525718,
+            -0.16778298917258994,
+            -0.11880515324049412,
+            0.12278307023071022
+          ],
+          "future_mean": -0.05460169072745794
+        },
+        {
+          "category": "bicycle",
+          "normal_minus_intervention_pp": [
+            1.4498394647629649,
+            0.15612929268558773,
+            -0.10572623422705707,
+            -0.05978010299369352
+          ],
+          "future_mean": -0.0031256815117209533
+        },
+        {
+          "category": "bus",
+          "normal_minus_intervention_pp": [
+            4.693684470970538,
+            0.03412859881600028,
+            0.03692667367098856,
+            0.010254766551257788
+          ],
+          "future_mean": 0.02710334634608221
+        },
+        {
+          "category": "car",
+          "normal_minus_intervention_pp": [
+            4.673134541728544,
+            0.10335990239793702,
+            0.032566043976920866,
+            0.05136946510832274
+          ],
+          "future_mean": 0.062431803827726874
+        },
+        {
+          "category": "construction_vehicle",
+          "normal_minus_intervention_pp": [
+            0.8170462060462214,
+            0.19306887926228455,
+            -0.020167952837908842,
+            0.03904391827464515
+          ],
+          "future_mean": 0.07064828156634029
+        },
+        {
+          "category": "motorcycle",
+          "normal_minus_intervention_pp": [
+            3.995691529524505,
+            0.15630543231180916,
+            -0.16644916309339308,
+            0.005825661507030233
+          ],
+          "future_mean": -0.001439356424851231
+        },
+        {
+          "category": "pedestrian",
+          "normal_minus_intervention_pp": [
+            4.404580046582831,
+            -0.08886099285734517,
+            -0.02862039107310288,
+            -0.0038782237735117686
+          ],
+          "future_mean": -0.0404532025679866
+        },
+        {
+          "category": "traffic_cone",
+          "normal_minus_intervention_pp": [
+            0.7156585157349014,
+            0.020871723912824436,
+            0.12019064723354234,
+            -0.100598149631832
+          ],
+          "future_mean": 0.013488073838178257
+        },
+        {
+          "category": "trailer",
+          "normal_minus_intervention_pp": [
+            0.8420640785595097,
+            -0.15104628701769762,
+            0.026331666306317558,
+            0.06260518206200771
+          ],
+          "future_mean": -0.02070314621645745
+        },
+        {
+          "category": "truck",
+          "normal_minus_intervention_pp": [
+            1.996390922363723,
+            0.08663560254880665,
+            -0.008147252790493553,
+            -0.013489505579528327
+          ],
+          "future_mean": 0.021666281392928255
+        },
+        {
+          "category": "driveable_surface",
+          "normal_minus_intervention_pp": [
+            0.17610403321153,
+            0.026166857575006475,
+            -0.00441414054476752,
+            0.0009173869025715931
+          ],
+          "future_mean": 0.007556701310936849
+        },
+        {
+          "category": "other_flat",
+          "normal_minus_intervention_pp": [
+            -0.12359175706307468,
+            0.02417102256350745,
+            -0.007482825265974213,
+            -0.03974848580290313
+          ],
+          "future_mean": -0.007686762835123299
+        },
+        {
+          "category": "sidewalk",
+          "normal_minus_intervention_pp": [
+            0.18608442375617784,
+            0.01216676780413195,
+            0.003238323338386806,
+            0.023902997106709734
+          ],
+          "future_mean": 0.013102696083076163
+        },
+        {
+          "category": "terrain",
+          "normal_minus_intervention_pp": [
+            0.017318455236384978,
+            -0.04001764937773089,
+            -0.04915156879827265,
+            -0.04667246621168886
+          ],
+          "future_mean": -0.04528056146256413
+        },
+        {
+          "category": "manmade",
+          "normal_minus_intervention_pp": [
+            2.7851666757768925,
+            -0.003672292856037984,
+            -0.035264595400331444,
+            -0.010257211777542352
+          ],
+          "future_mean": -0.01639803334463726
+        },
+        {
+          "category": "vegetation",
+          "normal_minus_intervention_pp": [
+            1.5206860789636956,
+            0.019678919558629104,
+            0.010627658672074602,
+            0.0014103242347758282
+          ],
+          "future_mean": 0.010572300821826511
+        }
+      ],
+      "future_movable_mean_pp": 0.014516040801507674,
+      "maximum_absolute_future_class_change_pp": 0.19306887926228455
+    },
+    "zero_velocity": {
+      "rows": [
+        {
+          "category": "others",
+          "normal_minus_intervention_pp": [
+            0.07203167846075509,
+            -0.0297721196026437,
+            0.013713555819737877,
+            -0.011428495109211845
+          ],
+          "future_mean": -0.009162352964039222
+        },
+        {
+          "category": "barrier",
+          "normal_minus_intervention_pp": [
+            0.06968027895683093,
+            -0.036615599403646115,
+            -0.01944347654236367,
+            0.029624590373963144
+          ],
+          "future_mean": -0.008811495190682214
+        },
+        {
+          "category": "bicycle",
+          "normal_minus_intervention_pp": [
+            0.16611855824709387,
+            0.1619870410367188,
+            -0.00822060228000776,
+            0.0
+          ],
+          "future_mean": 0.05125547958557034
+        },
+        {
+          "category": "bus",
+          "normal_minus_intervention_pp": [
+            1.4667699330275994,
+            0.05294584905151822,
+            0.006648932437510524,
+            -0.08775343796522961
+          ],
+          "future_mean": -0.009386218825400286
+        },
+        {
+          "category": "car",
+          "normal_minus_intervention_pp": [
+            1.1763099336837115,
+            0.07934400864979807,
+            0.00370871968210551,
+            0.03207967077850071
+          ],
+          "future_mean": 0.03837746637013476
+        },
+        {
+          "category": "construction_vehicle",
+          "normal_minus_intervention_pp": [
+            -0.02084607127175886,
+            -0.046274431742741484,
+            0.051899060851972934,
+            0.04171531260891648
+          ],
+          "future_mean": 0.015779980572715974
+        },
+        {
+          "category": "motorcycle",
+          "normal_minus_intervention_pp": [
+            0.8629813740248231,
+            -0.041216195662928,
+            0.0674846100865425,
+            0.002913867348089738
+          ],
+          "future_mean": 0.009727427257234744
+        },
+        {
+          "category": "pedestrian",
+          "normal_minus_intervention_pp": [
+            0.13883221084546093,
+            -0.10417752499634503,
+            -0.011167814200518933,
+            -0.0016190346667706024
+          ],
+          "future_mean": -0.03898812462121152
+        },
+        {
+          "category": "traffic_cone",
+          "normal_minus_intervention_pp": [
+            0.035461606668413026,
+            0.04138453441776946,
+            0.04499177453424785,
+            0.05363794719711379
+          ],
+          "future_mean": 0.04667141871637703
+        },
+        {
+          "category": "trailer",
+          "normal_minus_intervention_pp": [
+            0.07638738983039062,
+            -0.0834471343284573,
+            -0.007927697820591106,
+            -0.0029415591439185818
+          ],
+          "future_mean": -0.03143879709765566
+        },
+        {
+          "category": "truck",
+          "normal_minus_intervention_pp": [
+            0.3609323612253519,
+            0.08264562504481532,
+            0.04544909096993166,
+            -0.009737571467457684
+          ],
+          "future_mean": 0.0394523815157631
+        },
+        {
+          "category": "driveable_surface",
+          "normal_minus_intervention_pp": [
+            0.04564119018969848,
+            0.015285575518277028,
+            -0.011368979537820678,
+            0.00761387838996086
+          ],
+          "future_mean": 0.0038434914568057366
+        },
+        {
+          "category": "other_flat",
+          "normal_minus_intervention_pp": [
+            0.01106709188056243,
+            0.019558451660451226,
+            -0.0385730492855032,
+            0.0057688106990241295
+          ],
+          "future_mean": -0.004415262308675949
+        },
+        {
+          "category": "sidewalk",
+          "normal_minus_intervention_pp": [
+            -0.004076079918881703,
+            -0.00079207439704021,
+            -0.029292264880346863,
+            0.0011340228870366786
+          ],
+          "future_mean": -0.009650105463450132
+        },
+        {
+          "category": "terrain",
+          "normal_minus_intervention_pp": [
+            -0.003050523233838476,
+            4.4262168437114724e-05,
+            -0.020540937972846507,
+            0.013402382616845898
+          ],
+          "future_mean": -0.002364764395854498
+        },
+        {
+          "category": "manmade",
+          "normal_minus_intervention_pp": [
+            0.0010967985381000744,
+            0.0030359845379130945,
+            0.0050471764393478225,
+            -0.006346165807386228
+          ],
+          "future_mean": 0.0005789983899582296
+        },
+        {
+          "category": "vegetation",
+          "normal_minus_intervention_pp": [
+            -5.033221710704083e-05,
+            0.010605609006663741,
+            0.009580075526944398,
+            -0.006398968878784217
+          ],
+          "future_mean": 0.004595571884941307
+        }
+      ],
+      "future_movable_mean_pp": 0.009347449344643932,
+      "maximum_absolute_future_class_change_pp": 0.1619870410367188
+    }
+  }
+}
