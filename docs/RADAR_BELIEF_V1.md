@@ -19,7 +19,7 @@ All matrix algebra is FP32 under AMP; analytic 2x2 inverses avoid repeatedly lau
 
 ## Input limits and causal boundary
 
-Use exactly the existing causal 10-column radar cache: xyz, compensated vx/vy, RCS, age, compensated radial proxy and planar LOS. The radial value is derived from the SDK's compensated vector velocity and rotated LOS, **not an independently retained raw Doppler measurement**. Planar LOS is not renormalized. The discarded vertical component, quality fields and sensor identities remain limitations. No new sensor-quality fields are invented; no ego-velocity is subtracted twice. Targets/future labels enter losses only, not belief construction. Official SDK defaults filter returns upstream.
+Use exactly the existing causal 10-column radar cache: xyz, compensated vx/vy, RCS, age, compensated radial proxy and planar LOS. The radial value is derived from the SDK's compensated vector velocity and rotated LOS, **not an independently retained raw Doppler measurement**. Planar LOS is not renormalized. The discarded vertical component, quality fields and sensor identities remain limitations. No new sensor-quality fields are invented; no ego-velocity is subtracted twice. Future occupancy labels enter losses only, not belief construction. The unchanged official pipeline conditions future queries on provided future ego transforms; this remains an ego-motion-conditioned evaluation, not an unconditioned driving forecast. Official SDK defaults filter returns upstream.
 
 The first pilot holds cache, train/validation samples and data processing fixed against A/M0. A later sensor-origin/quality-aware cache needs a separate protocol and retraining; it must not silently replace this run's data.
 

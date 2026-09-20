@@ -14,7 +14,8 @@ def test_radial_information_and_empty_identity():
     n = torch.tensor([[[1., 0.]]])
     mu, p, info = m.information_update(mean, cov, n, torch.tensor([[5.]]), torch.ones(1,1), torch.ones(1,1))
     assert mu[0,0] > 4 and mu[0,1] == 0
-    assert p[0,0,0] < 1 and p[0,1,1] == 25
+    assert p[0,0,0] < 1
+    torch.testing.assert_close(p[0,1,1], cov[0,1,1], rtol=1e-6, atol=1e-6)
     assert torch.linalg.matrix_rank(info).item() == 1
     empty = m.information_update(mean,cov,n,torch.zeros(1,1),torch.ones(1,1),torch.zeros(1,1))
     assert torch.equal(empty[0],mean) and torch.equal(empty[1],cov)
