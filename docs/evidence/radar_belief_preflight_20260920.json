@@ -1,0 +1,267 @@
+{
+  "at_utc": "2026-09-20T12:33:57.942826+00:00",
+  "preflight": {
+    "state": "passed",
+    "git_revision": "79f8c811f505e3d3d1a009558ac32e653e50cea4",
+    "at_utc": "2026-09-20T12:24:54.900908+00:00"
+  },
+  "cpu_belief": {
+    "config": "configs/sw-radar-forecast-belief.py",
+    "device": "cpu",
+    "initialization": {
+      "loaded_tensors": 669,
+      "loaded_numel": 79478272,
+      "new_radar_tensors": 38,
+      "zero_residual_outputs": [
+        "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.output",
+        "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.output",
+        "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.output",
+        "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.output",
+        "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.output",
+        "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.output"
+      ],
+      "all_camera_tensors_exact": true,
+      "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+      "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
+      "source_epoch": 70,
+      "source_iter": 246190,
+      "optimizer_restored": false,
+      "epoch_reset_to": 0
+    },
+    "git_revision": "79f8c811f505e3d3d1a009558ac32e653e50cea4",
+    "trainable_parameters": {
+      "radar": 1351622,
+      "pretrained_world": 55843036,
+      "backbone_or_sampling_offset": 23356704
+    },
+    "fresh_optimizer": true,
+    "radar_cache_samples": 23930,
+    "status": "passed"
+  },
+  "cpu_camera": {
+    "config": "configs/sw-radar-forecast-camera.py",
+    "device": "cpu",
+    "initialization": {
+      "loaded_tensors": 669,
+      "loaded_numel": 79478272,
+      "new_radar_tensors": 0,
+      "zero_residual_outputs": [],
+      "all_camera_tensors_exact": true,
+      "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+      "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
+      "source_epoch": 70,
+      "source_iter": 246190,
+      "optimizer_restored": false,
+      "epoch_reset_to": 0
+    },
+    "git_revision": "79f8c811f505e3d3d1a009558ac32e653e50cea4",
+    "trainable_parameters": {
+      "pretrained_world": 55843036,
+      "backbone_or_sampling_offset": 23356704
+    },
+    "fresh_optimizer": true,
+    "radar_cache_samples": 23930,
+    "status": "passed"
+  },
+  "gpu_belief": {
+    "config": "configs/sw-radar-forecast-belief.py",
+    "device": "cuda",
+    "initialization": {
+      "loaded_tensors": 669,
+      "loaded_numel": 79478272,
+      "new_radar_tensors": 38,
+      "zero_residual_outputs": [
+        "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.output",
+        "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.output",
+        "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.output",
+        "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.output",
+        "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.output",
+        "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.output"
+      ],
+      "all_camera_tensors_exact": true,
+      "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+      "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
+      "source_epoch": 70,
+      "source_iter": 246190,
+      "optimizer_restored": false,
+      "epoch_reset_to": 0
+    },
+    "git_revision": "79f8c811f505e3d3d1a009558ac32e653e50cea4",
+    "real_input_parity": [
+      {
+        "index": 0,
+        "tensors": 13,
+        "max_abs_difference": 0.0
+      },
+      {
+        "index": 1024,
+        "tensors": 13,
+        "max_abs_difference": 0.0
+      },
+      {
+        "index": 2048,
+        "tensors": 13,
+        "max_abs_difference": 0.0
+      },
+      {
+        "index": 4096,
+        "tensors": 13,
+        "max_abs_difference": 0.0
+      }
+    ],
+    "status": "passed"
+  },
+  "smoke_belief": {
+    "path": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_belief_smoke_seed0/iter_24.pth",
+    "epoch": 1,
+    "iterations": 23,
+    "optimizer_steps": 24,
+    "finite_model_tensors": 707,
+    "optimizer_finite": true,
+    "component_updates": [
+      {
+        "prior": {
+          "gradient_sq": 5.732528192545737e-06,
+          "delta_sq": 0.0015337806032675871
+        },
+        "noise": {
+          "gradient_sq": 0.0007007720240942081,
+          "delta_sq": 1.2340794064868987e-05
+        },
+        "point_encoder": {
+          "gradient_sq": 2.0232635580819114e-08,
+          "delta_sq": 0.0009202534683936392
+        },
+        "state_encoder": {
+          "gradient_sq": 1.5894586228790142e-09,
+          "delta_sq": 0.000378103020011622
+        },
+        "readout": {
+          "gradient_sq": 0.001007708239675101,
+          "delta_sq": 0.021413199972357688
+        }
+      },
+      {
+        "prior": {
+          "gradient_sq": 7.09288813986568e-06,
+          "delta_sq": 0.005995017980353623
+        },
+        "noise": {
+          "gradient_sq": 0.0006800198019574211,
+          "delta_sq": 7.282441811184981e-05
+        },
+        "point_encoder": {
+          "gradient_sq": 7.878958316887008e-07,
+          "delta_sq": 0.00663439310665126
+        },
+        "state_encoder": {
+          "gradient_sq": 5.6211539228856466e-08,
+          "delta_sq": 0.0042834888390643755
+        },
+        "readout": {
+          "gradient_sq": 0.001334240119672609,
+          "delta_sq": 0.0717576579991146
+        }
+      },
+      {
+        "prior": {
+          "gradient_sq": 7.974334733401589e-06,
+          "delta_sq": 0.003610017024584522
+        },
+        "noise": {
+          "gradient_sq": 0.0007538723663413904,
+          "delta_sq": 5.526518094711719e-05
+        },
+        "point_encoder": {
+          "gradient_sq": 2.589831184507396e-07,
+          "delta_sq": 0.00740341826895019
+        },
+        "state_encoder": {
+          "gradient_sq": 1.684238017801709e-08,
+          "delta_sq": 0.0047567878227710025
+        },
+        "readout": {
+          "gradient_sq": 0.0005345049234115381,
+          "delta_sq": 0.0367541947234713
+        }
+      },
+      {
+        "prior": {
+          "gradient_sq": 7.652341178235322e-06,
+          "delta_sq": 0.0017248642470804043
+        },
+        "noise": {
+          "gradient_sq": 0.0007736807649969535,
+          "delta_sq": 2.8468542467408042e-05
+        },
+        "point_encoder": {
+          "gradient_sq": 7.157698636017784e-07,
+          "delta_sq": 0.0028290213504078565
+        },
+        "state_encoder": {
+          "gradient_sq": 6.2175085691063e-08,
+          "delta_sq": 0.0018495703925509588
+        },
+        "readout": {
+          "gradient_sq": 0.00042685985015761523,
+          "delta_sq": 0.013374960890814691
+        }
+      },
+      {
+        "prior": {
+          "gradient_sq": 6.484609076373715e-06,
+          "delta_sq": 0.0005835277701251584
+        },
+        "noise": {
+          "gradient_sq": 0.0007075994722116619,
+          "delta_sq": 9.60676383954251e-06
+        },
+        "point_encoder": {
+          "gradient_sq": 8.850262001036668e-07,
+          "delta_sq": 0.0009532628187116643
+        },
+        "state_encoder": {
+          "gradient_sq": 7.806042831570714e-08,
+          "delta_sq": 0.0006581586230822722
+        },
+        "readout": {
+          "gradient_sq": 0.0009896814756136935,
+          "delta_sq": 0.0035114138738663314
+        }
+      },
+      {
+        "prior": {
+          "gradient_sq": 1.2429587229315087e-05,
+          "delta_sq": 0.00016348573869429117
+        },
+        "noise": {
+          "gradient_sq": 0.0007662666373837723,
+          "delta_sq": 2.571565898001893e-06
+        },
+        "point_encoder": {
+          "gradient_sq": 1.192416036355226e-06,
+          "delta_sq": 0.00024024717936299567
+        },
+        "state_encoder": {
+          "gradient_sq": 1.2724793158058745e-07,
+          "delta_sq": 0.00017365483205367127
+        },
+        "readout": {
+          "gradient_sq": 0.0005060640083836112,
+          "delta_sq": 0.0007489618253373465
+        }
+      }
+    ],
+    "radar_audit_windows": 6,
+    "pretrained_audit_windows": 6,
+    "all_audited_gradient_and_update_norms_positive": true
+  },
+  "belief_gpu_contracts_tail": [
+    "  /storage/data/metaiot_data/huayiming/SparseWorld/envs/hym_sparseworld/lib/python3.10/site-packages/mmcv/cnn/bricks/transformer.py:440: DeprecationWarning: The arguments `dropout` in MultiheadAttention has been deprecated, now you can separately set `attn_drop`(float), proj_drop(float), and `dropout_layer`(dict) ",
+    "    warnings.warn(",
+    "",
+    "-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html",
+    "2 passed, 5 deselected, 30 warnings in 29.10s"
+  ],
+  "interpretation": "Operational preflight only; no evidence of prediction improvement. CPU 47 passed/2 CUDA skipped; GPU contracts 2 passed. Formal training starts fresh from official weights."
+}

@@ -1,0 +1,83 @@
+{
+  "at_utc": "2026-09-20T12:39:19.902970+00:00",
+  "belief_status": {
+    "arm": "belief",
+    "gpu": 1,
+    "gpu_uuid": "GPU-000b6236-3632-a001-9667-1f02cbb61c8b",
+    "controller_pid": 1245456,
+    "git_revision": "79f8c811f505e3d3d1a009558ac32e653e50cea4",
+    "code": "/home/huayiming/Workspace/SparseWorld-TC-forecast-79f8c811f505",
+    "completed_stages": [
+      "gpu_contracts",
+      "gpu_parity",
+      "smoke"
+    ],
+    "state": "running",
+    "at_utc": "2026-09-20T12:39:17.690578+00:00",
+    "stage": "train",
+    "child_pid": 1247047,
+    "memory_admission": {
+      "free_mib": 143156,
+      "total_mib": 143771,
+      "minimum_free_mib": 132000,
+      "required_stable_seconds": 60,
+      "observed_stable_seconds": 45.120050359983
+    },
+    "command": [
+      "/storage/data/metaiot_data/huayiming/SparseWorld/envs/hym_sparseworld/bin/python",
+      "train.py",
+      "--config",
+      "configs/sw-radar-forecast-belief.py"
+    ],
+    "log": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/belief_campaign_20260920/belief_train.log",
+    "gpu_snapshot": "70, 88483, 357.89",
+    "controller_pid_exists": true,
+    "child_pid_exists": true
+  },
+  "camera_status": {
+    "arm": "camera",
+    "gpu": 0,
+    "gpu_uuid": "GPU-74b9b73f-c405-55bc-bf76-f8aa85d1e7fe",
+    "controller_pid": 1245457,
+    "git_revision": "79f8c811f505e3d3d1a009558ac32e653e50cea4",
+    "code": "/home/huayiming/Workspace/SparseWorld-TC-forecast-79f8c811f505",
+    "completed_stages": [],
+    "state": "waiting_for_A_completion",
+    "at_utc": "2026-09-20T12:38:57.947243+00:00",
+    "dependency": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/forecast_campaign_20260920/transport_status.json",
+    "controller_pid_exists": true
+  },
+  "belief_train": {
+    "last_steps": [
+      "[2026-09-20 12:38:31,367][INFO] - Epoch [1][10/2992]\tlr: 2.540e-05, eta: 1 day, 15:28:21, time: 4.751, data_time: 1.307, memory: 78240, init_loss_pts: 5.0299, loss_cls: 0.1841, loss_pts: 0.3511, d0.loss_cls: 0.3225, d0.loss_pts: 2.9864, d1.loss_cls: 0.2502, d1.loss_pts: 1.6373, d2.loss_cls: 0.2165, d2.loss_pts: 0.9010, d3.loss_cls: 0.1968, d3.loss_pts: 0.6521, d4.loss_cls: 0.1897, d4.loss_pts: 0.4753, loss_radar_holdout: 0.0586, loss: 13.4515, grad_norm: 4.7058",
+      "[2026-09-20 12:39:04,176][INFO] - Epoch [1][20/2992]\tlr: 3.140e-05, eta: 1 day, 9:21:17, time: 3.281, data_time: 0.001, memory: 78240, init_loss_pts: 5.0863, loss_cls: 0.1812, loss_pts: 0.3485, d0.loss_cls: 0.3211, d0.loss_pts: 2.9353, d1.loss_cls: 0.2497, d1.loss_pts: 1.6112, d2.loss_cls: 0.2175, d2.loss_pts: 0.8893, d3.loss_cls: 0.1961, d3.loss_pts: 0.6440, d4.loss_cls: 0.1881, d4.loss_pts: 0.4703, loss_radar_holdout: 0.0583, loss: 13.3969, grad_norm: 5.3766"
+    ],
+    "mean_logged_time": 4.016,
+    "mean_logged_data": 0.6539999999999999,
+    "timing_log_windows": 2,
+    "tail": [
+      "[2026-09-20 12:38:31,366][INFO] - RADAR_COMPONENTS {\"prior\": {\"gradient_sq\": 1.2835958350795526e-05, \"delta_sq\": 0.0006228960020848717}, \"noise\": {\"gradient_sq\": 0.0007184079856713543, \"delta_sq\": 6.689323466702035e-06}, \"point_encoder\": {\"gradient_sq\": 5.931556008517691e-09, \"delta_sq\": 0.00021399687864231964}, \"state_encoder\": {\"gradient_sq\": 3.629961227435974e-10, \"delta_sq\": 0.00011262232510489412}, \"readout\": {\"gradient_sq\": 0.0011153883050248, \"delta_sq\": 0.004711174659064454}}",
+      "[2026-09-20 12:38:31,366][INFO] - RADAR_LEARNING iter=10 microstep_grad_norm=0.0429725 parameter_delta=0.075282 successful_updates=1",
+      "[2026-09-20 12:38:31,366][INFO] - JOINT_LEARNING iter=10 {\"img_backbone\": {\"parameter\": \"module.img_backbone.layer2.0.conv1.weight\", \"gradient_norm\": 0.4204511101919799, \"parameter_delta\": 0.00014373037265613675}, \"img_neck\": {\"parameter\": \"module.img_neck.lateral_convs.0.conv.weight\", \"gradient_norm\": 0.00776043695555452, \"parameter_delta\": 0.0021263964008539915}, \"pts_bbox_head\": {\"parameter\": \"module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight\", \"gradient_norm\": 0.5628982035161809, \"parameter_delta\": 0.00018528701912146062}}",
+      "[2026-09-20 12:38:31,367][INFO] - Epoch [1][10/2992]\tlr: 2.540e-05, eta: 1 day, 15:28:21, time: 4.751, data_time: 1.307, memory: 78240, init_loss_pts: 5.0299, loss_cls: 0.1841, loss_pts: 0.3511, d0.loss_cls: 0.3225, d0.loss_pts: 2.9864, d1.loss_cls: 0.2502, d1.loss_pts: 1.6373, d2.loss_cls: 0.2165, d2.loss_pts: 0.9010, d3.loss_cls: 0.1968, d3.loss_pts: 0.6521, d4.loss_cls: 0.1897, d4.loss_pts: 0.4753, loss_radar_holdout: 0.0586, loss: 13.4515, grad_norm: 4.7058",
+      "[2026-09-20 12:39:04,175][INFO] - RADAR_COMPONENTS {\"prior\": {\"gradient_sq\": 5.2807363568902616e-06, \"delta_sq\": 0.0009077626038589415}, \"noise\": {\"gradient_sq\": 0.0007014732681559499, \"delta_sq\": 1.756535247920965e-05}, \"point_encoder\": {\"gradient_sq\": 5.248465619056564e-08, \"delta_sq\": 0.0003561694175004959}, \"state_encoder\": {\"gradient_sq\": 5.129102203724201e-09, \"delta_sq\": 0.00025021806163749716}, \"readout\": {\"gradient_sq\": 0.0009587937795628907, \"delta_sq\": 0.0051600730241148085}}",
+      "[2026-09-20 12:39:04,176][INFO] - RADAR_LEARNING iter=20 microstep_grad_norm=0.0408118 parameter_delta=0.0818034 successful_updates=2",
+      "[2026-09-20 12:39:04,176][INFO] - JOINT_LEARNING iter=20 {\"img_backbone\": {\"parameter\": \"module.img_backbone.layer2.0.conv1.weight\", \"gradient_norm\": 0.3981959040576262, \"parameter_delta\": 0.00012804381549358368}, \"img_neck\": {\"parameter\": \"module.img_neck.lateral_convs.0.conv.weight\", \"gradient_norm\": 0.012750140989077159, \"parameter_delta\": 0.00164117815438658}, \"pts_bbox_head\": {\"parameter\": \"module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight\", \"gradient_norm\": 0.5024796036713459, \"parameter_delta\": 0.00018076261039823294}}",
+      "[2026-09-20 12:39:04,176][INFO] - Epoch [1][20/2992]\tlr: 3.140e-05, eta: 1 day, 9:21:17, time: 3.281, data_time: 0.001, memory: 78240, init_loss_pts: 5.0863, loss_cls: 0.1812, loss_pts: 0.3485, d0.loss_cls: 0.3211, d0.loss_pts: 2.9353, d1.loss_cls: 0.2497, d1.loss_pts: 1.6112, d2.loss_cls: 0.2175, d2.loss_pts: 0.8893, d3.loss_cls: 0.1961, d3.loss_pts: 0.6440, d4.loss_cls: 0.1881, d4.loss_pts: 0.4703, loss_radar_holdout: 0.0583, loss: 13.3969, grad_norm: 5.3766"
+    ],
+    "errors": [],
+    "checkpoints": [],
+    "validations": [
+      "validation_epoch_00_subset.json"
+    ]
+  },
+  "gpu": [
+    "0, GPU-74b9b73f-c405-55bc-bf76-f8aa85d1e7fe, 91 %, 104047 MiB, 39110 MiB, 397.55 W",
+    "1, GPU-000b6236-3632-a001-9667-1f02cbb61c8b, 88 %, 88483 MiB, 54674 MiB, 321.99 W"
+  ],
+  "gpu_processes": [
+    "GPU-74b9b73f-c405-55bc-bf76-f8aa85d1e7fe, 1044769, 104022 MiB, /storage/data/metaiot_data/huayiming/SparseWorld/envs/hym_sparseworld/bin/python",
+    "GPU-000b6236-3632-a001-9667-1f02cbb61c8b, 1247047, 88460 MiB, /storage/data/metaiot_data/huayiming/SparseWorld/envs/hym_sparseworld/bin/python"
+  ],
+  "note": "Formal belief epoch1 iteration20/2992 confirmed after fresh official initialization and initial256 validation; finite losses and positive component/pretrained updates. Camera queued behind A. B stopped by user. No trained validation accuracy yet."
+}

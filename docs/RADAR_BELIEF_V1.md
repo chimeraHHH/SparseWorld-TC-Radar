@@ -27,11 +27,11 @@ The first pilot holds cache, train/validation samples and data processing fixed 
 
 - New belief: `configs/sw-radar-forecast-belief.py`, GPU1 single H200.
 - Camera control: `configs/sw-radar-forecast-camera.py`, GPU0 only after A's entire existing pipeline finishes and its missing old-M0 reference evaluation is completed. It derives from the actual official-ft configuration, has `radar_cfg=None`, and removes radar-specific audit hooks. Radar loading is retained for identical data ordering/I/O, but is not consumed by the model.
-- Both: official checkpoint SHA256 `871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a`; all 669 original tensors exact; BS8, accumulation1, seed0, 23930 train anchors, 2992 steps/epoch, 10 epochs. Shared parameter LR/budget/optimizer/augmentation are identical. Radar LR2e-4, world2e-5, backbone/sampling2e-6.
-- Each pipeline: CPU contracts/regressions; real-input zero-residual parity at four anchors; BS8 24-step smoke with finite model/optimizer and positive component updates; **fresh official initialization** for formal training. No smoke weights enter formal training.
+- Both: official checkpoint SHA256 `871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a`; all 669 original tensors exact; BS=8, accumulation1, seed0, 23930 train anchors, 2992 steps/epoch, 10 epochs. Shared parameter LR/budget/optimizer/augmentation are identical. Radar LR2e-4, world2e-5, backbone/sampling2e-6.
+- Each pipeline: CPU contracts/regressions; real-input zero-residual parity at four anchors; BS=8 24-step smoke with finite model/optimizer and positive component updates; **fresh official initialization** for formal training. No smoke weights enter formal training.
 - Each GPU stage requires >=132000 MiB free continuously for 60s and the existing per-GPU lock. No other user processes are stopped. Immutable snapshots are separate from active A.
-- Validation: same fixed256 seed20260918 at initialization and each epoch; trained-best and final full5119 with scene confusion matrices. Belief best gets normal/drop/zero_velocity/shuffle_velocity fixed256 interventions. Selected and final results must both be reported.
-- Primary outcome: full-validation future1/2/3s mean mIoU versus matched camera, alongside current and per-horizon/per-class metrics and paired scene bootstrap. Compare A as a different method, not a clean component ablation. The fixed256 selection set lies within5119: report selection bias and single-seed limits. No performance gain is established by smoke/parity.
+- Validation: same fixed 256 seed20260918 at initialization and each epoch; trained-best and final full5119 with scene confusion matrices. Belief best gets normal/drop/zero_velocity/shuffle_velocity fixed 256 interventions. Selected and final results must both be reported.
+- Primary outcome: full-validation future1/2/3s mean mIoU versus matched camera, alongside current and per-horizon/per-class metrics and paired scene bootstrap. Compare A as a different method, not a clean component ablation. The fixed 256 selection set lies within5119: report selection bias and single-seed limits. No performance gain is established by smoke/parity.
 
 The minimal pilot does not yet identify geometry and feature velocity paths separately, establish calibrated uncertainties, or test actual-motion/radial-tangential strata. Those claims require additional interventions, targets, controls and seeds. An equal-capacity unconstrained velocity model and isotropic-covariance model remain future ablations, not completed evidence.
 
@@ -40,3 +40,32 @@ The minimal pilot does not yet identify geometry and feature velocity paths sepa
 - Research design input: ChatGPT conversation `6aafc368-dc94-83ee-ad4c-6701758dd6ba`, “修改训练配置”; suggestions were reviewed as research proposals, not accepted as verified literature claims.
 - [nuScenes SDK radar schema and filtering](https://github.com/nutonomy/nuscenes-devkit/blob/master/python-sdk/nuscenes/utils/data_classes.py).
 - [Long et al., Full-Velocity Radar Returns by Radar-Camera Fusion, ICCV 2021](https://openaccess.thecvf.com/content/ICCV2021/html/Long_Full-Velocity_Radar_Returns_by_Radar-Camera_Fusion_ICCV_2021_paper.html).
+
+## Verified preflight (September 20, 2026)
+
+Immutable training revision: `79f8c811f505e3d3d1a009558ac32e653e50cea4`.
+[Machine-readable evidence](evidence/radar_belief_preflight_20260920.json):
+47 CPU tests passed (2 CUDA tests skipped there); both CUDA tests subsequently
+passed on H200. Both configurations loaded all 669 original tensors exactly with
+fresh optimizers. Belief adds 38 tensors / 1,351,622 trainable parameters. At four
+real validation anchors, all 13 raw head tensors were exactly equal to the disabled
+radar camera path at initialization (maximum difference 0).
+
+The BS=8 smoke checkpoint contains 707 finite model tensors, finite optimizer
+state and exactly 24 AdamW updates. All six audited windows showed positive finite
+gradients and parameter changes in camera backbone/neck/head and in belief prior,
+noise model, point encoder, state encoder and readouts. These checks establish
+operational correctness only; they do not establish radar or forecasting benefit.
+
+Formal belief training was confirmed at **20:39 Beijing, September 20** on GPU1,
+PID1247047: epoch1, iteration20/2992. Initial256 validation completed with future
+mean mIoU24.439801%; this is an initialization baseline, not an improvement.
+The latest ten-step window averaged3.281s/step with data_time0.001s, but is too
+short for a reliable full-run ETA. Formal losses and the first two component and
+pretrained-update audit windows were finite with positive updates.
+
+The camera controller1245457 is queued behind A's complete pipeline; A remains
+running unchanged on GPU0. B remains stopped by user. The hourly monitor tracks
+all still-authorized pipelines. [Submission receipt](evidence/radar_belief_submission_20260920.json)
+records source revision and process/device identity. Training/evaluation remains
+in progress; these are launch receipts, not a completed ten-epoch result.

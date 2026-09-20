@@ -14,14 +14,20 @@ checkpoint. The upstream license, attribution and Git history are retained.
 - [Two forecasting improvement arms](docs/FORECAST_IMPROVEMENTS.md): causal
   motion transport versus future/category-balanced supervision, with independent
   single-GPU training and automatic checkpoint evaluation.
+- [Radar belief v1 and matched camera control](docs/RADAR_BELIEF_V1.md): shared
+  reference-time motion information, uncertainty-aware future readout and
+  held-out radar supervision. A continues; B was stopped by the user and must
+  not be restarted.
 
-The latest experiment uses `configs/sw-radar-m0-official-ft.py`. Historical
-single- and dual-GPU configurations are retained for reproducibility. The H200
+The latest implementation uses `configs/sw-radar-forecast-belief.py` with matched
+`configs/sw-radar-forecast-camera.py`. Both preserve full official initialization,
+single-H200 BS8 and the ten-epoch budget. This is a new experiment, not established
+prediction improvement. Historical single- and dual-GPU configurations are retained for reproducibility. The H200
 launch scripts contain the original server paths, GPU UUID and ownership checks;
 adapt those settings before using another machine. Datasets, checkpoints,
-compiled extensions, environments and generated launch/audit receipts are not
-included. Recreate the receipts for the actual checkout before using the guarded
-launcher; old receipts are not substitutes for fresh checks.
+compiled extensions and environments are not included. Selected historical audit
+evidence is recorded under `docs/evidence`. Recreate launch receipts for the actual
+checkout before using the guarded launcher; old evidence does not replace fresh checks.
 
 The original project README follows.
 
