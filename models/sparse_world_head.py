@@ -125,7 +125,8 @@ class SparseWorldHead(BaseModule):
         init_points = init_points.repeat(FT, 1, 1, 1)
         return dict(init_points=init_points,
                     all_cls_scores=cls_scores,
-                    all_refine_pts=refine_pts)
+                    all_refine_pts=refine_pts,
+                    radar_aux_loss=self.transformer.decoder.radar_aux_loss)
 
     def get_dis_weight(self, pts):
         max_dist = torch.sqrt(

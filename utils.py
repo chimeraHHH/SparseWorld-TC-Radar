@@ -5,6 +5,7 @@ import torch
 import shutil
 import logging
 import math
+import json
 import datetime
 from mmcv.runner.hooks import HOOKS, Hook
 from mmcv.runner.hooks.logger import LoggerHook, TextLoggerHook
@@ -224,8 +225,9 @@ class SaveAtIterHook(Hook):
 @HOOKS.register_module()
 class RadarLearningAuditHook(Hook):
     """Record real radar gradient and parameter updates after accumulation steps."""
-    def __init__(self, interval=8):
+    def __init__(self, interval=8, components=False):
         self.interval = interval
+        self.components = components
 
     def before_run(self, runner):
         self.params = {n:p for n,p in runner.model.named_parameters() if 'radar_fusion' in n}
@@ -256,11 +258,20 @@ class RadarLearningAuditHook(Hook):
         if not math.isfinite(grad_sq):
             raise FloatingPointError('Nonfinite radar backward gradient')
         delta_sq = 0.0
+        components = {}
         for name, param in self.params.items():
             if not torch.isfinite(param).all():
                 raise FloatingPointError('Nonfinite radar parameter: ' + name)
-            delta_sq += float((param.detach().float() - self.previous[name].float()).square().sum())
+            delta = float((param.detach().float() - self.previous[name].float()).square().sum())
+            delta_sq += delta
+            if self.components:
+                component = ('readout' if '.decoder_layers.' in name else name.split('.radar_fusion.')[1].split('.')[0])
+                values = components.setdefault(component, dict(gradient_sq=0., delta_sq=0.))
+                values['gradient_sq'] += float(self.grad_sq.get(name, 0.))
+                values['delta_sq'] += delta
             self.previous[name].copy_(param.detach())
+        if self.components:
+            runner.logger.info('RADAR_COMPONENTS %s', json.dumps(components, allow_nan=False))
         if delta_sq > 0:
             self.updates += 1
         runner.logger.info('RADAR_LEARNING iter=%d microstep_grad_norm=%.6g parameter_delta=%.6g successful_updates=%d',

@@ -242,6 +242,8 @@ class SparseWorld(MVXTwoStageDetector):
         else:
             losses = self.pts_bbox_head.loss(voxel_semantics, mask_camera, outs)
 
+        if outs.get("radar_aux_loss") is not None:
+            losses["loss_radar_holdout"] = outs["radar_aux_loss"]
         return losses
 
     def forward_test(self, img_metas, fut2cur, fut_list, img=None, **kwargs):

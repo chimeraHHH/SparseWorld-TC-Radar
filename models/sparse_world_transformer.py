@@ -14,6 +14,7 @@ from .sparse_world_sampling import sampling_4d
 from .checkpoint import checkpoint as cp
 from .csrc.wrapper import MSMV_CUDA
 from .radar_fusion import RadarQueryFusion, centers_to_current
+from .radar_belief import SharedRadarBelief, BeliefReadout
 
 
 @TRANSFORMER.register_module()
@@ -82,6 +83,10 @@ class SparseWorldTransformerDecoder(BaseModule):
                  init_cfg=None):
         super().__init__(init_cfg)
         self.radar_enabled = radar_cfg is not None
+        with torch.random.fork_rng(devices=[]):
+            self.radar_fusion = (SharedRadarBelief(embed_dims=embed_dims, **{k:v for k,v in radar_cfg.items() if k != "mode"})
+                                 if radar_cfg is not None and radar_cfg.get("mode") == "belief" else None)
+        self.radar_aux_loss = None
         self.num_layers = num_layers
         self.pc_range = pc_range
         self.num_frames = num_frames
@@ -211,16 +216,21 @@ class SparseWorldTransformerDecoder(BaseModule):
         pos_mat = pos_mat.repeat(1, Q, 1)  # [B*FT, Q, 16]
         query_feat = self.pe_mln(query_feat, pos_mat)
 
+        belief_context = ({"builder": self.radar_fusion, "state": None, "auxiliary": None}
+                          if self.radar_enabled and self.radar_fusion is not None else None)
+        self.radar_aux_loss = None
         for i, decoder_layer in enumerate(self.decoder_layers):
             DUMP.stage_count = i
 
             query_points = query_points.detach()
             query_feat, cls_score, query_points = decoder_layer(
-                query_points, query_feat, mlvl_feats, occ2img, img_metas, fut2cur, radar, valid, fut_list)
+                query_points, query_feat, mlvl_feats, occ2img, img_metas, fut2cur, radar, valid, fut_list, belief_context)
 
             cls_scores.append(cls_score)
             refine_pts.append(query_points)
 
+        if belief_context is not None:
+            self.radar_aux_loss = belief_context["auxiliary"]
         return cls_scores, refine_pts
 
 
@@ -247,7 +257,8 @@ class SparseWorldTransformerDecoderLayer(BaseModule):
 
         # Keep the shared camera/world initialization identical for matched seeds.
         with torch.random.fork_rng(devices=[]):
-            self.radar_fusion = RadarQueryFusion(embed_dims=embed_dims, **radar_cfg) if radar_cfg is not None else None
+            self.radar_fusion = (BeliefReadout(embed_dims=embed_dims) if radar_cfg is not None and radar_cfg.get("mode") == "belief"
+                                 else RadarQueryFusion(embed_dims=embed_dims, **radar_cfg) if radar_cfg is not None else None)
         self.embed_dims = embed_dims
         self.future_frames = future_frames
         self.num_classes = num_classes
@@ -317,7 +328,7 @@ class SparseWorldTransformerDecoderLayer(BaseModule):
         new_points = points_proposal + points_delta
         return encode_points(new_points, self.pc_range)
 
-    def forward(self, query_points, query_feat, mlvl_feats, occ2img, img_metas, fut2cur, radar=None, radar_valid=None, fut_list=None):
+    def forward(self, query_points, query_feat, mlvl_feats, occ2img, img_metas, fut2cur, radar=None, radar_valid=None, fut_list=None, belief_context=None):
         # query_points: [B*FT, Q, _, 3], [x, y, z]
         FT = len(fut2cur)
         query_pos = self.position_encoder(query_points.flatten(2, 3))
@@ -331,7 +342,28 @@ class SparseWorldTransformerDecoderLayer(BaseModule):
         BT, Q, C = query_feat.shape
         batch_size = BT // FT
         if self.radar_fusion is not None:
-            if self.radar_fusion.mode == 'transport':
+            if self.radar_fusion.mode == 'belief':
+                if belief_context is None or fut_list is None:
+                    raise ValueError('Belief fusion requires shared state and explicit timestamps')
+                if belief_context['state'] is None:
+                    if not torch.all(torch.as_tensor(fut_list[0]) == 0):
+                        raise ValueError('First horizon must be current time')
+                    centers = decode_points(query_points[:batch_size], self.pc_range).mean(dim=2)
+                    centers = centers_to_current(centers, fut2cur[0])
+                    belief_context['state'], belief_context['auxiliary'] = belief_context['builder'](
+                        query_feat[:batch_size], centers, radar, radar_valid)
+                fused_horizons = []
+                for horizon in range(FT):
+                    start, end = horizon * batch_size, (horizon + 1) * batch_size
+                    frames = torch.as_tensor(fut_list[horizon]).reshape(-1)
+                    if not torch.all(frames == frames[0]):
+                        raise ValueError('A batch must share forecasting horizons')
+                    centers = decode_points(query_points[start:end], self.pc_range).mean(dim=2)
+                    centers = centers_to_current(centers, fut2cur[horizon])
+                    fused_horizons.append(self.radar_fusion(query_feat[start:end], centers,
+                        belief_context['state'], float(frames[0]) * .5))
+                query_feat = torch.cat(fused_horizons, dim=0)
+            elif self.radar_fusion.mode == 'transport':
                 if fut_list is None or len(fut_list) != FT:
                     raise ValueError('Transport fusion requires explicit horizon timestamps')
                 fused_horizons = []
