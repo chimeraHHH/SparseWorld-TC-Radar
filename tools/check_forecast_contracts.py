@@ -34,12 +34,7 @@ def main():
         assert cfg[key] == baseline[key], key
     assert cfg.batch_size == 8 and cfg.total_epochs == 10 and cfg.resume_from is None
     assert cfg.model.samplewise_loss
-    module = build_model(cfg.model)
-    module.init_weights()
-    initialization = initialize_official(module, cfg.load_from)
-    assert initialization['loaded_tensors'] == 669
     reliable = cfg.model.pts_bbox_head.transformer.radar_cfg.get('velocity_consistency', False)
-    assert initialization['new_radar_tensors'] == (132 if reliable else 102)
     if reliable:
         reference = Config.fromfile('configs/sw-radar-forecast-transport.py')
         variant = copy.deepcopy(cfg.model)
@@ -47,6 +42,13 @@ def main():
         assert radar_cfg.pop('velocity_consistency') is True
         assert radar_cfg.pop('temporal_reliability') is True
         assert variant == reference.model, 'Only the two reliability extensions may differ from A'
+    # MMDetection's builder inserts train_cfg/test_cfg into the input head dict;
+    # compare the resolved configs before that intentional builder mutation.
+    module = build_model(cfg.model)
+    module.init_weights()
+    initialization = initialize_official(module, cfg.load_from)
+    assert initialization['loaded_tensors'] == 669
+    assert initialization['new_radar_tensors'] == (132 if reliable else 102)
     assert len(initialization['zero_residual_outputs']) == 6
     report = dict(config=args.config, device=args.device, initialization=initialization,
                   git_revision=json.loads(Path('code_manifest.json').read_text())['git_revision'])
