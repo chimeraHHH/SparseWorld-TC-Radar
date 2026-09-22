@@ -1,0 +1,236 @@
+{
+  "observed_at_utc": "2026-09-22T01:10:43.559050+00:00",
+  "submission": {
+    "state": "submitted",
+    "code": "/home/huayiming/Workspace/SparseWorld-TC-forecast-2fc2feaf5edb",
+    "git_revision": "2fc2feaf5edbf0e1bc839b6b34c694be7e85af83",
+    "controller_pid": 1297329,
+    "gpu": 1,
+    "at_utc": "2026-09-22T01:04:00.385569+00:00",
+    "controller_pid_exists": true
+  },
+  "cpu_preflight": {
+    "state": "passed",
+    "git_revision": "2fc2feaf5edbf0e1bc839b6b34c694be7e85af83",
+    "at_utc": "2026-09-22T01:04:00.385569+00:00"
+  },
+  "cpu_contract": {
+    "config": "configs/sw-radar-forecast-transport-reliable.py",
+    "device": "cpu",
+    "initialization": {
+      "loaded_tensors": 669,
+      "loaded_numel": 79478272,
+      "new_radar_tensors": 132,
+      "zero_residual_outputs": [
+        "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.output",
+        "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.output",
+        "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.output",
+        "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.output",
+        "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.output",
+        "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.output"
+      ],
+      "all_camera_tensors_exact": true,
+      "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+      "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
+      "source_epoch": 70,
+      "source_iter": 246190,
+      "optimizer_restored": false,
+      "epoch_reset_to": 0
+    },
+    "git_revision": "2fc2feaf5edbf0e1bc839b6b34c694be7e85af83",
+    "trainable_parameters": {
+      "radar": 2015316,
+      "pretrained_world": 55843036,
+      "backbone_or_sampling_offset": 23356704
+    },
+    "fresh_optimizer": true,
+    "radar_cache_samples": 23930,
+    "status": "passed"
+  },
+  "cuda_contract_log": [
+    "tests/test_m0_contracts.py: 12 warnings",
+    "  /storage/data/metaiot_data/huayiming/SparseWorld/envs/hym_sparseworld/lib/python3.10/site-packages/mmcv/cnn/bricks/transformer.py:440: DeprecationWarning: The arguments `dropout` in MultiheadAttention has been deprecated, now you can separately set `attn_drop`(float), proj_drop(float), and `dropout_layer`(dict) ",
+    "    warnings.warn(",
+    "",
+    "-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html",
+    "3 passed, 6 deselected, 34 warnings in 6.01s"
+  ],
+  "real_input_contract": {
+    "config": "configs/sw-radar-forecast-transport-reliable.py",
+    "device": "cuda",
+    "initialization": {
+      "loaded_tensors": 669,
+      "loaded_numel": 79478272,
+      "new_radar_tensors": 132,
+      "zero_residual_outputs": [
+        "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.output",
+        "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.output",
+        "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.output",
+        "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.output",
+        "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.output",
+        "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.output"
+      ],
+      "all_camera_tensors_exact": true,
+      "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+      "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
+      "source_epoch": 70,
+      "source_iter": 246190,
+      "optimizer_restored": false,
+      "epoch_reset_to": 0
+    },
+    "git_revision": "2fc2feaf5edbf0e1bc839b6b34c694be7e85af83",
+    "real_input_parity": [
+      {
+        "index": 0,
+        "tensors": 13,
+        "max_abs_difference": 0
+      },
+      {
+        "index": 1024,
+        "tensors": 13,
+        "max_abs_difference": 0
+      },
+      {
+        "index": 2048,
+        "tensors": 13,
+        "max_abs_difference": 0
+      },
+      {
+        "index": 4096,
+        "tensors": 13,
+        "max_abs_difference": 0
+      }
+    ],
+    "status": "passed"
+  },
+  "smoke": {
+    "path": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_transport-reliable_smoke_seed0/iter_24.pth",
+    "epoch": 1,
+    "iterations": 23,
+    "optimizer_steps": 24,
+    "finite_model_tensors": 801,
+    "optimizer_finite": true,
+    "component_updates": [
+      {
+        "velocity_scale": {
+          "gradient_sq": 6.665486211402685e-16,
+          "delta_sq": 3.5005740528504248e-9
+        },
+        "readout": {
+          "gradient_sq": 0.001730561071212864,
+          "delta_sq": 0.0275835333374026
+        },
+        "reliability_gate": {
+          "gradient_sq": 2.571499028162511e-9,
+          "delta_sq": 0.0000023683768617874246
+        }
+      },
+      {
+        "velocity_scale": {
+          "gradient_sq": 2.5833267984925153e-14,
+          "delta_sq": 6.150962406081817e-8
+        },
+        "readout": {
+          "gradient_sq": 0.0013180052631257956,
+          "delta_sq": 0.12284514257582657
+        },
+        "reliability_gate": {
+          "gradient_sq": 1.1885028447678252e-7,
+          "delta_sq": 0.000018282466914210094
+        }
+      },
+      {
+        "velocity_scale": {
+          "gradient_sq": 1.6031916305814556e-14,
+          "delta_sq": 9.192596905904793e-8
+        },
+        "readout": {
+          "gradient_sq": 0.0010711669239484467,
+          "delta_sq": 0.08598473796806871
+        },
+        "reliability_gate": {
+          "gradient_sq": 1.2737230577616811e-8,
+          "delta_sq": 0.00003132964621521683
+        }
+      },
+      {
+        "velocity_scale": {
+          "gradient_sq": 1.9881945834908152e-14,
+          "delta_sq": 4.700765998677525e-8
+        },
+        "readout": {
+          "gradient_sq": 0.0011759950497141338,
+          "delta_sq": 0.03754788037024004
+        },
+        "reliability_gate": {
+          "gradient_sq": 1.956359388984358e-8,
+          "delta_sq": 0.00001314334630198033
+        }
+      },
+      {
+        "velocity_scale": {
+          "gradient_sq": 1.6317389849931608e-13,
+          "delta_sq": 9.322022265223495e-9
+        },
+        "readout": {
+          "gradient_sq": 0.000999493368271107,
+          "delta_sq": 0.010654954492833046
+        },
+        "reliability_gate": {
+          "gradient_sq": 1.170466561529138e-8,
+          "delta_sq": 0.000005069242204946978
+        }
+      },
+      {
+        "velocity_scale": {
+          "gradient_sq": 2.2988340185222478e-15,
+          "delta_sq": 2.507761109882267e-9
+        },
+        "readout": {
+          "gradient_sq": 0.0006801005556514223,
+          "delta_sq": 0.0023475394993554555
+        },
+        "reliability_gate": {
+          "gradient_sq": 1.111359266631131e-7,
+          "delta_sq": 0.0000014285736095881463
+        }
+      }
+    ],
+    "radar_audit_windows": 6,
+    "pretrained_audit_windows": 6,
+    "all_audited_gradient_and_update_norms_positive": true
+  },
+  "controller": {
+    "arm": "transport-reliable",
+    "gpu": 1,
+    "gpu_uuid": "GPU-000b6236-3632-a001-9667-1f02cbb61c8b",
+    "controller_pid": 1297329,
+    "git_revision": "2fc2feaf5edbf0e1bc839b6b34c694be7e85af83",
+    "code": "/home/huayiming/Workspace/SparseWorld-TC-forecast-2fc2feaf5edb",
+    "completed_stages": [
+      "gpu_contracts",
+      "gpu_parity",
+      "smoke"
+    ],
+    "state": "waiting_for_gpu_memory",
+    "at_utc": "2026-09-22T01:10:34.539680+00:00",
+    "stage": "train",
+    "child_pid": null,
+    "memory_admission": {
+      "free_mib": 143156,
+      "total_mib": 143771,
+      "minimum_free_mib": 132000,
+      "required_stable_seconds": 60,
+      "observed_stable_seconds": 0
+    },
+    "command": [
+      "/storage/data/metaiot_data/huayiming/SparseWorld/envs/hym_sparseworld/bin/python",
+      "train.py",
+      "--config",
+      "configs/sw-radar-forecast-transport-reliable-smoke.py"
+    ],
+    "log": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/transport_reliable_campaign_20260922/transport-reliable_smoke.log",
+    "gpu_snapshot": "0, 98557, 99.45",
+    "controller_pid_exists": true
+  }
+}

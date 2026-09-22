@@ -85,3 +85,28 @@ point should be invoked again when an existing receipt/process already exists.
 Tests, successful launch and trainability establish implementation behavior, not
 prediction improvement. The completed A best future mIoU 26.2881632681% is the
 primary full-validation comparator; this new experiment has no result yet.
+
+## Verified admission, September 22, 2026
+
+Immutable source **2fc2feaf5edbf0e1bc839b6b34c694be7e85af83** passed
+[the complete preflight](evidence/transport_reliable_preflight_20260922.json):
+57 CPU regressions, three subsequent CUDA contracts, exact loading of669 official
+tensors, fresh optimizer and four real anchors with13 output tensors each exactly
+equal to the disabled-radar camera model (maximum difference0). The BS8 smoke
+completed24 optimizer updates with801 finite model tensors and a finite optimizer;
+all six audit windows had positive finite gradients and parameter changes in
+velocity scale, reliability gate, radar readout and pretrained backbone/neck/head.
+The smoke checkpoint's iteration field is23 because MMCV saves the zero-based
+iteration before incrementing it; AdamW's actual update counter is24.
+
+At09:10:43 Beijing controller1297329 had completed all pretraining checks and was
+waiting for its final60-second capacity window before the fresh formal run. The
+trial used about98,557MiB device memory. Short smoke steps around3.1 seconds are
+not a sustained formal-training speed estimate. Training results remain pending.
+
+An earlier CPU-only audit failure at5361783 was caused by comparing configs after
+MMDetection inserted train_cfg/test_cfg into the candidate dictionary. A before/
+after diagnostic verified those were the only differences; the comparison was
+moved before model construction. Failed receipts were preserved, and the revised
+immutable source repeated all checks. No GPU training used that failed revision,
+and no scientific hyperparameter changed.
