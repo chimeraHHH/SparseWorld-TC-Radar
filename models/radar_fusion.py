@@ -36,7 +36,8 @@ def centers_to_current(centers, future_to_current):
 class RadarQueryFusion(nn.Module):
     def __init__(self, embed_dims=256, input_dims=10, num_samples=4,
                  neighbors=8, radius=4.0, max_offset=2.0, gate_bias=-2.0,
-                 mode='current', max_speed=35., age_decay=.5, horizon_decay=3.):
+                 mode='current', max_speed=35., age_decay=.5, horizon_decay=3.,
+                 velocity_consistency=False, temporal_reliability=False):
         super().__init__()
         if mode not in ('current', 'transport'):
             raise ValueError(mode)
@@ -46,6 +47,10 @@ class RadarQueryFusion(nn.Module):
         self.max_speed = max_speed
         self.age_decay = age_decay
         self.horizon_decay = horizon_decay
+        self.velocity_consistency = velocity_consistency
+        self.temporal_reliability = temporal_reliability
+        if (velocity_consistency or temporal_reliability) and mode != 'transport':
+            raise ValueError('Reliability extensions require causal transport')
         self.num_samples = num_samples
         self.neighbors = neighbors
         self.radius = radius
@@ -68,6 +73,42 @@ class RadarQueryFusion(nn.Module):
         nn.init.zeros_(self.sample_weight.bias)
         nn.init.zeros_(self.gate.weight)
         nn.init.constant_(self.gate.bias, gate_bias)
+        # Added AFTER A's parameters: their seed-0 initialization is unchanged.
+        if velocity_consistency:
+            # Bounded 1--10 m/s kernel width, initially 3 m/s.
+            self.velocity_scale = nn.Parameter(torch.tensor(math.log(2. / 7.)))
+        if temporal_reliability:
+            with torch.random.fork_rng(devices=[]):
+                self.reliability_gate = nn.Sequential(nn.Linear(6, 32), nn.ReLU(), nn.Linear(32, 1))
+            nn.init.zeros_(self.reliability_gate[-1].weight)
+            nn.init.zeros_(self.reliability_gate[-1].bias)
+
+    def velocity_agreement(self, neighbors, spatial_weights):
+        """Leave-one-out radial-proxy agreement, never compare a return to itself.
+
+        Each peer's compensated vector is projected onto the tested return's
+        cached planar LOS. These are SDK-derived proxies, not raw Doppler or
+        full object velocities. Singletons retain the spatial association.
+        """
+        points, weights = neighbors.float(), spatial_weights.float()
+        velocity, los, radial = points[..., 3:5], points[..., 8:10], points[..., 7]
+        prediction = torch.einsum('...id,...jd->...ij', los, velocity)
+        residual = radial[..., :, None] - prediction
+        count = neighbors.shape[-2]
+        off_diagonal = ~torch.eye(count, device=points.device, dtype=torch.bool)
+        peers = weights[..., None, :] * off_diagonal
+        sigma = 1. + 9. * self.velocity_scale.float().sigmoid()
+        agreement = (torch.exp(-.5 * (residual / sigma).square()) * peers).sum(-1)
+        denominator = peers.sum(-1)
+        agreement = agreement / denominator.clamp_min(1e-8)
+        return torch.where(denominator > 1e-8, agreement, torch.ones_like(agreement))
+
+    def temporal_factor(self, quality, horizon_seconds):
+        # Initially exactly A's exp(-t/3); positive bounded learned decay rates
+        # prevent amplification and keep current-time fusion unchanged.
+        delta = self.reliability_gate(quality).float()
+        rate = delta.tanh().exp() / self.horizon_decay
+        return torch.exp(-horizon_seconds * rate)
 
     def forward(self, query, centers, radar, valid, horizon_seconds=0.):
         """query B,Q,C; centers B,Q,3 metres; radar B,R,10; valid B,R.
@@ -97,6 +138,15 @@ class RadarQueryFusion(nn.Module):
         weights = torch.exp(-distances / (self.radius ** 2 / 2)) * mask
         if self.mode == 'transport':
             weights = weights * torch.exp(-radar[batch, indices, 6] / self.age_decay)
+        if self.velocity_consistency or self.temporal_reliability:
+            neighbors = radar[batch, indices].float()
+            agreement = (self.velocity_agreement(neighbors, weights) if self.velocity_consistency
+                         else torch.ones_like(weights))
+            base_weights = weights.float()
+            if self.velocity_consistency:
+                # A nonzero floor preserves spatial fallback for ambiguous or
+                # multi-object neighborhoods; do not hard-reject disagreements.
+                weights = weights * (.25 + .75 * agreement)
         pooled = (neighbor_features * weights[..., None]).sum(-2) / weights.sum(-1, keepdim=True).clamp_min(1e-8)
         sample_valid = mask.any(-1)
         sample_weights = self.sample_weight(query).softmax(-1) * sample_valid
@@ -104,5 +154,20 @@ class RadarQueryFusion(nn.Module):
         fused = (pooled * sample_weights[..., None]).sum(-2)
         update = self.output(fused) * self.gate(torch.cat([query, fused], -1)).sigmoid()
         if self.mode == 'transport':
-            update = update * math.exp(-horizon_seconds / self.horizon_decay)
+            if self.temporal_reliability:
+                normalized = base_weights / base_weights.sum(-1, keepdim=True).clamp_min(1e-8)
+                mean_velocity = (normalized[..., None] * neighbors[..., 3:5]).sum(-2)
+                spread = ((neighbors[..., 3:5] - mean_velocity[..., None, :]).square().sum(-1)
+                          * normalized).sum(-1).clamp_min(1e-8).sqrt()
+                quality = torch.stack([
+                    (normalized * neighbors[..., 6]).sum(-1) / .5,
+                    mask.float().mean(-1),
+                    (normalized * agreement).sum(-1),
+                    (spread / 20.).clamp(max=2.),
+                    (normalized * torch.where(mask, distances.float(), 0.)).sum(-1) / self.radius**2,
+                    torch.full_like(spread, horizon_seconds / 3.)], -1)
+                quality = (quality * sample_weights.float()[..., None]).sum(-2)
+                update = update * self.temporal_factor(quality.to(query.dtype), horizon_seconds).to(update.dtype)
+            else:
+                update = update * math.exp(-horizon_seconds / self.horizon_decay)
         return query + update * sample_valid.any(-1, keepdim=True)

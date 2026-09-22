@@ -58,7 +58,7 @@ def synthetic_inputs(batch, device):
 
 
 @pytest.mark.parametrize('device', ['cpu', 'cuda'])
-@pytest.mark.parametrize('radar_mode', ['current', 'transport'])
+@pytest.mark.parametrize('radar_mode', ['current', 'transport', 'transport-reliable'])
 def test_empty_radar_full_decoder_matches_camera_and_batch_isolation(device, radar_mode):
     if device == 'cuda' and not torch.cuda.is_available():
         pytest.skip('CUDA device unavailable')
@@ -76,7 +76,9 @@ def test_empty_radar_full_decoder_matches_camera_and_batch_isolation(device, rad
         torch.manual_seed(10)
         camera=SparseWorldTransformer(**args).to(device).eval()
         torch.manual_seed(10)
-        radar=SparseWorldTransformer(**args,radar_cfg={'mode':radar_mode}).to(device).eval()
+        radar_cfg = (dict(mode='transport', velocity_consistency=True, temporal_reliability=True)
+                     if radar_mode == 'transport-reliable' else {'mode':radar_mode})
+        radar=SparseWorldTransformer(**args,radar_cfg=radar_cfg).to(device).eval()
         for name, value in camera.state_dict().items():
             torch.testing.assert_close(value, radar.state_dict()[name], rtol=0, atol=0)
         radar.load_state_dict(camera.state_dict(),strict=False)

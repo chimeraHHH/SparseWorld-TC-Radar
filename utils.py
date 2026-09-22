@@ -225,9 +225,10 @@ class SaveAtIterHook(Hook):
 @HOOKS.register_module()
 class RadarLearningAuditHook(Hook):
     """Record real radar gradient and parameter updates after accumulation steps."""
-    def __init__(self, interval=8, components=False):
+    def __init__(self, interval=8, components=False, transport_components=False):
         self.interval = interval
         self.components = components
+        self.transport_components = transport_components
 
     def before_run(self, runner):
         self.params = {n:p for n,p in runner.model.named_parameters() if 'radar_fusion' in n}
@@ -265,7 +266,9 @@ class RadarLearningAuditHook(Hook):
             delta = float((param.detach().float() - self.previous[name].float()).square().sum())
             delta_sq += delta
             if self.components:
-                component = ('readout' if '.decoder_layers.' in name else name.split('.radar_fusion.')[1].split('.')[0])
+                part = name.split('.radar_fusion.')[1].split('.')[0]
+                component = (part if self.transport_components and part in ('velocity_scale', 'reliability_gate')
+                             else 'readout' if '.decoder_layers.' in name else part)
                 values = components.setdefault(component, dict(gradient_sq=0., delta_sq=0.))
                 values['gradient_sq'] += float(self.grad_sq.get(name, 0.))
                 values['delta_sq'] += delta

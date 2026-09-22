@@ -22,13 +22,16 @@ from gpu_capacity import CapacityWindow, memory_snapshot
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--arm', required=True, choices=['belief', 'camera'])
+    parser.add_argument('--arm', required=True, choices=['belief', 'camera', 'transport-reliable'])
     parser.add_argument('--gpu', required=True, type=int, choices=[0, 1])
     args = parser.parse_args()
     code = Path(__file__).resolve().parents[1]
     os.chdir(code)
     root = Path('/storage/data/metaiot_data/huayiming/SparseWorld')
-    campaign = root/'analysis/belief_campaign_20260920'
+    reliable = args.arm == 'transport-reliable'
+    if reliable:
+        assert args.gpu == 1, 'The new arm is assigned to GPU1 after belief completes'
+    campaign = root/('analysis/transport_reliable_campaign_20260922' if reliable else 'analysis/belief_campaign_20260920')
     campaign.mkdir(parents=True, exist_ok=True)
     status_path = campaign/(args.arm + '_status.json')
     if status_path.exists():
@@ -57,6 +60,12 @@ def main():
             while json.loads(dependency.read_text())['state'] != 'complete':
                 record(state='waiting_for_A_completion', dependency=str(dependency))
                 time.sleep(60)
+        if reliable:
+            for dependency in (root/'analysis/forecast_campaign_20260920/transport_status.json',
+                               root/'analysis/belief_campaign_20260920/belief_status.json'):
+                while json.loads(dependency.read_text())['state'] != 'complete':
+                    record(state='waiting_for_existing_queue_completion', dependency=str(dependency))
+                    time.sleep(60)
         record(state='waiting_for_gpu_lock')
         lock = open(root/f'forecast_gpu{args.gpu}.lock', 'w')
         fcntl.flock(lock, fcntl.LOCK_EX)
@@ -80,6 +89,9 @@ def main():
                 snapshot = memory_snapshot(uuid)
                 now = time.monotonic()
                 if window.observe(snapshot['free_mib'], now):
+                    record(memory_admission=dict(**snapshot, minimum_free_mib=window.minimum_free_mib,
+                        required_stable_seconds=window.quiet_seconds,
+                        observed_stable_seconds=now-window.sufficient_since))
                     break
                 record(state='waiting_for_gpu_memory', stage=stage, child_pid=None,
                        memory_admission=dict(**snapshot,
@@ -121,7 +133,7 @@ def main():
                     '--checkpoint', str(root/'work_dirs/m0_official_ft_seed0/epoch_10.pth'),
                     '--output-dir', str(reference)])
         run('gpu_contracts', ['-m', 'pytest', '-q', 'tests/test_m0_contracts.py', '-k', 'cuda'])
-        run('gpu_parity', ['tools/check_belief_contracts.py', '--config', config,
+        run('gpu_parity', ['tools/check_forecast_contracts.py' if reliable else 'tools/check_belief_contracts.py', '--config', config,
                           '--device', 'cuda', '--out', str(campaign/('gpu_' + args.arm + '.json'))])
         run('smoke', ['train.py', '--config', smoke_config])
 
@@ -130,7 +142,7 @@ def main():
             torch.set_num_threads(2)
             checkpoint = torch.load(path, map_location='cpu')
             state = checkpoint['state_dict']
-            assert len(state) == (707 if args.arm == 'belief' else 669)
+            assert len(state) == (801 if reliable else 707 if args.arm == 'belief' else 669)
             assert all(torch.isfinite(v).all() for v in state.values())
             optimizer = checkpoint['optimizer']['state']
             steps = [int(s['step']) for s in optimizer.values() if 'step' in s]
@@ -155,7 +167,9 @@ def main():
                 assert 'nan' not in line.lower() and 'inf' not in line.lower().replace('[info]', '')
             if 'RADAR_COMPONENTS' in line:
                 components = json.loads(line[line.index('{'):])
-                assert set(components) == {'prior', 'noise', 'point_encoder', 'state_encoder', 'readout'}
+                expected = ({'velocity_scale', 'reliability_gate', 'readout'} if reliable else
+                            {'prior', 'noise', 'point_encoder', 'state_encoder', 'readout'})
+                assert set(components) == expected
                 assert all(v['gradient_sq'] > 0 and v['delta_sq'] > 0 for v in components.values())
                 component_updates.append(components)
             if 'RADAR_LEARNING' in line:
@@ -167,7 +181,7 @@ def main():
                 assert all(v['gradient_norm'] > 0 and v['parameter_delta'] > 0 for v in payload.values())
                 joint_updates.append(payload)
         assert len(joint_updates) == 6
-        assert len(radar_updates) == len(component_updates) == (6 if args.arm == 'belief' else 0)
+        assert len(radar_updates) == len(component_updates) == (6 if args.arm == 'belief' or reliable else 0)
         smoke_audit.update(component_updates=component_updates, radar_audit_windows=len(radar_updates), pretrained_audit_windows=6,
                            all_audited_gradient_and_update_norms_positive=True)
         (campaign/('smoke_' + args.arm + '.json')).write_text(json.dumps(smoke_audit, indent=2))
@@ -190,7 +204,7 @@ def main():
                 '--output-dir', str(best_full_dir)])
             best_json = best_full_dir/'normal.json'
             best_confusions = best_full_dir/'confusions_normal'
-        if args.arm == 'belief':
+        if args.arm == 'belief' or reliable:
             run('counterfactual', ['tools/evaluate_radar_experiment.py', '--config', config,
                 '--checkpoint', str(work/'best_future.pth'), '--samples', '256',
                 '--modes', 'normal', 'drop', 'zero_velocity', 'shuffle_velocity',
@@ -200,6 +214,18 @@ def main():
                       final_json=str(final_json), best_json=str(best_json),
                       best_confusions=str(best_confusions),
                       final_confusions=str(work/'confusions_epoch_10_full'))
+        if reliable:
+            baseline = json.loads((root/'analysis/forecast_campaign_20260920/transport_result.json').read_text())
+            comparisons = {}
+            for scope in ('best', 'final'):
+                destination = campaign/('A_vs_transport_reliable_' + scope + '.json')
+                command = [python, 'tools/compare_forecast_results.py', '--reference', baseline[scope + '_confusions'],
+                           '--candidate', result[scope + '_confusions'], '--out', str(destination)]
+                with (campaign/('comparison_' + scope + '.log')).open('wb') as log:
+                    subprocess.run(command, cwd=code, env=dict(env, CUDA_VISIBLE_DEVICES=''),
+                                   stdout=log, stderr=subprocess.STDOUT, check=True)
+                comparisons[scope] = str(destination)
+            result['paired_A_comparisons'] = comparisons
         (campaign/(args.arm + '_result.json')).write_text(json.dumps(result, indent=2))
         record(state='complete', stage='all_training_and_evaluation_complete', result=result)
     except BaseException as error:
