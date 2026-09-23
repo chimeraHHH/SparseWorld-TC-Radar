@@ -1,5 +1,12 @@
 # Radar belief v1: reference-time motion information for future occupancy
 
+**Completion update, September 23, 2026:** belief and the matched camera control
+finished their complete training/evaluation queues. Best full future mIoU is
+25.4356% for belief and25.3813% for camera; the paired scene-bootstrap interval
+for that best-to-best difference crosses zero. See the
+[completed campaign report](RADAR_CAMPAIGN_RESULTS_20260923.md). References to
+running jobs below describe the historical design and launch state.
+
 ## Problem and scope
 
 M0 improved current occupancy but barely changed future predictions under radar-removal and velocity-zeroing interventions. A routes deterministic transported radar directly into every horizon and has promising fixed-subset results; it is still running and is not modified. B was stopped by the user and will not resume.

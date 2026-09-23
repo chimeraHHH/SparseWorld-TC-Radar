@@ -1,5 +1,12 @@
 # A + velocity-consistency association + temporal reliability
 
+**Completed September 23, 2026.** All ten epochs, selected/final full validation,
+input interventions and paired comparisons are complete. See the
+[Chinese results report](RADAR_CAMPAIGN_RESULTS_20260923.md): best future mIoU
+26.3404%, +0.0522 percentage points over A, with the stated single-seed and
+within-validation selection limitations. The design/admission notes below are
+the historical preregistration and launch record.
+
 User-authorized September 22, 2026. This is one combined pilot compared with the
 completed A transport run, not a reproduction of Sparse4D-Radar or a completed
 component ablation. Existing A, belief and camera source snapshots are unchanged;
