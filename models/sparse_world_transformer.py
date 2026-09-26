@@ -51,9 +51,12 @@ class SparseWorldTransformer(BaseModule):
     def init_weights(self):
         self.decoder.init_weights()
 
-    def forward(self, query_points, query_feat, mlvl_feats, img_metas, fut2cur, fut_list):
-        cls_scores, refine_pts = self.decoder(
-            query_points, query_feat, mlvl_feats, img_metas, fut2cur, fut_list)
+    def forward(self, query_points, query_feat, mlvl_feats, img_metas, fut2cur, fut_list,
+                return_features=False):
+        decoded = self.decoder(
+            query_points, query_feat, mlvl_feats, img_metas, fut2cur, fut_list,
+            return_features=return_features)
+        cls_scores, refine_pts = decoded[:2]
 
         if self.training:
             if not all(torch.isfinite(x).all() for x in cls_scores + refine_pts):
@@ -62,6 +65,8 @@ class SparseWorldTransformer(BaseModule):
             cls_scores = [torch.nan_to_num(score) for score in cls_scores]
             refine_pts = [torch.nan_to_num(pts) for pts in refine_pts]
 
+        if return_features:
+            return cls_scores, refine_pts, decoded[2]
         return cls_scores, refine_pts
 
 
@@ -143,7 +148,8 @@ class SparseWorldTransformerDecoder(BaseModule):
             
         return embeddings
 
-    def forward(self, query_points, query_feat, mlvl_feats, img_metas, fut2cur, fut_list):
+    def forward(self, query_points, query_feat, mlvl_feats, img_metas, fut2cur, fut_list,
+                return_features=False):
         """
             Symbol meaning:
             B: batch size
@@ -231,6 +237,8 @@ class SparseWorldTransformerDecoder(BaseModule):
 
         if belief_context is not None:
             self.radar_aux_loss = belief_context["auxiliary"]
+        if return_features:
+            return cls_scores, refine_pts, query_feat
         return cls_scores, refine_pts
 
 

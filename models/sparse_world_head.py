@@ -10,6 +10,7 @@ from mmdet.models.utils import build_transformer
 from mmdet.models.builder import build_loss
 from .bbox.utils import decode_points
 from .forecast_objective import normalized_movable_weights, weighted_horizon_mean
+from .censored_supervision import censored_point_loss
 # from .utils import calc_dcd
 # from .metrics import cd
 # cham_loss = cd()
@@ -40,6 +41,7 @@ class SparseWorldHead(BaseModule):
                  init_cfg=None,
                  use_can_bus=False,
                  forecast_objective=None,
+                 censored_path=None,
                  **kwargs):
         super().__init__(init_cfg)
         self.num_query = num_query
@@ -65,6 +67,15 @@ class SparseWorldHead(BaseModule):
         self.transformer = build_transformer(transformer)
         self.num_refines = self.transformer.num_refines
         self.embed_dims = self.transformer.embed_dims
+        self.censored_path_cfg = censored_path
+        self.censored_path = None
+        if censored_path is not None:
+            from .censored_path import SharedCensoredPath
+            architecture = {k: v for k, v in censored_path.items()
+                            if k not in ('temperature', 'track_weight')}
+            with torch.random.fork_rng(devices=[]):
+                self.censored_path = SharedCensoredPath(
+                    embed_dims=self.embed_dims, pc_range=pc_range, **architecture)
         self.voxel_generator = Voxelization(
             voxel_size=voxel_size,
             point_cloud_range=pc_range,
@@ -112,21 +123,27 @@ class SparseWorldHead(BaseModule):
         query_feat = init_points.new_zeros(B, Q, self.embed_dims)
         # query_feat = init_points.new_empty(B, Q, self.embed_dims).uniform_(0, 1)
 
-        cls_scores, refine_pts = self.transformer(
+        decoded = self.transformer(
             init_points,
             query_feat,
             mlvl_feats,
             img_metas=img_metas,
             fut2cur=fut2cur,
             fut_list=fut_list,
+            return_features=self.censored_path is not None,
         )
+        cls_scores, refine_pts = decoded[:2]
 
         FT = len(fut2cur)
         init_points = init_points.repeat(FT, 1, 1, 1)
-        return dict(init_points=init_points,
+        result = dict(init_points=init_points,
                     all_cls_scores=cls_scores,
                     all_refine_pts=refine_pts,
                     radar_aux_loss=self.transformer.decoder.radar_aux_loss)
+        if self.censored_path is not None:
+            result['censored_paths'] = self.censored_path(
+                decoded[2], refine_pts[-1], cls_scores[-1], fut2cur, fut_list)
+        return result
 
     def get_dis_weight(self, pts):
         max_dist = torch.sqrt(
@@ -327,7 +344,11 @@ class SparseWorldHead(BaseModule):
                 weighted_horizon_mean(losses_pts, weights))
     
     @force_fp32(apply_to=('preds_dicts'))
-    def loss(self, voxel_semantics, mask_camera, preds_dicts):
+    def loss(self, voxel_semantics, mask_camera, preds_dicts,
+             endpoint_segments=None, fut2cur=None):
+        if self.censored_path is not None:
+            return self.loss_censored(voxel_semantics, mask_camera, preds_dicts,
+                                      endpoint_segments, fut2cur)
         # voxelsemantics [B, X200, Y200, Z16] unocuupied=17
         init_points = preds_dicts['init_points']
         all_cls_scores = preds_dicts['all_cls_scores']  # 6, [B, Q, _, 17], B=8*FT
@@ -365,10 +386,58 @@ class SparseWorldHead(BaseModule):
             loss_dict[f'd{num_dec_layer}.loss_pts'] = loss_pts_i
             num_dec_layer += 1
         return loss_dict
+
+    def loss_censored(self, semantics, masks, outputs, endpoints, fut2cur):
+        from .censored_path import censored_sequence_energy, tracker_matching_energy
+        if endpoints is None or fut2cur is None:
+            raise ValueError('Censored path training requires loss-only endpoint targets')
+        paths = outputs['censored_paths']
+        logits = paths['mode_logits']
+        if logits.shape[0] != 1:
+            raise ValueError('Censored path loss must be reduced scene by scene')
+        losses = {}
+        observed_gt = self.get_sparse_voxels(semantics, masks, observed_only=True)
+        # Intermediate heads retain occupied/free supervision only where observed.
+        for i, (scores, pts) in enumerate(zip(outputs['all_cls_scores'][:-1],
+                                             outputs['all_refine_pts'][:-1])):
+            cls, geo = censored_point_loss(self, scores, pts, semantics, masks, observed_gt)
+            losses[f'd{i}.loss_cls'], losses[f'd{i}.loss_pts'] = cls, geo
+        init = outputs['init_points']
+        pseudo = init.new_zeros(*init.shape[:-1], self.num_classes)
+        _, losses['init_loss_pts'] = censored_point_loss(self, pseudo, init, semantics, masks, observed_gt)
+        mode_points = paths['mode_points']
+        mode_scores = paths['mode_scores']
+        energies = []
+        for k in range(len(mode_points)):
+            cls, geo = censored_point_loss(self, mode_scores[k], mode_points[k], semantics, masks, observed_gt)
+            energies.append(cls + geo)
+        matrices = torch.cat(fut2cur, dim=0).float()
+        decoded = decode_points(mode_points.float(), self.pc_range)
+        current = torch.einsum('fij,kfqpj->kfqpi', matrices[:, :3, :3], decoded)
+        current = current + matrices[None, :, None, None, :3, 3]
+        track = tracker_matching_energy(current, mode_scores.float(), endpoints)
+        energy = torch.stack(energies) + self.censored_path_cfg.get('track_weight', .2) * track
+        losses['loss_censored_sequence'] = censored_sequence_energy(
+            logits[0].float(), energy.float(), tau=self.censored_path_cfg.get('temperature', .25))
+        # Diagnostic only. No ground-truth-selected mode is used at evaluation.
+        losses['path_mode_probability_max'] = logits.float().softmax(-1).max().detach()
+        losses['path_mode_probability_0'] = logits.float().softmax(-1)[0, 0].detach()
+        losses['path_mode_separation_m'] = (decoded[0, 1:] - decoded[1, 1:]).norm(dim=-1).mean().detach()
+        losses['path_endpoint_tracks'] = logits.new_tensor(len(endpoints['labels']))
+        losses['path_track_energy'] = track.mean().detach()
+        return losses
     
     def get_occ(self, pred_dicts, img_metas, rescale=False):
         all_cls_scores = pred_dicts['all_cls_scores']
         all_refine_pts = pred_dicts['all_refine_pts']
+        if 'censored_paths' in pred_dicts:
+            paths = pred_dicts['censored_paths']
+            batch = paths['mode_logits'].shape[0]
+            chosen = paths['mode_logits'].argmax(-1)
+            selection = chosen.repeat(paths['mode_points'].shape[1] // batch)
+            row = torch.arange(len(selection), device=selection.device)
+            all_cls_scores = all_cls_scores[:-1] + [paths['mode_scores'][selection, row]]
+            all_refine_pts = all_refine_pts[:-1] + [paths['mode_points'][selection, row]]
         cls_scores = all_cls_scores[-1].sigmoid()  # torch.Size([B, 600, 128, 17])
         refine_pts = all_refine_pts[-1]  # torch.Size([B, 600, 128, 3])
 
@@ -420,7 +489,7 @@ class SparseWorldHead(BaseModule):
 
         return result_list
     
-    def get_sparse_voxels(self, voxel_semantics, mask_camera):
+    def get_sparse_voxels(self, voxel_semantics, mask_camera, observed_only=False):
         B, W, H, Z = voxel_semantics.shape
         device = voxel_semantics.device
         voxel_semantics = voxel_semantics.long()
@@ -440,6 +509,8 @@ class SparseWorldHead(BaseModule):
         gt_points, gt_masks, gt_labels = [], [], []
         for i in range(B):
             mask = voxel_semantics[i] != self.empty_label
+            if observed_only:
+                mask = mask & mask_camera[i].bool() & (voxel_semantics[i] >= 0) & (voxel_semantics[i] < self.num_classes)
             gt_points.append(coors[mask])
             gt_masks.append(mask_camera[i][mask]) # camera mask and not empty
             gt_labels.append(voxel_semantics[i][mask])

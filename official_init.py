@@ -17,22 +17,24 @@ def sha256_file(path):
 
 
 def load_camera_state(model, checkpoint, zero_radar=True):
-    """Require every non-radar tensor, reject all extra or mismatched tensors."""
+    """Load every released tensor; allow only explicitly named new branches."""
     source = checkpoint.get('state_dict', checkpoint)
     source = {k.removeprefix('module.'): v for k, v in source.items()}
     target = model.state_dict()
     radar = {k for k in target if '.radar_fusion.' in k}
+    paths = {k for k in target if k.startswith('pts_bbox_head.censored_path.')}
+    expected_new = radar | paths
     missing = sorted(set(target) - set(source))
     unexpected = sorted(set(source) - set(target))
     mismatched = [k for k in source.keys() & target.keys()
                   if source[k].shape != target[k].shape]
-    if set(missing) != radar or unexpected or mismatched:
+    if set(missing) != expected_new or unexpected or mismatched:
         raise ValueError(dict(missing=missing, unexpected=unexpected,
-                              shape_mismatch=mismatched, expected_new=sorted(radar)))
+                              shape_mismatch=mismatched, expected_new=sorted(expected_new)))
     if not all(torch.isfinite(v).all() for v in source.values()):
         raise ValueError('Official model contains nonfinite tensors')
     result = model.load_state_dict(source, strict=False)
-    assert set(result.missing_keys) == radar and not result.unexpected_keys
+    assert set(result.missing_keys) == expected_new and not result.unexpected_keys
     outputs = []
     if zero_radar:
         for name, module in model.named_modules():
@@ -41,10 +43,14 @@ def load_camera_state(model, checkpoint, zero_radar=True):
                 outputs.append(name)
         if radar and not outputs:
             raise ValueError('No radar residual outputs found')
+        if paths:
+            branch = model.pts_bbox_head.censored_path
+            branch.zero_residual_outputs()
     loaded = model.state_dict()
     assert all(torch.equal(loaded[k].cpu(), v.cpu()) for k, v in source.items())
     return dict(loaded_tensors=len(source), loaded_numel=sum(v.numel() for v in source.values()),
                 new_radar_tensors=len(radar), zero_residual_outputs=outputs,
+                new_path_tensors=len(paths),
                 all_camera_tensors_exact=True)
 
 

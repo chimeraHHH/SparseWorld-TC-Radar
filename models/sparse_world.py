@@ -225,7 +225,8 @@ class SparseWorld(MVXTwoStageDetector):
         voxel_semantics = torch.cat(voxel_semantics, dim=0)
         mask_camera = torch.cat(mask_camera, dim=0)
         batch_size = len(img_metas)
-        if self.samplewise_loss and batch_size > 1:
+        censored = outs.get('censored_paths') is not None
+        if self.samplewise_loss and (batch_size > 1 or censored):
             # Preserve the original batch=1 objective: each scene's four
             # horizons are reduced together, then scenes have equal weight.
             # Otherwise scenes with more occupied voxels gain extra weight.
@@ -235,8 +236,17 @@ class SparseWorld(MVXTwoStageDetector):
                     init_points=outs['init_points'][b::batch_size],
                     all_cls_scores=[x[b::batch_size] for x in outs['all_cls_scores']],
                     all_refine_pts=[x[b::batch_size] for x in outs['all_refine_pts']])
+                extra = {}
+                if censored:
+                    path = outs['censored_paths']
+                    scene_outs['censored_paths'] = dict(
+                        mode_points=path['mode_points'][:, b::batch_size],
+                        mode_scores=path['mode_scores'][:, b::batch_size],
+                        mode_logits=path['mode_logits'][b:b+1])
+                    extra = dict(endpoint_segments=img_metas[b]['endpoint_segments'],
+                                 fut2cur=[matrix[b:b+1] for matrix in fut2cur])
                 scene_losses = self.pts_bbox_head.loss(
-                    voxel_semantics[b::batch_size], mask_camera[b::batch_size], scene_outs)
+                    voxel_semantics[b::batch_size], mask_camera[b::batch_size], scene_outs, **extra)
                 for key, value in scene_losses.items():
                     losses[key] = losses.get(key, 0) + value / batch_size
         else:

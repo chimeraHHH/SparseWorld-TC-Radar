@@ -177,3 +177,92 @@ class JointLearningAuditHook(Hook):
     def after_run(self, runner):
         for handle in self.handles:
             handle.remove()
+
+
+@HOOKS.register_module()
+class CensoredPathLearningAuditHook(Hook):
+    """Audit every path parameter across each window, including delayed updates.
+
+    Gradient norms combine unscaled backward gradients over the window; update
+    norms combine actual per-step parameter changes. Nonfinite AMP gradients
+    are counted separately so a recovered skipped update is not a restart rule.
+    A nonfinite parameter change remains a hard failure.
+    """
+    COMPONENTS = ('path_encoder', 'path_head', 'mixture_head')
+
+    def __init__(self, interval=10):
+        if interval <= 0:
+            raise ValueError('Censored path audit interval must be positive')
+        self.interval = interval
+
+    def before_run(self, runner):
+        self.params = {component: {} for component in self.COMPONENTS}
+        for name, parameter in runner.model.named_parameters():
+            if not parameter.requires_grad:
+                continue
+            parts = name.split('.')
+            if 'censored_path' not in parts:
+                continue
+            offset = parts.index('censored_path') + 1
+            if offset == len(parts) or parts[offset] not in self.params:
+                raise ValueError('Unaudited censored path parameter: ' + name)
+            self.params[parts[offset]][name] = parameter
+        if not all(self.params.values()):
+            raise ValueError('Missing trainable censored path audit component')
+        self.previous = {name: parameter.detach().clone()
+                         for parameters in self.params.values()
+                         for name, parameter in parameters.items()}
+        self.gradient_sq, self.delta_sq, self.nonfinite_gradients = {}, {}, {}
+        for component, parameters in self.params.items():
+            device = next(iter(parameters.values())).device
+            self.gradient_sq[component] = torch.zeros((), device=device, dtype=torch.float32)
+            self.delta_sq[component] = torch.zeros((), device=device, dtype=torch.float32)
+            self.nonfinite_gradients[component] = torch.zeros((), device=device, dtype=torch.int64)
+        self.scale = 1.
+        self.handles = []
+        for component, parameters in self.params.items():
+            for parameter in parameters.values():
+                def record(gradient, component=component):
+                    squared = (gradient.detach().float() / self.scale).square().sum()
+                    finite = torch.isfinite(squared)
+                    self.gradient_sq[component].add_(torch.where(finite, squared,
+                                                               torch.zeros_like(squared)))
+                    self.nonfinite_gradients[component].add_((~finite).to(torch.int64))
+                self.handles.append(parameter.register_hook(record))
+
+    def before_train_iter(self, runner):
+        self.scale = 1.
+        for hook in runner.hooks:
+            scaler = getattr(hook, 'loss_scaler', None)
+            if scaler is not None and hasattr(scaler, 'get_scale'):
+                self.scale = scaler.get_scale()
+                break
+
+    def after_train_iter(self, runner):
+        # This custom hook uses NORMAL priority, after the optimizer hook.
+        with torch.no_grad():
+            for component, parameters in self.params.items():
+                for name, parameter in parameters.items():
+                    change = parameter.detach().float() - self.previous[name].float()
+                    self.delta_sq[component].add_(change.square().sum())
+                    self.previous[name].copy_(parameter.detach())
+        if (runner.iter + 1) % self.interval:
+            return
+        report = {}
+        for component in self.COMPONENTS:
+            gradient = math.sqrt(float(self.gradient_sq[component]))
+            delta = math.sqrt(float(self.delta_sq[component]))
+            if not math.isfinite(gradient) or not math.isfinite(delta):
+                raise FloatingPointError('Nonfinite censored path update: ' + component)
+            report[component] = dict(gradient_norm=gradient, parameter_delta=delta,
+                nonfinite_gradient_calls=int(self.nonfinite_gradients[component]),
+                parameter_tensors=len(self.params[component]))
+            self.gradient_sq[component].zero_()
+            self.delta_sq[component].zero_()
+            self.nonfinite_gradients[component].zero_()
+        runner.logger.info('CENSORED_PATH_LEARNING iter=%d %s', runner.iter + 1,
+                           json.dumps(report, allow_nan=False))
+
+    def after_run(self, runner):
+        for handle in self.handles:
+            handle.remove()

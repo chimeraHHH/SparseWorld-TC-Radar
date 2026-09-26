@@ -10,3 +10,5 @@ __all__ = [
     'CustomCollect3D', 'RandomScaleImageMultiViewImage',
 ]
 from .radar import LoadCausalRadar
+
+from .endpoint_segments import LoadEndpointSegments
