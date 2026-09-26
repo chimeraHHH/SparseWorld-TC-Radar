@@ -1,0 +1,5564 @@
+{
+  "at_utc": "2026-09-26T16:12:21.830522+00:00",
+  "receipts": {
+    "submission": {
+      "state": "submitted",
+      "code": "/home/huayiming/Workspace/SparseWorld-TC-forecast-c60be1b24e9a",
+      "git_revision": "c60be1b24e9a81d94933a31ce1c54ca69c1bedde",
+      "controller_pid": 2804764,
+      "gpu": 1,
+      "at_utc": "2026-09-26T16:02:58.670506+00:00"
+    },
+    "preflight": {
+      "state": "passed",
+      "git_revision": "c60be1b24e9a81d94933a31ce1c54ca69c1bedde",
+      "at_utc": "2026-09-26T16:02:58.670506+00:00"
+    },
+    "cpu_censored-path": {
+      "config": "configs/sw-radar-forecast-censored-path.py",
+      "device": "cpu",
+      "initialization": {
+        "loaded_tensors": 669,
+        "loaded_numel": 79478272,
+        "new_radar_tensors": 102,
+        "zero_residual_outputs": [
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.output",
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.output",
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.output",
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.output",
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.output",
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.output"
+        ],
+        "new_path_tensors": 15,
+        "all_camera_tensors_exact": true,
+        "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+        "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
+        "source_epoch": 70,
+        "source_iter": 246190,
+        "optimizer_restored": false,
+        "epoch_reset_to": 0,
+        "state_schema": {
+          "pts_bbox_head.pc_range": [
+            6
+          ],
+          "pts_bbox_head.scene_size": [
+            3
+          ],
+          "pts_bbox_head.voxel_size": [
+            3
+          ],
+          "pts_bbox_head.voxel_num": [
+            3
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.point_encoder.0.weight": [
+            256,
+            10
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.point_encoder.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.point_encoder.1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.point_encoder.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.point_encoder.3.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.point_encoder.3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.offset.weight": [
+            8,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.offset.bias": [
+            8
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.sample_weight.weight": [
+            4,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.sample_weight.bias": [
+            4
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.relative_encoder.0.weight": [
+            256,
+            2
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.relative_encoder.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.relative_encoder.2.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.relative_encoder.2.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.gate.weight": [
+            256,
+            512
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.gate.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.output.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight": [
+            256,
+            3
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.3.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.4.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.4.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.self_attn.attention.attn.in_proj_weight": [
+            768,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.self_attn.attention.attn.in_proj_bias": [
+            768
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.self_attn.attention.attn.out_proj.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.self_attn.attention.attn.out_proj.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.self_attn.gen_tau.weight": [
+            8,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.self_attn.gen_tau.bias": [
+            8
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.sampling.sampling_offset.weight": [
+            48,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.sampling.sampling_offset.bias": [
+            48
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.sampling.scale_weights.weight": [
+            64,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.sampling.scale_weights.bias": [
+            64
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.mixing.parameter_generator.weight": [
+            20480,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.mixing.parameter_generator.bias": [
+            20480
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.mixing.out_proj.weight": [
+            256,
+            8192
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.mixing.out_proj.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.ffn.layers.0.0.weight": [
+            512,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.ffn.layers.0.0.bias": [
+            512
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.ffn.layers.1.weight": [
+            256,
+            512
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.ffn.layers.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.norm1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.norm1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.norm2.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.norm2.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.norm3.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.norm3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.tempo_attn.attn.in_proj_weight": [
+            768,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.tempo_attn.attn.in_proj_bias": [
+            768
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.tempo_attn.attn.out_proj.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.tempo_attn.attn.out_proj.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.ln.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.ln.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.cls_branch.0.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.cls_branch.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.cls_branch.1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.cls_branch.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.cls_branch.3.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.cls_branch.3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.cls_branch.4.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.cls_branch.4.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.cls_branch.6.weight": [
+            17,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.cls_branch.6.bias": [
+            17
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.reg_branch.0.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.reg_branch.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.reg_branch.2.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.reg_branch.2.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.reg_branch.4.weight": [
+            3,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.reg_branch.4.bias": [
+            3
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.point_encoder.0.weight": [
+            256,
+            10
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.point_encoder.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.point_encoder.1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.point_encoder.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.point_encoder.3.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.point_encoder.3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.offset.weight": [
+            8,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.offset.bias": [
+            8
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.sample_weight.weight": [
+            4,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.sample_weight.bias": [
+            4
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.relative_encoder.0.weight": [
+            256,
+            2
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.relative_encoder.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.relative_encoder.2.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.relative_encoder.2.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.gate.weight": [
+            256,
+            512
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.gate.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.output.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.position_encoder.0.weight": [
+            256,
+            3
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.position_encoder.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.position_encoder.1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.position_encoder.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.position_encoder.3.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.position_encoder.3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.position_encoder.4.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.position_encoder.4.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.self_attn.attention.attn.in_proj_weight": [
+            768,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.self_attn.attention.attn.in_proj_bias": [
+            768
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.self_attn.attention.attn.out_proj.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.self_attn.attention.attn.out_proj.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.self_attn.gen_tau.weight": [
+            8,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.self_attn.gen_tau.bias": [
+            8
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.sampling.sampling_offset.weight": [
+            48,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.sampling.sampling_offset.bias": [
+            48
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.sampling.scale_weights.weight": [
+            64,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.sampling.scale_weights.bias": [
+            64
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.mixing.parameter_generator.weight": [
+            20480,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.mixing.parameter_generator.bias": [
+            20480
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.mixing.out_proj.weight": [
+            256,
+            8192
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.mixing.out_proj.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.ffn.layers.0.0.weight": [
+            512,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.ffn.layers.0.0.bias": [
+            512
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.ffn.layers.1.weight": [
+            256,
+            512
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.ffn.layers.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.norm1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.norm1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.norm2.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.norm2.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.norm3.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.norm3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.tempo_attn.attn.in_proj_weight": [
+            768,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.tempo_attn.attn.in_proj_bias": [
+            768
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.tempo_attn.attn.out_proj.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.tempo_attn.attn.out_proj.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.ln.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.ln.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.cls_branch.0.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.cls_branch.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.cls_branch.1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.cls_branch.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.cls_branch.3.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.cls_branch.3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.cls_branch.4.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.cls_branch.4.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.cls_branch.6.weight": [
+            68,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.cls_branch.6.bias": [
+            68
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.reg_branch.0.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.reg_branch.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.reg_branch.2.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.reg_branch.2.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.reg_branch.4.weight": [
+            12,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.reg_branch.4.bias": [
+            12
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.point_encoder.0.weight": [
+            256,
+            10
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.point_encoder.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.point_encoder.1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.point_encoder.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.point_encoder.3.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.point_encoder.3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.offset.weight": [
+            8,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.offset.bias": [
+            8
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.sample_weight.weight": [
+            4,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.sample_weight.bias": [
+            4
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.relative_encoder.0.weight": [
+            256,
+            2
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.relative_encoder.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.relative_encoder.2.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.relative_encoder.2.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.gate.weight": [
+            256,
+            512
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.gate.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.output.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.position_encoder.0.weight": [
+            256,
+            12
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.position_encoder.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.position_encoder.1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.position_encoder.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.position_encoder.3.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.position_encoder.3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.position_encoder.4.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.position_encoder.4.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.self_attn.attention.attn.in_proj_weight": [
+            768,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.self_attn.attention.attn.in_proj_bias": [
+            768
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.self_attn.attention.attn.out_proj.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.self_attn.attention.attn.out_proj.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.self_attn.gen_tau.weight": [
+            8,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.self_attn.gen_tau.bias": [
+            8
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.sampling.sampling_offset.weight": [
+            48,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.sampling.sampling_offset.bias": [
+            48
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.sampling.scale_weights.weight": [
+            64,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.sampling.scale_weights.bias": [
+            64
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.mixing.parameter_generator.weight": [
+            20480,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.mixing.parameter_generator.bias": [
+            20480
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.mixing.out_proj.weight": [
+            256,
+            8192
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.mixing.out_proj.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.ffn.layers.0.0.weight": [
+            512,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.ffn.layers.0.0.bias": [
+            512
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.ffn.layers.1.weight": [
+            256,
+            512
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.ffn.layers.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.norm1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.norm1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.norm2.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.norm2.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.norm3.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.norm3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.tempo_attn.attn.in_proj_weight": [
+            768,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.tempo_attn.attn.in_proj_bias": [
+            768
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.tempo_attn.attn.out_proj.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.tempo_attn.attn.out_proj.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.ln.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.ln.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.cls_branch.0.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.cls_branch.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.cls_branch.1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.cls_branch.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.cls_branch.3.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.cls_branch.3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.cls_branch.4.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.cls_branch.4.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.cls_branch.6.weight": [
+            272,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.cls_branch.6.bias": [
+            272
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.reg_branch.0.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.reg_branch.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.reg_branch.2.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.reg_branch.2.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.reg_branch.4.weight": [
+            48,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.reg_branch.4.bias": [
+            48
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.point_encoder.0.weight": [
+            256,
+            10
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.point_encoder.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.point_encoder.1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.point_encoder.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.point_encoder.3.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.point_encoder.3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.offset.weight": [
+            8,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.offset.bias": [
+            8
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.sample_weight.weight": [
+            4,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.sample_weight.bias": [
+            4
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.relative_encoder.0.weight": [
+            256,
+            2
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.relative_encoder.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.relative_encoder.2.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.relative_encoder.2.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.gate.weight": [
+            256,
+            512
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.gate.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.output.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.position_encoder.0.weight": [
+            256,
+            48
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.position_encoder.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.position_encoder.1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.position_encoder.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.position_encoder.3.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.position_encoder.3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.position_encoder.4.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.position_encoder.4.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.self_attn.attention.attn.in_proj_weight": [
+            768,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.self_attn.attention.attn.in_proj_bias": [
+            768
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.self_attn.attention.attn.out_proj.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.self_attn.attention.attn.out_proj.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.self_attn.gen_tau.weight": [
+            8,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.self_attn.gen_tau.bias": [
+            8
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.sampling.sampling_offset.weight": [
+            48,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.sampling.sampling_offset.bias": [
+            48
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.sampling.scale_weights.weight": [
+            64,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.sampling.scale_weights.bias": [
+            64
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.mixing.parameter_generator.weight": [
+            20480,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.mixing.parameter_generator.bias": [
+            20480
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.mixing.out_proj.weight": [
+            256,
+            8192
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.mixing.out_proj.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.ffn.layers.0.0.weight": [
+            512,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.ffn.layers.0.0.bias": [
+            512
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.ffn.layers.1.weight": [
+            256,
+            512
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.ffn.layers.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.norm1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.norm1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.norm2.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.norm2.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.norm3.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.norm3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.tempo_attn.attn.in_proj_weight": [
+            768,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.tempo_attn.attn.in_proj_bias": [
+            768
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.tempo_attn.attn.out_proj.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.tempo_attn.attn.out_proj.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.ln.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.ln.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.cls_branch.0.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.cls_branch.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.cls_branch.1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.cls_branch.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.cls_branch.3.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.cls_branch.3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.cls_branch.4.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.cls_branch.4.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.cls_branch.6.weight": [
+            544,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.cls_branch.6.bias": [
+            544
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.reg_branch.0.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.reg_branch.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.reg_branch.2.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.reg_branch.2.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.reg_branch.4.weight": [
+            96,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.reg_branch.4.bias": [
+            96
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.point_encoder.0.weight": [
+            256,
+            10
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.point_encoder.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.point_encoder.1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.point_encoder.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.point_encoder.3.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.point_encoder.3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.offset.weight": [
+            8,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.offset.bias": [
+            8
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.sample_weight.weight": [
+            4,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.sample_weight.bias": [
+            4
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.relative_encoder.0.weight": [
+            256,
+            2
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.relative_encoder.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.relative_encoder.2.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.relative_encoder.2.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.gate.weight": [
+            256,
+            512
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.gate.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.output.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.position_encoder.0.weight": [
+            256,
+            96
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.position_encoder.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.position_encoder.1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.position_encoder.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.position_encoder.3.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.position_encoder.3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.position_encoder.4.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.position_encoder.4.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.self_attn.attention.attn.in_proj_weight": [
+            768,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.self_attn.attention.attn.in_proj_bias": [
+            768
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.self_attn.attention.attn.out_proj.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.self_attn.attention.attn.out_proj.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.self_attn.gen_tau.weight": [
+            8,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.self_attn.gen_tau.bias": [
+            8
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.sampling.sampling_offset.weight": [
+            48,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.sampling.sampling_offset.bias": [
+            48
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.sampling.scale_weights.weight": [
+            64,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.sampling.scale_weights.bias": [
+            64
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.mixing.parameter_generator.weight": [
+            20480,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.mixing.parameter_generator.bias": [
+            20480
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.mixing.out_proj.weight": [
+            256,
+            8192
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.mixing.out_proj.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.ffn.layers.0.0.weight": [
+            512,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.ffn.layers.0.0.bias": [
+            512
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.ffn.layers.1.weight": [
+            256,
+            512
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.ffn.layers.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.norm1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.norm1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.norm2.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.norm2.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.norm3.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.norm3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.tempo_attn.attn.in_proj_weight": [
+            768,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.tempo_attn.attn.in_proj_bias": [
+            768
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.tempo_attn.attn.out_proj.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.tempo_attn.attn.out_proj.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.ln.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.ln.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.cls_branch.0.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.cls_branch.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.cls_branch.1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.cls_branch.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.cls_branch.3.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.cls_branch.3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.cls_branch.4.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.cls_branch.4.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.cls_branch.6.weight": [
+            1088,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.cls_branch.6.bias": [
+            1088
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.reg_branch.0.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.reg_branch.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.reg_branch.2.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.reg_branch.2.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.reg_branch.4.weight": [
+            192,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.reg_branch.4.bias": [
+            192
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.point_encoder.0.weight": [
+            256,
+            10
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.point_encoder.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.point_encoder.1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.point_encoder.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.point_encoder.3.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.point_encoder.3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.offset.weight": [
+            8,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.offset.bias": [
+            8
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.sample_weight.weight": [
+            4,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.sample_weight.bias": [
+            4
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.relative_encoder.0.weight": [
+            256,
+            2
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.relative_encoder.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.relative_encoder.2.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.relative_encoder.2.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.gate.weight": [
+            256,
+            512
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.gate.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.output.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.position_encoder.0.weight": [
+            256,
+            192
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.position_encoder.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.position_encoder.1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.position_encoder.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.position_encoder.3.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.position_encoder.3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.position_encoder.4.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.position_encoder.4.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.self_attn.attention.attn.in_proj_weight": [
+            768,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.self_attn.attention.attn.in_proj_bias": [
+            768
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.self_attn.attention.attn.out_proj.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.self_attn.attention.attn.out_proj.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.self_attn.gen_tau.weight": [
+            8,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.self_attn.gen_tau.bias": [
+            8
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.sampling.sampling_offset.weight": [
+            48,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.sampling.sampling_offset.bias": [
+            48
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.sampling.scale_weights.weight": [
+            64,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.sampling.scale_weights.bias": [
+            64
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.mixing.parameter_generator.weight": [
+            20480,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.mixing.parameter_generator.bias": [
+            20480
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.mixing.out_proj.weight": [
+            256,
+            8192
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.mixing.out_proj.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.ffn.layers.0.0.weight": [
+            512,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.ffn.layers.0.0.bias": [
+            512
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.ffn.layers.1.weight": [
+            256,
+            512
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.ffn.layers.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.norm1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.norm1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.norm2.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.norm2.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.norm3.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.norm3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.tempo_attn.attn.in_proj_weight": [
+            768,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.tempo_attn.attn.in_proj_bias": [
+            768
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.tempo_attn.attn.out_proj.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.tempo_attn.attn.out_proj.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.ln.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.ln.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.cls_branch.0.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.cls_branch.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.cls_branch.1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.cls_branch.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.cls_branch.3.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.cls_branch.3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.cls_branch.4.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.cls_branch.4.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.cls_branch.6.weight": [
+            2176,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.cls_branch.6.bias": [
+            2176
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.reg_branch.0.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.reg_branch.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.reg_branch.2.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.reg_branch.2.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.reg_branch.4.weight": [
+            384,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.reg_branch.4.bias": [
+            384
+          ],
+          "pts_bbox_head.transformer.decoder.pe_mln.reduce.0.weight": [
+            256,
+            16
+          ],
+          "pts_bbox_head.transformer.decoder.pe_mln.reduce.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.pe_mln.gamma.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.pe_mln.gamma.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.pe_mln.beta.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.pe_mln.beta.bias": [
+            256
+          ],
+          "pts_bbox_head.censored_path.path_encoder.norm.weight": [
+            256
+          ],
+          "pts_bbox_head.censored_path.path_encoder.norm.bias": [
+            256
+          ],
+          "pts_bbox_head.censored_path.path_encoder.projection.weight": [
+            128,
+            256
+          ],
+          "pts_bbox_head.censored_path.path_encoder.projection.bias": [
+            128
+          ],
+          "pts_bbox_head.censored_path.path_encoder.mode_embedding.weight": [
+            2,
+            128
+          ],
+          "pts_bbox_head.censored_path.path_encoder.network.1.weight": [
+            128,
+            128
+          ],
+          "pts_bbox_head.censored_path.path_encoder.network.1.bias": [
+            128
+          ],
+          "pts_bbox_head.censored_path.path_head.weight": [
+            6,
+            128
+          ],
+          "pts_bbox_head.censored_path.path_head.bias": [
+            6
+          ],
+          "pts_bbox_head.censored_path.mixture_head.0.weight": [
+            256
+          ],
+          "pts_bbox_head.censored_path.mixture_head.0.bias": [
+            256
+          ],
+          "pts_bbox_head.censored_path.mixture_head.1.weight": [
+            128,
+            256
+          ],
+          "pts_bbox_head.censored_path.mixture_head.1.bias": [
+            128
+          ],
+          "pts_bbox_head.censored_path.mixture_head.3.weight": [
+            2,
+            128
+          ],
+          "pts_bbox_head.censored_path.mixture_head.3.bias": [
+            2
+          ],
+          "pts_bbox_head.init_points.weight": [
+            600,
+            3
+          ],
+          "img_backbone.conv1.weight": [
+            64,
+            3,
+            7,
+            7
+          ],
+          "img_backbone.bn1.weight": [
+            64
+          ],
+          "img_backbone.bn1.bias": [
+            64
+          ],
+          "img_backbone.bn1.running_mean": [
+            64
+          ],
+          "img_backbone.bn1.running_var": [
+            64
+          ],
+          "img_backbone.bn1.num_batches_tracked": [],
+          "img_backbone.layer1.0.conv1.weight": [
+            64,
+            64,
+            1,
+            1
+          ],
+          "img_backbone.layer1.0.bn1.weight": [
+            64
+          ],
+          "img_backbone.layer1.0.bn1.bias": [
+            64
+          ],
+          "img_backbone.layer1.0.bn1.running_mean": [
+            64
+          ],
+          "img_backbone.layer1.0.bn1.running_var": [
+            64
+          ],
+          "img_backbone.layer1.0.bn1.num_batches_tracked": [],
+          "img_backbone.layer1.0.conv2.weight": [
+            64,
+            64,
+            3,
+            3
+          ],
+          "img_backbone.layer1.0.bn2.weight": [
+            64
+          ],
+          "img_backbone.layer1.0.bn2.bias": [
+            64
+          ],
+          "img_backbone.layer1.0.bn2.running_mean": [
+            64
+          ],
+          "img_backbone.layer1.0.bn2.running_var": [
+            64
+          ],
+          "img_backbone.layer1.0.bn2.num_batches_tracked": [],
+          "img_backbone.layer1.0.conv3.weight": [
+            256,
+            64,
+            1,
+            1
+          ],
+          "img_backbone.layer1.0.bn3.weight": [
+            256
+          ],
+          "img_backbone.layer1.0.bn3.bias": [
+            256
+          ],
+          "img_backbone.layer1.0.bn3.running_mean": [
+            256
+          ],
+          "img_backbone.layer1.0.bn3.running_var": [
+            256
+          ],
+          "img_backbone.layer1.0.bn3.num_batches_tracked": [],
+          "img_backbone.layer1.0.downsample.0.weight": [
+            256,
+            64,
+            1,
+            1
+          ],
+          "img_backbone.layer1.0.downsample.1.weight": [
+            256
+          ],
+          "img_backbone.layer1.0.downsample.1.bias": [
+            256
+          ],
+          "img_backbone.layer1.0.downsample.1.running_mean": [
+            256
+          ],
+          "img_backbone.layer1.0.downsample.1.running_var": [
+            256
+          ],
+          "img_backbone.layer1.0.downsample.1.num_batches_tracked": [],
+          "img_backbone.layer1.1.conv1.weight": [
+            64,
+            256,
+            1,
+            1
+          ],
+          "img_backbone.layer1.1.bn1.weight": [
+            64
+          ],
+          "img_backbone.layer1.1.bn1.bias": [
+            64
+          ],
+          "img_backbone.layer1.1.bn1.running_mean": [
+            64
+          ],
+          "img_backbone.layer1.1.bn1.running_var": [
+            64
+          ],
+          "img_backbone.layer1.1.bn1.num_batches_tracked": [],
+          "img_backbone.layer1.1.conv2.weight": [
+            64,
+            64,
+            3,
+            3
+          ],
+          "img_backbone.layer1.1.bn2.weight": [
+            64
+          ],
+          "img_backbone.layer1.1.bn2.bias": [
+            64
+          ],
+          "img_backbone.layer1.1.bn2.running_mean": [
+            64
+          ],
+          "img_backbone.layer1.1.bn2.running_var": [
+            64
+          ],
+          "img_backbone.layer1.1.bn2.num_batches_tracked": [],
+          "img_backbone.layer1.1.conv3.weight": [
+            256,
+            64,
+            1,
+            1
+          ],
+          "img_backbone.layer1.1.bn3.weight": [
+            256
+          ],
+          "img_backbone.layer1.1.bn3.bias": [
+            256
+          ],
+          "img_backbone.layer1.1.bn3.running_mean": [
+            256
+          ],
+          "img_backbone.layer1.1.bn3.running_var": [
+            256
+          ],
+          "img_backbone.layer1.1.bn3.num_batches_tracked": [],
+          "img_backbone.layer1.2.conv1.weight": [
+            64,
+            256,
+            1,
+            1
+          ],
+          "img_backbone.layer1.2.bn1.weight": [
+            64
+          ],
+          "img_backbone.layer1.2.bn1.bias": [
+            64
+          ],
+          "img_backbone.layer1.2.bn1.running_mean": [
+            64
+          ],
+          "img_backbone.layer1.2.bn1.running_var": [
+            64
+          ],
+          "img_backbone.layer1.2.bn1.num_batches_tracked": [],
+          "img_backbone.layer1.2.conv2.weight": [
+            64,
+            64,
+            3,
+            3
+          ],
+          "img_backbone.layer1.2.bn2.weight": [
+            64
+          ],
+          "img_backbone.layer1.2.bn2.bias": [
+            64
+          ],
+          "img_backbone.layer1.2.bn2.running_mean": [
+            64
+          ],
+          "img_backbone.layer1.2.bn2.running_var": [
+            64
+          ],
+          "img_backbone.layer1.2.bn2.num_batches_tracked": [],
+          "img_backbone.layer1.2.conv3.weight": [
+            256,
+            64,
+            1,
+            1
+          ],
+          "img_backbone.layer1.2.bn3.weight": [
+            256
+          ],
+          "img_backbone.layer1.2.bn3.bias": [
+            256
+          ],
+          "img_backbone.layer1.2.bn3.running_mean": [
+            256
+          ],
+          "img_backbone.layer1.2.bn3.running_var": [
+            256
+          ],
+          "img_backbone.layer1.2.bn3.num_batches_tracked": [],
+          "img_backbone.layer2.0.conv1.weight": [
+            128,
+            256,
+            1,
+            1
+          ],
+          "img_backbone.layer2.0.bn1.weight": [
+            128
+          ],
+          "img_backbone.layer2.0.bn1.bias": [
+            128
+          ],
+          "img_backbone.layer2.0.bn1.running_mean": [
+            128
+          ],
+          "img_backbone.layer2.0.bn1.running_var": [
+            128
+          ],
+          "img_backbone.layer2.0.bn1.num_batches_tracked": [],
+          "img_backbone.layer2.0.conv2.weight": [
+            128,
+            128,
+            3,
+            3
+          ],
+          "img_backbone.layer2.0.bn2.weight": [
+            128
+          ],
+          "img_backbone.layer2.0.bn2.bias": [
+            128
+          ],
+          "img_backbone.layer2.0.bn2.running_mean": [
+            128
+          ],
+          "img_backbone.layer2.0.bn2.running_var": [
+            128
+          ],
+          "img_backbone.layer2.0.bn2.num_batches_tracked": [],
+          "img_backbone.layer2.0.conv3.weight": [
+            512,
+            128,
+            1,
+            1
+          ],
+          "img_backbone.layer2.0.bn3.weight": [
+            512
+          ],
+          "img_backbone.layer2.0.bn3.bias": [
+            512
+          ],
+          "img_backbone.layer2.0.bn3.running_mean": [
+            512
+          ],
+          "img_backbone.layer2.0.bn3.running_var": [
+            512
+          ],
+          "img_backbone.layer2.0.bn3.num_batches_tracked": [],
+          "img_backbone.layer2.0.downsample.0.weight": [
+            512,
+            256,
+            1,
+            1
+          ],
+          "img_backbone.layer2.0.downsample.1.weight": [
+            512
+          ],
+          "img_backbone.layer2.0.downsample.1.bias": [
+            512
+          ],
+          "img_backbone.layer2.0.downsample.1.running_mean": [
+            512
+          ],
+          "img_backbone.layer2.0.downsample.1.running_var": [
+            512
+          ],
+          "img_backbone.layer2.0.downsample.1.num_batches_tracked": [],
+          "img_backbone.layer2.1.conv1.weight": [
+            128,
+            512,
+            1,
+            1
+          ],
+          "img_backbone.layer2.1.bn1.weight": [
+            128
+          ],
+          "img_backbone.layer2.1.bn1.bias": [
+            128
+          ],
+          "img_backbone.layer2.1.bn1.running_mean": [
+            128
+          ],
+          "img_backbone.layer2.1.bn1.running_var": [
+            128
+          ],
+          "img_backbone.layer2.1.bn1.num_batches_tracked": [],
+          "img_backbone.layer2.1.conv2.weight": [
+            128,
+            128,
+            3,
+            3
+          ],
+          "img_backbone.layer2.1.bn2.weight": [
+            128
+          ],
+          "img_backbone.layer2.1.bn2.bias": [
+            128
+          ],
+          "img_backbone.layer2.1.bn2.running_mean": [
+            128
+          ],
+          "img_backbone.layer2.1.bn2.running_var": [
+            128
+          ],
+          "img_backbone.layer2.1.bn2.num_batches_tracked": [],
+          "img_backbone.layer2.1.conv3.weight": [
+            512,
+            128,
+            1,
+            1
+          ],
+          "img_backbone.layer2.1.bn3.weight": [
+            512
+          ],
+          "img_backbone.layer2.1.bn3.bias": [
+            512
+          ],
+          "img_backbone.layer2.1.bn3.running_mean": [
+            512
+          ],
+          "img_backbone.layer2.1.bn3.running_var": [
+            512
+          ],
+          "img_backbone.layer2.1.bn3.num_batches_tracked": [],
+          "img_backbone.layer2.2.conv1.weight": [
+            128,
+            512,
+            1,
+            1
+          ],
+          "img_backbone.layer2.2.bn1.weight": [
+            128
+          ],
+          "img_backbone.layer2.2.bn1.bias": [
+            128
+          ],
+          "img_backbone.layer2.2.bn1.running_mean": [
+            128
+          ],
+          "img_backbone.layer2.2.bn1.running_var": [
+            128
+          ],
+          "img_backbone.layer2.2.bn1.num_batches_tracked": [],
+          "img_backbone.layer2.2.conv2.weight": [
+            128,
+            128,
+            3,
+            3
+          ],
+          "img_backbone.layer2.2.bn2.weight": [
+            128
+          ],
+          "img_backbone.layer2.2.bn2.bias": [
+            128
+          ],
+          "img_backbone.layer2.2.bn2.running_mean": [
+            128
+          ],
+          "img_backbone.layer2.2.bn2.running_var": [
+            128
+          ],
+          "img_backbone.layer2.2.bn2.num_batches_tracked": [],
+          "img_backbone.layer2.2.conv3.weight": [
+            512,
+            128,
+            1,
+            1
+          ],
+          "img_backbone.layer2.2.bn3.weight": [
+            512
+          ],
+          "img_backbone.layer2.2.bn3.bias": [
+            512
+          ],
+          "img_backbone.layer2.2.bn3.running_mean": [
+            512
+          ],
+          "img_backbone.layer2.2.bn3.running_var": [
+            512
+          ],
+          "img_backbone.layer2.2.bn3.num_batches_tracked": [],
+          "img_backbone.layer2.3.conv1.weight": [
+            128,
+            512,
+            1,
+            1
+          ],
+          "img_backbone.layer2.3.bn1.weight": [
+            128
+          ],
+          "img_backbone.layer2.3.bn1.bias": [
+            128
+          ],
+          "img_backbone.layer2.3.bn1.running_mean": [
+            128
+          ],
+          "img_backbone.layer2.3.bn1.running_var": [
+            128
+          ],
+          "img_backbone.layer2.3.bn1.num_batches_tracked": [],
+          "img_backbone.layer2.3.conv2.weight": [
+            128,
+            128,
+            3,
+            3
+          ],
+          "img_backbone.layer2.3.bn2.weight": [
+            128
+          ],
+          "img_backbone.layer2.3.bn2.bias": [
+            128
+          ],
+          "img_backbone.layer2.3.bn2.running_mean": [
+            128
+          ],
+          "img_backbone.layer2.3.bn2.running_var": [
+            128
+          ],
+          "img_backbone.layer2.3.bn2.num_batches_tracked": [],
+          "img_backbone.layer2.3.conv3.weight": [
+            512,
+            128,
+            1,
+            1
+          ],
+          "img_backbone.layer2.3.bn3.weight": [
+            512
+          ],
+          "img_backbone.layer2.3.bn3.bias": [
+            512
+          ],
+          "img_backbone.layer2.3.bn3.running_mean": [
+            512
+          ],
+          "img_backbone.layer2.3.bn3.running_var": [
+            512
+          ],
+          "img_backbone.layer2.3.bn3.num_batches_tracked": [],
+          "img_backbone.layer3.0.conv1.weight": [
+            256,
+            512,
+            1,
+            1
+          ],
+          "img_backbone.layer3.0.bn1.weight": [
+            256
+          ],
+          "img_backbone.layer3.0.bn1.bias": [
+            256
+          ],
+          "img_backbone.layer3.0.bn1.running_mean": [
+            256
+          ],
+          "img_backbone.layer3.0.bn1.running_var": [
+            256
+          ],
+          "img_backbone.layer3.0.bn1.num_batches_tracked": [],
+          "img_backbone.layer3.0.conv2.weight": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "img_backbone.layer3.0.bn2.weight": [
+            256
+          ],
+          "img_backbone.layer3.0.bn2.bias": [
+            256
+          ],
+          "img_backbone.layer3.0.bn2.running_mean": [
+            256
+          ],
+          "img_backbone.layer3.0.bn2.running_var": [
+            256
+          ],
+          "img_backbone.layer3.0.bn2.num_batches_tracked": [],
+          "img_backbone.layer3.0.conv3.weight": [
+            1024,
+            256,
+            1,
+            1
+          ],
+          "img_backbone.layer3.0.bn3.weight": [
+            1024
+          ],
+          "img_backbone.layer3.0.bn3.bias": [
+            1024
+          ],
+          "img_backbone.layer3.0.bn3.running_mean": [
+            1024
+          ],
+          "img_backbone.layer3.0.bn3.running_var": [
+            1024
+          ],
+          "img_backbone.layer3.0.bn3.num_batches_tracked": [],
+          "img_backbone.layer3.0.downsample.0.weight": [
+            1024,
+            512,
+            1,
+            1
+          ],
+          "img_backbone.layer3.0.downsample.1.weight": [
+            1024
+          ],
+          "img_backbone.layer3.0.downsample.1.bias": [
+            1024
+          ],
+          "img_backbone.layer3.0.downsample.1.running_mean": [
+            1024
+          ],
+          "img_backbone.layer3.0.downsample.1.running_var": [
+            1024
+          ],
+          "img_backbone.layer3.0.downsample.1.num_batches_tracked": [],
+          "img_backbone.layer3.1.conv1.weight": [
+            256,
+            1024,
+            1,
+            1
+          ],
+          "img_backbone.layer3.1.bn1.weight": [
+            256
+          ],
+          "img_backbone.layer3.1.bn1.bias": [
+            256
+          ],
+          "img_backbone.layer3.1.bn1.running_mean": [
+            256
+          ],
+          "img_backbone.layer3.1.bn1.running_var": [
+            256
+          ],
+          "img_backbone.layer3.1.bn1.num_batches_tracked": [],
+          "img_backbone.layer3.1.conv2.weight": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "img_backbone.layer3.1.bn2.weight": [
+            256
+          ],
+          "img_backbone.layer3.1.bn2.bias": [
+            256
+          ],
+          "img_backbone.layer3.1.bn2.running_mean": [
+            256
+          ],
+          "img_backbone.layer3.1.bn2.running_var": [
+            256
+          ],
+          "img_backbone.layer3.1.bn2.num_batches_tracked": [],
+          "img_backbone.layer3.1.conv3.weight": [
+            1024,
+            256,
+            1,
+            1
+          ],
+          "img_backbone.layer3.1.bn3.weight": [
+            1024
+          ],
+          "img_backbone.layer3.1.bn3.bias": [
+            1024
+          ],
+          "img_backbone.layer3.1.bn3.running_mean": [
+            1024
+          ],
+          "img_backbone.layer3.1.bn3.running_var": [
+            1024
+          ],
+          "img_backbone.layer3.1.bn3.num_batches_tracked": [],
+          "img_backbone.layer3.2.conv1.weight": [
+            256,
+            1024,
+            1,
+            1
+          ],
+          "img_backbone.layer3.2.bn1.weight": [
+            256
+          ],
+          "img_backbone.layer3.2.bn1.bias": [
+            256
+          ],
+          "img_backbone.layer3.2.bn1.running_mean": [
+            256
+          ],
+          "img_backbone.layer3.2.bn1.running_var": [
+            256
+          ],
+          "img_backbone.layer3.2.bn1.num_batches_tracked": [],
+          "img_backbone.layer3.2.conv2.weight": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "img_backbone.layer3.2.bn2.weight": [
+            256
+          ],
+          "img_backbone.layer3.2.bn2.bias": [
+            256
+          ],
+          "img_backbone.layer3.2.bn2.running_mean": [
+            256
+          ],
+          "img_backbone.layer3.2.bn2.running_var": [
+            256
+          ],
+          "img_backbone.layer3.2.bn2.num_batches_tracked": [],
+          "img_backbone.layer3.2.conv3.weight": [
+            1024,
+            256,
+            1,
+            1
+          ],
+          "img_backbone.layer3.2.bn3.weight": [
+            1024
+          ],
+          "img_backbone.layer3.2.bn3.bias": [
+            1024
+          ],
+          "img_backbone.layer3.2.bn3.running_mean": [
+            1024
+          ],
+          "img_backbone.layer3.2.bn3.running_var": [
+            1024
+          ],
+          "img_backbone.layer3.2.bn3.num_batches_tracked": [],
+          "img_backbone.layer3.3.conv1.weight": [
+            256,
+            1024,
+            1,
+            1
+          ],
+          "img_backbone.layer3.3.bn1.weight": [
+            256
+          ],
+          "img_backbone.layer3.3.bn1.bias": [
+            256
+          ],
+          "img_backbone.layer3.3.bn1.running_mean": [
+            256
+          ],
+          "img_backbone.layer3.3.bn1.running_var": [
+            256
+          ],
+          "img_backbone.layer3.3.bn1.num_batches_tracked": [],
+          "img_backbone.layer3.3.conv2.weight": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "img_backbone.layer3.3.bn2.weight": [
+            256
+          ],
+          "img_backbone.layer3.3.bn2.bias": [
+            256
+          ],
+          "img_backbone.layer3.3.bn2.running_mean": [
+            256
+          ],
+          "img_backbone.layer3.3.bn2.running_var": [
+            256
+          ],
+          "img_backbone.layer3.3.bn2.num_batches_tracked": [],
+          "img_backbone.layer3.3.conv3.weight": [
+            1024,
+            256,
+            1,
+            1
+          ],
+          "img_backbone.layer3.3.bn3.weight": [
+            1024
+          ],
+          "img_backbone.layer3.3.bn3.bias": [
+            1024
+          ],
+          "img_backbone.layer3.3.bn3.running_mean": [
+            1024
+          ],
+          "img_backbone.layer3.3.bn3.running_var": [
+            1024
+          ],
+          "img_backbone.layer3.3.bn3.num_batches_tracked": [],
+          "img_backbone.layer3.4.conv1.weight": [
+            256,
+            1024,
+            1,
+            1
+          ],
+          "img_backbone.layer3.4.bn1.weight": [
+            256
+          ],
+          "img_backbone.layer3.4.bn1.bias": [
+            256
+          ],
+          "img_backbone.layer3.4.bn1.running_mean": [
+            256
+          ],
+          "img_backbone.layer3.4.bn1.running_var": [
+            256
+          ],
+          "img_backbone.layer3.4.bn1.num_batches_tracked": [],
+          "img_backbone.layer3.4.conv2.weight": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "img_backbone.layer3.4.bn2.weight": [
+            256
+          ],
+          "img_backbone.layer3.4.bn2.bias": [
+            256
+          ],
+          "img_backbone.layer3.4.bn2.running_mean": [
+            256
+          ],
+          "img_backbone.layer3.4.bn2.running_var": [
+            256
+          ],
+          "img_backbone.layer3.4.bn2.num_batches_tracked": [],
+          "img_backbone.layer3.4.conv3.weight": [
+            1024,
+            256,
+            1,
+            1
+          ],
+          "img_backbone.layer3.4.bn3.weight": [
+            1024
+          ],
+          "img_backbone.layer3.4.bn3.bias": [
+            1024
+          ],
+          "img_backbone.layer3.4.bn3.running_mean": [
+            1024
+          ],
+          "img_backbone.layer3.4.bn3.running_var": [
+            1024
+          ],
+          "img_backbone.layer3.4.bn3.num_batches_tracked": [],
+          "img_backbone.layer3.5.conv1.weight": [
+            256,
+            1024,
+            1,
+            1
+          ],
+          "img_backbone.layer3.5.bn1.weight": [
+            256
+          ],
+          "img_backbone.layer3.5.bn1.bias": [
+            256
+          ],
+          "img_backbone.layer3.5.bn1.running_mean": [
+            256
+          ],
+          "img_backbone.layer3.5.bn1.running_var": [
+            256
+          ],
+          "img_backbone.layer3.5.bn1.num_batches_tracked": [],
+          "img_backbone.layer3.5.conv2.weight": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "img_backbone.layer3.5.bn2.weight": [
+            256
+          ],
+          "img_backbone.layer3.5.bn2.bias": [
+            256
+          ],
+          "img_backbone.layer3.5.bn2.running_mean": [
+            256
+          ],
+          "img_backbone.layer3.5.bn2.running_var": [
+            256
+          ],
+          "img_backbone.layer3.5.bn2.num_batches_tracked": [],
+          "img_backbone.layer3.5.conv3.weight": [
+            1024,
+            256,
+            1,
+            1
+          ],
+          "img_backbone.layer3.5.bn3.weight": [
+            1024
+          ],
+          "img_backbone.layer3.5.bn3.bias": [
+            1024
+          ],
+          "img_backbone.layer3.5.bn3.running_mean": [
+            1024
+          ],
+          "img_backbone.layer3.5.bn3.running_var": [
+            1024
+          ],
+          "img_backbone.layer3.5.bn3.num_batches_tracked": [],
+          "img_backbone.layer4.0.conv1.weight": [
+            512,
+            1024,
+            1,
+            1
+          ],
+          "img_backbone.layer4.0.bn1.weight": [
+            512
+          ],
+          "img_backbone.layer4.0.bn1.bias": [
+            512
+          ],
+          "img_backbone.layer4.0.bn1.running_mean": [
+            512
+          ],
+          "img_backbone.layer4.0.bn1.running_var": [
+            512
+          ],
+          "img_backbone.layer4.0.bn1.num_batches_tracked": [],
+          "img_backbone.layer4.0.conv2.weight": [
+            512,
+            512,
+            3,
+            3
+          ],
+          "img_backbone.layer4.0.bn2.weight": [
+            512
+          ],
+          "img_backbone.layer4.0.bn2.bias": [
+            512
+          ],
+          "img_backbone.layer4.0.bn2.running_mean": [
+            512
+          ],
+          "img_backbone.layer4.0.bn2.running_var": [
+            512
+          ],
+          "img_backbone.layer4.0.bn2.num_batches_tracked": [],
+          "img_backbone.layer4.0.conv3.weight": [
+            2048,
+            512,
+            1,
+            1
+          ],
+          "img_backbone.layer4.0.bn3.weight": [
+            2048
+          ],
+          "img_backbone.layer4.0.bn3.bias": [
+            2048
+          ],
+          "img_backbone.layer4.0.bn3.running_mean": [
+            2048
+          ],
+          "img_backbone.layer4.0.bn3.running_var": [
+            2048
+          ],
+          "img_backbone.layer4.0.bn3.num_batches_tracked": [],
+          "img_backbone.layer4.0.downsample.0.weight": [
+            2048,
+            1024,
+            1,
+            1
+          ],
+          "img_backbone.layer4.0.downsample.1.weight": [
+            2048
+          ],
+          "img_backbone.layer4.0.downsample.1.bias": [
+            2048
+          ],
+          "img_backbone.layer4.0.downsample.1.running_mean": [
+            2048
+          ],
+          "img_backbone.layer4.0.downsample.1.running_var": [
+            2048
+          ],
+          "img_backbone.layer4.0.downsample.1.num_batches_tracked": [],
+          "img_backbone.layer4.1.conv1.weight": [
+            512,
+            2048,
+            1,
+            1
+          ],
+          "img_backbone.layer4.1.bn1.weight": [
+            512
+          ],
+          "img_backbone.layer4.1.bn1.bias": [
+            512
+          ],
+          "img_backbone.layer4.1.bn1.running_mean": [
+            512
+          ],
+          "img_backbone.layer4.1.bn1.running_var": [
+            512
+          ],
+          "img_backbone.layer4.1.bn1.num_batches_tracked": [],
+          "img_backbone.layer4.1.conv2.weight": [
+            512,
+            512,
+            3,
+            3
+          ],
+          "img_backbone.layer4.1.bn2.weight": [
+            512
+          ],
+          "img_backbone.layer4.1.bn2.bias": [
+            512
+          ],
+          "img_backbone.layer4.1.bn2.running_mean": [
+            512
+          ],
+          "img_backbone.layer4.1.bn2.running_var": [
+            512
+          ],
+          "img_backbone.layer4.1.bn2.num_batches_tracked": [],
+          "img_backbone.layer4.1.conv3.weight": [
+            2048,
+            512,
+            1,
+            1
+          ],
+          "img_backbone.layer4.1.bn3.weight": [
+            2048
+          ],
+          "img_backbone.layer4.1.bn3.bias": [
+            2048
+          ],
+          "img_backbone.layer4.1.bn3.running_mean": [
+            2048
+          ],
+          "img_backbone.layer4.1.bn3.running_var": [
+            2048
+          ],
+          "img_backbone.layer4.1.bn3.num_batches_tracked": [],
+          "img_backbone.layer4.2.conv1.weight": [
+            512,
+            2048,
+            1,
+            1
+          ],
+          "img_backbone.layer4.2.bn1.weight": [
+            512
+          ],
+          "img_backbone.layer4.2.bn1.bias": [
+            512
+          ],
+          "img_backbone.layer4.2.bn1.running_mean": [
+            512
+          ],
+          "img_backbone.layer4.2.bn1.running_var": [
+            512
+          ],
+          "img_backbone.layer4.2.bn1.num_batches_tracked": [],
+          "img_backbone.layer4.2.conv2.weight": [
+            512,
+            512,
+            3,
+            3
+          ],
+          "img_backbone.layer4.2.bn2.weight": [
+            512
+          ],
+          "img_backbone.layer4.2.bn2.bias": [
+            512
+          ],
+          "img_backbone.layer4.2.bn2.running_mean": [
+            512
+          ],
+          "img_backbone.layer4.2.bn2.running_var": [
+            512
+          ],
+          "img_backbone.layer4.2.bn2.num_batches_tracked": [],
+          "img_backbone.layer4.2.conv3.weight": [
+            2048,
+            512,
+            1,
+            1
+          ],
+          "img_backbone.layer4.2.bn3.weight": [
+            2048
+          ],
+          "img_backbone.layer4.2.bn3.bias": [
+            2048
+          ],
+          "img_backbone.layer4.2.bn3.running_mean": [
+            2048
+          ],
+          "img_backbone.layer4.2.bn3.running_var": [
+            2048
+          ],
+          "img_backbone.layer4.2.bn3.num_batches_tracked": [],
+          "img_neck.lateral_convs.0.conv.weight": [
+            256,
+            256,
+            1,
+            1
+          ],
+          "img_neck.lateral_convs.0.conv.bias": [
+            256
+          ],
+          "img_neck.lateral_convs.1.conv.weight": [
+            256,
+            512,
+            1,
+            1
+          ],
+          "img_neck.lateral_convs.1.conv.bias": [
+            256
+          ],
+          "img_neck.lateral_convs.2.conv.weight": [
+            256,
+            1024,
+            1,
+            1
+          ],
+          "img_neck.lateral_convs.2.conv.bias": [
+            256
+          ],
+          "img_neck.lateral_convs.3.conv.weight": [
+            256,
+            2048,
+            1,
+            1
+          ],
+          "img_neck.lateral_convs.3.conv.bias": [
+            256
+          ],
+          "img_neck.fpn_convs.0.conv.weight": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "img_neck.fpn_convs.0.conv.bias": [
+            256
+          ],
+          "img_neck.fpn_convs.1.conv.weight": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "img_neck.fpn_convs.1.conv.bias": [
+            256
+          ],
+          "img_neck.fpn_convs.2.conv.weight": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "img_neck.fpn_convs.2.conv.bias": [
+            256
+          ],
+          "img_neck.fpn_convs.3.conv.weight": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "img_neck.fpn_convs.3.conv.bias": [
+            256
+          ]
+        },
+        "independent_reference_tensors_exact": 669
+      },
+      "reference_initialization": {
+        "loaded_tensors": 669,
+        "loaded_numel": 79478272,
+        "new_radar_tensors": 0,
+        "zero_residual_outputs": [],
+        "new_path_tensors": 0,
+        "all_camera_tensors_exact": true,
+        "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+        "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
+        "source_epoch": 70,
+        "source_iter": 246190,
+        "optimizer_restored": false,
+        "epoch_reset_to": 0
+      },
+      "git_revision": "c60be1b24e9a81d94933a31ce1c54ca69c1bedde",
+      "worldline_components": [
+        "path_encoder",
+        "path_head",
+        "mixture_head"
+      ],
+      "official_reference_independent": true,
+      "new_parameters_finite": true,
+      "budget": {
+        "batch_size": 8,
+        "epochs": 10,
+        "seed": 0,
+        "fresh_optimizer": true
+      },
+      "validation_has_no_endpoints": true,
+      "trainable_parameters": {
+        "radar": 2013768,
+        "pretrained_world": 55843036,
+        "backbone_or_sampling_offset": 23356704,
+        "path_encoder": 50176,
+        "path_head": 774,
+        "mixture_head": 33666
+      },
+      "fresh_optimizer": true,
+      "radar_cache_samples": 23930,
+      "endpoint_cache": {
+        "manifest": "/home/huayiming/Workspace/SparseWorld-cache/endpoint_segments_v1_20260926/manifest.json",
+        "manifest_sha256": "add76b72bba8bae310b5a2d20c90068b1be865be26345561ae826064a962d63a",
+        "samples": {
+          "train": 23930,
+          "val": 5119
+        },
+        "train_val_anchor_tokens_disjoint": true,
+        "train_val_target_tokens_disjoint": true,
+        "occupancy_labels_cached": false,
+        "builder_sha256": "1b1d44a5a398ce8040f0424abcc6cc926bf27145e45ddcc7586b80e309a86eeb",
+        "builder_matches_snapshot": true,
+        "frame_payloads_rehashed": false,
+        "training_only": true
+      },
+      "status": "passed"
+    },
+    "gpu_censored-path": {
+      "config": "configs/sw-radar-forecast-censored-path.py",
+      "device": "cuda",
+      "initialization": {
+        "loaded_tensors": 669,
+        "loaded_numel": 79478272,
+        "new_radar_tensors": 102,
+        "zero_residual_outputs": [
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.output",
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.output",
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.output",
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.output",
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.output",
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.output"
+        ],
+        "new_path_tensors": 15,
+        "all_camera_tensors_exact": true,
+        "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+        "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
+        "source_epoch": 70,
+        "source_iter": 246190,
+        "optimizer_restored": false,
+        "epoch_reset_to": 0,
+        "state_schema": {
+          "pts_bbox_head.pc_range": [
+            6
+          ],
+          "pts_bbox_head.scene_size": [
+            3
+          ],
+          "pts_bbox_head.voxel_size": [
+            3
+          ],
+          "pts_bbox_head.voxel_num": [
+            3
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.point_encoder.0.weight": [
+            256,
+            10
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.point_encoder.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.point_encoder.1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.point_encoder.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.point_encoder.3.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.point_encoder.3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.offset.weight": [
+            8,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.offset.bias": [
+            8
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.sample_weight.weight": [
+            4,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.sample_weight.bias": [
+            4
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.relative_encoder.0.weight": [
+            256,
+            2
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.relative_encoder.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.relative_encoder.2.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.relative_encoder.2.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.gate.weight": [
+            256,
+            512
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.gate.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.output.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight": [
+            256,
+            3
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.3.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.4.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.4.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.self_attn.attention.attn.in_proj_weight": [
+            768,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.self_attn.attention.attn.in_proj_bias": [
+            768
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.self_attn.attention.attn.out_proj.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.self_attn.attention.attn.out_proj.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.self_attn.gen_tau.weight": [
+            8,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.self_attn.gen_tau.bias": [
+            8
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.sampling.sampling_offset.weight": [
+            48,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.sampling.sampling_offset.bias": [
+            48
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.sampling.scale_weights.weight": [
+            64,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.sampling.scale_weights.bias": [
+            64
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.mixing.parameter_generator.weight": [
+            20480,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.mixing.parameter_generator.bias": [
+            20480
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.mixing.out_proj.weight": [
+            256,
+            8192
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.mixing.out_proj.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.ffn.layers.0.0.weight": [
+            512,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.ffn.layers.0.0.bias": [
+            512
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.ffn.layers.1.weight": [
+            256,
+            512
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.ffn.layers.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.norm1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.norm1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.norm2.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.norm2.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.norm3.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.norm3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.tempo_attn.attn.in_proj_weight": [
+            768,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.tempo_attn.attn.in_proj_bias": [
+            768
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.tempo_attn.attn.out_proj.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.tempo_attn.attn.out_proj.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.ln.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.ln.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.cls_branch.0.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.cls_branch.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.cls_branch.1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.cls_branch.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.cls_branch.3.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.cls_branch.3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.cls_branch.4.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.cls_branch.4.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.cls_branch.6.weight": [
+            17,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.cls_branch.6.bias": [
+            17
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.reg_branch.0.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.reg_branch.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.reg_branch.2.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.reg_branch.2.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.reg_branch.4.weight": [
+            3,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.0.reg_branch.4.bias": [
+            3
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.point_encoder.0.weight": [
+            256,
+            10
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.point_encoder.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.point_encoder.1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.point_encoder.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.point_encoder.3.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.point_encoder.3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.offset.weight": [
+            8,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.offset.bias": [
+            8
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.sample_weight.weight": [
+            4,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.sample_weight.bias": [
+            4
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.relative_encoder.0.weight": [
+            256,
+            2
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.relative_encoder.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.relative_encoder.2.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.relative_encoder.2.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.gate.weight": [
+            256,
+            512
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.gate.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.output.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.position_encoder.0.weight": [
+            256,
+            3
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.position_encoder.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.position_encoder.1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.position_encoder.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.position_encoder.3.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.position_encoder.3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.position_encoder.4.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.position_encoder.4.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.self_attn.attention.attn.in_proj_weight": [
+            768,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.self_attn.attention.attn.in_proj_bias": [
+            768
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.self_attn.attention.attn.out_proj.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.self_attn.attention.attn.out_proj.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.self_attn.gen_tau.weight": [
+            8,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.self_attn.gen_tau.bias": [
+            8
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.sampling.sampling_offset.weight": [
+            48,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.sampling.sampling_offset.bias": [
+            48
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.sampling.scale_weights.weight": [
+            64,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.sampling.scale_weights.bias": [
+            64
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.mixing.parameter_generator.weight": [
+            20480,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.mixing.parameter_generator.bias": [
+            20480
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.mixing.out_proj.weight": [
+            256,
+            8192
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.mixing.out_proj.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.ffn.layers.0.0.weight": [
+            512,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.ffn.layers.0.0.bias": [
+            512
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.ffn.layers.1.weight": [
+            256,
+            512
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.ffn.layers.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.norm1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.norm1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.norm2.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.norm2.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.norm3.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.norm3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.tempo_attn.attn.in_proj_weight": [
+            768,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.tempo_attn.attn.in_proj_bias": [
+            768
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.tempo_attn.attn.out_proj.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.tempo_attn.attn.out_proj.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.ln.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.ln.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.cls_branch.0.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.cls_branch.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.cls_branch.1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.cls_branch.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.cls_branch.3.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.cls_branch.3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.cls_branch.4.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.cls_branch.4.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.cls_branch.6.weight": [
+            68,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.cls_branch.6.bias": [
+            68
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.reg_branch.0.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.reg_branch.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.reg_branch.2.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.reg_branch.2.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.reg_branch.4.weight": [
+            12,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.1.reg_branch.4.bias": [
+            12
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.point_encoder.0.weight": [
+            256,
+            10
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.point_encoder.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.point_encoder.1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.point_encoder.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.point_encoder.3.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.point_encoder.3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.offset.weight": [
+            8,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.offset.bias": [
+            8
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.sample_weight.weight": [
+            4,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.sample_weight.bias": [
+            4
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.relative_encoder.0.weight": [
+            256,
+            2
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.relative_encoder.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.relative_encoder.2.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.relative_encoder.2.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.gate.weight": [
+            256,
+            512
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.gate.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.output.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.position_encoder.0.weight": [
+            256,
+            12
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.position_encoder.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.position_encoder.1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.position_encoder.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.position_encoder.3.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.position_encoder.3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.position_encoder.4.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.position_encoder.4.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.self_attn.attention.attn.in_proj_weight": [
+            768,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.self_attn.attention.attn.in_proj_bias": [
+            768
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.self_attn.attention.attn.out_proj.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.self_attn.attention.attn.out_proj.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.self_attn.gen_tau.weight": [
+            8,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.self_attn.gen_tau.bias": [
+            8
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.sampling.sampling_offset.weight": [
+            48,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.sampling.sampling_offset.bias": [
+            48
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.sampling.scale_weights.weight": [
+            64,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.sampling.scale_weights.bias": [
+            64
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.mixing.parameter_generator.weight": [
+            20480,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.mixing.parameter_generator.bias": [
+            20480
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.mixing.out_proj.weight": [
+            256,
+            8192
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.mixing.out_proj.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.ffn.layers.0.0.weight": [
+            512,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.ffn.layers.0.0.bias": [
+            512
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.ffn.layers.1.weight": [
+            256,
+            512
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.ffn.layers.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.norm1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.norm1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.norm2.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.norm2.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.norm3.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.norm3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.tempo_attn.attn.in_proj_weight": [
+            768,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.tempo_attn.attn.in_proj_bias": [
+            768
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.tempo_attn.attn.out_proj.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.tempo_attn.attn.out_proj.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.ln.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.ln.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.cls_branch.0.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.cls_branch.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.cls_branch.1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.cls_branch.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.cls_branch.3.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.cls_branch.3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.cls_branch.4.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.cls_branch.4.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.cls_branch.6.weight": [
+            272,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.cls_branch.6.bias": [
+            272
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.reg_branch.0.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.reg_branch.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.reg_branch.2.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.reg_branch.2.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.reg_branch.4.weight": [
+            48,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.2.reg_branch.4.bias": [
+            48
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.point_encoder.0.weight": [
+            256,
+            10
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.point_encoder.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.point_encoder.1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.point_encoder.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.point_encoder.3.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.point_encoder.3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.offset.weight": [
+            8,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.offset.bias": [
+            8
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.sample_weight.weight": [
+            4,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.sample_weight.bias": [
+            4
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.relative_encoder.0.weight": [
+            256,
+            2
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.relative_encoder.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.relative_encoder.2.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.relative_encoder.2.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.gate.weight": [
+            256,
+            512
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.gate.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.output.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.position_encoder.0.weight": [
+            256,
+            48
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.position_encoder.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.position_encoder.1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.position_encoder.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.position_encoder.3.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.position_encoder.3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.position_encoder.4.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.position_encoder.4.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.self_attn.attention.attn.in_proj_weight": [
+            768,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.self_attn.attention.attn.in_proj_bias": [
+            768
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.self_attn.attention.attn.out_proj.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.self_attn.attention.attn.out_proj.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.self_attn.gen_tau.weight": [
+            8,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.self_attn.gen_tau.bias": [
+            8
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.sampling.sampling_offset.weight": [
+            48,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.sampling.sampling_offset.bias": [
+            48
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.sampling.scale_weights.weight": [
+            64,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.sampling.scale_weights.bias": [
+            64
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.mixing.parameter_generator.weight": [
+            20480,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.mixing.parameter_generator.bias": [
+            20480
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.mixing.out_proj.weight": [
+            256,
+            8192
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.mixing.out_proj.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.ffn.layers.0.0.weight": [
+            512,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.ffn.layers.0.0.bias": [
+            512
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.ffn.layers.1.weight": [
+            256,
+            512
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.ffn.layers.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.norm1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.norm1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.norm2.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.norm2.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.norm3.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.norm3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.tempo_attn.attn.in_proj_weight": [
+            768,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.tempo_attn.attn.in_proj_bias": [
+            768
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.tempo_attn.attn.out_proj.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.tempo_attn.attn.out_proj.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.ln.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.ln.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.cls_branch.0.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.cls_branch.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.cls_branch.1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.cls_branch.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.cls_branch.3.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.cls_branch.3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.cls_branch.4.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.cls_branch.4.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.cls_branch.6.weight": [
+            544,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.cls_branch.6.bias": [
+            544
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.reg_branch.0.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.reg_branch.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.reg_branch.2.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.reg_branch.2.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.reg_branch.4.weight": [
+            96,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.3.reg_branch.4.bias": [
+            96
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.point_encoder.0.weight": [
+            256,
+            10
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.point_encoder.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.point_encoder.1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.point_encoder.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.point_encoder.3.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.point_encoder.3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.offset.weight": [
+            8,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.offset.bias": [
+            8
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.sample_weight.weight": [
+            4,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.sample_weight.bias": [
+            4
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.relative_encoder.0.weight": [
+            256,
+            2
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.relative_encoder.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.relative_encoder.2.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.relative_encoder.2.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.gate.weight": [
+            256,
+            512
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.gate.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.output.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.position_encoder.0.weight": [
+            256,
+            96
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.position_encoder.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.position_encoder.1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.position_encoder.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.position_encoder.3.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.position_encoder.3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.position_encoder.4.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.position_encoder.4.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.self_attn.attention.attn.in_proj_weight": [
+            768,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.self_attn.attention.attn.in_proj_bias": [
+            768
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.self_attn.attention.attn.out_proj.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.self_attn.attention.attn.out_proj.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.self_attn.gen_tau.weight": [
+            8,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.self_attn.gen_tau.bias": [
+            8
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.sampling.sampling_offset.weight": [
+            48,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.sampling.sampling_offset.bias": [
+            48
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.sampling.scale_weights.weight": [
+            64,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.sampling.scale_weights.bias": [
+            64
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.mixing.parameter_generator.weight": [
+            20480,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.mixing.parameter_generator.bias": [
+            20480
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.mixing.out_proj.weight": [
+            256,
+            8192
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.mixing.out_proj.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.ffn.layers.0.0.weight": [
+            512,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.ffn.layers.0.0.bias": [
+            512
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.ffn.layers.1.weight": [
+            256,
+            512
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.ffn.layers.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.norm1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.norm1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.norm2.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.norm2.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.norm3.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.norm3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.tempo_attn.attn.in_proj_weight": [
+            768,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.tempo_attn.attn.in_proj_bias": [
+            768
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.tempo_attn.attn.out_proj.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.tempo_attn.attn.out_proj.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.ln.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.ln.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.cls_branch.0.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.cls_branch.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.cls_branch.1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.cls_branch.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.cls_branch.3.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.cls_branch.3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.cls_branch.4.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.cls_branch.4.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.cls_branch.6.weight": [
+            1088,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.cls_branch.6.bias": [
+            1088
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.reg_branch.0.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.reg_branch.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.reg_branch.2.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.reg_branch.2.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.reg_branch.4.weight": [
+            192,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.4.reg_branch.4.bias": [
+            192
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.point_encoder.0.weight": [
+            256,
+            10
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.point_encoder.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.point_encoder.1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.point_encoder.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.point_encoder.3.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.point_encoder.3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.offset.weight": [
+            8,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.offset.bias": [
+            8
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.sample_weight.weight": [
+            4,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.sample_weight.bias": [
+            4
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.relative_encoder.0.weight": [
+            256,
+            2
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.relative_encoder.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.relative_encoder.2.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.relative_encoder.2.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.gate.weight": [
+            256,
+            512
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.gate.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.output.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.position_encoder.0.weight": [
+            256,
+            192
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.position_encoder.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.position_encoder.1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.position_encoder.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.position_encoder.3.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.position_encoder.3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.position_encoder.4.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.position_encoder.4.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.self_attn.attention.attn.in_proj_weight": [
+            768,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.self_attn.attention.attn.in_proj_bias": [
+            768
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.self_attn.attention.attn.out_proj.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.self_attn.attention.attn.out_proj.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.self_attn.gen_tau.weight": [
+            8,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.self_attn.gen_tau.bias": [
+            8
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.sampling.sampling_offset.weight": [
+            48,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.sampling.sampling_offset.bias": [
+            48
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.sampling.scale_weights.weight": [
+            64,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.sampling.scale_weights.bias": [
+            64
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.mixing.parameter_generator.weight": [
+            20480,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.mixing.parameter_generator.bias": [
+            20480
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.mixing.out_proj.weight": [
+            256,
+            8192
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.mixing.out_proj.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.ffn.layers.0.0.weight": [
+            512,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.ffn.layers.0.0.bias": [
+            512
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.ffn.layers.1.weight": [
+            256,
+            512
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.ffn.layers.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.norm1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.norm1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.norm2.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.norm2.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.norm3.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.norm3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.tempo_attn.attn.in_proj_weight": [
+            768,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.tempo_attn.attn.in_proj_bias": [
+            768
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.tempo_attn.attn.out_proj.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.tempo_attn.attn.out_proj.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.ln.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.ln.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.cls_branch.0.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.cls_branch.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.cls_branch.1.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.cls_branch.1.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.cls_branch.3.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.cls_branch.3.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.cls_branch.4.weight": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.cls_branch.4.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.cls_branch.6.weight": [
+            2176,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.cls_branch.6.bias": [
+            2176
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.reg_branch.0.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.reg_branch.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.reg_branch.2.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.reg_branch.2.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.reg_branch.4.weight": [
+            384,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.decoder_layers.5.reg_branch.4.bias": [
+            384
+          ],
+          "pts_bbox_head.transformer.decoder.pe_mln.reduce.0.weight": [
+            256,
+            16
+          ],
+          "pts_bbox_head.transformer.decoder.pe_mln.reduce.0.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.pe_mln.gamma.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.pe_mln.gamma.bias": [
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.pe_mln.beta.weight": [
+            256,
+            256
+          ],
+          "pts_bbox_head.transformer.decoder.pe_mln.beta.bias": [
+            256
+          ],
+          "pts_bbox_head.censored_path.path_encoder.norm.weight": [
+            256
+          ],
+          "pts_bbox_head.censored_path.path_encoder.norm.bias": [
+            256
+          ],
+          "pts_bbox_head.censored_path.path_encoder.projection.weight": [
+            128,
+            256
+          ],
+          "pts_bbox_head.censored_path.path_encoder.projection.bias": [
+            128
+          ],
+          "pts_bbox_head.censored_path.path_encoder.mode_embedding.weight": [
+            2,
+            128
+          ],
+          "pts_bbox_head.censored_path.path_encoder.network.1.weight": [
+            128,
+            128
+          ],
+          "pts_bbox_head.censored_path.path_encoder.network.1.bias": [
+            128
+          ],
+          "pts_bbox_head.censored_path.path_head.weight": [
+            6,
+            128
+          ],
+          "pts_bbox_head.censored_path.path_head.bias": [
+            6
+          ],
+          "pts_bbox_head.censored_path.mixture_head.0.weight": [
+            256
+          ],
+          "pts_bbox_head.censored_path.mixture_head.0.bias": [
+            256
+          ],
+          "pts_bbox_head.censored_path.mixture_head.1.weight": [
+            128,
+            256
+          ],
+          "pts_bbox_head.censored_path.mixture_head.1.bias": [
+            128
+          ],
+          "pts_bbox_head.censored_path.mixture_head.3.weight": [
+            2,
+            128
+          ],
+          "pts_bbox_head.censored_path.mixture_head.3.bias": [
+            2
+          ],
+          "pts_bbox_head.init_points.weight": [
+            600,
+            3
+          ],
+          "img_backbone.conv1.weight": [
+            64,
+            3,
+            7,
+            7
+          ],
+          "img_backbone.bn1.weight": [
+            64
+          ],
+          "img_backbone.bn1.bias": [
+            64
+          ],
+          "img_backbone.bn1.running_mean": [
+            64
+          ],
+          "img_backbone.bn1.running_var": [
+            64
+          ],
+          "img_backbone.bn1.num_batches_tracked": [],
+          "img_backbone.layer1.0.conv1.weight": [
+            64,
+            64,
+            1,
+            1
+          ],
+          "img_backbone.layer1.0.bn1.weight": [
+            64
+          ],
+          "img_backbone.layer1.0.bn1.bias": [
+            64
+          ],
+          "img_backbone.layer1.0.bn1.running_mean": [
+            64
+          ],
+          "img_backbone.layer1.0.bn1.running_var": [
+            64
+          ],
+          "img_backbone.layer1.0.bn1.num_batches_tracked": [],
+          "img_backbone.layer1.0.conv2.weight": [
+            64,
+            64,
+            3,
+            3
+          ],
+          "img_backbone.layer1.0.bn2.weight": [
+            64
+          ],
+          "img_backbone.layer1.0.bn2.bias": [
+            64
+          ],
+          "img_backbone.layer1.0.bn2.running_mean": [
+            64
+          ],
+          "img_backbone.layer1.0.bn2.running_var": [
+            64
+          ],
+          "img_backbone.layer1.0.bn2.num_batches_tracked": [],
+          "img_backbone.layer1.0.conv3.weight": [
+            256,
+            64,
+            1,
+            1
+          ],
+          "img_backbone.layer1.0.bn3.weight": [
+            256
+          ],
+          "img_backbone.layer1.0.bn3.bias": [
+            256
+          ],
+          "img_backbone.layer1.0.bn3.running_mean": [
+            256
+          ],
+          "img_backbone.layer1.0.bn3.running_var": [
+            256
+          ],
+          "img_backbone.layer1.0.bn3.num_batches_tracked": [],
+          "img_backbone.layer1.0.downsample.0.weight": [
+            256,
+            64,
+            1,
+            1
+          ],
+          "img_backbone.layer1.0.downsample.1.weight": [
+            256
+          ],
+          "img_backbone.layer1.0.downsample.1.bias": [
+            256
+          ],
+          "img_backbone.layer1.0.downsample.1.running_mean": [
+            256
+          ],
+          "img_backbone.layer1.0.downsample.1.running_var": [
+            256
+          ],
+          "img_backbone.layer1.0.downsample.1.num_batches_tracked": [],
+          "img_backbone.layer1.1.conv1.weight": [
+            64,
+            256,
+            1,
+            1
+          ],
+          "img_backbone.layer1.1.bn1.weight": [
+            64
+          ],
+          "img_backbone.layer1.1.bn1.bias": [
+            64
+          ],
+          "img_backbone.layer1.1.bn1.running_mean": [
+            64
+          ],
+          "img_backbone.layer1.1.bn1.running_var": [
+            64
+          ],
+          "img_backbone.layer1.1.bn1.num_batches_tracked": [],
+          "img_backbone.layer1.1.conv2.weight": [
+            64,
+            64,
+            3,
+            3
+          ],
+          "img_backbone.layer1.1.bn2.weight": [
+            64
+          ],
+          "img_backbone.layer1.1.bn2.bias": [
+            64
+          ],
+          "img_backbone.layer1.1.bn2.running_mean": [
+            64
+          ],
+          "img_backbone.layer1.1.bn2.running_var": [
+            64
+          ],
+          "img_backbone.layer1.1.bn2.num_batches_tracked": [],
+          "img_backbone.layer1.1.conv3.weight": [
+            256,
+            64,
+            1,
+            1
+          ],
+          "img_backbone.layer1.1.bn3.weight": [
+            256
+          ],
+          "img_backbone.layer1.1.bn3.bias": [
+            256
+          ],
+          "img_backbone.layer1.1.bn3.running_mean": [
+            256
+          ],
+          "img_backbone.layer1.1.bn3.running_var": [
+            256
+          ],
+          "img_backbone.layer1.1.bn3.num_batches_tracked": [],
+          "img_backbone.layer1.2.conv1.weight": [
+            64,
+            256,
+            1,
+            1
+          ],
+          "img_backbone.layer1.2.bn1.weight": [
+            64
+          ],
+          "img_backbone.layer1.2.bn1.bias": [
+            64
+          ],
+          "img_backbone.layer1.2.bn1.running_mean": [
+            64
+          ],
+          "img_backbone.layer1.2.bn1.running_var": [
+            64
+          ],
+          "img_backbone.layer1.2.bn1.num_batches_tracked": [],
+          "img_backbone.layer1.2.conv2.weight": [
+            64,
+            64,
+            3,
+            3
+          ],
+          "img_backbone.layer1.2.bn2.weight": [
+            64
+          ],
+          "img_backbone.layer1.2.bn2.bias": [
+            64
+          ],
+          "img_backbone.layer1.2.bn2.running_mean": [
+            64
+          ],
+          "img_backbone.layer1.2.bn2.running_var": [
+            64
+          ],
+          "img_backbone.layer1.2.bn2.num_batches_tracked": [],
+          "img_backbone.layer1.2.conv3.weight": [
+            256,
+            64,
+            1,
+            1
+          ],
+          "img_backbone.layer1.2.bn3.weight": [
+            256
+          ],
+          "img_backbone.layer1.2.bn3.bias": [
+            256
+          ],
+          "img_backbone.layer1.2.bn3.running_mean": [
+            256
+          ],
+          "img_backbone.layer1.2.bn3.running_var": [
+            256
+          ],
+          "img_backbone.layer1.2.bn3.num_batches_tracked": [],
+          "img_backbone.layer2.0.conv1.weight": [
+            128,
+            256,
+            1,
+            1
+          ],
+          "img_backbone.layer2.0.bn1.weight": [
+            128
+          ],
+          "img_backbone.layer2.0.bn1.bias": [
+            128
+          ],
+          "img_backbone.layer2.0.bn1.running_mean": [
+            128
+          ],
+          "img_backbone.layer2.0.bn1.running_var": [
+            128
+          ],
+          "img_backbone.layer2.0.bn1.num_batches_tracked": [],
+          "img_backbone.layer2.0.conv2.weight": [
+            128,
+            128,
+            3,
+            3
+          ],
+          "img_backbone.layer2.0.bn2.weight": [
+            128
+          ],
+          "img_backbone.layer2.0.bn2.bias": [
+            128
+          ],
+          "img_backbone.layer2.0.bn2.running_mean": [
+            128
+          ],
+          "img_backbone.layer2.0.bn2.running_var": [
+            128
+          ],
+          "img_backbone.layer2.0.bn2.num_batches_tracked": [],
+          "img_backbone.layer2.0.conv3.weight": [
+            512,
+            128,
+            1,
+            1
+          ],
+          "img_backbone.layer2.0.bn3.weight": [
+            512
+          ],
+          "img_backbone.layer2.0.bn3.bias": [
+            512
+          ],
+          "img_backbone.layer2.0.bn3.running_mean": [
+            512
+          ],
+          "img_backbone.layer2.0.bn3.running_var": [
+            512
+          ],
+          "img_backbone.layer2.0.bn3.num_batches_tracked": [],
+          "img_backbone.layer2.0.downsample.0.weight": [
+            512,
+            256,
+            1,
+            1
+          ],
+          "img_backbone.layer2.0.downsample.1.weight": [
+            512
+          ],
+          "img_backbone.layer2.0.downsample.1.bias": [
+            512
+          ],
+          "img_backbone.layer2.0.downsample.1.running_mean": [
+            512
+          ],
+          "img_backbone.layer2.0.downsample.1.running_var": [
+            512
+          ],
+          "img_backbone.layer2.0.downsample.1.num_batches_tracked": [],
+          "img_backbone.layer2.1.conv1.weight": [
+            128,
+            512,
+            1,
+            1
+          ],
+          "img_backbone.layer2.1.bn1.weight": [
+            128
+          ],
+          "img_backbone.layer2.1.bn1.bias": [
+            128
+          ],
+          "img_backbone.layer2.1.bn1.running_mean": [
+            128
+          ],
+          "img_backbone.layer2.1.bn1.running_var": [
+            128
+          ],
+          "img_backbone.layer2.1.bn1.num_batches_tracked": [],
+          "img_backbone.layer2.1.conv2.weight": [
+            128,
+            128,
+            3,
+            3
+          ],
+          "img_backbone.layer2.1.bn2.weight": [
+            128
+          ],
+          "img_backbone.layer2.1.bn2.bias": [
+            128
+          ],
+          "img_backbone.layer2.1.bn2.running_mean": [
+            128
+          ],
+          "img_backbone.layer2.1.bn2.running_var": [
+            128
+          ],
+          "img_backbone.layer2.1.bn2.num_batches_tracked": [],
+          "img_backbone.layer2.1.conv3.weight": [
+            512,
+            128,
+            1,
+            1
+          ],
+          "img_backbone.layer2.1.bn3.weight": [
+            512
+          ],
+          "img_backbone.layer2.1.bn3.bias": [
+            512
+          ],
+          "img_backbone.layer2.1.bn3.running_mean": [
+            512
+          ],
+          "img_backbone.layer2.1.bn3.running_var": [
+            512
+          ],
+          "img_backbone.layer2.1.bn3.num_batches_tracked": [],
+          "img_backbone.layer2.2.conv1.weight": [
+            128,
+            512,
+            1,
+            1
+          ],
+          "img_backbone.layer2.2.bn1.weight": [
+            128
+          ],
+          "img_backbone.layer2.2.bn1.bias": [
+            128
+          ],
+          "img_backbone.layer2.2.bn1.running_mean": [
+            128
+          ],
+          "img_backbone.layer2.2.bn1.running_var": [
+            128
+          ],
+          "img_backbone.layer2.2.bn1.num_batches_tracked": [],
+          "img_backbone.layer2.2.conv2.weight": [
+            128,
+            128,
+            3,
+            3
+          ],
+          "img_backbone.layer2.2.bn2.weight": [
+            128
+          ],
+          "img_backbone.layer2.2.bn2.bias": [
+            128
+          ],
+          "img_backbone.layer2.2.bn2.running_mean": [
+            128
+          ],
+          "img_backbone.layer2.2.bn2.running_var": [
+            128
+          ],
+          "img_backbone.layer2.2.bn2.num_batches_tracked": [],
+          "img_backbone.layer2.2.conv3.weight": [
+            512,
+            128,
+            1,
+            1
+          ],
+          "img_backbone.layer2.2.bn3.weight": [
+            512
+          ],
+          "img_backbone.layer2.2.bn3.bias": [
+            512
+          ],
+          "img_backbone.layer2.2.bn3.running_mean": [
+            512
+          ],
+          "img_backbone.layer2.2.bn3.running_var": [
+            512
+          ],
+          "img_backbone.layer2.2.bn3.num_batches_tracked": [],
+          "img_backbone.layer2.3.conv1.weight": [
+            128,
+            512,
+            1,
+            1
+          ],
+          "img_backbone.layer2.3.bn1.weight": [
+            128
+          ],
+          "img_backbone.layer2.3.bn1.bias": [
+            128
+          ],
+          "img_backbone.layer2.3.bn1.running_mean": [
+            128
+          ],
+          "img_backbone.layer2.3.bn1.running_var": [
+            128
+          ],
+          "img_backbone.layer2.3.bn1.num_batches_tracked": [],
+          "img_backbone.layer2.3.conv2.weight": [
+            128,
+            128,
+            3,
+            3
+          ],
+          "img_backbone.layer2.3.bn2.weight": [
+            128
+          ],
+          "img_backbone.layer2.3.bn2.bias": [
+            128
+          ],
+          "img_backbone.layer2.3.bn2.running_mean": [
+            128
+          ],
+          "img_backbone.layer2.3.bn2.running_var": [
+            128
+          ],
+          "img_backbone.layer2.3.bn2.num_batches_tracked": [],
+          "img_backbone.layer2.3.conv3.weight": [
+            512,
+            128,
+            1,
+            1
+          ],
+          "img_backbone.layer2.3.bn3.weight": [
+            512
+          ],
+          "img_backbone.layer2.3.bn3.bias": [
+            512
+          ],
+          "img_backbone.layer2.3.bn3.running_mean": [
+            512
+          ],
+          "img_backbone.layer2.3.bn3.running_var": [
+            512
+          ],
+          "img_backbone.layer2.3.bn3.num_batches_tracked": [],
+          "img_backbone.layer3.0.conv1.weight": [
+            256,
+            512,
+            1,
+            1
+          ],
+          "img_backbone.layer3.0.bn1.weight": [
+            256
+          ],
+          "img_backbone.layer3.0.bn1.bias": [
+            256
+          ],
+          "img_backbone.layer3.0.bn1.running_mean": [
+            256
+          ],
+          "img_backbone.layer3.0.bn1.running_var": [
+            256
+          ],
+          "img_backbone.layer3.0.bn1.num_batches_tracked": [],
+          "img_backbone.layer3.0.conv2.weight": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "img_backbone.layer3.0.bn2.weight": [
+            256
+          ],
+          "img_backbone.layer3.0.bn2.bias": [
+            256
+          ],
+          "img_backbone.layer3.0.bn2.running_mean": [
+            256
+          ],
+          "img_backbone.layer3.0.bn2.running_var": [
+            256
+          ],
+          "img_backbone.layer3.0.bn2.num_batches_tracked": [],
+          "img_backbone.layer3.0.conv3.weight": [
+            1024,
+            256,
+            1,
+            1
+          ],
+          "img_backbone.layer3.0.bn3.weight": [
+            1024
+          ],
+          "img_backbone.layer3.0.bn3.bias": [
+            1024
+          ],
+          "img_backbone.layer3.0.bn3.running_mean": [
+            1024
+          ],
+          "img_backbone.layer3.0.bn3.running_var": [
+            1024
+          ],
+          "img_backbone.layer3.0.bn3.num_batches_tracked": [],
+          "img_backbone.layer3.0.downsample.0.weight": [
+            1024,
+            512,
+            1,
+            1
+          ],
+          "img_backbone.layer3.0.downsample.1.weight": [
+            1024
+          ],
+          "img_backbone.layer3.0.downsample.1.bias": [
+            1024
+          ],
+          "img_backbone.layer3.0.downsample.1.running_mean": [
+            1024
+          ],
+          "img_backbone.layer3.0.downsample.1.running_var": [
+            1024
+          ],
+          "img_backbone.layer3.0.downsample.1.num_batches_tracked": [],
+          "img_backbone.layer3.1.conv1.weight": [
+            256,
+            1024,
+            1,
+            1
+          ],
+          "img_backbone.layer3.1.bn1.weight": [
+            256
+          ],
+          "img_backbone.layer3.1.bn1.bias": [
+            256
+          ],
+          "img_backbone.layer3.1.bn1.running_mean": [
+            256
+          ],
+          "img_backbone.layer3.1.bn1.running_var": [
+            256
+          ],
+          "img_backbone.layer3.1.bn1.num_batches_tracked": [],
+          "img_backbone.layer3.1.conv2.weight": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "img_backbone.layer3.1.bn2.weight": [
+            256
+          ],
+          "img_backbone.layer3.1.bn2.bias": [
+            256
+          ],
+          "img_backbone.layer3.1.bn2.running_mean": [
+            256
+          ],
+          "img_backbone.layer3.1.bn2.running_var": [
+            256
+          ],
+          "img_backbone.layer3.1.bn2.num_batches_tracked": [],
+          "img_backbone.layer3.1.conv3.weight": [
+            1024,
+            256,
+            1,
+            1
+          ],
+          "img_backbone.layer3.1.bn3.weight": [
+            1024
+          ],
+          "img_backbone.layer3.1.bn3.bias": [
+            1024
+          ],
+          "img_backbone.layer3.1.bn3.running_mean": [
+            1024
+          ],
+          "img_backbone.layer3.1.bn3.running_var": [
+            1024
+          ],
+          "img_backbone.layer3.1.bn3.num_batches_tracked": [],
+          "img_backbone.layer3.2.conv1.weight": [
+            256,
+            1024,
+            1,
+            1
+          ],
+          "img_backbone.layer3.2.bn1.weight": [
+            256
+          ],
+          "img_backbone.layer3.2.bn1.bias": [
+            256
+          ],
+          "img_backbone.layer3.2.bn1.running_mean": [
+            256
+          ],
+          "img_backbone.layer3.2.bn1.running_var": [
+            256
+          ],
+          "img_backbone.layer3.2.bn1.num_batches_tracked": [],
+          "img_backbone.layer3.2.conv2.weight": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "img_backbone.layer3.2.bn2.weight": [
+            256
+          ],
+          "img_backbone.layer3.2.bn2.bias": [
+            256
+          ],
+          "img_backbone.layer3.2.bn2.running_mean": [
+            256
+          ],
+          "img_backbone.layer3.2.bn2.running_var": [
+            256
+          ],
+          "img_backbone.layer3.2.bn2.num_batches_tracked": [],
+          "img_backbone.layer3.2.conv3.weight": [
+            1024,
+            256,
+            1,
+            1
+          ],
+          "img_backbone.layer3.2.bn3.weight": [
+            1024
+          ],
+          "img_backbone.layer3.2.bn3.bias": [
+            1024
+          ],
+          "img_backbone.layer3.2.bn3.running_mean": [
+            1024
+          ],
+          "img_backbone.layer3.2.bn3.running_var": [
+            1024
+          ],
+          "img_backbone.layer3.2.bn3.num_batches_tracked": [],
+          "img_backbone.layer3.3.conv1.weight": [
+            256,
+            1024,
+            1,
+            1
+          ],
+          "img_backbone.layer3.3.bn1.weight": [
+            256
+          ],
+          "img_backbone.layer3.3.bn1.bias": [
+            256
+          ],
+          "img_backbone.layer3.3.bn1.running_mean": [
+            256
+          ],
+          "img_backbone.layer3.3.bn1.running_var": [
+            256
+          ],
+          "img_backbone.layer3.3.bn1.num_batches_tracked": [],
+          "img_backbone.layer3.3.conv2.weight": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "img_backbone.layer3.3.bn2.weight": [
+            256
+          ],
+          "img_backbone.layer3.3.bn2.bias": [
+            256
+          ],
+          "img_backbone.layer3.3.bn2.running_mean": [
+            256
+          ],
+          "img_backbone.layer3.3.bn2.running_var": [
+            256
+          ],
+          "img_backbone.layer3.3.bn2.num_batches_tracked": [],
+          "img_backbone.layer3.3.conv3.weight": [
+            1024,
+            256,
+            1,
+            1
+          ],
+          "img_backbone.layer3.3.bn3.weight": [
+            1024
+          ],
+          "img_backbone.layer3.3.bn3.bias": [
+            1024
+          ],
+          "img_backbone.layer3.3.bn3.running_mean": [
+            1024
+          ],
+          "img_backbone.layer3.3.bn3.running_var": [
+            1024
+          ],
+          "img_backbone.layer3.3.bn3.num_batches_tracked": [],
+          "img_backbone.layer3.4.conv1.weight": [
+            256,
+            1024,
+            1,
+            1
+          ],
+          "img_backbone.layer3.4.bn1.weight": [
+            256
+          ],
+          "img_backbone.layer3.4.bn1.bias": [
+            256
+          ],
+          "img_backbone.layer3.4.bn1.running_mean": [
+            256
+          ],
+          "img_backbone.layer3.4.bn1.running_var": [
+            256
+          ],
+          "img_backbone.layer3.4.bn1.num_batches_tracked": [],
+          "img_backbone.layer3.4.conv2.weight": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "img_backbone.layer3.4.bn2.weight": [
+            256
+          ],
+          "img_backbone.layer3.4.bn2.bias": [
+            256
+          ],
+          "img_backbone.layer3.4.bn2.running_mean": [
+            256
+          ],
+          "img_backbone.layer3.4.bn2.running_var": [
+            256
+          ],
+          "img_backbone.layer3.4.bn2.num_batches_tracked": [],
+          "img_backbone.layer3.4.conv3.weight": [
+            1024,
+            256,
+            1,
+            1
+          ],
+          "img_backbone.layer3.4.bn3.weight": [
+            1024
+          ],
+          "img_backbone.layer3.4.bn3.bias": [
+            1024
+          ],
+          "img_backbone.layer3.4.bn3.running_mean": [
+            1024
+          ],
+          "img_backbone.layer3.4.bn3.running_var": [
+            1024
+          ],
+          "img_backbone.layer3.4.bn3.num_batches_tracked": [],
+          "img_backbone.layer3.5.conv1.weight": [
+            256,
+            1024,
+            1,
+            1
+          ],
+          "img_backbone.layer3.5.bn1.weight": [
+            256
+          ],
+          "img_backbone.layer3.5.bn1.bias": [
+            256
+          ],
+          "img_backbone.layer3.5.bn1.running_mean": [
+            256
+          ],
+          "img_backbone.layer3.5.bn1.running_var": [
+            256
+          ],
+          "img_backbone.layer3.5.bn1.num_batches_tracked": [],
+          "img_backbone.layer3.5.conv2.weight": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "img_backbone.layer3.5.bn2.weight": [
+            256
+          ],
+          "img_backbone.layer3.5.bn2.bias": [
+            256
+          ],
+          "img_backbone.layer3.5.bn2.running_mean": [
+            256
+          ],
+          "img_backbone.layer3.5.bn2.running_var": [
+            256
+          ],
+          "img_backbone.layer3.5.bn2.num_batches_tracked": [],
+          "img_backbone.layer3.5.conv3.weight": [
+            1024,
+            256,
+            1,
+            1
+          ],
+          "img_backbone.layer3.5.bn3.weight": [
+            1024
+          ],
+          "img_backbone.layer3.5.bn3.bias": [
+            1024
+          ],
+          "img_backbone.layer3.5.bn3.running_mean": [
+            1024
+          ],
+          "img_backbone.layer3.5.bn3.running_var": [
+            1024
+          ],
+          "img_backbone.layer3.5.bn3.num_batches_tracked": [],
+          "img_backbone.layer4.0.conv1.weight": [
+            512,
+            1024,
+            1,
+            1
+          ],
+          "img_backbone.layer4.0.bn1.weight": [
+            512
+          ],
+          "img_backbone.layer4.0.bn1.bias": [
+            512
+          ],
+          "img_backbone.layer4.0.bn1.running_mean": [
+            512
+          ],
+          "img_backbone.layer4.0.bn1.running_var": [
+            512
+          ],
+          "img_backbone.layer4.0.bn1.num_batches_tracked": [],
+          "img_backbone.layer4.0.conv2.weight": [
+            512,
+            512,
+            3,
+            3
+          ],
+          "img_backbone.layer4.0.bn2.weight": [
+            512
+          ],
+          "img_backbone.layer4.0.bn2.bias": [
+            512
+          ],
+          "img_backbone.layer4.0.bn2.running_mean": [
+            512
+          ],
+          "img_backbone.layer4.0.bn2.running_var": [
+            512
+          ],
+          "img_backbone.layer4.0.bn2.num_batches_tracked": [],
+          "img_backbone.layer4.0.conv3.weight": [
+            2048,
+            512,
+            1,
+            1
+          ],
+          "img_backbone.layer4.0.bn3.weight": [
+            2048
+          ],
+          "img_backbone.layer4.0.bn3.bias": [
+            2048
+          ],
+          "img_backbone.layer4.0.bn3.running_mean": [
+            2048
+          ],
+          "img_backbone.layer4.0.bn3.running_var": [
+            2048
+          ],
+          "img_backbone.layer4.0.bn3.num_batches_tracked": [],
+          "img_backbone.layer4.0.downsample.0.weight": [
+            2048,
+            1024,
+            1,
+            1
+          ],
+          "img_backbone.layer4.0.downsample.1.weight": [
+            2048
+          ],
+          "img_backbone.layer4.0.downsample.1.bias": [
+            2048
+          ],
+          "img_backbone.layer4.0.downsample.1.running_mean": [
+            2048
+          ],
+          "img_backbone.layer4.0.downsample.1.running_var": [
+            2048
+          ],
+          "img_backbone.layer4.0.downsample.1.num_batches_tracked": [],
+          "img_backbone.layer4.1.conv1.weight": [
+            512,
+            2048,
+            1,
+            1
+          ],
+          "img_backbone.layer4.1.bn1.weight": [
+            512
+          ],
+          "img_backbone.layer4.1.bn1.bias": [
+            512
+          ],
+          "img_backbone.layer4.1.bn1.running_mean": [
+            512
+          ],
+          "img_backbone.layer4.1.bn1.running_var": [
+            512
+          ],
+          "img_backbone.layer4.1.bn1.num_batches_tracked": [],
+          "img_backbone.layer4.1.conv2.weight": [
+            512,
+            512,
+            3,
+            3
+          ],
+          "img_backbone.layer4.1.bn2.weight": [
+            512
+          ],
+          "img_backbone.layer4.1.bn2.bias": [
+            512
+          ],
+          "img_backbone.layer4.1.bn2.running_mean": [
+            512
+          ],
+          "img_backbone.layer4.1.bn2.running_var": [
+            512
+          ],
+          "img_backbone.layer4.1.bn2.num_batches_tracked": [],
+          "img_backbone.layer4.1.conv3.weight": [
+            2048,
+            512,
+            1,
+            1
+          ],
+          "img_backbone.layer4.1.bn3.weight": [
+            2048
+          ],
+          "img_backbone.layer4.1.bn3.bias": [
+            2048
+          ],
+          "img_backbone.layer4.1.bn3.running_mean": [
+            2048
+          ],
+          "img_backbone.layer4.1.bn3.running_var": [
+            2048
+          ],
+          "img_backbone.layer4.1.bn3.num_batches_tracked": [],
+          "img_backbone.layer4.2.conv1.weight": [
+            512,
+            2048,
+            1,
+            1
+          ],
+          "img_backbone.layer4.2.bn1.weight": [
+            512
+          ],
+          "img_backbone.layer4.2.bn1.bias": [
+            512
+          ],
+          "img_backbone.layer4.2.bn1.running_mean": [
+            512
+          ],
+          "img_backbone.layer4.2.bn1.running_var": [
+            512
+          ],
+          "img_backbone.layer4.2.bn1.num_batches_tracked": [],
+          "img_backbone.layer4.2.conv2.weight": [
+            512,
+            512,
+            3,
+            3
+          ],
+          "img_backbone.layer4.2.bn2.weight": [
+            512
+          ],
+          "img_backbone.layer4.2.bn2.bias": [
+            512
+          ],
+          "img_backbone.layer4.2.bn2.running_mean": [
+            512
+          ],
+          "img_backbone.layer4.2.bn2.running_var": [
+            512
+          ],
+          "img_backbone.layer4.2.bn2.num_batches_tracked": [],
+          "img_backbone.layer4.2.conv3.weight": [
+            2048,
+            512,
+            1,
+            1
+          ],
+          "img_backbone.layer4.2.bn3.weight": [
+            2048
+          ],
+          "img_backbone.layer4.2.bn3.bias": [
+            2048
+          ],
+          "img_backbone.layer4.2.bn3.running_mean": [
+            2048
+          ],
+          "img_backbone.layer4.2.bn3.running_var": [
+            2048
+          ],
+          "img_backbone.layer4.2.bn3.num_batches_tracked": [],
+          "img_neck.lateral_convs.0.conv.weight": [
+            256,
+            256,
+            1,
+            1
+          ],
+          "img_neck.lateral_convs.0.conv.bias": [
+            256
+          ],
+          "img_neck.lateral_convs.1.conv.weight": [
+            256,
+            512,
+            1,
+            1
+          ],
+          "img_neck.lateral_convs.1.conv.bias": [
+            256
+          ],
+          "img_neck.lateral_convs.2.conv.weight": [
+            256,
+            1024,
+            1,
+            1
+          ],
+          "img_neck.lateral_convs.2.conv.bias": [
+            256
+          ],
+          "img_neck.lateral_convs.3.conv.weight": [
+            256,
+            2048,
+            1,
+            1
+          ],
+          "img_neck.lateral_convs.3.conv.bias": [
+            256
+          ],
+          "img_neck.fpn_convs.0.conv.weight": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "img_neck.fpn_convs.0.conv.bias": [
+            256
+          ],
+          "img_neck.fpn_convs.1.conv.weight": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "img_neck.fpn_convs.1.conv.bias": [
+            256
+          ],
+          "img_neck.fpn_convs.2.conv.weight": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "img_neck.fpn_convs.2.conv.bias": [
+            256
+          ],
+          "img_neck.fpn_convs.3.conv.weight": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "img_neck.fpn_convs.3.conv.bias": [
+            256
+          ]
+        },
+        "independent_reference_tensors_exact": 669
+      },
+      "reference_initialization": {
+        "loaded_tensors": 669,
+        "loaded_numel": 79478272,
+        "new_radar_tensors": 0,
+        "zero_residual_outputs": [],
+        "new_path_tensors": 0,
+        "all_camera_tensors_exact": true,
+        "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+        "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
+        "source_epoch": 70,
+        "source_iter": 246190,
+        "optimizer_restored": false,
+        "epoch_reset_to": 0
+      },
+      "git_revision": "c60be1b24e9a81d94933a31ce1c54ca69c1bedde",
+      "worldline_components": [
+        "path_encoder",
+        "path_head",
+        "mixture_head"
+      ],
+      "official_reference_independent": true,
+      "new_parameters_finite": true,
+      "budget": {
+        "batch_size": 8,
+        "epochs": 10,
+        "seed": 0,
+        "fresh_optimizer": true
+      },
+      "validation_has_no_endpoints": true,
+      "real_input_parity": [
+        {
+          "index": 0,
+          "tensors": 13,
+          "modes": 2,
+          "max_abs_difference": 0.0,
+          "selected_voxels_equal": true,
+          "voxels_per_horizon": [
+            54567,
+            60436,
+            71876,
+            76191
+          ],
+          "selected_mode": 0,
+          "no_target_input": true,
+          "path_forward_calls": 1
+        },
+        {
+          "index": 1024,
+          "tensors": 13,
+          "modes": 2,
+          "max_abs_difference": 0.0,
+          "selected_voxels_equal": true,
+          "voxels_per_horizon": [
+            59510,
+            61240,
+            58826,
+            60067
+          ],
+          "selected_mode": 0,
+          "no_target_input": true,
+          "path_forward_calls": 1
+        },
+        {
+          "index": 2048,
+          "tensors": 13,
+          "modes": 2,
+          "max_abs_difference": 0.0,
+          "selected_voxels_equal": true,
+          "voxels_per_horizon": [
+            36134,
+            36263,
+            36118,
+            36199
+          ],
+          "selected_mode": 0,
+          "no_target_input": true,
+          "path_forward_calls": 1
+        },
+        {
+          "index": 4096,
+          "tensors": 13,
+          "modes": 2,
+          "max_abs_difference": 0.0,
+          "selected_voxels_equal": true,
+          "voxels_per_horizon": [
+            88555,
+            90306,
+            87669,
+            79208
+          ],
+          "selected_mode": 0,
+          "no_target_input": true,
+          "path_forward_calls": 1
+        }
+      ],
+      "status": "passed"
+    },
+    "censored-path_status": {
+      "arm": "censored-path",
+      "gpu": 1,
+      "gpu_uuid": "GPU-000b6236-3632-a001-9667-1f02cbb61c8b",
+      "controller_pid": 2804764,
+      "git_revision": "c60be1b24e9a81d94933a31ce1c54ca69c1bedde",
+      "code": "/home/huayiming/Workspace/SparseWorld-TC-forecast-c60be1b24e9a",
+      "completed_stages": [
+        "gpu_contracts",
+        "gpu_parity",
+        "smoke"
+      ],
+      "state": "failed",
+      "at_utc": "2026-09-26T16:11:29.562139+00:00",
+      "stage": "smoke",
+      "child_pid": null,
+      "memory_admission": {
+        "free_mib": 132806,
+        "total_mib": 143771,
+        "minimum_free_mib": 132000,
+        "required_stable_seconds": 60,
+        "observed_stable_seconds": 60.155778210028075
+      },
+      "command": [
+        "/storage/data/metaiot_data/huayiming/SparseWorld/envs/hym_sparseworld/bin/python",
+        "train.py",
+        "--config",
+        "configs/sw-radar-forecast-censored-path-smoke.py"
+      ],
+      "log": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/censored_path_campaign_20260926/censored-path_smoke.log",
+      "child_returncode": 0,
+      "gpu_snapshot": "0, 106299, 97.88",
+      "error": "ValueError({'missing': [], 'unexpected': ['pts_bbox_head.censored_path.scene_extent']})",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/huayiming/Workspace/SparseWorld-TC-forecast-c60be1b24e9a/tools/run_censored_path_experiment.py\", line 274, in main\n    smoke_audit = audit_checkpoint(smoke / 'iter_24.pth', schema, exact_steps=24)\n  File \"/home/huayiming/Workspace/SparseWorld-TC-forecast-c60be1b24e9a/tools/run_censored_path_experiment.py\", line 66, in audit_checkpoint\n    validate_state_schema(state, schema)\n  File \"/home/huayiming/Workspace/SparseWorld-TC-forecast-c60be1b24e9a/tools/run_censored_path_experiment.py\", line 52, in validate_state_schema\n    raise ValueError(dict(missing=sorted(set(schema) - set(state)),\nValueError: {'missing': [], 'unexpected': ['pts_bbox_head.censored_path.scene_extent']}\n"
+    }
+  },
+  "extensions": {
+    "models/csrc/_msmv_sampling_cuda.cpython-310-x86_64-linux-gnu.so": "7cd00091c536952e7cd6633d390afb897eeb4abeb0be103c5eb63ac9c891bbfc"
+  },
+  "endpoint_loader_coverage": {
+    "scope": "one deterministic hash-selected eligible anchor per every scene; not all-anchor coverage",
+    "manifest_sha256": "add76b72bba8bae310b5a2d20c90068b1be865be26345561ae826064a962d63a",
+    "loader_sha256": "56fb98b250438f7019249a665968d196008fca7afd02275d52a4937079f0c923",
+    "splits": {
+      "train": {
+        "counts": {
+          "anchors": 700,
+          "anchors_nonempty": 700,
+          "at_max_instances": 198,
+          "segments": 13966,
+          "observed_endpoints": 47144,
+          "points": 550005,
+          "label_1": 1770,
+          "label_9": 273,
+          "label_3": 177,
+          "label_7": 3084,
+          "label_10": 950,
+          "label_4": 6205,
+          "label_8": 996,
+          "unobserved_gap_segments": 953,
+          "anchors_with_unobserved_gap": 379,
+          "label_5": 149,
+          "label_2": 175,
+          "label_6": 187
+        },
+        "segments_per_anchor": {
+          "mean": 19.951428571428572,
+          "p50": 20.0,
+          "p95": 32.0,
+          "maximum": 32.0
+        },
+        "loader_additional_seconds": {
+          "mean": 0.03799093727055671,
+          "p50": 0.038392329995986074,
+          "p95": 0.059709563985234124,
+          "maximum": 0.07304416003171355
+        },
+        "label_and_pose_prepare_seconds": {
+          "mean": 0.15819717247122234,
+          "p50": 0.13007521000690758,
+          "p95": 0.42803351695765723,
+          "maximum": 0.6605557500151917
+        }
+      },
+      "val": {
+        "counts": {
+          "anchors": 150,
+          "anchors_nonempty": 147,
+          "at_max_instances": 44,
+          "segments": 2888,
+          "observed_endpoints": 9742,
+          "points": 113229,
+          "label_8": 223,
+          "label_4": 1243,
+          "label_1": 462,
+          "label_3": 40,
+          "label_10": 192,
+          "label_2": 43,
+          "label_5": 34,
+          "label_7": 565,
+          "unobserved_gap_segments": 153,
+          "anchors_with_unobserved_gap": 64,
+          "label_6": 43,
+          "label_9": 43
+        },
+        "segments_per_anchor": {
+          "mean": 19.253333333333334,
+          "p50": 20.0,
+          "p95": 32.0,
+          "maximum": 32.0
+        },
+        "loader_additional_seconds": {
+          "mean": 0.031771918142524856,
+          "p50": 0.03100543498294428,
+          "p95": 0.05540203850250687,
+          "maximum": 0.07010578003246337
+        },
+        "label_and_pose_prepare_seconds": {
+          "mean": 0.12173518933433418,
+          "p50": 0.09310821507824585,
+          "p95": 0.2645795695309061,
+          "maximum": 0.6478499899385497
+        }
+      }
+    }
+  }
+}

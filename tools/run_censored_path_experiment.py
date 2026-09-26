@@ -264,7 +264,8 @@ def main():
             status['completed_stages'].append(stage)
             record(stage=stage)
 
-        run('gpu_contracts', ['-m', 'pytest', '-q', 'tests/test_m0_contracts.py', '-k', 'cuda'])
+        run('gpu_contracts', ['-m', 'pytest', '-q', 'tests/test_m0_contracts.py',
+                             'tests/test_censored_path.py', '-k', 'cuda'])
         run('gpu_parity', ['tools/check_censored_path_contracts.py', '--config', CONFIG,
                           '--device', 'cuda', '--out', str(campaign / ('gpu_' + ARM + '.json'))])
         parity = json.loads((campaign / ('gpu_' + ARM + '.json')).read_text())

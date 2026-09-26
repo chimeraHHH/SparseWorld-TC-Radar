@@ -40,6 +40,50 @@ def test_initialization_and_current_bypass_are_exact():
     assert torch.equal(restored['mode_points'], output['mode_points'])
 
 
+def test_real_mmcv_checkpoint_keys_match_torch_and_exclude_scene_extent():
+    checkpoint = pytest.importorskip('mmcv.runner.checkpoint')
+    net, features, points, scores, transforms, frames = fixture(batch=1)
+    wrapper = torch.nn.Module()
+    wrapper.pts_bbox_head = torch.nn.Module()
+    wrapper.pts_bbox_head.censored_path = net
+    extent = net.scene_extent.clone()
+    for convert in (wrapper.float, wrapper.half):
+        convert()
+        native = wrapper.state_dict()
+        mmcv_state = checkpoint.get_state_dict(wrapper)
+        assert set(mmcv_state) == set(native)
+        assert not any(name.endswith('scene_extent') for name in mmcv_state)
+        assert 'scene_extent' not in dict(net.named_buffers())
+        assert net.scene_extent.dtype == torch.float32
+        assert torch.equal(net.scene_extent, extent)
+        for name in native:
+            assert torch.equal(mmcv_state[name], native[name]), name
+    # CPU half kernels need not exist: restore network float before forwarding.
+    wrapper.float()
+    output = net(features, points, scores, transforms, frames)
+    assert torch.equal(output['mode_points'], points.unsqueeze(0).expand(2, *points.shape))
+
+
+@pytest.mark.skipif(not torch.cuda.is_available(), reason='CUDA device required')
+def test_plain_extent_is_moved_explicitly_in_half_cuda_forward():
+    net, features, points, scores, transforms, frames = fixture(batch=1)
+    net = net.cuda().half()
+    # Plain configuration tensors intentionally do not participate in .cuda().
+    assert net.scene_extent.device.type == 'cpu' and net.scene_extent.dtype == torch.float32
+    features, points, scores = (value.cuda().half() for value in (features, points, scores))
+    transforms = [value.cuda() for value in transforms]
+    frames = [value.cuda() for value in frames]
+    output = net(features, points, scores, transforms, frames)
+    assert torch.equal(output['mode_points'], points.unsqueeze(0).expand(2, *points.shape))
+    with torch.no_grad():
+        net.path_head.bias[0] = .5
+    output = net(features, points, scores, transforms, frames)
+    assert output['mode_points'].device.type == 'cuda'
+    assert output['mode_points'].dtype == torch.float16
+    assert torch.isfinite(output['mode_points']).all()
+    assert not torch.equal(output['mode_points'][:, 1:], points[None, 1:].expand(2, -1, -1, -1, -1))
+
+
 def test_displacement_rotation_ignores_translation_and_preserves_horizon_order():
     net, features, points, scores, transforms, frames = fixture()
     with torch.no_grad():

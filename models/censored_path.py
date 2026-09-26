@@ -39,8 +39,10 @@ class SharedCensoredPath(nn.Module):
         self.max_residual = float(max_residual)
         self.horizon_seconds = float(horizon_seconds)
         self.frame_seconds = float(frame_seconds)
-        # Configuration-derived, not a new checkpoint tensor to reconcile.
-        self.register_buffer('scene_extent', extent, persistent=False)
+        # Configuration-derived, not checkpoint state. Older MMCV serializers
+        # save even nonpersistent buffers, so keep this as a plain tensor and
+        # move/cast it explicitly where the forward uses it below.
+        self.scene_extent = extent
         self.path_encoder = nn.ModuleDict({
             'norm': nn.LayerNorm(embed_dims),
             'projection': nn.Linear(embed_dims, hidden_dims),
