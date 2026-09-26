@@ -1,18 +1,18 @@
 {
-  "at_utc": "2026-09-26T16:12:21.830522+00:00",
+  "at_utc": "2026-09-26T16:28:59.512394+00:00",
   "receipts": {
     "submission": {
       "state": "submitted",
-      "code": "/home/huayiming/Workspace/SparseWorld-TC-forecast-c60be1b24e9a",
-      "git_revision": "c60be1b24e9a81d94933a31ce1c54ca69c1bedde",
-      "controller_pid": 2804764,
+      "code": "/home/huayiming/Workspace/SparseWorld-TC-forecast-b6599b16044a",
+      "git_revision": "b6599b16044a20097aa4f7797a0713168b430f50",
+      "controller_pid": 2824722,
       "gpu": 1,
-      "at_utc": "2026-09-26T16:02:58.670506+00:00"
+      "at_utc": "2026-09-26T16:18:24.383851+00:00"
     },
     "preflight": {
       "state": "passed",
-      "git_revision": "c60be1b24e9a81d94933a31ce1c54ca69c1bedde",
-      "at_utc": "2026-09-26T16:02:58.670506+00:00"
+      "git_revision": "b6599b16044a20097aa4f7797a0713168b430f50",
+      "at_utc": "2026-09-26T16:18:24.383851+00:00"
     },
     "cpu_censored-path": {
       "config": "configs/sw-radar-forecast-censored-path.py",
@@ -2662,7 +2662,7 @@
         "optimizer_restored": false,
         "epoch_reset_to": 0
       },
-      "git_revision": "c60be1b24e9a81d94933a31ce1c54ca69c1bedde",
+      "git_revision": "b6599b16044a20097aa4f7797a0713168b430f50",
       "worldline_components": [
         "path_encoder",
         "path_head",
@@ -5352,7 +5352,7 @@
         "optimizer_restored": false,
         "epoch_reset_to": 0
       },
-      "git_revision": "c60be1b24e9a81d94933a31ce1c54ca69c1bedde",
+      "git_revision": "b6599b16044a20097aa4f7797a0713168b430f50",
       "worldline_components": [
         "path_encoder",
         "path_head",
@@ -5435,44 +5435,229 @@
       ],
       "status": "passed"
     },
+    "smoke_censored-path": {
+      "path": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_censored-path_smoke_seed0/iter_24.pth",
+      "epoch": 1,
+      "iterations": 23,
+      "optimizer_steps": 24,
+      "finite_model_tensors": 786,
+      "state_schema_matches_cpu": true,
+      "optimizer_finite": true,
+      "radar_audit_windows": 6,
+      "pretrained_audit_windows": 6,
+      "worldline_audit_windows": [
+        {
+          "iter": 4,
+          "components": {
+            "path_encoder": {
+              "gradient_norm": 0.014893850287836359,
+              "parameter_delta": 0.028928013169084426,
+              "nonfinite_gradient_calls": 0,
+              "parameter_tensors": 7
+            },
+            "path_head": {
+              "gradient_norm": 6.550055047888613,
+              "parameter_delta": 0.0038887810039601295,
+              "nonfinite_gradient_calls": 0,
+              "parameter_tensors": 2
+            },
+            "mixture_head": {
+              "gradient_norm": 0.0002665429612788206,
+              "parameter_delta": 0.0035380917415777265,
+              "nonfinite_gradient_calls": 0,
+              "parameter_tensors": 6
+            }
+          }
+        },
+        {
+          "iter": 8,
+          "components": {
+            "path_encoder": {
+              "gradient_norm": 0.10301761219654393,
+              "parameter_delta": 0.0514886103589811,
+              "nonfinite_gradient_calls": 0,
+              "parameter_tensors": 7
+            },
+            "path_head": {
+              "gradient_norm": 7.184836250621317,
+              "parameter_delta": 0.006255931095910734,
+              "nonfinite_gradient_calls": 0,
+              "parameter_tensors": 2
+            },
+            "mixture_head": {
+              "gradient_norm": 0.0013386196215793126,
+              "parameter_delta": 0.017577922177469188,
+              "nonfinite_gradient_calls": 0,
+              "parameter_tensors": 6
+            }
+          }
+        },
+        {
+          "iter": 12,
+          "components": {
+            "path_encoder": {
+              "gradient_norm": 0.26700519566356246,
+              "parameter_delta": 0.04244216063127881,
+              "nonfinite_gradient_calls": 0,
+              "parameter_tensors": 7
+            },
+            "path_head": {
+              "gradient_norm": 8.543893464899407,
+              "parameter_delta": 0.004989745236303952,
+              "nonfinite_gradient_calls": 0,
+              "parameter_tensors": 2
+            },
+            "mixture_head": {
+              "gradient_norm": 0.0014772452101344201,
+              "parameter_delta": 0.022297051382770612,
+              "nonfinite_gradient_calls": 0,
+              "parameter_tensors": 6
+            }
+          }
+        },
+        {
+          "iter": 16,
+          "components": {
+            "path_encoder": {
+              "gradient_norm": 0.3077041139853601,
+              "parameter_delta": 0.028483172257568055,
+              "nonfinite_gradient_calls": 0,
+              "parameter_tensors": 7
+            },
+            "path_head": {
+              "gradient_norm": 6.896292710537602,
+              "parameter_delta": 0.0031605791295172816,
+              "nonfinite_gradient_calls": 0,
+              "parameter_tensors": 2
+            },
+            "mixture_head": {
+              "gradient_norm": 0.0007707871335034843,
+              "parameter_delta": 0.014313359237174954,
+              "nonfinite_gradient_calls": 0,
+              "parameter_tensors": 6
+            }
+          }
+        },
+        {
+          "iter": 20,
+          "components": {
+            "path_encoder": {
+              "gradient_norm": 0.3852605396081635,
+              "parameter_delta": 0.01719171441221728,
+              "nonfinite_gradient_calls": 0,
+              "parameter_tensors": 7
+            },
+            "path_head": {
+              "gradient_norm": 7.392081957837502,
+              "parameter_delta": 0.0017901431618101255,
+              "nonfinite_gradient_calls": 0,
+              "parameter_tensors": 2
+            },
+            "mixture_head": {
+              "gradient_norm": 0.0014042083576599363,
+              "parameter_delta": 0.008514364133076982,
+              "nonfinite_gradient_calls": 0,
+              "parameter_tensors": 6
+            }
+          }
+        },
+        {
+          "iter": 24,
+          "components": {
+            "path_encoder": {
+              "gradient_norm": 0.44318971454592665,
+              "parameter_delta": 0.009336919062705567,
+              "nonfinite_gradient_calls": 0,
+              "parameter_tensors": 7
+            },
+            "path_head": {
+              "gradient_norm": 8.148946832116176,
+              "parameter_delta": 0.0009222395841848775,
+              "nonfinite_gradient_calls": 0,
+              "parameter_tensors": 2
+            },
+            "mixture_head": {
+              "gradient_norm": 0.0021106139881236635,
+              "parameter_delta": 0.004675982168633524,
+              "nonfinite_gradient_calls": 0,
+              "parameter_tensors": 6
+            }
+          }
+        }
+      ],
+      "last_two_worldline_windows_totals": {
+        "path_encoder": {
+          "gradient_norm": 0.8284502541540901,
+          "parameter_delta": 0.026528633474922847
+        },
+        "path_head": {
+          "gradient_norm": 15.541028789953678,
+          "parameter_delta": 0.002712382745995003
+        },
+        "mixture_head": {
+          "gradient_norm": 0.0035148223457835996,
+          "parameter_delta": 0.013190346301710506
+        }
+      },
+      "all_audited_components_updated": true
+    },
     "censored-path_status": {
       "arm": "censored-path",
       "gpu": 1,
       "gpu_uuid": "GPU-000b6236-3632-a001-9667-1f02cbb61c8b",
-      "controller_pid": 2804764,
-      "git_revision": "c60be1b24e9a81d94933a31ce1c54ca69c1bedde",
-      "code": "/home/huayiming/Workspace/SparseWorld-TC-forecast-c60be1b24e9a",
+      "controller_pid": 2824722,
+      "git_revision": "b6599b16044a20097aa4f7797a0713168b430f50",
+      "code": "/home/huayiming/Workspace/SparseWorld-TC-forecast-b6599b16044a",
       "completed_stages": [
         "gpu_contracts",
         "gpu_parity",
         "smoke"
       ],
-      "state": "failed",
-      "at_utc": "2026-09-26T16:11:29.562139+00:00",
-      "stage": "smoke",
-      "child_pid": null,
+      "state": "running",
+      "at_utc": "2026-09-26T16:28:45.685168+00:00",
+      "stage": "train",
+      "child_pid": 2829230,
       "memory_admission": {
-        "free_mib": 132806,
+        "free_mib": 143156,
         "total_mib": 143771,
         "minimum_free_mib": 132000,
         "required_stable_seconds": 60,
-        "observed_stable_seconds": 60.155778210028075
+        "observed_stable_seconds": 60.162228410015814
       },
       "command": [
         "/storage/data/metaiot_data/huayiming/SparseWorld/envs/hym_sparseworld/bin/python",
         "train.py",
         "--config",
-        "configs/sw-radar-forecast-censored-path-smoke.py"
+        "configs/sw-radar-forecast-censored-path.py"
       ],
-      "log": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/censored_path_campaign_20260926/censored-path_smoke.log",
+      "log": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/censored_path_campaign_20260926/censored-path_train.log",
       "child_returncode": 0,
-      "gpu_snapshot": "0, 106299, 97.88",
-      "error": "ValueError({'missing': [], 'unexpected': ['pts_bbox_head.censored_path.scene_extent']})",
-      "traceback": "Traceback (most recent call last):\n  File \"/home/huayiming/Workspace/SparseWorld-TC-forecast-c60be1b24e9a/tools/run_censored_path_experiment.py\", line 274, in main\n    smoke_audit = audit_checkpoint(smoke / 'iter_24.pth', schema, exact_steps=24)\n  File \"/home/huayiming/Workspace/SparseWorld-TC-forecast-c60be1b24e9a/tools/run_censored_path_experiment.py\", line 66, in audit_checkpoint\n    validate_state_schema(state, schema)\n  File \"/home/huayiming/Workspace/SparseWorld-TC-forecast-c60be1b24e9a/tools/run_censored_path_experiment.py\", line 52, in validate_state_schema\n    raise ValueError(dict(missing=sorted(set(schema) - set(state)),\nValueError: {'missing': [], 'unexpected': ['pts_bbox_head.censored_path.scene_extent']}\n"
+      "gpu_snapshot": "89, 4471, 113.76"
     }
   },
   "extensions": {
     "models/csrc/_msmv_sampling_cuda.cpython-310-x86_64-linux-gnu.so": "7cd00091c536952e7cd6633d390afb897eeb4abeb0be103c5eb63ac9c891bbfc"
+  },
+  "formal_initialization": {
+    "loaded_tensors": 669,
+    "loaded_numel": 79478272,
+    "new_radar_tensors": 102,
+    "zero_residual_outputs": [
+      "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.output",
+      "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.output",
+      "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.output",
+      "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.output",
+      "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.output",
+      "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.output"
+    ],
+    "new_path_tensors": 15,
+    "all_camera_tensors_exact": true,
+    "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+    "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
+    "source_epoch": 70,
+    "source_iter": 246190,
+    "optimizer_restored": false,
+    "epoch_reset_to": 0
   },
   "endpoint_loader_coverage": {
     "scope": "one deterministic hash-selected eligible anchor per every scene; not all-anchor coverage",
