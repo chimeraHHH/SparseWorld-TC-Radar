@@ -5745,5 +5745,91 @@
         }
       }
     }
+  },
+  "formal_training_snapshot": {
+    "at_utc": "2026-09-26T16:33:48.298390+00:00",
+    "training": {
+      "last": {
+        "mode": "train",
+        "epoch": 1,
+        "iter": 20,
+        "lr": 3e-05,
+        "memory": 86766,
+        "data_time": 0.00119,
+        "d0.loss_cls": 0.3657,
+        "d0.loss_pts": 3.76005,
+        "d1.loss_cls": 0.37726,
+        "d1.loss_pts": 1.96916,
+        "d2.loss_cls": 0.40556,
+        "d2.loss_pts": 0.99896,
+        "d3.loss_cls": 0.44408,
+        "d3.loss_pts": 0.67971,
+        "d4.loss_cls": 0.49262,
+        "d4.loss_pts": 0.45191,
+        "init_loss_pts": 5.58276,
+        "loss_censored_sequence": 6.12158,
+        "path_mode_probability_max": 0.50353,
+        "path_mode_probability_0": 0.50353,
+        "path_mode_separation_m": 0.00055,
+        "path_endpoint_tracks": 19.0875,
+        "path_track_energy": 26.58277,
+        "loss": 21.64935,
+        "grad_norm": 24.89776,
+        "time": 3.8502
+      },
+      "completed_iterations": 20,
+      "nonfinite_loss_windows": 0,
+      "nonfinite_gradient_windows": 0
+    },
+    "gpu": [
+      "0, GPU-74b9b73f-c405-55bc-bf76-f8aa85d1e7fe, 0 %, 0 MiB, 143156 MiB, 68.10 W",
+      "1, GPU-000b6236-3632-a001-9667-1f02cbb61c8b, 100 %, 105697 MiB, 37460 MiB, 394.61 W"
+    ],
+    "processes": [
+      "GPU-000b6236-3632-a001-9667-1f02cbb61c8b, 2829230, 105672 MiB, /storage/data/metaiot_data/huayiming/SparseWorld/envs/hym_sparseworld/bin/python"
+    ],
+    "censored-path_status": {
+      "arm": "censored-path",
+      "gpu": 1,
+      "gpu_uuid": "GPU-000b6236-3632-a001-9667-1f02cbb61c8b",
+      "controller_pid": 2824722,
+      "git_revision": "b6599b16044a20097aa4f7797a0713168b430f50",
+      "code": "/home/huayiming/Workspace/SparseWorld-TC-forecast-b6599b16044a",
+      "completed_stages": [
+        "gpu_contracts",
+        "gpu_parity",
+        "smoke"
+      ],
+      "state": "running",
+      "at_utc": "2026-09-26T16:33:45.988758+00:00",
+      "stage": "train",
+      "child_pid": 2829230,
+      "memory_admission": {
+        "free_mib": 143156,
+        "total_mib": 143771,
+        "minimum_free_mib": 132000,
+        "required_stable_seconds": 60,
+        "observed_stable_seconds": 60.162228410015814
+      },
+      "command": [
+        "/storage/data/metaiot_data/huayiming/SparseWorld/envs/hym_sparseworld/bin/python",
+        "train.py",
+        "--config",
+        "configs/sw-radar-forecast-censored-path.py"
+      ],
+      "log": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/censored_path_campaign_20260926/censored-path_train.log",
+      "child_returncode": 0,
+      "gpu_snapshot": "91, 105697, 221.20",
+      "controller_pid_live": {
+        "exists": true,
+        "command": "/storage/data/metaiot_data/huayiming/SparseWorld/envs/hym_sparseworld/bin/python tools/run_censored_path_experiment.py --gpu 1",
+        "working_directory": "/home/huayiming/Workspace/SparseWorld-TC-forecast-b6599b16044a"
+      },
+      "child_pid_live": {
+        "exists": true,
+        "command": "/storage/data/metaiot_data/huayiming/SparseWorld/envs/hym_sparseworld/bin/python train.py --config configs/sw-radar-forecast-censored-path.py",
+        "working_directory": "/home/huayiming/Workspace/SparseWorld-TC-forecast-b6599b16044a"
+      }
+    }
   }
 }
