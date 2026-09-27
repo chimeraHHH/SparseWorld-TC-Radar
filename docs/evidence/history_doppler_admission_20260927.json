@@ -1,0 +1,4113 @@
+{
+  "at_utc": "2026-09-27T13:49:47.605250+00:00",
+  "campaign": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/history_doppler_campaign_20260927",
+  "files": {
+    "cpu_h1-geometry.json": {
+      "sha256": "e80c5a616552cfd9600d0fa54070a78f0c52ce014bad6597c505be2e48b0c5a0",
+      "content": {
+        "config": "configs/sw-history-h1-geometry.py",
+        "device": "cpu",
+        "git_revision": "1e95cf1d53c8607efea04341e3d864099a2e48cc",
+        "initialization": {
+          "loaded_tensors": 669,
+          "loaded_numel": 79478272,
+          "new_radar_tensors": 102,
+          "zero_residual_outputs": [
+            "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.output",
+            "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.output",
+            "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.output",
+            "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.output",
+            "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.output",
+            "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.output"
+          ],
+          "new_path_tensors": 0,
+          "all_camera_tensors_exact": true,
+          "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+          "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
+          "source_epoch": 70,
+          "source_iter": 246190,
+          "optimizer_restored": false,
+          "epoch_reset_to": 0,
+          "state_schema_tensor_count": 771,
+          "state_schema_sha256": "95aaea30ad5a82946737391dff235790f3e39f5b7a18dd586673c931f3976f88"
+        },
+        "reference_initialization": {
+          "loaded_tensors": 669,
+          "loaded_numel": 79478272,
+          "new_radar_tensors": 0,
+          "zero_residual_outputs": [],
+          "new_path_tensors": 0,
+          "all_camera_tensors_exact": true,
+          "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+          "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
+          "source_epoch": 70,
+          "source_iter": 246190,
+          "optimizer_restored": false,
+          "epoch_reset_to": 0
+        },
+        "input_contract": {
+          "visual_history_frames": 1,
+          "velocity_mode": "zero",
+          "physical_images_per_anchor": 6,
+          "predictor_slots": 8,
+          "radar_stages": {
+            "train": {
+              "type": "LoadSingleSweepRadar",
+              "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes/",
+              "sweeps_num": 1,
+              "max_age": 0.5,
+              "max_points": 4096,
+              "cache_root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+              "velocity_mode": "zero"
+            },
+            "val": {
+              "type": "LoadSingleSweepRadar",
+              "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes/",
+              "sweeps_num": 1,
+              "max_age": 0.5,
+              "max_points": 4096,
+              "cache_root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+              "velocity_mode": "zero"
+            },
+            "test": {
+              "type": "LoadSingleSweepRadar",
+              "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes/",
+              "sweeps_num": 1,
+              "max_age": 0.5,
+              "max_points": 4096,
+              "cache_root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+              "velocity_mode": "zero"
+            }
+          },
+          "velocity_dependent_point_rejection": false
+        },
+        "independent_camera_reference": true,
+        "reference_input": "current six images encoded once; independent feature/calibration repetition",
+        "parity_atol": 0.0001,
+        "parity_rtol": 1e-05,
+        "equivalence_claim": "same transformed input only; never H1 versus original H8 outputs",
+        "budget": {
+          "batch_size": 8,
+          "epochs": 10,
+          "seed": 0,
+          "cumulative_iters": 1,
+          "fresh_optimizer": true
+        },
+        "trainable_parameters": {
+          "radar": 2013768,
+          "pretrained_world": 55843036,
+          "backbone_or_sampling_offset": 23356704
+        },
+        "fresh_optimizer": true,
+        "cache": {
+          "root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+          "entries": 29049,
+          "protocol_sha256": "4fb08586ec4b2968590e4fc59c9bfbd2cb5e873bff78aa767b24d9e43a2451d5",
+          "train_samples": 23930,
+          "val_samples": 5119,
+          "anchors_disjoint": true,
+          "same_cache_for_all_treatments": true
+        },
+        "paired_radar_views": [
+          {
+            "index": 0,
+            "token": "30e55a3ec6184d8cb1944b39ba19d622",
+            "points": 105,
+            "dtype": "float32",
+            "identical_geometry_membership_and_provenance": true,
+            "zero_velocity_columns": [
+              3,
+              4,
+              7
+            ],
+            "processed_nonzero_velocity_points": 105,
+            "per_sensor_provenance": [
+              {
+                "channel": "RADAR_FRONT",
+                "geometry_valid_points": 43,
+                "invalid_velocity_points": 0,
+                "kept_points": 43,
+                "next_timestamp_us": 1531281439858598,
+                "status": "selected",
+                "timestamp_us": 1531281439783577,
+                "token": "3f538f1d994c4b91821a274995df6b54"
+              },
+              {
+                "channel": "RADAR_FRONT_LEFT",
+                "geometry_valid_points": 5,
+                "invalid_velocity_points": 0,
+                "kept_points": 5,
+                "next_timestamp_us": 1531281439866824,
+                "status": "selected",
+                "timestamp_us": 1531281439791854,
+                "token": "e5301eb70d684749959224bc76a13967"
+              },
+              {
+                "channel": "RADAR_FRONT_RIGHT",
+                "geometry_valid_points": 16,
+                "invalid_velocity_points": 0,
+                "kept_points": 16,
+                "next_timestamp_us": 1531281439865970,
+                "status": "selected",
+                "timestamp_us": 1531281439795413,
+                "token": "5364ed5a2f2c4916863e15ff7a0a0336"
+              },
+              {
+                "channel": "RADAR_BACK_LEFT",
+                "geometry_valid_points": 0,
+                "invalid_velocity_points": 0,
+                "kept_points": 0,
+                "next_timestamp_us": 1531281439836865,
+                "status": "missing",
+                "timestamp_us": null,
+                "token": null
+              },
+              {
+                "channel": "RADAR_BACK_RIGHT",
+                "geometry_valid_points": 41,
+                "invalid_velocity_points": 0,
+                "kept_points": 41,
+                "next_timestamp_us": 1531281439868955,
+                "status": "selected",
+                "timestamp_us": 1531281439793976,
+                "token": "c975a3a418074436b2f13ed0a7ef592a"
+              }
+            ]
+          },
+          {
+            "index": 1024,
+            "token": "2de4836c1a1e4d1a8c2d73a3af31fd47",
+            "points": 124,
+            "dtype": "float32",
+            "identical_geometry_membership_and_provenance": true,
+            "zero_velocity_columns": [
+              3,
+              4,
+              7
+            ],
+            "processed_nonzero_velocity_points": 124,
+            "per_sensor_provenance": [
+              {
+                "channel": "RADAR_FRONT",
+                "geometry_valid_points": 32,
+                "invalid_velocity_points": 0,
+                "kept_points": 32,
+                "next_timestamp_us": 1533151424618652,
+                "status": "selected",
+                "timestamp_us": 1533151424543632,
+                "token": "9d244a359a6d4c72b003e87e1dc9a826"
+              },
+              {
+                "channel": "RADAR_FRONT_LEFT",
+                "geometry_valid_points": 22,
+                "invalid_velocity_points": 0,
+                "kept_points": 22,
+                "next_timestamp_us": 1533151424567390,
+                "status": "selected",
+                "timestamp_us": 1533151424493178,
+                "token": "40454a89ded34d568cc6da36ae72b99c"
+              },
+              {
+                "channel": "RADAR_FRONT_RIGHT",
+                "geometry_valid_points": 4,
+                "invalid_velocity_points": 0,
+                "kept_points": 4,
+                "next_timestamp_us": 1533151424615176,
+                "status": "selected",
+                "timestamp_us": 1533151424539367,
+                "token": "c5309c117f524e2f9c998115cdff4db4"
+              },
+              {
+                "channel": "RADAR_BACK_LEFT",
+                "geometry_valid_points": 36,
+                "invalid_velocity_points": 0,
+                "kept_points": 36,
+                "next_timestamp_us": 1533151424591444,
+                "status": "selected",
+                "timestamp_us": 1533151424516384,
+                "token": "c169e2b3f5ab472db3ec21bb55c05287"
+              },
+              {
+                "channel": "RADAR_BACK_RIGHT",
+                "geometry_valid_points": 30,
+                "invalid_velocity_points": 0,
+                "kept_points": 30,
+                "next_timestamp_us": 1533151424580372,
+                "status": "selected",
+                "timestamp_us": 1533151424504631,
+                "token": "218c53efba904414af6f240bd7544c08"
+              }
+            ]
+          },
+          {
+            "index": 2048,
+            "token": "b380e87cf0df4f129ec3f6892ba7f6be",
+            "points": 45,
+            "dtype": "float32",
+            "identical_geometry_membership_and_provenance": true,
+            "zero_velocity_columns": [
+              3,
+              4,
+              7
+            ],
+            "processed_nonzero_velocity_points": 45,
+            "per_sensor_provenance": [
+              {
+                "channel": "RADAR_FRONT",
+                "geometry_valid_points": 17,
+                "invalid_velocity_points": 0,
+                "kept_points": 17,
+                "next_timestamp_us": 1535657541074997,
+                "status": "selected",
+                "timestamp_us": 1535657540999964,
+                "token": "01ed639ec20e4b0793cfd9f7c71538ed"
+              },
+              {
+                "channel": "RADAR_FRONT_LEFT",
+                "geometry_valid_points": 4,
+                "invalid_velocity_points": 0,
+                "kept_points": 4,
+                "next_timestamp_us": 1535657541091720,
+                "status": "selected",
+                "timestamp_us": 1535657541021853,
+                "token": "f4b27fdf71eb4cab8710cf399a3d1563"
+              },
+              {
+                "channel": "RADAR_FRONT_RIGHT",
+                "geometry_valid_points": 2,
+                "invalid_velocity_points": 0,
+                "kept_points": 2,
+                "next_timestamp_us": 1535657541106951,
+                "status": "selected",
+                "timestamp_us": 1535657541031861,
+                "token": "e1bb46d0bfbd4ab7ab6157a1b46589fd"
+              },
+              {
+                "channel": "RADAR_BACK_LEFT",
+                "geometry_valid_points": 8,
+                "invalid_velocity_points": 0,
+                "kept_points": 8,
+                "next_timestamp_us": 1535657541090137,
+                "status": "selected",
+                "timestamp_us": 1535657541015119,
+                "token": "807be998587c4871aa30b9264d207e66"
+              },
+              {
+                "channel": "RADAR_BACK_RIGHT",
+                "geometry_valid_points": 14,
+                "invalid_velocity_points": 0,
+                "kept_points": 14,
+                "next_timestamp_us": 1535657541071553,
+                "status": "selected",
+                "timestamp_us": 1535657540925057,
+                "token": "91148361b2e74eadade0fea932cd41a0"
+              }
+            ]
+          },
+          {
+            "index": 4096,
+            "token": "edba7d0cf1c64d2a9c8a5ebddab507a9",
+            "points": 152,
+            "dtype": "float32",
+            "identical_geometry_membership_and_provenance": true,
+            "zero_velocity_columns": [
+              3,
+              4,
+              7
+            ],
+            "processed_nonzero_velocity_points": 152,
+            "per_sensor_provenance": [
+              {
+                "channel": "RADAR_FRONT",
+                "geometry_valid_points": 33,
+                "invalid_velocity_points": 0,
+                "kept_points": 33,
+                "next_timestamp_us": 1538984236496673,
+                "status": "selected",
+                "timestamp_us": 1538984236421837,
+                "token": "aab2153936b9494b97e9f43e79284871"
+              },
+              {
+                "channel": "RADAR_FRONT_LEFT",
+                "geometry_valid_points": 29,
+                "invalid_velocity_points": 0,
+                "kept_points": 29,
+                "next_timestamp_us": 1538984236469993,
+                "status": "selected",
+                "timestamp_us": 1538984236395266,
+                "token": "30f0df166b4c4b60b22cd5abbca90694"
+              },
+              {
+                "channel": "RADAR_FRONT_RIGHT",
+                "geometry_valid_points": 14,
+                "invalid_velocity_points": 0,
+                "kept_points": 14,
+                "next_timestamp_us": 1538984236476866,
+                "status": "selected",
+                "timestamp_us": 1538984236407046,
+                "token": "22b028f5ab8c41c5b5674be27ce3341b"
+              },
+              {
+                "channel": "RADAR_BACK_LEFT",
+                "geometry_valid_points": 44,
+                "invalid_velocity_points": 0,
+                "kept_points": 44,
+                "next_timestamp_us": 1538984236464446,
+                "status": "selected",
+                "timestamp_us": 1538984236389420,
+                "token": "c518094eec574ed3bc25e3a6fa30308d"
+              },
+              {
+                "channel": "RADAR_BACK_RIGHT",
+                "geometry_valid_points": 32,
+                "invalid_velocity_points": 0,
+                "kept_points": 32,
+                "next_timestamp_us": 1538984236460899,
+                "status": "selected",
+                "timestamp_us": 1538984236390823,
+                "token": "907da3891df94aa6ad55c46aea65c3aa"
+              }
+            ]
+          }
+        ],
+        "status": "passed"
+      }
+    },
+    "cpu_h1-velocity.json": {
+      "sha256": "29d5dceeba1a0e36ce72d704d35454e6e5448179e24e2679e6acadfc06d7aae6",
+      "content": {
+        "config": "configs/sw-history-h1-velocity.py",
+        "device": "cpu",
+        "git_revision": "1e95cf1d53c8607efea04341e3d864099a2e48cc",
+        "initialization": {
+          "loaded_tensors": 669,
+          "loaded_numel": 79478272,
+          "new_radar_tensors": 102,
+          "zero_residual_outputs": [
+            "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.output",
+            "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.output",
+            "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.output",
+            "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.output",
+            "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.output",
+            "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.output"
+          ],
+          "new_path_tensors": 0,
+          "all_camera_tensors_exact": true,
+          "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+          "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
+          "source_epoch": 70,
+          "source_iter": 246190,
+          "optimizer_restored": false,
+          "epoch_reset_to": 0,
+          "state_schema_tensor_count": 771,
+          "state_schema_sha256": "95aaea30ad5a82946737391dff235790f3e39f5b7a18dd586673c931f3976f88"
+        },
+        "reference_initialization": {
+          "loaded_tensors": 669,
+          "loaded_numel": 79478272,
+          "new_radar_tensors": 0,
+          "zero_residual_outputs": [],
+          "new_path_tensors": 0,
+          "all_camera_tensors_exact": true,
+          "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+          "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
+          "source_epoch": 70,
+          "source_iter": 246190,
+          "optimizer_restored": false,
+          "epoch_reset_to": 0
+        },
+        "input_contract": {
+          "visual_history_frames": 1,
+          "velocity_mode": "processed",
+          "physical_images_per_anchor": 6,
+          "predictor_slots": 8,
+          "radar_stages": {
+            "train": {
+              "type": "LoadSingleSweepRadar",
+              "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes/",
+              "sweeps_num": 1,
+              "max_age": 0.5,
+              "max_points": 4096,
+              "cache_root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+              "velocity_mode": "processed"
+            },
+            "val": {
+              "type": "LoadSingleSweepRadar",
+              "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes/",
+              "sweeps_num": 1,
+              "max_age": 0.5,
+              "max_points": 4096,
+              "cache_root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+              "velocity_mode": "processed"
+            },
+            "test": {
+              "type": "LoadSingleSweepRadar",
+              "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes/",
+              "sweeps_num": 1,
+              "max_age": 0.5,
+              "max_points": 4096,
+              "cache_root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+              "velocity_mode": "processed"
+            }
+          },
+          "velocity_dependent_point_rejection": false
+        },
+        "independent_camera_reference": true,
+        "reference_input": "current six images encoded once; independent feature/calibration repetition",
+        "parity_atol": 0.0001,
+        "parity_rtol": 1e-05,
+        "equivalence_claim": "same transformed input only; never H1 versus original H8 outputs",
+        "budget": {
+          "batch_size": 8,
+          "epochs": 10,
+          "seed": 0,
+          "cumulative_iters": 1,
+          "fresh_optimizer": true
+        },
+        "trainable_parameters": {
+          "radar": 2013768,
+          "pretrained_world": 55843036,
+          "backbone_or_sampling_offset": 23356704
+        },
+        "fresh_optimizer": true,
+        "cache": {
+          "root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+          "entries": 29049,
+          "protocol_sha256": "4fb08586ec4b2968590e4fc59c9bfbd2cb5e873bff78aa767b24d9e43a2451d5",
+          "train_samples": 23930,
+          "val_samples": 5119,
+          "anchors_disjoint": true,
+          "same_cache_for_all_treatments": true
+        },
+        "paired_radar_views": [
+          {
+            "index": 0,
+            "token": "30e55a3ec6184d8cb1944b39ba19d622",
+            "points": 105,
+            "dtype": "float32",
+            "identical_geometry_membership_and_provenance": true,
+            "zero_velocity_columns": [
+              3,
+              4,
+              7
+            ],
+            "processed_nonzero_velocity_points": 105,
+            "per_sensor_provenance": [
+              {
+                "channel": "RADAR_FRONT",
+                "geometry_valid_points": 43,
+                "invalid_velocity_points": 0,
+                "kept_points": 43,
+                "next_timestamp_us": 1531281439858598,
+                "status": "selected",
+                "timestamp_us": 1531281439783577,
+                "token": "3f538f1d994c4b91821a274995df6b54"
+              },
+              {
+                "channel": "RADAR_FRONT_LEFT",
+                "geometry_valid_points": 5,
+                "invalid_velocity_points": 0,
+                "kept_points": 5,
+                "next_timestamp_us": 1531281439866824,
+                "status": "selected",
+                "timestamp_us": 1531281439791854,
+                "token": "e5301eb70d684749959224bc76a13967"
+              },
+              {
+                "channel": "RADAR_FRONT_RIGHT",
+                "geometry_valid_points": 16,
+                "invalid_velocity_points": 0,
+                "kept_points": 16,
+                "next_timestamp_us": 1531281439865970,
+                "status": "selected",
+                "timestamp_us": 1531281439795413,
+                "token": "5364ed5a2f2c4916863e15ff7a0a0336"
+              },
+              {
+                "channel": "RADAR_BACK_LEFT",
+                "geometry_valid_points": 0,
+                "invalid_velocity_points": 0,
+                "kept_points": 0,
+                "next_timestamp_us": 1531281439836865,
+                "status": "missing",
+                "timestamp_us": null,
+                "token": null
+              },
+              {
+                "channel": "RADAR_BACK_RIGHT",
+                "geometry_valid_points": 41,
+                "invalid_velocity_points": 0,
+                "kept_points": 41,
+                "next_timestamp_us": 1531281439868955,
+                "status": "selected",
+                "timestamp_us": 1531281439793976,
+                "token": "c975a3a418074436b2f13ed0a7ef592a"
+              }
+            ]
+          },
+          {
+            "index": 1024,
+            "token": "2de4836c1a1e4d1a8c2d73a3af31fd47",
+            "points": 124,
+            "dtype": "float32",
+            "identical_geometry_membership_and_provenance": true,
+            "zero_velocity_columns": [
+              3,
+              4,
+              7
+            ],
+            "processed_nonzero_velocity_points": 124,
+            "per_sensor_provenance": [
+              {
+                "channel": "RADAR_FRONT",
+                "geometry_valid_points": 32,
+                "invalid_velocity_points": 0,
+                "kept_points": 32,
+                "next_timestamp_us": 1533151424618652,
+                "status": "selected",
+                "timestamp_us": 1533151424543632,
+                "token": "9d244a359a6d4c72b003e87e1dc9a826"
+              },
+              {
+                "channel": "RADAR_FRONT_LEFT",
+                "geometry_valid_points": 22,
+                "invalid_velocity_points": 0,
+                "kept_points": 22,
+                "next_timestamp_us": 1533151424567390,
+                "status": "selected",
+                "timestamp_us": 1533151424493178,
+                "token": "40454a89ded34d568cc6da36ae72b99c"
+              },
+              {
+                "channel": "RADAR_FRONT_RIGHT",
+                "geometry_valid_points": 4,
+                "invalid_velocity_points": 0,
+                "kept_points": 4,
+                "next_timestamp_us": 1533151424615176,
+                "status": "selected",
+                "timestamp_us": 1533151424539367,
+                "token": "c5309c117f524e2f9c998115cdff4db4"
+              },
+              {
+                "channel": "RADAR_BACK_LEFT",
+                "geometry_valid_points": 36,
+                "invalid_velocity_points": 0,
+                "kept_points": 36,
+                "next_timestamp_us": 1533151424591444,
+                "status": "selected",
+                "timestamp_us": 1533151424516384,
+                "token": "c169e2b3f5ab472db3ec21bb55c05287"
+              },
+              {
+                "channel": "RADAR_BACK_RIGHT",
+                "geometry_valid_points": 30,
+                "invalid_velocity_points": 0,
+                "kept_points": 30,
+                "next_timestamp_us": 1533151424580372,
+                "status": "selected",
+                "timestamp_us": 1533151424504631,
+                "token": "218c53efba904414af6f240bd7544c08"
+              }
+            ]
+          },
+          {
+            "index": 2048,
+            "token": "b380e87cf0df4f129ec3f6892ba7f6be",
+            "points": 45,
+            "dtype": "float32",
+            "identical_geometry_membership_and_provenance": true,
+            "zero_velocity_columns": [
+              3,
+              4,
+              7
+            ],
+            "processed_nonzero_velocity_points": 45,
+            "per_sensor_provenance": [
+              {
+                "channel": "RADAR_FRONT",
+                "geometry_valid_points": 17,
+                "invalid_velocity_points": 0,
+                "kept_points": 17,
+                "next_timestamp_us": 1535657541074997,
+                "status": "selected",
+                "timestamp_us": 1535657540999964,
+                "token": "01ed639ec20e4b0793cfd9f7c71538ed"
+              },
+              {
+                "channel": "RADAR_FRONT_LEFT",
+                "geometry_valid_points": 4,
+                "invalid_velocity_points": 0,
+                "kept_points": 4,
+                "next_timestamp_us": 1535657541091720,
+                "status": "selected",
+                "timestamp_us": 1535657541021853,
+                "token": "f4b27fdf71eb4cab8710cf399a3d1563"
+              },
+              {
+                "channel": "RADAR_FRONT_RIGHT",
+                "geometry_valid_points": 2,
+                "invalid_velocity_points": 0,
+                "kept_points": 2,
+                "next_timestamp_us": 1535657541106951,
+                "status": "selected",
+                "timestamp_us": 1535657541031861,
+                "token": "e1bb46d0bfbd4ab7ab6157a1b46589fd"
+              },
+              {
+                "channel": "RADAR_BACK_LEFT",
+                "geometry_valid_points": 8,
+                "invalid_velocity_points": 0,
+                "kept_points": 8,
+                "next_timestamp_us": 1535657541090137,
+                "status": "selected",
+                "timestamp_us": 1535657541015119,
+                "token": "807be998587c4871aa30b9264d207e66"
+              },
+              {
+                "channel": "RADAR_BACK_RIGHT",
+                "geometry_valid_points": 14,
+                "invalid_velocity_points": 0,
+                "kept_points": 14,
+                "next_timestamp_us": 1535657541071553,
+                "status": "selected",
+                "timestamp_us": 1535657540925057,
+                "token": "91148361b2e74eadade0fea932cd41a0"
+              }
+            ]
+          },
+          {
+            "index": 4096,
+            "token": "edba7d0cf1c64d2a9c8a5ebddab507a9",
+            "points": 152,
+            "dtype": "float32",
+            "identical_geometry_membership_and_provenance": true,
+            "zero_velocity_columns": [
+              3,
+              4,
+              7
+            ],
+            "processed_nonzero_velocity_points": 152,
+            "per_sensor_provenance": [
+              {
+                "channel": "RADAR_FRONT",
+                "geometry_valid_points": 33,
+                "invalid_velocity_points": 0,
+                "kept_points": 33,
+                "next_timestamp_us": 1538984236496673,
+                "status": "selected",
+                "timestamp_us": 1538984236421837,
+                "token": "aab2153936b9494b97e9f43e79284871"
+              },
+              {
+                "channel": "RADAR_FRONT_LEFT",
+                "geometry_valid_points": 29,
+                "invalid_velocity_points": 0,
+                "kept_points": 29,
+                "next_timestamp_us": 1538984236469993,
+                "status": "selected",
+                "timestamp_us": 1538984236395266,
+                "token": "30f0df166b4c4b60b22cd5abbca90694"
+              },
+              {
+                "channel": "RADAR_FRONT_RIGHT",
+                "geometry_valid_points": 14,
+                "invalid_velocity_points": 0,
+                "kept_points": 14,
+                "next_timestamp_us": 1538984236476866,
+                "status": "selected",
+                "timestamp_us": 1538984236407046,
+                "token": "22b028f5ab8c41c5b5674be27ce3341b"
+              },
+              {
+                "channel": "RADAR_BACK_LEFT",
+                "geometry_valid_points": 44,
+                "invalid_velocity_points": 0,
+                "kept_points": 44,
+                "next_timestamp_us": 1538984236464446,
+                "status": "selected",
+                "timestamp_us": 1538984236389420,
+                "token": "c518094eec574ed3bc25e3a6fa30308d"
+              },
+              {
+                "channel": "RADAR_BACK_RIGHT",
+                "geometry_valid_points": 32,
+                "invalid_velocity_points": 0,
+                "kept_points": 32,
+                "next_timestamp_us": 1538984236460899,
+                "status": "selected",
+                "timestamp_us": 1538984236390823,
+                "token": "907da3891df94aa6ad55c46aea65c3aa"
+              }
+            ]
+          }
+        ],
+        "status": "passed"
+      }
+    },
+    "cpu_h8-geometry.json": {
+      "sha256": "81bd5ed7f0324bb1d6257f1981040b9aaa72c85c8a31b9f6cc3425d839f5610d",
+      "content": {
+        "config": "configs/sw-history-h8-geometry.py",
+        "device": "cpu",
+        "git_revision": "1e95cf1d53c8607efea04341e3d864099a2e48cc",
+        "initialization": {
+          "loaded_tensors": 669,
+          "loaded_numel": 79478272,
+          "new_radar_tensors": 102,
+          "zero_residual_outputs": [
+            "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.output",
+            "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.output",
+            "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.output",
+            "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.output",
+            "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.output",
+            "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.output"
+          ],
+          "new_path_tensors": 0,
+          "all_camera_tensors_exact": true,
+          "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+          "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
+          "source_epoch": 70,
+          "source_iter": 246190,
+          "optimizer_restored": false,
+          "epoch_reset_to": 0,
+          "state_schema_tensor_count": 771,
+          "state_schema_sha256": "95aaea30ad5a82946737391dff235790f3e39f5b7a18dd586673c931f3976f88"
+        },
+        "reference_initialization": {
+          "loaded_tensors": 669,
+          "loaded_numel": 79478272,
+          "new_radar_tensors": 0,
+          "zero_residual_outputs": [],
+          "new_path_tensors": 0,
+          "all_camera_tensors_exact": true,
+          "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+          "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
+          "source_epoch": 70,
+          "source_iter": 246190,
+          "optimizer_restored": false,
+          "epoch_reset_to": 0
+        },
+        "input_contract": {
+          "visual_history_frames": 8,
+          "velocity_mode": "zero",
+          "physical_images_per_anchor": 48,
+          "predictor_slots": 8,
+          "radar_stages": {
+            "train": {
+              "type": "LoadSingleSweepRadar",
+              "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes/",
+              "sweeps_num": 1,
+              "max_age": 0.5,
+              "max_points": 4096,
+              "cache_root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+              "velocity_mode": "zero"
+            },
+            "val": {
+              "type": "LoadSingleSweepRadar",
+              "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes/",
+              "sweeps_num": 1,
+              "max_age": 0.5,
+              "max_points": 4096,
+              "cache_root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+              "velocity_mode": "zero"
+            },
+            "test": {
+              "type": "LoadSingleSweepRadar",
+              "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes/",
+              "sweeps_num": 1,
+              "max_age": 0.5,
+              "max_points": 4096,
+              "cache_root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+              "velocity_mode": "zero"
+            }
+          },
+          "velocity_dependent_point_rejection": false
+        },
+        "independent_camera_reference": true,
+        "reference_input": "original eight visual timesteps",
+        "parity_atol": 0.0001,
+        "parity_rtol": 1e-05,
+        "equivalence_claim": "same transformed input only; never H1 versus original H8 outputs",
+        "budget": {
+          "batch_size": 8,
+          "epochs": 10,
+          "seed": 0,
+          "cumulative_iters": 1,
+          "fresh_optimizer": true
+        },
+        "trainable_parameters": {
+          "radar": 2013768,
+          "pretrained_world": 55843036,
+          "backbone_or_sampling_offset": 23356704
+        },
+        "fresh_optimizer": true,
+        "cache": {
+          "root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+          "entries": 29049,
+          "protocol_sha256": "4fb08586ec4b2968590e4fc59c9bfbd2cb5e873bff78aa767b24d9e43a2451d5",
+          "train_samples": 23930,
+          "val_samples": 5119,
+          "anchors_disjoint": true,
+          "same_cache_for_all_treatments": true
+        },
+        "paired_radar_views": [
+          {
+            "index": 0,
+            "token": "30e55a3ec6184d8cb1944b39ba19d622",
+            "points": 105,
+            "dtype": "float32",
+            "identical_geometry_membership_and_provenance": true,
+            "zero_velocity_columns": [
+              3,
+              4,
+              7
+            ],
+            "processed_nonzero_velocity_points": 105,
+            "per_sensor_provenance": [
+              {
+                "channel": "RADAR_FRONT",
+                "geometry_valid_points": 43,
+                "invalid_velocity_points": 0,
+                "kept_points": 43,
+                "next_timestamp_us": 1531281439858598,
+                "status": "selected",
+                "timestamp_us": 1531281439783577,
+                "token": "3f538f1d994c4b91821a274995df6b54"
+              },
+              {
+                "channel": "RADAR_FRONT_LEFT",
+                "geometry_valid_points": 5,
+                "invalid_velocity_points": 0,
+                "kept_points": 5,
+                "next_timestamp_us": 1531281439866824,
+                "status": "selected",
+                "timestamp_us": 1531281439791854,
+                "token": "e5301eb70d684749959224bc76a13967"
+              },
+              {
+                "channel": "RADAR_FRONT_RIGHT",
+                "geometry_valid_points": 16,
+                "invalid_velocity_points": 0,
+                "kept_points": 16,
+                "next_timestamp_us": 1531281439865970,
+                "status": "selected",
+                "timestamp_us": 1531281439795413,
+                "token": "5364ed5a2f2c4916863e15ff7a0a0336"
+              },
+              {
+                "channel": "RADAR_BACK_LEFT",
+                "geometry_valid_points": 0,
+                "invalid_velocity_points": 0,
+                "kept_points": 0,
+                "next_timestamp_us": 1531281439836865,
+                "status": "missing",
+                "timestamp_us": null,
+                "token": null
+              },
+              {
+                "channel": "RADAR_BACK_RIGHT",
+                "geometry_valid_points": 41,
+                "invalid_velocity_points": 0,
+                "kept_points": 41,
+                "next_timestamp_us": 1531281439868955,
+                "status": "selected",
+                "timestamp_us": 1531281439793976,
+                "token": "c975a3a418074436b2f13ed0a7ef592a"
+              }
+            ]
+          },
+          {
+            "index": 1024,
+            "token": "2de4836c1a1e4d1a8c2d73a3af31fd47",
+            "points": 124,
+            "dtype": "float32",
+            "identical_geometry_membership_and_provenance": true,
+            "zero_velocity_columns": [
+              3,
+              4,
+              7
+            ],
+            "processed_nonzero_velocity_points": 124,
+            "per_sensor_provenance": [
+              {
+                "channel": "RADAR_FRONT",
+                "geometry_valid_points": 32,
+                "invalid_velocity_points": 0,
+                "kept_points": 32,
+                "next_timestamp_us": 1533151424618652,
+                "status": "selected",
+                "timestamp_us": 1533151424543632,
+                "token": "9d244a359a6d4c72b003e87e1dc9a826"
+              },
+              {
+                "channel": "RADAR_FRONT_LEFT",
+                "geometry_valid_points": 22,
+                "invalid_velocity_points": 0,
+                "kept_points": 22,
+                "next_timestamp_us": 1533151424567390,
+                "status": "selected",
+                "timestamp_us": 1533151424493178,
+                "token": "40454a89ded34d568cc6da36ae72b99c"
+              },
+              {
+                "channel": "RADAR_FRONT_RIGHT",
+                "geometry_valid_points": 4,
+                "invalid_velocity_points": 0,
+                "kept_points": 4,
+                "next_timestamp_us": 1533151424615176,
+                "status": "selected",
+                "timestamp_us": 1533151424539367,
+                "token": "c5309c117f524e2f9c998115cdff4db4"
+              },
+              {
+                "channel": "RADAR_BACK_LEFT",
+                "geometry_valid_points": 36,
+                "invalid_velocity_points": 0,
+                "kept_points": 36,
+                "next_timestamp_us": 1533151424591444,
+                "status": "selected",
+                "timestamp_us": 1533151424516384,
+                "token": "c169e2b3f5ab472db3ec21bb55c05287"
+              },
+              {
+                "channel": "RADAR_BACK_RIGHT",
+                "geometry_valid_points": 30,
+                "invalid_velocity_points": 0,
+                "kept_points": 30,
+                "next_timestamp_us": 1533151424580372,
+                "status": "selected",
+                "timestamp_us": 1533151424504631,
+                "token": "218c53efba904414af6f240bd7544c08"
+              }
+            ]
+          },
+          {
+            "index": 2048,
+            "token": "b380e87cf0df4f129ec3f6892ba7f6be",
+            "points": 45,
+            "dtype": "float32",
+            "identical_geometry_membership_and_provenance": true,
+            "zero_velocity_columns": [
+              3,
+              4,
+              7
+            ],
+            "processed_nonzero_velocity_points": 45,
+            "per_sensor_provenance": [
+              {
+                "channel": "RADAR_FRONT",
+                "geometry_valid_points": 17,
+                "invalid_velocity_points": 0,
+                "kept_points": 17,
+                "next_timestamp_us": 1535657541074997,
+                "status": "selected",
+                "timestamp_us": 1535657540999964,
+                "token": "01ed639ec20e4b0793cfd9f7c71538ed"
+              },
+              {
+                "channel": "RADAR_FRONT_LEFT",
+                "geometry_valid_points": 4,
+                "invalid_velocity_points": 0,
+                "kept_points": 4,
+                "next_timestamp_us": 1535657541091720,
+                "status": "selected",
+                "timestamp_us": 1535657541021853,
+                "token": "f4b27fdf71eb4cab8710cf399a3d1563"
+              },
+              {
+                "channel": "RADAR_FRONT_RIGHT",
+                "geometry_valid_points": 2,
+                "invalid_velocity_points": 0,
+                "kept_points": 2,
+                "next_timestamp_us": 1535657541106951,
+                "status": "selected",
+                "timestamp_us": 1535657541031861,
+                "token": "e1bb46d0bfbd4ab7ab6157a1b46589fd"
+              },
+              {
+                "channel": "RADAR_BACK_LEFT",
+                "geometry_valid_points": 8,
+                "invalid_velocity_points": 0,
+                "kept_points": 8,
+                "next_timestamp_us": 1535657541090137,
+                "status": "selected",
+                "timestamp_us": 1535657541015119,
+                "token": "807be998587c4871aa30b9264d207e66"
+              },
+              {
+                "channel": "RADAR_BACK_RIGHT",
+                "geometry_valid_points": 14,
+                "invalid_velocity_points": 0,
+                "kept_points": 14,
+                "next_timestamp_us": 1535657541071553,
+                "status": "selected",
+                "timestamp_us": 1535657540925057,
+                "token": "91148361b2e74eadade0fea932cd41a0"
+              }
+            ]
+          },
+          {
+            "index": 4096,
+            "token": "edba7d0cf1c64d2a9c8a5ebddab507a9",
+            "points": 152,
+            "dtype": "float32",
+            "identical_geometry_membership_and_provenance": true,
+            "zero_velocity_columns": [
+              3,
+              4,
+              7
+            ],
+            "processed_nonzero_velocity_points": 152,
+            "per_sensor_provenance": [
+              {
+                "channel": "RADAR_FRONT",
+                "geometry_valid_points": 33,
+                "invalid_velocity_points": 0,
+                "kept_points": 33,
+                "next_timestamp_us": 1538984236496673,
+                "status": "selected",
+                "timestamp_us": 1538984236421837,
+                "token": "aab2153936b9494b97e9f43e79284871"
+              },
+              {
+                "channel": "RADAR_FRONT_LEFT",
+                "geometry_valid_points": 29,
+                "invalid_velocity_points": 0,
+                "kept_points": 29,
+                "next_timestamp_us": 1538984236469993,
+                "status": "selected",
+                "timestamp_us": 1538984236395266,
+                "token": "30f0df166b4c4b60b22cd5abbca90694"
+              },
+              {
+                "channel": "RADAR_FRONT_RIGHT",
+                "geometry_valid_points": 14,
+                "invalid_velocity_points": 0,
+                "kept_points": 14,
+                "next_timestamp_us": 1538984236476866,
+                "status": "selected",
+                "timestamp_us": 1538984236407046,
+                "token": "22b028f5ab8c41c5b5674be27ce3341b"
+              },
+              {
+                "channel": "RADAR_BACK_LEFT",
+                "geometry_valid_points": 44,
+                "invalid_velocity_points": 0,
+                "kept_points": 44,
+                "next_timestamp_us": 1538984236464446,
+                "status": "selected",
+                "timestamp_us": 1538984236389420,
+                "token": "c518094eec574ed3bc25e3a6fa30308d"
+              },
+              {
+                "channel": "RADAR_BACK_RIGHT",
+                "geometry_valid_points": 32,
+                "invalid_velocity_points": 0,
+                "kept_points": 32,
+                "next_timestamp_us": 1538984236460899,
+                "status": "selected",
+                "timestamp_us": 1538984236390823,
+                "token": "907da3891df94aa6ad55c46aea65c3aa"
+              }
+            ]
+          }
+        ],
+        "status": "passed"
+      }
+    },
+    "cpu_h8-velocity.json": {
+      "sha256": "807322239e87f2c55d8950b711badb449a3cdbb6471eca1e0d9ff3cb61128eaa",
+      "content": {
+        "config": "configs/sw-history-h8-velocity.py",
+        "device": "cpu",
+        "git_revision": "1e95cf1d53c8607efea04341e3d864099a2e48cc",
+        "initialization": {
+          "loaded_tensors": 669,
+          "loaded_numel": 79478272,
+          "new_radar_tensors": 102,
+          "zero_residual_outputs": [
+            "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.output",
+            "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.output",
+            "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.output",
+            "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.output",
+            "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.output",
+            "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.output"
+          ],
+          "new_path_tensors": 0,
+          "all_camera_tensors_exact": true,
+          "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+          "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
+          "source_epoch": 70,
+          "source_iter": 246190,
+          "optimizer_restored": false,
+          "epoch_reset_to": 0,
+          "state_schema_tensor_count": 771,
+          "state_schema_sha256": "95aaea30ad5a82946737391dff235790f3e39f5b7a18dd586673c931f3976f88"
+        },
+        "reference_initialization": {
+          "loaded_tensors": 669,
+          "loaded_numel": 79478272,
+          "new_radar_tensors": 0,
+          "zero_residual_outputs": [],
+          "new_path_tensors": 0,
+          "all_camera_tensors_exact": true,
+          "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+          "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
+          "source_epoch": 70,
+          "source_iter": 246190,
+          "optimizer_restored": false,
+          "epoch_reset_to": 0
+        },
+        "input_contract": {
+          "visual_history_frames": 8,
+          "velocity_mode": "processed",
+          "physical_images_per_anchor": 48,
+          "predictor_slots": 8,
+          "radar_stages": {
+            "train": {
+              "type": "LoadSingleSweepRadar",
+              "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes/",
+              "sweeps_num": 1,
+              "max_age": 0.5,
+              "max_points": 4096,
+              "cache_root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+              "velocity_mode": "processed"
+            },
+            "val": {
+              "type": "LoadSingleSweepRadar",
+              "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes/",
+              "sweeps_num": 1,
+              "max_age": 0.5,
+              "max_points": 4096,
+              "cache_root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+              "velocity_mode": "processed"
+            },
+            "test": {
+              "type": "LoadSingleSweepRadar",
+              "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes/",
+              "sweeps_num": 1,
+              "max_age": 0.5,
+              "max_points": 4096,
+              "cache_root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+              "velocity_mode": "processed"
+            }
+          },
+          "velocity_dependent_point_rejection": false
+        },
+        "independent_camera_reference": true,
+        "reference_input": "original eight visual timesteps",
+        "parity_atol": 0.0001,
+        "parity_rtol": 1e-05,
+        "equivalence_claim": "same transformed input only; never H1 versus original H8 outputs",
+        "budget": {
+          "batch_size": 8,
+          "epochs": 10,
+          "seed": 0,
+          "cumulative_iters": 1,
+          "fresh_optimizer": true
+        },
+        "trainable_parameters": {
+          "radar": 2013768,
+          "pretrained_world": 55843036,
+          "backbone_or_sampling_offset": 23356704
+        },
+        "fresh_optimizer": true,
+        "cache": {
+          "root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+          "entries": 29049,
+          "protocol_sha256": "4fb08586ec4b2968590e4fc59c9bfbd2cb5e873bff78aa767b24d9e43a2451d5",
+          "train_samples": 23930,
+          "val_samples": 5119,
+          "anchors_disjoint": true,
+          "same_cache_for_all_treatments": true
+        },
+        "paired_radar_views": [
+          {
+            "index": 0,
+            "token": "30e55a3ec6184d8cb1944b39ba19d622",
+            "points": 105,
+            "dtype": "float32",
+            "identical_geometry_membership_and_provenance": true,
+            "zero_velocity_columns": [
+              3,
+              4,
+              7
+            ],
+            "processed_nonzero_velocity_points": 105,
+            "per_sensor_provenance": [
+              {
+                "channel": "RADAR_FRONT",
+                "geometry_valid_points": 43,
+                "invalid_velocity_points": 0,
+                "kept_points": 43,
+                "next_timestamp_us": 1531281439858598,
+                "status": "selected",
+                "timestamp_us": 1531281439783577,
+                "token": "3f538f1d994c4b91821a274995df6b54"
+              },
+              {
+                "channel": "RADAR_FRONT_LEFT",
+                "geometry_valid_points": 5,
+                "invalid_velocity_points": 0,
+                "kept_points": 5,
+                "next_timestamp_us": 1531281439866824,
+                "status": "selected",
+                "timestamp_us": 1531281439791854,
+                "token": "e5301eb70d684749959224bc76a13967"
+              },
+              {
+                "channel": "RADAR_FRONT_RIGHT",
+                "geometry_valid_points": 16,
+                "invalid_velocity_points": 0,
+                "kept_points": 16,
+                "next_timestamp_us": 1531281439865970,
+                "status": "selected",
+                "timestamp_us": 1531281439795413,
+                "token": "5364ed5a2f2c4916863e15ff7a0a0336"
+              },
+              {
+                "channel": "RADAR_BACK_LEFT",
+                "geometry_valid_points": 0,
+                "invalid_velocity_points": 0,
+                "kept_points": 0,
+                "next_timestamp_us": 1531281439836865,
+                "status": "missing",
+                "timestamp_us": null,
+                "token": null
+              },
+              {
+                "channel": "RADAR_BACK_RIGHT",
+                "geometry_valid_points": 41,
+                "invalid_velocity_points": 0,
+                "kept_points": 41,
+                "next_timestamp_us": 1531281439868955,
+                "status": "selected",
+                "timestamp_us": 1531281439793976,
+                "token": "c975a3a418074436b2f13ed0a7ef592a"
+              }
+            ]
+          },
+          {
+            "index": 1024,
+            "token": "2de4836c1a1e4d1a8c2d73a3af31fd47",
+            "points": 124,
+            "dtype": "float32",
+            "identical_geometry_membership_and_provenance": true,
+            "zero_velocity_columns": [
+              3,
+              4,
+              7
+            ],
+            "processed_nonzero_velocity_points": 124,
+            "per_sensor_provenance": [
+              {
+                "channel": "RADAR_FRONT",
+                "geometry_valid_points": 32,
+                "invalid_velocity_points": 0,
+                "kept_points": 32,
+                "next_timestamp_us": 1533151424618652,
+                "status": "selected",
+                "timestamp_us": 1533151424543632,
+                "token": "9d244a359a6d4c72b003e87e1dc9a826"
+              },
+              {
+                "channel": "RADAR_FRONT_LEFT",
+                "geometry_valid_points": 22,
+                "invalid_velocity_points": 0,
+                "kept_points": 22,
+                "next_timestamp_us": 1533151424567390,
+                "status": "selected",
+                "timestamp_us": 1533151424493178,
+                "token": "40454a89ded34d568cc6da36ae72b99c"
+              },
+              {
+                "channel": "RADAR_FRONT_RIGHT",
+                "geometry_valid_points": 4,
+                "invalid_velocity_points": 0,
+                "kept_points": 4,
+                "next_timestamp_us": 1533151424615176,
+                "status": "selected",
+                "timestamp_us": 1533151424539367,
+                "token": "c5309c117f524e2f9c998115cdff4db4"
+              },
+              {
+                "channel": "RADAR_BACK_LEFT",
+                "geometry_valid_points": 36,
+                "invalid_velocity_points": 0,
+                "kept_points": 36,
+                "next_timestamp_us": 1533151424591444,
+                "status": "selected",
+                "timestamp_us": 1533151424516384,
+                "token": "c169e2b3f5ab472db3ec21bb55c05287"
+              },
+              {
+                "channel": "RADAR_BACK_RIGHT",
+                "geometry_valid_points": 30,
+                "invalid_velocity_points": 0,
+                "kept_points": 30,
+                "next_timestamp_us": 1533151424580372,
+                "status": "selected",
+                "timestamp_us": 1533151424504631,
+                "token": "218c53efba904414af6f240bd7544c08"
+              }
+            ]
+          },
+          {
+            "index": 2048,
+            "token": "b380e87cf0df4f129ec3f6892ba7f6be",
+            "points": 45,
+            "dtype": "float32",
+            "identical_geometry_membership_and_provenance": true,
+            "zero_velocity_columns": [
+              3,
+              4,
+              7
+            ],
+            "processed_nonzero_velocity_points": 45,
+            "per_sensor_provenance": [
+              {
+                "channel": "RADAR_FRONT",
+                "geometry_valid_points": 17,
+                "invalid_velocity_points": 0,
+                "kept_points": 17,
+                "next_timestamp_us": 1535657541074997,
+                "status": "selected",
+                "timestamp_us": 1535657540999964,
+                "token": "01ed639ec20e4b0793cfd9f7c71538ed"
+              },
+              {
+                "channel": "RADAR_FRONT_LEFT",
+                "geometry_valid_points": 4,
+                "invalid_velocity_points": 0,
+                "kept_points": 4,
+                "next_timestamp_us": 1535657541091720,
+                "status": "selected",
+                "timestamp_us": 1535657541021853,
+                "token": "f4b27fdf71eb4cab8710cf399a3d1563"
+              },
+              {
+                "channel": "RADAR_FRONT_RIGHT",
+                "geometry_valid_points": 2,
+                "invalid_velocity_points": 0,
+                "kept_points": 2,
+                "next_timestamp_us": 1535657541106951,
+                "status": "selected",
+                "timestamp_us": 1535657541031861,
+                "token": "e1bb46d0bfbd4ab7ab6157a1b46589fd"
+              },
+              {
+                "channel": "RADAR_BACK_LEFT",
+                "geometry_valid_points": 8,
+                "invalid_velocity_points": 0,
+                "kept_points": 8,
+                "next_timestamp_us": 1535657541090137,
+                "status": "selected",
+                "timestamp_us": 1535657541015119,
+                "token": "807be998587c4871aa30b9264d207e66"
+              },
+              {
+                "channel": "RADAR_BACK_RIGHT",
+                "geometry_valid_points": 14,
+                "invalid_velocity_points": 0,
+                "kept_points": 14,
+                "next_timestamp_us": 1535657541071553,
+                "status": "selected",
+                "timestamp_us": 1535657540925057,
+                "token": "91148361b2e74eadade0fea932cd41a0"
+              }
+            ]
+          },
+          {
+            "index": 4096,
+            "token": "edba7d0cf1c64d2a9c8a5ebddab507a9",
+            "points": 152,
+            "dtype": "float32",
+            "identical_geometry_membership_and_provenance": true,
+            "zero_velocity_columns": [
+              3,
+              4,
+              7
+            ],
+            "processed_nonzero_velocity_points": 152,
+            "per_sensor_provenance": [
+              {
+                "channel": "RADAR_FRONT",
+                "geometry_valid_points": 33,
+                "invalid_velocity_points": 0,
+                "kept_points": 33,
+                "next_timestamp_us": 1538984236496673,
+                "status": "selected",
+                "timestamp_us": 1538984236421837,
+                "token": "aab2153936b9494b97e9f43e79284871"
+              },
+              {
+                "channel": "RADAR_FRONT_LEFT",
+                "geometry_valid_points": 29,
+                "invalid_velocity_points": 0,
+                "kept_points": 29,
+                "next_timestamp_us": 1538984236469993,
+                "status": "selected",
+                "timestamp_us": 1538984236395266,
+                "token": "30f0df166b4c4b60b22cd5abbca90694"
+              },
+              {
+                "channel": "RADAR_FRONT_RIGHT",
+                "geometry_valid_points": 14,
+                "invalid_velocity_points": 0,
+                "kept_points": 14,
+                "next_timestamp_us": 1538984236476866,
+                "status": "selected",
+                "timestamp_us": 1538984236407046,
+                "token": "22b028f5ab8c41c5b5674be27ce3341b"
+              },
+              {
+                "channel": "RADAR_BACK_LEFT",
+                "geometry_valid_points": 44,
+                "invalid_velocity_points": 0,
+                "kept_points": 44,
+                "next_timestamp_us": 1538984236464446,
+                "status": "selected",
+                "timestamp_us": 1538984236389420,
+                "token": "c518094eec574ed3bc25e3a6fa30308d"
+              },
+              {
+                "channel": "RADAR_BACK_RIGHT",
+                "geometry_valid_points": 32,
+                "invalid_velocity_points": 0,
+                "kept_points": 32,
+                "next_timestamp_us": 1538984236460899,
+                "status": "selected",
+                "timestamp_us": 1538984236390823,
+                "token": "907da3891df94aa6ad55c46aea65c3aa"
+              }
+            ]
+          }
+        ],
+        "status": "passed"
+      }
+    },
+    "gpu0_worker.json": {
+      "sha256": "b5687b70de7996feebf185e94e10541d029ebf0f9a05dcfa932f465485840931",
+      "content": {
+        "controller_pid": 3037592,
+        "gpu": 0,
+        "gpu_uuid": "GPU-74b9b73f-c405-55bc-bf76-f8aa85d1e7fe",
+        "code": "/home/huayiming/Workspace/SparseWorld-TC-forecast-1e95cf1d53c8",
+        "git_revision": "1e95cf1d53c8607efea04341e3d864099a2e48cc",
+        "at_utc": "2026-09-27T13:49:22.415228+00:00",
+        "state": "running",
+        "completed_arms": [],
+        "stage": "train",
+        "arm": "h1-velocity",
+        "child_pid": 3040421,
+        "memory_admission": {
+          "free_mib": 143156,
+          "total_mib": 143771,
+          "minimum_free_mib": 132000,
+          "required_stable_seconds": 60,
+          "observed_stable_seconds": 60.252520870184526,
+          "other_compute_count": 0
+        },
+        "completed_stages": [
+          "cuda_contracts",
+          "parity",
+          "smoke"
+        ],
+        "stage_seconds": {
+          "cuda_contracts": 10.391179169993848,
+          "parity": 48.78776647010818,
+          "smoke": 169.36613541003317
+        },
+        "command": [
+          "/storage/data/metaiot_data/huayiming/SparseWorld/envs/hym_sparseworld/bin/python",
+          "train.py",
+          "--config",
+          "configs/sw-history-h1-velocity.py"
+        ],
+        "log": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/history_doppler_campaign_20260927/h1-velocity_train.log",
+        "child_returncode": 0,
+        "gpu_snapshot": "100, 61899, 369.96"
+      }
+    },
+    "gpu1_worker.json": {
+      "sha256": "df4dd5bb9936420437f6cfaa15445c62fdd73ca691bcf4ab74d184b2daee931e",
+      "content": {
+        "controller_pid": 3037591,
+        "gpu": 1,
+        "gpu_uuid": "GPU-000b6236-3632-a001-9667-1f02cbb61c8b",
+        "code": "/home/huayiming/Workspace/SparseWorld-TC-forecast-1e95cf1d53c8",
+        "git_revision": "1e95cf1d53c8607efea04341e3d864099a2e48cc",
+        "at_utc": "2026-09-27T13:49:22.690141+00:00",
+        "state": "running",
+        "completed_arms": [],
+        "stage": "train",
+        "arm": "h1-geometry",
+        "child_pid": 3040426,
+        "memory_admission": {
+          "free_mib": 143156,
+          "total_mib": 143771,
+          "minimum_free_mib": 132000,
+          "required_stable_seconds": 60,
+          "observed_stable_seconds": 60.24881905014627,
+          "other_compute_count": 0
+        },
+        "completed_stages": [
+          "cuda_contracts",
+          "parity",
+          "smoke"
+        ],
+        "stage_seconds": {
+          "cuda_contracts": 10.490508519811556,
+          "parity": 48.93639430007897,
+          "smoke": 169.76552773988806
+        },
+        "command": [
+          "/storage/data/metaiot_data/huayiming/SparseWorld/envs/hym_sparseworld/bin/python",
+          "train.py",
+          "--config",
+          "configs/sw-history-h1-geometry.py"
+        ],
+        "log": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/history_doppler_campaign_20260927/h1-geometry_train.log",
+        "child_returncode": 0,
+        "gpu_snapshot": "95, 61899, 232.21"
+      }
+    },
+    "gpu_h1-geometry.json": {
+      "sha256": "8b22f9ae4c63d15b4cb35872186b07d73cbe28444cee279926897bf990f684ff",
+      "content": {
+        "config": "configs/sw-history-h1-geometry.py",
+        "device": "cuda",
+        "git_revision": "1e95cf1d53c8607efea04341e3d864099a2e48cc",
+        "initialization": {
+          "loaded_tensors": 669,
+          "loaded_numel": 79478272,
+          "new_radar_tensors": 102,
+          "zero_residual_outputs": [
+            "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.output",
+            "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.output",
+            "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.output",
+            "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.output",
+            "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.output",
+            "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.output"
+          ],
+          "new_path_tensors": 0,
+          "all_camera_tensors_exact": true,
+          "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+          "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
+          "source_epoch": 70,
+          "source_iter": 246190,
+          "optimizer_restored": false,
+          "epoch_reset_to": 0,
+          "state_schema_tensor_count": 771,
+          "state_schema_sha256": "95aaea30ad5a82946737391dff235790f3e39f5b7a18dd586673c931f3976f88"
+        },
+        "reference_initialization": {
+          "loaded_tensors": 669,
+          "loaded_numel": 79478272,
+          "new_radar_tensors": 0,
+          "zero_residual_outputs": [],
+          "new_path_tensors": 0,
+          "all_camera_tensors_exact": true,
+          "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+          "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
+          "source_epoch": 70,
+          "source_iter": 246190,
+          "optimizer_restored": false,
+          "epoch_reset_to": 0
+        },
+        "input_contract": {
+          "visual_history_frames": 1,
+          "velocity_mode": "zero",
+          "physical_images_per_anchor": 6,
+          "predictor_slots": 8,
+          "radar_stages": {
+            "train": {
+              "type": "LoadSingleSweepRadar",
+              "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes/",
+              "sweeps_num": 1,
+              "max_age": 0.5,
+              "max_points": 4096,
+              "cache_root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+              "velocity_mode": "zero"
+            },
+            "val": {
+              "type": "LoadSingleSweepRadar",
+              "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes/",
+              "sweeps_num": 1,
+              "max_age": 0.5,
+              "max_points": 4096,
+              "cache_root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+              "velocity_mode": "zero"
+            },
+            "test": {
+              "type": "LoadSingleSweepRadar",
+              "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes/",
+              "sweeps_num": 1,
+              "max_age": 0.5,
+              "max_points": 4096,
+              "cache_root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+              "velocity_mode": "zero"
+            }
+          },
+          "velocity_dependent_point_rejection": false
+        },
+        "independent_camera_reference": true,
+        "reference_input": "current six images encoded once; independent feature/calibration repetition",
+        "parity_atol": 0.0001,
+        "parity_rtol": 1e-05,
+        "equivalence_claim": "same transformed input only; never H1 versus original H8 outputs",
+        "budget": {
+          "batch_size": 8,
+          "epochs": 10,
+          "seed": 0,
+          "cumulative_iters": 1,
+          "fresh_optimizer": true
+        },
+        "real_input_parity": [
+          {
+            "index": 0,
+            "tensors": [
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  1,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  1,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  4,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  16,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  32,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  64,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  128,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  1,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  4,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  16,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  32,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  64,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  128,
+                  3
+                ]
+              }
+            ],
+            "max_abs_difference": 0.0,
+            "all_raw_tensors_exact": true,
+            "voxels_equal": true,
+            "voxels_per_horizon": [
+              54536,
+              60471,
+              71825,
+              76135
+            ],
+            "actual_backbone_images": {
+              "new": [
+                6
+              ],
+              "camera_reference": [
+                6
+              ]
+            },
+            "metadata": {
+              "new": {
+                "radar_points": 105,
+                "unique_image_files": 6,
+                "feature_slots": 48,
+                "radar_dtype": "float32",
+                "radar_age_min": 0.004600000102072954,
+                "radar_age_max": 0.016435999423265457
+              },
+              "camera_reference": {
+                "radar_points": 105,
+                "unique_image_files": 6,
+                "feature_slots": 48,
+                "radar_dtype": "float32",
+                "radar_age_min": 0.004600000102072954,
+                "radar_age_max": 0.016435999423265457
+              }
+            },
+            "no_target_input": true
+          },
+          {
+            "index": 1024,
+            "tensors": [
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  1,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  1,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  4,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  16,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  32,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  64,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  128,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  1,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  4,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  16,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  32,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  64,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  128,
+                  3
+                ]
+              }
+            ],
+            "max_abs_difference": 0.0,
+            "all_raw_tensors_exact": true,
+            "voxels_equal": true,
+            "voxels_per_horizon": [
+              55858,
+              57762,
+              59614,
+              64816
+            ],
+            "actual_backbone_images": {
+              "new": [
+                6
+              ],
+              "camera_reference": [
+                6
+              ]
+            },
+            "metadata": {
+              "new": {
+                "radar_points": 124,
+                "unique_image_files": 6,
+                "feature_slots": 48,
+                "radar_dtype": "float32",
+                "radar_age_min": 0.0023950000759214163,
+                "radar_age_max": 0.052848998457193375
+              },
+              "camera_reference": {
+                "radar_points": 124,
+                "unique_image_files": 6,
+                "feature_slots": 48,
+                "radar_dtype": "float32",
+                "radar_age_min": 0.0023950000759214163,
+                "radar_age_max": 0.052848998457193375
+              }
+            },
+            "no_target_input": true
+          },
+          {
+            "index": 2048,
+            "tensors": [
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  1,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  1,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  4,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  16,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  32,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  64,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  128,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  1,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  4,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  16,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  32,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  64,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  128,
+                  3
+                ]
+              }
+            ],
+            "max_abs_difference": 0.0,
+            "all_raw_tensors_exact": true,
+            "voxels_equal": true,
+            "voxels_per_horizon": [
+              36877,
+              36521,
+              36025,
+              36338
+            ],
+            "actual_backbone_images": {
+              "new": [
+                6
+              ],
+              "camera_reference": [
+                6
+              ]
+            },
+            "metadata": {
+              "new": {
+                "radar_points": 45,
+                "unique_image_files": 6,
+                "feature_slots": 48,
+                "radar_dtype": "float32",
+                "radar_age_min": 0.017917999997735023,
+                "radar_age_max": 0.12472199648618698
+              },
+              "camera_reference": {
+                "radar_points": 45,
+                "unique_image_files": 6,
+                "feature_slots": 48,
+                "radar_dtype": "float32",
+                "radar_age_min": 0.017917999997735023,
+                "radar_age_max": 0.12472199648618698
+              }
+            },
+            "no_target_input": true
+          },
+          {
+            "index": 4096,
+            "tensors": [
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  1,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  1,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  4,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  16,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  32,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  64,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  128,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  1,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  4,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  16,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  32,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  64,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  128,
+                  3
+                ]
+              }
+            ],
+            "max_abs_difference": 0.0,
+            "all_raw_tensors_exact": true,
+            "voxels_equal": true,
+            "voxels_per_horizon": [
+              82308,
+              80432,
+              83641,
+              78770
+            ],
+            "actual_backbone_images": {
+              "new": [
+                6
+              ],
+              "camera_reference": [
+                6
+              ]
+            },
+            "metadata": {
+              "new": {
+                "radar_points": 152,
+                "unique_image_files": 6,
+                "feature_slots": 48,
+                "radar_dtype": "float32",
+                "radar_age_min": 0.025133000686764717,
+                "radar_age_max": 0.05754999816417694
+              },
+              "camera_reference": {
+                "radar_points": 152,
+                "unique_image_files": 6,
+                "feature_slots": 48,
+                "radar_dtype": "float32",
+                "radar_age_min": 0.025133000686764717,
+                "radar_age_max": 0.05754999816417694
+              }
+            },
+            "no_target_input": true
+          }
+        ],
+        "status": "passed"
+      }
+    },
+    "gpu_h1-velocity.json": {
+      "sha256": "4b34683bd4ac3b2b7057747d0b96103bb5d6018bd077692c8e2cc268f02a2bda",
+      "content": {
+        "config": "configs/sw-history-h1-velocity.py",
+        "device": "cuda",
+        "git_revision": "1e95cf1d53c8607efea04341e3d864099a2e48cc",
+        "initialization": {
+          "loaded_tensors": 669,
+          "loaded_numel": 79478272,
+          "new_radar_tensors": 102,
+          "zero_residual_outputs": [
+            "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.output",
+            "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.output",
+            "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.output",
+            "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.output",
+            "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.output",
+            "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.output"
+          ],
+          "new_path_tensors": 0,
+          "all_camera_tensors_exact": true,
+          "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+          "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
+          "source_epoch": 70,
+          "source_iter": 246190,
+          "optimizer_restored": false,
+          "epoch_reset_to": 0,
+          "state_schema_tensor_count": 771,
+          "state_schema_sha256": "95aaea30ad5a82946737391dff235790f3e39f5b7a18dd586673c931f3976f88"
+        },
+        "reference_initialization": {
+          "loaded_tensors": 669,
+          "loaded_numel": 79478272,
+          "new_radar_tensors": 0,
+          "zero_residual_outputs": [],
+          "new_path_tensors": 0,
+          "all_camera_tensors_exact": true,
+          "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+          "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
+          "source_epoch": 70,
+          "source_iter": 246190,
+          "optimizer_restored": false,
+          "epoch_reset_to": 0
+        },
+        "input_contract": {
+          "visual_history_frames": 1,
+          "velocity_mode": "processed",
+          "physical_images_per_anchor": 6,
+          "predictor_slots": 8,
+          "radar_stages": {
+            "train": {
+              "type": "LoadSingleSweepRadar",
+              "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes/",
+              "sweeps_num": 1,
+              "max_age": 0.5,
+              "max_points": 4096,
+              "cache_root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+              "velocity_mode": "processed"
+            },
+            "val": {
+              "type": "LoadSingleSweepRadar",
+              "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes/",
+              "sweeps_num": 1,
+              "max_age": 0.5,
+              "max_points": 4096,
+              "cache_root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+              "velocity_mode": "processed"
+            },
+            "test": {
+              "type": "LoadSingleSweepRadar",
+              "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes/",
+              "sweeps_num": 1,
+              "max_age": 0.5,
+              "max_points": 4096,
+              "cache_root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+              "velocity_mode": "processed"
+            }
+          },
+          "velocity_dependent_point_rejection": false
+        },
+        "independent_camera_reference": true,
+        "reference_input": "current six images encoded once; independent feature/calibration repetition",
+        "parity_atol": 0.0001,
+        "parity_rtol": 1e-05,
+        "equivalence_claim": "same transformed input only; never H1 versus original H8 outputs",
+        "budget": {
+          "batch_size": 8,
+          "epochs": 10,
+          "seed": 0,
+          "cumulative_iters": 1,
+          "fresh_optimizer": true
+        },
+        "real_input_parity": [
+          {
+            "index": 0,
+            "tensors": [
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  1,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  1,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  4,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  16,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  32,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  64,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  128,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  1,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  4,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  16,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  32,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  64,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  128,
+                  3
+                ]
+              }
+            ],
+            "max_abs_difference": 0.0,
+            "all_raw_tensors_exact": true,
+            "voxels_equal": true,
+            "voxels_per_horizon": [
+              54536,
+              60471,
+              71825,
+              76135
+            ],
+            "actual_backbone_images": {
+              "new": [
+                6
+              ],
+              "camera_reference": [
+                6
+              ]
+            },
+            "metadata": {
+              "new": {
+                "radar_points": 105,
+                "unique_image_files": 6,
+                "feature_slots": 48,
+                "radar_dtype": "float32",
+                "radar_age_min": 0.004600000102072954,
+                "radar_age_max": 0.016435999423265457
+              },
+              "camera_reference": {
+                "radar_points": 105,
+                "unique_image_files": 6,
+                "feature_slots": 48,
+                "radar_dtype": "float32",
+                "radar_age_min": 0.004600000102072954,
+                "radar_age_max": 0.016435999423265457
+              }
+            },
+            "no_target_input": true
+          },
+          {
+            "index": 1024,
+            "tensors": [
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  1,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  1,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  4,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  16,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  32,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  64,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  128,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  1,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  4,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  16,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  32,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  64,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  128,
+                  3
+                ]
+              }
+            ],
+            "max_abs_difference": 0.0,
+            "all_raw_tensors_exact": true,
+            "voxels_equal": true,
+            "voxels_per_horizon": [
+              55858,
+              57762,
+              59614,
+              64816
+            ],
+            "actual_backbone_images": {
+              "new": [
+                6
+              ],
+              "camera_reference": [
+                6
+              ]
+            },
+            "metadata": {
+              "new": {
+                "radar_points": 124,
+                "unique_image_files": 6,
+                "feature_slots": 48,
+                "radar_dtype": "float32",
+                "radar_age_min": 0.0023950000759214163,
+                "radar_age_max": 0.052848998457193375
+              },
+              "camera_reference": {
+                "radar_points": 124,
+                "unique_image_files": 6,
+                "feature_slots": 48,
+                "radar_dtype": "float32",
+                "radar_age_min": 0.0023950000759214163,
+                "radar_age_max": 0.052848998457193375
+              }
+            },
+            "no_target_input": true
+          },
+          {
+            "index": 2048,
+            "tensors": [
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  1,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  1,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  4,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  16,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  32,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  64,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  128,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  1,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  4,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  16,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  32,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  64,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  128,
+                  3
+                ]
+              }
+            ],
+            "max_abs_difference": 0.0,
+            "all_raw_tensors_exact": true,
+            "voxels_equal": true,
+            "voxels_per_horizon": [
+              36877,
+              36521,
+              36025,
+              36338
+            ],
+            "actual_backbone_images": {
+              "new": [
+                6
+              ],
+              "camera_reference": [
+                6
+              ]
+            },
+            "metadata": {
+              "new": {
+                "radar_points": 45,
+                "unique_image_files": 6,
+                "feature_slots": 48,
+                "radar_dtype": "float32",
+                "radar_age_min": 0.017917999997735023,
+                "radar_age_max": 0.12472199648618698
+              },
+              "camera_reference": {
+                "radar_points": 45,
+                "unique_image_files": 6,
+                "feature_slots": 48,
+                "radar_dtype": "float32",
+                "radar_age_min": 0.017917999997735023,
+                "radar_age_max": 0.12472199648618698
+              }
+            },
+            "no_target_input": true
+          },
+          {
+            "index": 4096,
+            "tensors": [
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  1,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  1,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  4,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  16,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  32,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  64,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  128,
+                  17
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  1,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  4,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  16,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  32,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  64,
+                  3
+                ]
+              },
+              {
+                "exact": true,
+                "max_abs_difference": 0.0,
+                "dtype": "torch.float32",
+                "shape": [
+                  4,
+                  600,
+                  128,
+                  3
+                ]
+              }
+            ],
+            "max_abs_difference": 0.0,
+            "all_raw_tensors_exact": true,
+            "voxels_equal": true,
+            "voxels_per_horizon": [
+              82308,
+              80432,
+              83641,
+              78770
+            ],
+            "actual_backbone_images": {
+              "new": [
+                6
+              ],
+              "camera_reference": [
+                6
+              ]
+            },
+            "metadata": {
+              "new": {
+                "radar_points": 152,
+                "unique_image_files": 6,
+                "feature_slots": 48,
+                "radar_dtype": "float32",
+                "radar_age_min": 0.025133000686764717,
+                "radar_age_max": 0.05754999816417694
+              },
+              "camera_reference": {
+                "radar_points": 152,
+                "unique_image_files": 6,
+                "feature_slots": 48,
+                "radar_dtype": "float32",
+                "radar_age_min": 0.025133000686764717,
+                "radar_age_max": 0.05754999816417694
+              }
+            },
+            "no_target_input": true
+          }
+        ],
+        "status": "passed"
+      }
+    },
+    "h1-geometry_claim.json": {
+      "sha256": "2f2a519e8c3d50d5c0b8b68a6e0baf698a589e905f6ec0f19f03ccbaf9faad28",
+      "content": {
+        "arm": "h1-geometry",
+        "gpu": 1,
+        "controller_pid": 3037591,
+        "git_revision": "1e95cf1d53c8607efea04341e3d864099a2e48cc",
+        "at_utc": "2026-09-27T13:37:00.620656+00:00"
+      }
+    },
+    "h1-geometry_status.json": {
+      "sha256": "df4dd5bb9936420437f6cfaa15445c62fdd73ca691bcf4ab74d184b2daee931e",
+      "content": {
+        "controller_pid": 3037591,
+        "gpu": 1,
+        "gpu_uuid": "GPU-000b6236-3632-a001-9667-1f02cbb61c8b",
+        "code": "/home/huayiming/Workspace/SparseWorld-TC-forecast-1e95cf1d53c8",
+        "git_revision": "1e95cf1d53c8607efea04341e3d864099a2e48cc",
+        "at_utc": "2026-09-27T13:49:22.690141+00:00",
+        "state": "running",
+        "completed_arms": [],
+        "stage": "train",
+        "arm": "h1-geometry",
+        "child_pid": 3040426,
+        "memory_admission": {
+          "free_mib": 143156,
+          "total_mib": 143771,
+          "minimum_free_mib": 132000,
+          "required_stable_seconds": 60,
+          "observed_stable_seconds": 60.24881905014627,
+          "other_compute_count": 0
+        },
+        "completed_stages": [
+          "cuda_contracts",
+          "parity",
+          "smoke"
+        ],
+        "stage_seconds": {
+          "cuda_contracts": 10.490508519811556,
+          "parity": 48.93639430007897,
+          "smoke": 169.76552773988806
+        },
+        "command": [
+          "/storage/data/metaiot_data/huayiming/SparseWorld/envs/hym_sparseworld/bin/python",
+          "train.py",
+          "--config",
+          "configs/sw-history-h1-geometry.py"
+        ],
+        "log": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/history_doppler_campaign_20260927/h1-geometry_train.log",
+        "child_returncode": 0,
+        "gpu_snapshot": "95, 61899, 232.21"
+      }
+    },
+    "h1-velocity_claim.json": {
+      "sha256": "1a0f0c316c08f79dd27b4dce8abafc06e575299ee26cf6e50d3cd86210d8994d",
+      "content": {
+        "arm": "h1-velocity",
+        "gpu": 0,
+        "controller_pid": 3037592,
+        "git_revision": "1e95cf1d53c8607efea04341e3d864099a2e48cc",
+        "at_utc": "2026-09-27T13:37:00.616600+00:00"
+      }
+    },
+    "h1-velocity_status.json": {
+      "sha256": "b5687b70de7996feebf185e94e10541d029ebf0f9a05dcfa932f465485840931",
+      "content": {
+        "controller_pid": 3037592,
+        "gpu": 0,
+        "gpu_uuid": "GPU-74b9b73f-c405-55bc-bf76-f8aa85d1e7fe",
+        "code": "/home/huayiming/Workspace/SparseWorld-TC-forecast-1e95cf1d53c8",
+        "git_revision": "1e95cf1d53c8607efea04341e3d864099a2e48cc",
+        "at_utc": "2026-09-27T13:49:22.415228+00:00",
+        "state": "running",
+        "completed_arms": [],
+        "stage": "train",
+        "arm": "h1-velocity",
+        "child_pid": 3040421,
+        "memory_admission": {
+          "free_mib": 143156,
+          "total_mib": 143771,
+          "minimum_free_mib": 132000,
+          "required_stable_seconds": 60,
+          "observed_stable_seconds": 60.252520870184526,
+          "other_compute_count": 0
+        },
+        "completed_stages": [
+          "cuda_contracts",
+          "parity",
+          "smoke"
+        ],
+        "stage_seconds": {
+          "cuda_contracts": 10.391179169993848,
+          "parity": 48.78776647010818,
+          "smoke": 169.36613541003317
+        },
+        "command": [
+          "/storage/data/metaiot_data/huayiming/SparseWorld/envs/hym_sparseworld/bin/python",
+          "train.py",
+          "--config",
+          "configs/sw-history-h1-velocity.py"
+        ],
+        "log": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/history_doppler_campaign_20260927/h1-velocity_train.log",
+        "child_returncode": 0,
+        "gpu_snapshot": "100, 61899, 369.96"
+      }
+    },
+    "preflight.json": {
+      "sha256": "33e6b5955cb726b5a1992b20f7e173dbb8762424b9f5d06b85034af1052b5e24",
+      "content": {
+        "state": "passed",
+        "launcher_pid": 3036312,
+        "code": "/home/huayiming/Workspace/SparseWorld-TC-forecast-1e95cf1d53c8",
+        "git_revision": "1e95cf1d53c8607efea04341e3d864099a2e48cc",
+        "at_utc": "2026-09-27T13:36:00.251315+00:00",
+        "stage": "cpu_h8-geometry"
+      }
+    },
+    "smoke_h1-geometry.json": {
+      "sha256": "5dec7752ea8d4884bc2fa56926a3411d1fb43dcd19ffff894f96c3fb61fec3d9",
+      "content": {
+        "path": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/history_h1-geometry_smoke_seed0/iter_24.pth",
+        "epoch": 1,
+        "iterations": 23,
+        "optimizer_steps": 24,
+        "finite_model_tensors": 771,
+        "state_schema_matches_cpu": true,
+        "optimizer_finite": true,
+        "radar_update_windows": [
+          [
+            0.100607,
+            0.2851
+          ],
+          [
+            0.137149,
+            0.646544
+          ],
+          [
+            0.119887,
+            0.454968
+          ],
+          [
+            0.125404,
+            0.251949
+          ],
+          [
+            0.119965,
+            0.135324
+          ],
+          [
+            0.0994638,
+            0.0675309
+          ]
+        ],
+        "pretrained_update_windows": [
+          {
+            "img_backbone": {
+              "parameter": "module.img_backbone.layer2.0.conv1.weight",
+              "gradient_norm": 0.8649612581253922,
+              "parameter_delta": 0.0003505948116071522
+            },
+            "img_neck": {
+              "parameter": "module.img_neck.lateral_convs.0.conv.weight",
+              "gradient_norm": 0.02377170709902599,
+              "parameter_delta": 0.005333602428436279
+            },
+            "pts_bbox_head": {
+              "parameter": "module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight",
+              "gradient_norm": 0.9444074475453192,
+              "parameter_delta": 0.0006216890760697424
+            }
+          },
+          {
+            "img_backbone": {
+              "parameter": "module.img_backbone.layer2.0.conv1.weight",
+              "gradient_norm": 1.3325773668999894,
+              "parameter_delta": 0.0005091418861411512
+            },
+            "img_neck": {
+              "parameter": "module.img_neck.lateral_convs.0.conv.weight",
+              "gradient_norm": 0.025176214726018248,
+              "parameter_delta": 0.00949170533567667
+            },
+            "pts_bbox_head": {
+              "parameter": "module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight",
+              "gradient_norm": 1.4559043637820075,
+              "parameter_delta": 0.0012278602225705981
+            }
+          },
+          {
+            "img_backbone": {
+              "parameter": "module.img_backbone.layer2.0.conv1.weight",
+              "gradient_norm": 1.3708882408779193,
+              "parameter_delta": 0.00029221450677141547
+            },
+            "img_neck": {
+              "parameter": "module.img_neck.lateral_convs.0.conv.weight",
+              "gradient_norm": 0.022747551251600898,
+              "parameter_delta": 0.006244235672056675
+            },
+            "pts_bbox_head": {
+              "parameter": "module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight",
+              "gradient_norm": 0.9089003645004833,
+              "parameter_delta": 0.0008587610791437328
+            }
+          },
+          {
+            "img_backbone": {
+              "parameter": "module.img_backbone.layer2.0.conv1.weight",
+              "gradient_norm": 1.5381328272862556,
+              "parameter_delta": 0.0001542293030070141
+            },
+            "img_neck": {
+              "parameter": "module.img_neck.lateral_convs.0.conv.weight",
+              "gradient_norm": 0.02293817908994569,
+              "parameter_delta": 0.003623344236984849
+            },
+            "pts_bbox_head": {
+              "parameter": "module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight",
+              "gradient_norm": 0.6994954206481746,
+              "parameter_delta": 0.0005254507996141911
+            }
+          },
+          {
+            "img_backbone": {
+              "parameter": "module.img_backbone.layer2.0.conv1.weight",
+              "gradient_norm": 1.5561666688478166,
+              "parameter_delta": 9.08777437871322e-05
+            },
+            "img_neck": {
+              "parameter": "module.img_neck.lateral_convs.0.conv.weight",
+              "gradient_norm": 0.018100677023844453,
+              "parameter_delta": 0.001962074311450124
+            },
+            "pts_bbox_head": {
+              "parameter": "module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight",
+              "gradient_norm": 0.8237684565605246,
+              "parameter_delta": 0.00028893855051137507
+            }
+          },
+          {
+            "img_backbone": {
+              "parameter": "module.img_backbone.layer2.0.conv1.weight",
+              "gradient_norm": 1.2174730702893937,
+              "parameter_delta": 4.6097840822767466e-05
+            },
+            "img_neck": {
+              "parameter": "module.img_neck.lateral_convs.0.conv.weight",
+              "gradient_norm": 0.016895469463074013,
+              "parameter_delta": 0.0008953080396167934
+            },
+            "pts_bbox_head": {
+              "parameter": "module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight",
+              "gradient_norm": 0.7123625170927138,
+              "parameter_delta": 0.00015144507051445544
+            }
+          }
+        ]
+      }
+    },
+    "smoke_h1-velocity.json": {
+      "sha256": "2c6dd7c992b95234dce2126d9ce870ee2880f169eac324ba5f08aa757a9f8282",
+      "content": {
+        "path": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/history_h1-velocity_smoke_seed0/iter_24.pth",
+        "epoch": 1,
+        "iterations": 23,
+        "optimizer_steps": 24,
+        "finite_model_tensors": 771,
+        "state_schema_matches_cpu": true,
+        "optimizer_finite": true,
+        "radar_update_windows": [
+          [
+            0.112238,
+            0.283963
+          ],
+          [
+            0.156264,
+            0.64532
+          ],
+          [
+            0.0979845,
+            0.454354
+          ],
+          [
+            0.122598,
+            0.253578
+          ],
+          [
+            0.120149,
+            0.135936
+          ],
+          [
+            0.106891,
+            0.0665923
+          ]
+        ],
+        "pretrained_update_windows": [
+          {
+            "img_backbone": {
+              "parameter": "module.img_backbone.layer2.0.conv1.weight",
+              "gradient_norm": 1.0280705770912388,
+              "parameter_delta": 0.00035457249032333493
+            },
+            "img_neck": {
+              "parameter": "module.img_neck.lateral_convs.0.conv.weight",
+              "gradient_norm": 0.02466089757984541,
+              "parameter_delta": 0.005403547082096338
+            },
+            "pts_bbox_head": {
+              "parameter": "module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight",
+              "gradient_norm": 0.8345272611070247,
+              "parameter_delta": 0.0006118893506936729
+            }
+          },
+          {
+            "img_backbone": {
+              "parameter": "module.img_backbone.layer2.0.conv1.weight",
+              "gradient_norm": 1.214984211053809,
+              "parameter_delta": 0.0005271167028695345
+            },
+            "img_neck": {
+              "parameter": "module.img_neck.lateral_convs.0.conv.weight",
+              "gradient_norm": 0.026508767989960588,
+              "parameter_delta": 0.009596505202353
+            },
+            "pts_bbox_head": {
+              "parameter": "module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight",
+              "gradient_norm": 1.36206131268603,
+              "parameter_delta": 0.0012039241846650839
+            }
+          },
+          {
+            "img_backbone": {
+              "parameter": "module.img_backbone.layer2.0.conv1.weight",
+              "gradient_norm": 1.174094374637499,
+              "parameter_delta": 0.0003058157744817436
+            },
+            "img_neck": {
+              "parameter": "module.img_neck.lateral_convs.0.conv.weight",
+              "gradient_norm": 0.019810009018983905,
+              "parameter_delta": 0.0062746950425207615
+            },
+            "pts_bbox_head": {
+              "parameter": "module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight",
+              "gradient_norm": 0.6915871550538711,
+              "parameter_delta": 0.0008873959304764867
+            }
+          },
+          {
+            "img_backbone": {
+              "parameter": "module.img_backbone.layer2.0.conv1.weight",
+              "gradient_norm": 1.2818804794633354,
+              "parameter_delta": 0.00016033502470236272
+            },
+            "img_neck": {
+              "parameter": "module.img_neck.lateral_convs.0.conv.weight",
+              "gradient_norm": 0.02058049079013909,
+              "parameter_delta": 0.0036117038689553738
+            },
+            "pts_bbox_head": {
+              "parameter": "module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight",
+              "gradient_norm": 0.6438705294466275,
+              "parameter_delta": 0.0005352842854335904
+            }
+          },
+          {
+            "img_backbone": {
+              "parameter": "module.img_backbone.layer2.0.conv1.weight",
+              "gradient_norm": 1.5127447229815643,
+              "parameter_delta": 8.7996173533611e-05
+            },
+            "img_neck": {
+              "parameter": "module.img_neck.lateral_convs.0.conv.weight",
+              "gradient_norm": 0.018229655560113755,
+              "parameter_delta": 0.0018951136153191328
+            },
+            "pts_bbox_head": {
+              "parameter": "module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight",
+              "gradient_norm": 0.8542702697322868,
+              "parameter_delta": 0.0002785607357509434
+            }
+          },
+          {
+            "img_backbone": {
+              "parameter": "module.img_backbone.layer2.0.conv1.weight",
+              "gradient_norm": 1.7595549360990792,
+              "parameter_delta": 4.587474904838018e-05
+            },
+            "img_neck": {
+              "parameter": "module.img_neck.lateral_convs.0.conv.weight",
+              "gradient_norm": 0.02160094684207234,
+              "parameter_delta": 0.0008923668065108359
+            },
+            "pts_bbox_head": {
+              "parameter": "module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight",
+              "gradient_norm": 0.8246159613349444,
+              "parameter_delta": 0.00014798522170167416
+            }
+          }
+        ]
+      }
+    },
+    "submission.json": {
+      "sha256": "76e024f6a5f9eb7ba184ee00941d6712e277075b9abbda74bf89be89bb4f496c",
+      "content": {
+        "state": "submitted",
+        "launcher_pid": 3036312,
+        "code": "/home/huayiming/Workspace/SparseWorld-TC-forecast-1e95cf1d53c8",
+        "git_revision": "1e95cf1d53c8607efea04341e3d864099a2e48cc",
+        "at_utc": "2026-09-27T13:36:00.256908+00:00",
+        "stage": "cpu_h8-geometry",
+        "controllers": {
+          "1": {
+            "pid": 3037591,
+            "log": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/history_doppler_campaign_20260927/gpu1_controller.log"
+          },
+          "0": {
+            "pid": 3037592,
+            "log": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/history_doppler_campaign_20260927/gpu0_controller.log"
+          }
+        }
+      }
+    }
+  },
+  "cache_COMPLETE.json": {
+    "schema": "latest_causal_single_sweep_lidar_ego_v1",
+    "protocol_sha256": "4fb08586ec4b2968590e4fc59c9bfbd2cb5e873bff78aa767b24d9e43a2451d5",
+    "builder_sha256": "6934fc67f21dafe77ed832131beaeb280e92327acfc2fdc37566277649e06ea0",
+    "manifest_sha256": "0e4fac836decff58b39aaaeb503ab08baaa2c14114b204d6aff36578e3c1bab6",
+    "samples": 29049,
+    "split_samples": {
+      "train": 23930,
+      "val": 5119
+    },
+    "split_token_sha256": {
+      "train": "a6f6302087cfac9187dcd8f99ee74a8a603c52646731d870fdab81dfaa843948",
+      "val": "e5bbd6d50136d58e07f25d2d54dc94ab6a0f02c76ca96c555ca5aa20d9599f78"
+    },
+    "annotations": {
+      "train": {
+        "path": "/storage/data/metaiot_data/huayiming/SparseWorld/datasets/infos/nuscenes_infos_train_sweep_occ.pkl",
+        "sha256": "dfe6dd24bdc884070c08bbf549d3dea0594e88c63b2b1c8fdc05d39294421c35"
+      },
+      "val": {
+        "path": "/storage/data/metaiot_data/huayiming/SparseWorld/datasets/infos/nuscenes_infos_val_sweep_occ.pkl",
+        "sha256": "3c7f870e67dc52a5b59f7645c93f72396c683ce32c7f5e1d56cc3e5c176d3090"
+      }
+    },
+    "cached_bytes": 329735765,
+    "online_serialization_equal_samples": 29049,
+    "geometry_valid_points_before_cap": 2834095,
+    "invalid_velocity_points_before_cap": 0,
+    "sensor_status": {
+      "selected": 143109,
+      "missing": 2136
+    },
+    "max_abs_processed_velocity": 82.9216537475586,
+    "max_processed_speed": 91.43589534520194,
+    "max_abs_derived_radial": 91.43596649169922,
+    "generation_seconds": 560.8772325201426,
+    "production_reader_verified_samples": 29049,
+    "independent_online_rechecks": 128,
+    "completed_at_utc": "2026-09-27T13:33:56.218541+00:00"
+  },
+  "cache_protocol.json": {
+    "schema": "latest_causal_single_sweep_lidar_ego_v1",
+    "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes",
+    "version": "v1.0-trainval",
+    "fields": [
+      "x",
+      "y",
+      "z",
+      "vx_comp_rotated",
+      "vy_comp_rotated",
+      "rcs",
+      "age",
+      "radial_derived_from_comp_velocity",
+      "los_x",
+      "los_y"
+    ],
+    "parameters": {
+      "sweeps_num": 1,
+      "max_age": 0.5,
+      "max_points": 4096,
+      "xy_limit": 44.0
+    },
+    "channels": [
+      "RADAR_FRONT",
+      "RADAR_FRONT_LEFT",
+      "RADAR_FRONT_RIGHT",
+      "RADAR_BACK_LEFT",
+      "RADAR_BACK_RIGHT"
+    ],
+    "selection": "latest sample_data timestamp <= current LIDAR timestamp per sensor",
+    "velocity": "processed nuScenes vx_comp/vy_comp; not raw Doppler",
+    "velocity_view": "cache always stores processed; zero view applied after verification",
+    "invalid_velocity": "preserve geometry-valid point; zero all velocity columns; count",
+    "radar_filters": {
+      "invalid_states": [
+        0
+      ],
+      "dynprop_states": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "ambig_states": [
+        3
+      ]
+    },
+    "implementation_sha256": "84bee8007f0208000c618cfd14d432c1cf276483ff7223aa12fb37055d7cd191",
+    "metadata_sha256": {
+      "sample": "6035ac58b6e971622be2bb1be15b917e7cb4e05ae984d6b339c27c1699c4ad9d",
+      "sample_data": "6dcad49f0b9bd7b1cef04e2a0ff2ac2879b46b938e8d48153f00693cebb4de21",
+      "ego_pose": "be12bd501f694b344628ba0680a37d6e1ec83e62b37f310c205c1dbe41cd09ff",
+      "calibrated_sensor": "67781a5dd7b2504b046ef89d6dcb267b12d1cc91af21f1ec5758624588e99865",
+      "sensor": "4d5c96570e2d8b09b88ce4c605e40ee43c4909f97bea5741185f18f92eb491ae"
+    }
+  },
+  "cpu_tests": [
+    {
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "3",
+      "tests": "85",
+      "time": "5.074",
+      "timestamp": "2026-09-27T13:23:18.949486",
+      "hostname": "WHUServer-H200"
+    }
+  ],
+  "h1-velocity_formal_initialization": {
+    "loaded_tensors": 669,
+    "loaded_numel": 79478272,
+    "new_radar_tensors": 102,
+    "zero_residual_outputs": [
+      "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.output",
+      "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.output",
+      "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.output",
+      "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.output",
+      "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.output",
+      "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.output"
+    ],
+    "new_path_tensors": 0,
+    "all_camera_tensors_exact": true,
+    "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+    "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
+    "source_epoch": 70,
+    "source_iter": 246190,
+    "optimizer_restored": false,
+    "epoch_reset_to": 0
+  },
+  "h1-velocity_initial_validation": {
+    "future_mean_miou": 21.18061152424971,
+    "samples": 256,
+    "tokens_sha256": "e781a44bfe4093cdc62556def29a65551a3c9ce558debb59e23aab2c63a64800",
+    "indices_sha256": "01a609101cdb9ed3bafd60b3cec860eba91e1af55574416f51985b11dcf8d9f8",
+    "metrics": {
+      "0.0s": {
+        "Semantic mIoU": 24.82756751702645,
+        "Binary IoU": 40.47502191764559,
+        "evaluated_samples": 256,
+        "others_IoU": 5.0880978065444085,
+        "barrier_IoU": 26.18259684640841,
+        "bicycle_IoU": 11.921793037672867,
+        "bus_IoU": 34.525073746312685,
+        "car_IoU": 38.55641504931594,
+        "construction_vehicle_IoU": 17.821121947153454,
+        "motorcycle_IoU": 12.42694555521378,
+        "pedestrian_IoU": 13.121594423445092,
+        "traffic_cone_IoU": 9.94838104176443,
+        "trailer_IoU": 16.96075944780608,
+        "truck_IoU": 30.251436648007292,
+        "driveable_surface_IoU": 57.159669815191215,
+        "other_flat_IoU": 29.420047522661267,
+        "sidewalk_IoU": 33.30306404476972,
+        "terrain_IoU": 32.77717844358358,
+        "manmade_IoU": 26.564919918020593,
+        "vegetation_IoU": 26.0395524955788
+      },
+      "1.0s": {
+        "Semantic mIoU": 22.455531456303564,
+        "Binary IoU": 41.67534885508675,
+        "evaluated_samples": 256,
+        "others_IoU": 6.046252438005015,
+        "barrier_IoU": 27.052127022168964,
+        "bicycle_IoU": 7.9151577858251425,
+        "bus_IoU": 21.875895112361015,
+        "car_IoU": 25.922567651923504,
+        "construction_vehicle_IoU": 17.927347067148922,
+        "motorcycle_IoU": 8.675305975521958,
+        "pedestrian_IoU": 5.801945622349713,
+        "traffic_cone_IoU": 8.71570769604273,
+        "trailer_IoU": 13.76457725947522,
+        "truck_IoU": 21.4299790086964,
+        "driveable_surface_IoU": 61.39340444955212,
+        "other_flat_IoU": 32.83489311738094,
+        "sidewalk_IoU": 35.68994436189943,
+        "terrain_IoU": 33.973946089896,
+        "manmade_IoU": 26.583489697964062,
+        "vegetation_IoU": 26.141494400949465
+      },
+      "2.0s": {
+        "Semantic mIoU": 21.259858719723848,
+        "Binary IoU": 42.70109765964918,
+        "evaluated_samples": 256,
+        "others_IoU": 6.687054026503568,
+        "barrier_IoU": 25.45984425015527,
+        "bicycle_IoU": 6.073752711496746,
+        "bus_IoU": 13.99313190206784,
+        "car_IoU": 22.23468960665402,
+        "construction_vehicle_IoU": 17.418376307176498,
+        "motorcycle_IoU": 6.8379160636758325,
+        "pedestrian_IoU": 2.22886807358086,
+        "traffic_cone_IoU": 9.020179917335279,
+        "trailer_IoU": 11.286407766990292,
+        "truck_IoU": 15.502729754322111,
+        "driveable_surface_IoU": 65.23632581120518,
+        "other_flat_IoU": 34.66959671742751,
+        "sidewalk_IoU": 37.864398962845875,
+        "terrain_IoU": 34.78088865445365,
+        "manmade_IoU": 26.308133949227187,
+        "vegetation_IoU": 25.815303760187703
+      },
+      "3.0s": {
+        "Semantic mIoU": 19.82644439672172,
+        "Binary IoU": 42.57198577163372,
+        "evaluated_samples": 256,
+        "others_IoU": 4.26849496848391,
+        "barrier_IoU": 24.44773835708138,
+        "bicycle_IoU": 3.949627933600458,
+        "bus_IoU": 8.949407262204797,
+        "car_IoU": 20.2746465164841,
+        "construction_vehicle_IoU": 13.012637586628617,
+        "motorcycle_IoU": 3.8311457963816955,
+        "pedestrian_IoU": 1.5513897866839044,
+        "traffic_cone_IoU": 8.188281441529787,
+        "trailer_IoU": 10.261842894263442,
+        "truck_IoU": 13.725367922175105,
+        "driveable_surface_IoU": 66.89826302729529,
+        "other_flat_IoU": 34.371002869291665,
+        "sidewalk_IoU": 38.23397595378496,
+        "terrain_IoU": 34.67989717742834,
+        "manmade_IoU": 25.29965496098775,
+        "vegetation_IoU": 25.10618028996401
+      }
+    }
+  },
+  "h1-geometry_formal_initialization": {
+    "loaded_tensors": 669,
+    "loaded_numel": 79478272,
+    "new_radar_tensors": 102,
+    "zero_residual_outputs": [
+      "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.output",
+      "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.output",
+      "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.output",
+      "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.output",
+      "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.output",
+      "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.output"
+    ],
+    "new_path_tensors": 0,
+    "all_camera_tensors_exact": true,
+    "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+    "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
+    "source_epoch": 70,
+    "source_iter": 246190,
+    "optimizer_restored": false,
+    "epoch_reset_to": 0
+  },
+  "h1-geometry_initial_validation": {
+    "future_mean_miou": 21.18057038012203,
+    "samples": 256,
+    "tokens_sha256": "e781a44bfe4093cdc62556def29a65551a3c9ce558debb59e23aab2c63a64800",
+    "indices_sha256": "01a609101cdb9ed3bafd60b3cec860eba91e1af55574416f51985b11dcf8d9f8",
+    "metrics": {
+      "0.0s": {
+        "Semantic mIoU": 24.827635583583003,
+        "Binary IoU": 40.47515581128911,
+        "evaluated_samples": 256,
+        "others_IoU": 5.0880978065444085,
+        "barrier_IoU": 26.17877475548635,
+        "bicycle_IoU": 11.921793037672867,
+        "bus_IoU": 34.525073746312685,
+        "car_IoU": 38.555917912822146,
+        "construction_vehicle_IoU": 17.821121947153454,
+        "motorcycle_IoU": 12.42694555521378,
+        "pedestrian_IoU": 13.126503362623337,
+        "traffic_cone_IoU": 9.94838104176443,
+        "trailer_IoU": 16.96075944780608,
+        "truck_IoU": 30.251436648007292,
+        "driveable_surface_IoU": 57.15987075349447,
+        "other_flat_IoU": 29.420047522661267,
+        "sidewalk_IoU": 33.303124048452574,
+        "terrain_IoU": 32.77748492129653,
+        "manmade_IoU": 26.564919918020593,
+        "vegetation_IoU": 26.0395524955788
+      },
+      "1.0s": {
+        "Semantic mIoU": 22.455624896639623,
+        "Binary IoU": 41.67530517722438,
+        "evaluated_samples": 256,
+        "others_IoU": 6.046252438005015,
+        "barrier_IoU": 27.052127022168964,
+        "bicycle_IoU": 7.9151577858251425,
+        "bus_IoU": 21.875895112361015,
+        "car_IoU": 25.922567651923504,
+        "construction_vehicle_IoU": 17.927347067148922,
+        "motorcycle_IoU": 8.675305975521958,
+        "pedestrian_IoU": 5.801945622349713,
+        "traffic_cone_IoU": 8.71570769604273,
+        "trailer_IoU": 13.76457725947522,
+        "truck_IoU": 21.4299790086964,
+        "driveable_surface_IoU": 61.39326623705742,
+        "other_flat_IoU": 32.836619815588634,
+        "sidewalk_IoU": 35.68994436189943,
+        "terrain_IoU": 33.973946089896,
+        "manmade_IoU": 26.583489697964062,
+        "vegetation_IoU": 26.141494400949465
+      },
+      "2.0s": {
+        "Semantic mIoU": 21.25978052258711,
+        "Binary IoU": 42.701083257313,
+        "evaluated_samples": 256,
+        "others_IoU": 6.687054026503568,
+        "barrier_IoU": 25.45984425015527,
+        "bicycle_IoU": 6.073752711496746,
+        "bus_IoU": 13.99313190206784,
+        "car_IoU": 22.235134870383728,
+        "construction_vehicle_IoU": 17.418376307176498,
+        "motorcycle_IoU": 6.8379160636758325,
+        "pedestrian_IoU": 2.22886807358086,
+        "traffic_cone_IoU": 9.020179917335279,
+        "trailer_IoU": 11.286407766990292,
+        "truck_IoU": 15.502729754322111,
+        "driveable_surface_IoU": 65.23626802276864,
+        "other_flat_IoU": 34.66787989080983,
+        "sidewalk_IoU": 37.864398962845875,
+        "terrain_IoU": 34.78088865445365,
+        "manmade_IoU": 26.308133949227187,
+        "vegetation_IoU": 25.815303760187703
+      },
+      "3.0s": {
+        "Semantic mIoU": 19.826305721139352,
+        "Binary IoU": 42.57198577163372,
+        "evaluated_samples": 256,
+        "others_IoU": 4.26849496848391,
+        "barrier_IoU": 24.44773835708138,
+        "bicycle_IoU": 3.949627933600458,
+        "bus_IoU": 8.949407262204797,
+        "car_IoU": 20.2746465164841,
+        "construction_vehicle_IoU": 13.012637586628617,
+        "motorcycle_IoU": 3.8311457963816955,
+        "pedestrian_IoU": 1.5513897866839044,
+        "traffic_cone_IoU": 8.188281441529787,
+        "trailer_IoU": 10.261842894263442,
+        "truck_IoU": 13.725490196078432,
+        "driveable_surface_IoU": 66.89828226342114,
+        "other_flat_IoU": 34.368680321493386,
+        "sidewalk_IoU": 38.233799506653824,
+        "terrain_IoU": 34.67989717742834,
+        "manmade_IoU": 25.29965496098775,
+        "vegetation_IoU": 25.10618028996401
+      }
+    }
+  },
+  "formal_optimization_snapshot": {
+    "at_utc": "2026-09-27T13:49:48.383705+00:00",
+    "arms": {
+      "h1-velocity": {
+        "checkpoints": [],
+        "validations": [
+          {
+            "epoch": 0,
+            "scope": "subset",
+            "samples": 256,
+            "future_mean_miou": 21.18061152424971,
+            "elapsed_seconds": 86.71464998996817
+          }
+        ],
+        "last": {
+          "mode": "train",
+          "epoch": 1,
+          "iter": 50,
+          "lr": 5e-05,
+          "memory": 54750,
+          "data_time": 0.00121,
+          "init_loss_pts": 5.05461,
+          "loss_cls": 0.27254,
+          "loss_pts": 0.48102,
+          "d0.loss_cls": 0.39179,
+          "d0.loss_pts": 3.18925,
+          "d1.loss_cls": 0.33354,
+          "d1.loss_pts": 1.8429,
+          "d2.loss_cls": 0.30528,
+          "d2.loss_pts": 1.07807,
+          "d3.loss_cls": 0.28889,
+          "d3.loss_pts": 0.8146,
+          "d4.loss_cls": 0.28058,
+          "d4.loss_pts": 0.62169,
+          "loss": 14.95476,
+          "grad_norm": 13.00651,
+          "time": 2.76932
+        },
+        "completed_iterations": 50,
+        "nonfinite_loss_windows": 0,
+        "speed": {
+          "window_steps": 20,
+          "seconds_per_step": 2.773785,
+          "remaining_training_hours": null,
+          "scope": "training only; excludes validation, evaluation and queuing"
+        }
+      },
+      "h1-geometry": {
+        "checkpoints": [],
+        "validations": [
+          {
+            "epoch": 0,
+            "scope": "subset",
+            "samples": 256,
+            "future_mean_miou": 21.18057038012203,
+            "elapsed_seconds": 88.6785556699615
+          }
+        ],
+        "last": {
+          "mode": "train",
+          "epoch": 1,
+          "iter": 50,
+          "lr": 5e-05,
+          "memory": 54750,
+          "data_time": 0.00109,
+          "init_loss_pts": 5.05461,
+          "loss_cls": 0.27229,
+          "loss_pts": 0.48107,
+          "d0.loss_cls": 0.39133,
+          "d0.loss_pts": 3.18933,
+          "d1.loss_cls": 0.33304,
+          "d1.loss_pts": 1.84291,
+          "d2.loss_cls": 0.30503,
+          "d2.loss_pts": 1.07801,
+          "d3.loss_cls": 0.28864,
+          "d3.loss_pts": 0.81452,
+          "d4.loss_cls": 0.28026,
+          "d4.loss_pts": 0.62171,
+          "loss": 14.95275,
+          "grad_norm": 13.1608,
+          "time": 2.76642
+        },
+        "completed_iterations": 50,
+        "nonfinite_loss_windows": 0,
+        "speed": {
+          "window_steps": 20,
+          "seconds_per_step": 2.770515,
+          "remaining_training_hours": null,
+          "scope": "training only; excludes validation, evaluation and queuing"
+        }
+      }
+    },
+    "component_learning_logs": {
+      "h1-velocity": [
+        "[2026-09-27 13:49:08,259][INFO] - JOINT_LEARNING iter=40 {\"img_backbone\": {\"parameter\": \"module.img_backbone.layer2.0.conv1.weight\", \"gradient_norm\": 1.209005574424141, \"parameter_delta\": 0.00016506608517374843}, \"img_neck\": {\"parameter\": \"module.img_neck.lateral_convs.0.conv.weight\", \"gradient_norm\": 0.017190142483937743, \"parameter_delta\": 0.0040033916011452675}, \"pts_bbox_head\": {\"parameter\": \"module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight\", \"gradient_norm\": 0.8551401351952121, \"parameter_delta\": 0.0004690699279308319}}",
+        "[2026-09-27 13:49:35,952][INFO] - RADAR_LEARNING iter=50 microstep_grad_norm=0.130015 parameter_delta=0.49041 successful_updates=5",
+        "[2026-09-27 13:49:35,952][INFO] - JOINT_LEARNING iter=50 {\"img_backbone\": {\"parameter\": \"module.img_backbone.layer2.0.conv1.weight\", \"gradient_norm\": 1.563203348166161, \"parameter_delta\": 0.000168292157468386}, \"img_neck\": {\"parameter\": \"module.img_neck.lateral_convs.0.conv.weight\", \"gradient_norm\": 0.02454702055092401, \"parameter_delta\": 0.004373450763523579}, \"pts_bbox_head\": {\"parameter\": \"module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight\", \"gradient_norm\": 0.8800286141533514, \"parameter_delta\": 0.0005523108993656933}}"
+      ],
+      "h1-geometry": [
+        "[2026-09-27 13:49:07,479][INFO] - JOINT_LEARNING iter=40 {\"img_backbone\": {\"parameter\": \"module.img_backbone.layer2.0.conv1.weight\", \"gradient_norm\": 1.2439015875984007, \"parameter_delta\": 0.00017632626986596733}, \"img_neck\": {\"parameter\": \"module.img_neck.lateral_convs.0.conv.weight\", \"gradient_norm\": 0.016481572479057623, \"parameter_delta\": 0.004043572582304478}, \"pts_bbox_head\": {\"parameter\": \"module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight\", \"gradient_norm\": 0.7023343196995343, \"parameter_delta\": 0.0004416324372868985}}",
+        "[2026-09-27 13:49:35,143][INFO] - RADAR_LEARNING iter=50 microstep_grad_norm=0.128477 parameter_delta=0.479404 successful_updates=5",
+        "[2026-09-27 13:49:35,144][INFO] - JOINT_LEARNING iter=50 {\"img_backbone\": {\"parameter\": \"module.img_backbone.layer2.0.conv1.weight\", \"gradient_norm\": 1.557597747968428, \"parameter_delta\": 0.00017104885773733258}, \"img_neck\": {\"parameter\": \"module.img_neck.lateral_convs.0.conv.weight\", \"gradient_norm\": 0.023431041940409948, \"parameter_delta\": 0.0041904994286596775}, \"pts_bbox_head\": {\"parameter\": \"module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight\", \"gradient_norm\": 0.8705667860473492, \"parameter_delta\": 0.0005310795968398452}}"
+      ]
+    }
+  },
+  "initial_validation_same_tokens_and_indices": true
+}
