@@ -1,0 +1,64 @@
+{
+  "at_utc": "2026-09-27T12:31:52.052711+00:00",
+  "submission": {
+    "controller_pid": 3032933,
+    "gpu": "GPU-000b6236-3632-a001-9667-1f02cbb61c8b",
+    "code": "/home/huayiming/Workspace/SparseWorld-TC-forecast-b0c98b3e7768",
+    "purpose": "Frozen A best epoch9; 32 anchors; no training",
+    "exporter_sha256": "bb69bcb1dd8b928a9eaa0cc13e207c5a6e2ac243ab04929d66c07233dae483f1",
+    "controller_sha256": "14a9ef7312ed81e3e4b135f966adc6a189b32e08728d7bc3191858d328f1ecd3",
+    "selection_sha256": "9581d366d5a3f10f508b4a29afa9f9aac1a563a5e2652b41e9979853b47b736d"
+  },
+  "status": {
+    "controller_pid": 3032933,
+    "gpu": "GPU-000b6236-3632-a001-9667-1f02cbb61c8b",
+    "output": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/frozen_A_diagnostics_20260927/A_frozen32",
+    "state": "complete",
+    "at_utc": "2026-09-27T12:29:41.056390+00:00",
+    "free_mib": 143156,
+    "total_mib": 143771,
+    "minimum_free_mib": 132000,
+    "required_stable_seconds": 60,
+    "stable_seconds": 60.15184444002807,
+    "child_pid": null,
+    "command": [
+      "/storage/data/metaiot_data/huayiming/SparseWorld/envs/hym_sparseworld/bin/python",
+      "/home/huayiming/Workspace/SparseWorld-diagnostics-20260927-v1/export_frozen_a_diagnostics.py",
+      "--code",
+      "/home/huayiming/Workspace/SparseWorld-TC-forecast-b0c98b3e7768",
+      "--checkpoint",
+      "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_transport_seed0/best_future.pth",
+      "--selection-json",
+      "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/frozen_A_diagnostics_20260927/selection.json",
+      "--output-dir",
+      "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/frozen_A_diagnostics_20260927/A_frozen32",
+      "--endpoint-cache",
+      "/home/huayiming/Workspace/SparseWorld-cache/endpoint_segments_v1_20260926"
+    ],
+    "returncode": 0,
+    "exported_samples": 32,
+    "checkpoint_sha256": "0b05332e981576542f552f29c73d4f857898a1ced25ca892fb92f3088c17ad5c"
+  },
+  "controller_tail": "ld/work_dirs/radar_forecast_transport_seed0/best_future.pth\", \"--selection-json\", \"/storage/data/metaiot_data/huayiming/SparseWorld/analysis/frozen_A_diagnostics_20260927/selection.json\", \"--output-dir\", \"/storage/data/metaiot_data/huayiming/SparseWorld/analysis/frozen_A_diagnostics_20260927/A_frozen32\", \"--endpoint-cache\", \"/home/huayiming/Workspace/SparseWorld-cache/endpoint_segments_v1_20260926\"]}\n{\"controller_pid\": 3032933, \"gpu\": \"GPU-000b6236-3632-a001-9667-1f02cbb61c8b\", \"output\": \"/storage/data/metaiot_data/huayiming/SparseWorld/analysis/frozen_A_diagnostics_20260927/A_frozen32\", \"state\": \"running\", \"at_utc\": \"2026-09-27T12:29:28.771078+00:00\", \"free_mib\": 143156, \"total_mib\": 143771, \"minimum_free_mib\": 132000, \"required_stable_seconds\": 60, \"stable_seconds\": 60.15184444002807, \"child_pid\": 3033003, \"command\": [\"/storage/data/metaiot_data/huayiming/SparseWorld/envs/hym_sparseworld/bin/python\", \"/home/huayiming/Workspace/SparseWorld-diagnostics-20260927-v1/export_frozen_a_diagnostics.py\", \"--code\", \"/home/huayiming/Workspace/SparseWorld-TC-forecast-b0c98b3e7768\", \"--checkpoint\", \"/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_transport_seed0/best_future.pth\", \"--selection-json\", \"/storage/data/metaiot_data/huayiming/SparseWorld/analysis/frozen_A_diagnostics_20260927/selection.json\", \"--output-dir\", \"/storage/data/metaiot_data/huayiming/SparseWorld/analysis/frozen_A_diagnostics_20260927/A_frozen32\", \"--endpoint-cache\", \"/home/huayiming/Workspace/SparseWorld-cache/endpoint_segments_v1_20260926\"]}\n{\"controller_pid\": 3032933, \"gpu\": \"GPU-000b6236-3632-a001-9667-1f02cbb61c8b\", \"output\": \"/storage/data/metaiot_data/huayiming/SparseWorld/analysis/frozen_A_diagnostics_20260927/A_frozen32\", \"state\": \"complete\", \"at_utc\": \"2026-09-27T12:29:41.054500+00:00\", \"free_mib\": 143156, \"total_mib\": 143771, \"minimum_free_mib\": 132000, \"required_stable_seconds\": 60, \"stable_seconds\": 60.15184444002807, \"child_pid\": null, \"command\": [\"/storage/data/metaiot_data/huayiming/SparseWorld/envs/hym_sparseworld/bin/python\", \"/home/huayiming/Workspace/SparseWorld-diagnostics-20260927-v1/export_frozen_a_diagnostics.py\", \"--code\", \"/home/huayiming/Workspace/SparseWorld-TC-forecast-b0c98b3e7768\", \"--checkpoint\", \"/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_transport_seed0/best_future.pth\", \"--selection-json\", \"/storage/data/metaiot_data/huayiming/SparseWorld/analysis/frozen_A_diagnostics_20260927/selection.json\", \"--output-dir\", \"/storage/data/metaiot_data/huayiming/SparseWorld/analysis/frozen_A_diagnostics_20260927/A_frozen32\", \"--endpoint-cache\", \"/home/huayiming/Workspace/SparseWorld-cache/endpoint_segments_v1_20260926\"], \"returncode\": 0}\n{\"controller_pid\": 3032933, \"gpu\": \"GPU-000b6236-3632-a001-9667-1f02cbb61c8b\", \"output\": \"/storage/data/metaiot_data/huayiming/SparseWorld/analysis/frozen_A_diagnostics_20260927/A_frozen32\", \"state\": \"complete\", \"at_utc\": \"2026-09-27T12:29:41.056390+00:00\", \"free_mib\": 143156, \"total_mib\": 143771, \"minimum_free_mib\": 132000, \"required_stable_seconds\": 60, \"stable_seconds\": 60.15184444002807, \"child_pid\": null, \"command\": [\"/storage/data/metaiot_data/huayiming/SparseWorld/envs/hym_sparseworld/bin/python\", \"/home/huayiming/Workspace/SparseWorld-diagnostics-20260927-v1/export_frozen_a_diagnostics.py\", \"--code\", \"/home/huayiming/Workspace/SparseWorld-TC-forecast-b0c98b3e7768\", \"--checkpoint\", \"/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_transport_seed0/best_future.pth\", \"--selection-json\", \"/storage/data/metaiot_data/huayiming/SparseWorld/analysis/frozen_A_diagnostics_20260927/selection.json\", \"--output-dir\", \"/storage/data/metaiot_data/huayiming/SparseWorld/analysis/frozen_A_diagnostics_20260927/A_frozen32\", \"--endpoint-cache\", \"/home/huayiming/Workspace/SparseWorld-cache/endpoint_segments_v1_20260926\"], \"returncode\": 0, \"exported_samples\": 32, \"checkpoint_sha256\": \"0b05332e981576542f552f29c73d4f857898a1ced25ca892fb92f3088c17ad5c\"}\n",
+  "export_tail": "mal, bias=0 \n \n2026-09-27 12:27:47,493 - mmcv - INFO - \nimg_backbone.layer4.2.bn3.weight - torch.Size([2048]): \nConstantInit: val=0, bias=0 \n \n2026-09-27 12:27:47,493 - mmcv - INFO - \nimg_backbone.layer4.2.bn3.bias - torch.Size([2048]): \nThe value is the same before and after calling `init_weights` of SparseWorld  \n \n2026-09-27 12:27:47,493 - mmcv - INFO - \nimg_neck.lateral_convs.0.conv.weight - torch.Size([256, 256, 1, 1]): \nXavierInit: gain=1, distribution=uniform, bias=0 \n \n2026-09-27 12:27:47,493 - mmcv - INFO - \nimg_neck.lateral_convs.0.conv.bias - torch.Size([256]): \nThe value is the same before and after calling `init_weights` of SparseWorld  \n \n2026-09-27 12:27:47,493 - mmcv - INFO - \nimg_neck.lateral_convs.1.conv.weight - torch.Size([256, 512, 1, 1]): \nXavierInit: gain=1, distribution=uniform, bias=0 \n \n2026-09-27 12:27:47,493 - mmcv - INFO - \nimg_neck.lateral_convs.1.conv.bias - torch.Size([256]): \nThe value is the same before and after calling `init_weights` of SparseWorld  \n \n2026-09-27 12:27:47,493 - mmcv - INFO - \nimg_neck.lateral_convs.2.conv.weight - torch.Size([256, 1024, 1, 1]): \nXavierInit: gain=1, distribution=uniform, bias=0 \n \n2026-09-27 12:27:47,493 - mmcv - INFO - \nimg_neck.lateral_convs.2.conv.bias - torch.Size([256]): \nThe value is the same before and after calling `init_weights` of SparseWorld  \n \n2026-09-27 12:27:47,493 - mmcv - INFO - \nimg_neck.lateral_convs.3.conv.weight - torch.Size([256, 2048, 1, 1]): \nXavierInit: gain=1, distribution=uniform, bias=0 \n \n2026-09-27 12:27:47,493 - mmcv - INFO - \nimg_neck.lateral_convs.3.conv.bias - torch.Size([256]): \nThe value is the same before and after calling `init_weights` of SparseWorld  \n \n2026-09-27 12:27:47,493 - mmcv - INFO - \nimg_neck.fpn_convs.0.conv.weight - torch.Size([256, 256, 3, 3]): \nXavierInit: gain=1, distribution=uniform, bias=0 \n \n2026-09-27 12:27:47,493 - mmcv - INFO - \nimg_neck.fpn_convs.0.conv.bias - torch.Size([256]): \nThe value is the same before and after calling `init_weights` of SparseWorld  \n \n2026-09-27 12:27:47,493 - mmcv - INFO - \nimg_neck.fpn_convs.1.conv.weight - torch.Size([256, 256, 3, 3]): \nXavierInit: gain=1, distribution=uniform, bias=0 \n \n2026-09-27 12:27:47,493 - mmcv - INFO - \nimg_neck.fpn_convs.1.conv.bias - torch.Size([256]): \nThe value is the same before and after calling `init_weights` of SparseWorld  \n \n2026-09-27 12:27:47,493 - mmcv - INFO - \nimg_neck.fpn_convs.2.conv.weight - torch.Size([256, 256, 3, 3]): \nXavierInit: gain=1, distribution=uniform, bias=0 \n \n2026-09-27 12:27:47,493 - mmcv - INFO - \nimg_neck.fpn_convs.2.conv.bias - torch.Size([256]): \nThe value is the same before and after calling `init_weights` of SparseWorld  \n \n2026-09-27 12:27:47,493 - mmcv - INFO - \nimg_neck.fpn_convs.3.conv.weight - torch.Size([256, 256, 3, 3]): \nXavierInit: gain=1, distribution=uniform, bias=0 \n \n2026-09-27 12:27:47,493 - mmcv - INFO - \nimg_neck.fpn_convs.3.conv.bias - torch.Size([256]): \nThe value is the same before and after calling `init_weights` of SparseWorld  \n \n{\"event\": \"EXPORT_PROGRESS\", \"completed\": 4, \"total\": 32, \"elapsed_seconds\": 56.76114830002189}\n{\"event\": \"EXPORT_PROGRESS\", \"completed\": 8, \"total\": 32, \"elapsed_seconds\": 62.727184609975666}\n{\"event\": \"EXPORT_PROGRESS\", \"completed\": 12, \"total\": 32, \"elapsed_seconds\": 71.47700329998042}\n{\"event\": \"EXPORT_PROGRESS\", \"completed\": 16, \"total\": 32, \"elapsed_seconds\": 76.60540444997605}\n{\"event\": \"EXPORT_PROGRESS\", \"completed\": 20, \"total\": 32, \"elapsed_seconds\": 81.01628751005046}\n{\"event\": \"EXPORT_PROGRESS\", \"completed\": 24, \"total\": 32, \"elapsed_seconds\": 88.40930297004525}\n{\"event\": \"EXPORT_PROGRESS\", \"completed\": 28, \"total\": 32, \"elapsed_seconds\": 98.22918162005953}\n{\"event\": \"EXPORT_PROGRESS\", \"completed\": 32, \"total\": 32, \"elapsed_seconds\": 109.09041807998437}\n{\"event\": \"EXPORT_COMPLETE\", \"output_dir\": \"/storage/data/metaiot_data/huayiming/SparseWorld/analysis/frozen_A_diagnostics_20260927/A_frozen32\", \"samples\": 32, \"elapsed_seconds\": 109.50964497996029}\n",
+  "manifest": {
+    "state": "complete",
+    "git_revision": "b0c98b3e7768d263c43c6e1ed73299b065e2fb6a",
+    "checkpoint_sha256": "0b05332e981576542f552f29c73d4f857898a1ced25ca892fb92f3088c17ad5c",
+    "checkpoint_meta": {
+      "epoch": 9,
+      "iter": 26928
+    },
+    "finite_model_tensors": 771,
+    "elapsed_seconds": 109.50964497996029,
+    "error": null,
+    "samples": 32
+  },
+  "processes": {
+    "controller_pid": {
+      "pid": 3032933,
+      "exited": true
+    }
+  },
+  "gpu": "0, GPU-74b9b73f-c405-55bc-bf76-f8aa85d1e7fe, 10461, 132696, 15\n1, GPU-000b6236-3632-a001-9667-1f02cbb61c8b, 0, 143156, 0\n"
+}

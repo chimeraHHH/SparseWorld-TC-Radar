@@ -1,0 +1,1055 @@
+{
+  "submission.json": {
+    "controller_pid": 3032933,
+    "gpu": "GPU-000b6236-3632-a001-9667-1f02cbb61c8b",
+    "code": "/home/huayiming/Workspace/SparseWorld-TC-forecast-b0c98b3e7768",
+    "purpose": "Frozen A best epoch9; 32 anchors; no training",
+    "exporter_sha256": "bb69bcb1dd8b928a9eaa0cc13e207c5a6e2ac243ab04929d66c07233dae483f1",
+    "controller_sha256": "14a9ef7312ed81e3e4b135f966adc6a189b32e08728d7bc3191858d328f1ecd3",
+    "selection_sha256": "9581d366d5a3f10f508b4a29afa9f9aac1a563a5e2652b41e9979853b47b736d"
+  },
+  "status.json": {
+    "controller_pid": 3032933,
+    "gpu": "GPU-000b6236-3632-a001-9667-1f02cbb61c8b",
+    "output": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/frozen_A_diagnostics_20260927/A_frozen32",
+    "state": "complete",
+    "at_utc": "2026-09-27T12:29:41.056390+00:00",
+    "free_mib": 143156,
+    "total_mib": 143771,
+    "minimum_free_mib": 132000,
+    "required_stable_seconds": 60,
+    "stable_seconds": 60.15184444002807,
+    "child_pid": null,
+    "command": [
+      "/storage/data/metaiot_data/huayiming/SparseWorld/envs/hym_sparseworld/bin/python",
+      "/home/huayiming/Workspace/SparseWorld-diagnostics-20260927-v1/export_frozen_a_diagnostics.py",
+      "--code",
+      "/home/huayiming/Workspace/SparseWorld-TC-forecast-b0c98b3e7768",
+      "--checkpoint",
+      "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_transport_seed0/best_future.pth",
+      "--selection-json",
+      "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/frozen_A_diagnostics_20260927/selection.json",
+      "--output-dir",
+      "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/frozen_A_diagnostics_20260927/A_frozen32",
+      "--endpoint-cache",
+      "/home/huayiming/Workspace/SparseWorld-cache/endpoint_segments_v1_20260926"
+    ],
+    "returncode": 0,
+    "exported_samples": 32,
+    "checkpoint_sha256": "0b05332e981576542f552f29c73d4f857898a1ced25ca892fb92f3088c17ad5c"
+  },
+  "A_frozen32/manifest.json": {
+    "schema": "frozen-a-diagnostics-v1",
+    "state": "complete",
+    "created_at_utc": "2026-09-27T12:27:42.985974+00:00",
+    "code": "/home/huayiming/Workspace/SparseWorld-TC-forecast-b0c98b3e7768",
+    "git_revision": "b0c98b3e7768d263c43c6e1ed73299b065e2fb6a",
+    "code_manifest_sha256": "0dbb6b1113dfb1364083d31d6ace90fc5ae77cbb67bbb50c58c854528743f9d8",
+    "verified_source_files": 147,
+    "config": "configs/sw-radar-forecast-transport.py",
+    "config_sha256": "e09ccc6c1e240ae193d7d1be14696758a1f621c6d86e6dc04160bb15a21725ff",
+    "checkpoint": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_transport_seed0/best_future.pth",
+    "checkpoint_sha256": "0b05332e981576542f552f29c73d4f857898a1ced25ca892fb92f3088c17ad5c",
+    "selection_json": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/frozen_A_diagnostics_20260927/selection.json",
+    "selection_sha256": "9581d366d5a3f10f508b4a29afa9f9aac1a563a5e2652b41e9979853b47b736d",
+    "indices": [
+      289,
+      342,
+      397,
+      607,
+      759,
+      1084,
+      1496,
+      1604,
+      1880,
+      1905,
+      2083,
+      2365,
+      2464,
+      2683,
+      2852,
+      2879,
+      3035,
+      3080,
+      3156,
+      3162,
+      3220,
+      3470,
+      3819,
+      3877,
+      3904,
+      3978,
+      4072,
+      4192,
+      4561,
+      4735,
+      4857,
+      4988
+    ],
+    "tokens": [
+      "c855b62fda9748c0a719c329b6e216ec",
+      "68ecb2433f654422a7567d9f349c0708",
+      "b07273055da64823bcc2ede3f06ad3b7",
+      "f0e4797551024f9487a016ee9d9e29e1",
+      "c261faeb1eb0442e98d78100827ede0b",
+      "a7795dcadad44c1c85fa27eef18366f6",
+      "ece036de967b4e73bc8d76d60d2d6852",
+      "c0118a0cdb484aa782b3bedc0cfaa757",
+      "d0e49a3a29814c37a2d1c8c1b946653c",
+      "ee3ddd9ee0374030bdfece0eadd13bc1",
+      "b4992b8d1b624ea698b8ee2342bf9661",
+      "35216662ddb24864b8c29e89e7c68b13",
+      "c03f62b6658d41b6b889a40723dbc782",
+      "3acf2395a75643ddb86db4361bc04fd4",
+      "b082d53392614131a91fedb0a2b2e1ab",
+      "6b5497fed3554da7869ab1af98947cb3",
+      "a49f9ebfee6044589286b7f8e279ac18",
+      "3cc7d2152d6042708f0935f99552e0d8",
+      "d0771d9484c24d72a0837d6a6d0c0dc3",
+      "bc94beb70f694ee8a0399c4e7e1fc2d0",
+      "8938bdb987574314ac81e4e310a3f774",
+      "f8de6e9a14d34f2791c21a07ce5d47c5",
+      "06352dee7bb546dbb5a8dc21aa59f373",
+      "4fe6f15f0d404c5fa8f7a3a5734d13e0",
+      "4786b3c0d0a24c8b86b0676d32dd5919",
+      "6a6524079ac745b18acdb79283e454e6",
+      "713c08361c034a2e93ba00a2151775ef",
+      "eb8088bcbb304f78be87dff12278e05d",
+      "ff93d6dd1c0e4c569ee4bbc0c965c7f2",
+      "1d0ccce7fc284ab5848b6a5055cf6f14",
+      "c880188955834ebaa53cc8bc887327d8",
+      "77fa92b807e649bd9b39b2c2efa78177"
+    ],
+    "future_frames": [
+      0,
+      2,
+      4,
+      6
+    ],
+    "dataset_samples": 5119,
+    "batch_size": 1,
+    "workers": 2,
+    "shuffle": false,
+    "raw": false,
+    "samples": [
+      {
+        "dataset_index": 289,
+        "token": "c855b62fda9748c0a719c329b6e216ec",
+        "file": "samples/c855b62fda9748c0a719c329b6e216ec.npz",
+        "future_tokens": [
+          "c855b62fda9748c0a719c329b6e216ec",
+          "5aa5555debb94e988b4eb8d8ff26c8da",
+          "7ff6ab92e1c443209f8268fcfb214925",
+          "ab7f9e0665d24fe79fbde77325627d18"
+        ],
+        "scene_name": "scene-0276",
+        "inference_seconds": 12.805330359959044,
+        "save_seconds": 0.03731205000076443,
+        "voxel_counts": [
+          62478,
+          63558,
+          68712,
+          66685
+        ],
+        "bytes": 156278,
+        "sha256": "4f51ea0cf756612b99baf2d1049b67be5f180438d4fb82a880cb7cf958fccf58"
+      },
+      {
+        "dataset_index": 342,
+        "token": "68ecb2433f654422a7567d9f349c0708",
+        "file": "samples/68ecb2433f654422a7567d9f349c0708.npz",
+        "future_tokens": [
+          "68ecb2433f654422a7567d9f349c0708",
+          "cba4c5078d8e40138b80902278069671",
+          "c1255d993df4492a9dfa2f67a50f3073",
+          "01fbe6d2d7384d20967a88e4142b5678"
+        ],
+        "scene_name": "scene-0278",
+        "inference_seconds": 0.10741194000001997,
+        "save_seconds": 0.03712475998327136,
+        "voxel_counts": [
+          66842,
+          59308,
+          58600,
+          61002
+        ],
+        "bytes": 163138,
+        "sha256": "c20469fbc4486d3dff5335d26164eb51031e624609a2eaf2e089dc67d88e9852"
+      },
+      {
+        "dataset_index": 397,
+        "token": "b07273055da64823bcc2ede3f06ad3b7",
+        "file": "samples/b07273055da64823bcc2ede3f06ad3b7.npz",
+        "future_tokens": [
+          "b07273055da64823bcc2ede3f06ad3b7",
+          "e9ae8c38b8744ea2a265e4f64829c0d3",
+          "a484d76a40e24d549a0ab412d0a843d0",
+          "6cf7822aa27a4e599d4cdd249fca5763"
+        ],
+        "scene_name": "scene-0221",
+        "inference_seconds": 0.10439026996027678,
+        "save_seconds": 0.05071097007021308,
+        "voxel_counts": [
+          96951,
+          98420,
+          94321,
+          97580
+        ],
+        "bytes": 219610,
+        "sha256": "643799f50c54b807cfee9052cd8c493a60a313b3a0c5896ff3c2115119d24630"
+      },
+      {
+        "dataset_index": 607,
+        "token": "f0e4797551024f9487a016ee9d9e29e1",
+        "file": "samples/f0e4797551024f9487a016ee9d9e29e1.npz",
+        "future_tokens": [
+          "f0e4797551024f9487a016ee9d9e29e1",
+          "b78605983b3543a1a70df4b3805e4dfc",
+          "248f5231a8c94b5da0b58e515ad68298",
+          "2ff5689a089844f0a2097b1883916003"
+        ],
+        "scene_name": "scene-0018",
+        "inference_seconds": 0.3266227300046012,
+        "save_seconds": 0.03971993993036449,
+        "voxel_counts": [
+          71470,
+          71248,
+          72790,
+          69800
+        ],
+        "bytes": 179106,
+        "sha256": "ab993ee08754dc566411adb3c8e84dd5403bdad3cfe39c52e40159e990273a89"
+      },
+      {
+        "dataset_index": 759,
+        "token": "c261faeb1eb0442e98d78100827ede0b",
+        "file": "samples/c261faeb1eb0442e98d78100827ede0b.npz",
+        "future_tokens": [
+          "c261faeb1eb0442e98d78100827ede0b",
+          "3435cdd71e3d4e9185ae6b514ae7651c",
+          "edc5f9bd039342cb9403a18d2cee773d",
+          "eb0676ccc9bd45149ae65119cb8d5e7b"
+        ],
+        "scene_name": "scene-0039",
+        "inference_seconds": 0.10514738992787898,
+        "save_seconds": 0.03552611998748034,
+        "voxel_counts": [
+          66514,
+          67584,
+          65091,
+          66339
+        ],
+        "bytes": 157854,
+        "sha256": "a2c9549b2b701e902f99e43b1cf6496597b4d3a3081c001909bc4ae0b2c6e71d"
+      },
+      {
+        "dataset_index": 1084,
+        "token": "a7795dcadad44c1c85fa27eef18366f6",
+        "file": "samples/a7795dcadad44c1c85fa27eef18366f6.npz",
+        "future_tokens": [
+          "a7795dcadad44c1c85fa27eef18366f6",
+          "7693424bd4b04229b08c578b256a7de4",
+          "604a8ce58d0b4f94a93db370813edf94",
+          "09e58f5b8acb45a9a9c8c186895efa59"
+        ],
+        "scene_name": "scene-0101",
+        "inference_seconds": 0.103463220060803,
+        "save_seconds": 0.02940064005088061,
+        "voxel_counts": [
+          55980,
+          54657,
+          56823,
+          59988
+        ],
+        "bytes": 127287,
+        "sha256": "3c28f60ab8fcf617e2ff7a7e21da15629a5a5c0ef477a1d08b4ff3cce35ea508"
+      },
+      {
+        "dataset_index": 1496,
+        "token": "ece036de967b4e73bc8d76d60d2d6852",
+        "file": "samples/ece036de967b4e73bc8d76d60d2d6852.npz",
+        "future_tokens": [
+          "ece036de967b4e73bc8d76d60d2d6852",
+          "319d9da83ce44598bb9514917fd8d0fe",
+          "68cc30fac5f043d09cf991e05c47c75e",
+          "7a80523f99c3434ba5f65a3ddad2b2ea"
+        ],
+        "scene_name": "scene-0345",
+        "inference_seconds": 0.10495136003009975,
+        "save_seconds": 0.046522780088707805,
+        "voxel_counts": [
+          77999,
+          78084,
+          84725,
+          86813
+        ],
+        "bytes": 196056,
+        "sha256": "7bc052fc2906054671ce781b3b26fa142cbdf1ec26c60af3ab4a0ab7e2bad208"
+      },
+      {
+        "dataset_index": 1604,
+        "token": "c0118a0cdb484aa782b3bedc0cfaa757",
+        "file": "samples/c0118a0cdb484aa782b3bedc0cfaa757.npz",
+        "future_tokens": [
+          "c0118a0cdb484aa782b3bedc0cfaa757",
+          "e54e8d4a4e38433ead078b6644b4ce70",
+          "5001ffaf66384b63a0e51b5083a3bc30",
+          "b027772a1e11420ea815686a03e356a1"
+        ],
+        "scene_name": "scene-0330",
+        "inference_seconds": 0.10448119998909533,
+        "save_seconds": 0.031837470014579594,
+        "voxel_counts": [
+          61481,
+          58824,
+          57715,
+          56255
+        ],
+        "bytes": 121538,
+        "sha256": "dd74051f0fb6ee6f547080c83118e2e0009bc7d8f7fe419f0c882ba15868d4f2"
+      },
+      {
+        "dataset_index": 1880,
+        "token": "d0e49a3a29814c37a2d1c8c1b946653c",
+        "file": "samples/d0e49a3a29814c37a2d1c8c1b946653c.npz",
+        "future_tokens": [
+          "d0e49a3a29814c37a2d1c8c1b946653c",
+          "496be35e27894a3d9e280f514a340562",
+          "95ed5d5037b64b73b3e4028d4ce99082",
+          "c0e2f27544394606b5edf7b1014705b1"
+        ],
+        "scene_name": "scene-0520",
+        "inference_seconds": 0.10582023998722434,
+        "save_seconds": 0.04004728002473712,
+        "voxel_counts": [
+          67258,
+          68644,
+          73963,
+          76609
+        ],
+        "bytes": 156418,
+        "sha256": "1e957c478b584d79e75c4584d4f71ffebfb256bdf259c0e6cbdbfa66b16cc25b"
+      },
+      {
+        "dataset_index": 1905,
+        "token": "ee3ddd9ee0374030bdfece0eadd13bc1",
+        "file": "samples/ee3ddd9ee0374030bdfece0eadd13bc1.npz",
+        "future_tokens": [
+          "ee3ddd9ee0374030bdfece0eadd13bc1",
+          "fc2d1d2139ae40a3b781f70004a8fba8",
+          "74f8c38efc604be8a9561e2e5f8dc628",
+          "b767ec169db34739bd573afecd187592"
+        ],
+        "scene_name": "scene-0521",
+        "inference_seconds": 0.10780634998809546,
+        "save_seconds": 0.047183710034005344,
+        "voxel_counts": [
+          88174,
+          87486,
+          82408,
+          78191
+        ],
+        "bytes": 190547,
+        "sha256": "8cac9ac7aa5307fe48c42e57fedbfc38ffec26c2c50f0c8f8c5199ce082dd63e"
+      },
+      {
+        "dataset_index": 2083,
+        "token": "b4992b8d1b624ea698b8ee2342bf9661",
+        "file": "samples/b4992b8d1b624ea698b8ee2342bf9661.npz",
+        "future_tokens": [
+          "b4992b8d1b624ea698b8ee2342bf9661",
+          "0fe5ba3f01ad436f9a5403efabdb1a1d",
+          "c4cf31f334d04400840d122b2c767fd0",
+          "367114866964436aa71405df0c57f936"
+        ],
+        "scene_name": "scene-0771",
+        "inference_seconds": 0.10159802006091923,
+        "save_seconds": 0.020466129994019866,
+        "voxel_counts": [
+          36358,
+          36376,
+          35936,
+          36340
+        ],
+        "bytes": 78833,
+        "sha256": "f8e4743aed2806fe552daff69edb1eca01b1a5a8c6d8a2902b17148a796b7d42"
+      },
+      {
+        "dataset_index": 2365,
+        "token": "35216662ddb24864b8c29e89e7c68b13",
+        "file": "samples/35216662ddb24864b8c29e89e7c68b13.npz",
+        "future_tokens": [
+          "35216662ddb24864b8c29e89e7c68b13",
+          "a364a98930634dd7b0885e922421e5fe",
+          "77d878edfbd24f84a11c82c89e9609e5",
+          "bf0f74ae7c364db2a841d11f2cf07199"
+        ],
+        "scene_name": "scene-0784",
+        "inference_seconds": 0.10426080995239317,
+        "save_seconds": 0.03430646995548159,
+        "voxel_counts": [
+          62372,
+          62593,
+          62043,
+          62380
+        ],
+        "bytes": 145372,
+        "sha256": "4c9f51dcf0c6fb394e73da148fb9384471244627ca22c391599ee2d02e2177c5"
+      },
+      {
+        "dataset_index": 2464,
+        "token": "c03f62b6658d41b6b889a40723dbc782",
+        "file": "samples/c03f62b6658d41b6b889a40723dbc782.npz",
+        "future_tokens": [
+          "c03f62b6658d41b6b889a40723dbc782",
+          "17cdd19d7f8d4377be422017a5a7f425",
+          "dce5b14971d04b86b4221774d0903da7",
+          "44dbaeefe4b148dfb4499a37a24a6ad7"
+        ],
+        "scene_name": "scene-0558",
+        "inference_seconds": 0.10213462996762246,
+        "save_seconds": 0.035460230079479516,
+        "voxel_counts": [
+          63713,
+          63786,
+          62747,
+          61380
+        ],
+        "bytes": 134220,
+        "sha256": "d84a006ad894e74819a0b4ea2b052c86e5638761af9d603adb26a963739ed9b5"
+      },
+      {
+        "dataset_index": 2683,
+        "token": "3acf2395a75643ddb86db4361bc04fd4",
+        "file": "samples/3acf2395a75643ddb86db4361bc04fd4.npz",
+        "future_tokens": [
+          "3acf2395a75643ddb86db4361bc04fd4",
+          "1339ac69572144179cb5734dc86fa60c",
+          "4f38413567d14272b4fc9c89cd8405f3",
+          "56bd8adb5d1d429eae2c17166e16566c"
+        ],
+        "scene_name": "scene-0565",
+        "inference_seconds": 0.10520377999637276,
+        "save_seconds": 0.04404884995892644,
+        "voxel_counts": [
+          70760,
+          71214,
+          75015,
+          74354
+        ],
+        "bytes": 183321,
+        "sha256": "a07968facee56cf76c34087b2bfc73bf6bc2832ddb89be98d600c75bca6afe10"
+      },
+      {
+        "dataset_index": 2852,
+        "token": "b082d53392614131a91fedb0a2b2e1ab",
+        "file": "samples/b082d53392614131a91fedb0a2b2e1ab.npz",
+        "future_tokens": [
+          "b082d53392614131a91fedb0a2b2e1ab",
+          "66a72398011045e0b6f48e58768ea117",
+          "3e7bf19ac4f3459280bbbb4be635eb8d",
+          "a15bd188376049479320d79c39611040"
+        ],
+        "scene_name": "scene-0629",
+        "inference_seconds": 0.1036378899589181,
+        "save_seconds": 0.030381969991140068,
+        "voxel_counts": [
+          56387,
+          54923,
+          58070,
+          60920
+        ],
+        "bytes": 135226,
+        "sha256": "5810b6f4a091fd87507366c2ded173505c98524a3be2a207a1bb661d5a777bde"
+      },
+      {
+        "dataset_index": 2879,
+        "token": "6b5497fed3554da7869ab1af98947cb3",
+        "file": "samples/6b5497fed3554da7869ab1af98947cb3.npz",
+        "future_tokens": [
+          "6b5497fed3554da7869ab1af98947cb3",
+          "665cf9ea96fb4782b1193025868b4670",
+          "705b8eb682fb49c98189a06672b1f665",
+          "ba3c6f4e77ac473c879326d25afa49f1"
+        ],
+        "scene_name": "scene-0630",
+        "inference_seconds": 0.10275341989472508,
+        "save_seconds": 0.03449693997390568,
+        "voxel_counts": [
+          56696,
+          62281,
+          63255,
+          66733
+        ],
+        "bytes": 145225,
+        "sha256": "3aba346669aec75976987c9073ed5d4852e6b1719873ea63d2ce25d7fcc9aa22"
+      },
+      {
+        "dataset_index": 3035,
+        "token": "a49f9ebfee6044589286b7f8e279ac18",
+        "file": "samples/a49f9ebfee6044589286b7f8e279ac18.npz",
+        "future_tokens": [
+          "a49f9ebfee6044589286b7f8e279ac18",
+          "5392304f5e374296960235eabe9808b8",
+          "98e1aaf252bd49faba80f5bd33ada9c5",
+          "077d236908154887ad6ff411327ce1e0"
+        ],
+        "scene_name": "scene-0636",
+        "inference_seconds": 0.10612717003095895,
+        "save_seconds": 0.03528465994168073,
+        "voxel_counts": [
+          71446,
+          70112,
+          71060,
+          71537
+        ],
+        "bytes": 154577,
+        "sha256": "d65c738036b6224545eb16b002dd920302b07ee4bbebe46158992553e7fc2c7c"
+      },
+      {
+        "dataset_index": 3080,
+        "token": "3cc7d2152d6042708f0935f99552e0d8",
+        "file": "samples/3cc7d2152d6042708f0935f99552e0d8.npz",
+        "future_tokens": [
+          "3cc7d2152d6042708f0935f99552e0d8",
+          "cae3569ba124483ea18b79c4a61e3a3f",
+          "bd19753a386241779be41b3e7869996a",
+          "8ba8c0aca3e840cdbd68984c998b1adc"
+        ],
+        "scene_name": "scene-0637",
+        "inference_seconds": 0.10249720001593232,
+        "save_seconds": 0.04721317999064922,
+        "voxel_counts": [
+          82682,
+          83570,
+          86112,
+          85770
+        ],
+        "bytes": 185076,
+        "sha256": "1b2aafc3bc76f0cf3366e83079973f69a76a867eff743f9b0a873ce755d9f7a0"
+      },
+      {
+        "dataset_index": 3156,
+        "token": "d0771d9484c24d72a0837d6a6d0c0dc3",
+        "file": "samples/d0771d9484c24d72a0837d6a6d0c0dc3.npz",
+        "future_tokens": [
+          "d0771d9484c24d72a0837d6a6d0c0dc3",
+          "33b36f77c6c241848fa437ad7b516c0d",
+          "b8b5a71f39b047fe83754ba8f9224813",
+          "f552524e70ec4792895fdc00c0a3f856"
+        ],
+        "scene_name": "scene-0904",
+        "inference_seconds": 0.10205808992031962,
+        "save_seconds": 0.033589249942451715,
+        "voxel_counts": [
+          60216,
+          59052,
+          58676,
+          52576
+        ],
+        "bytes": 139516,
+        "sha256": "51adc268c3275501d8856023fd1ad1671152aff073f2445c5267227b5151f80c"
+      },
+      {
+        "dataset_index": 3162,
+        "token": "bc94beb70f694ee8a0399c4e7e1fc2d0",
+        "file": "samples/bc94beb70f694ee8a0399c4e7e1fc2d0.npz",
+        "future_tokens": [
+          "bc94beb70f694ee8a0399c4e7e1fc2d0",
+          "d07db190a3c14383b739d298818570e6",
+          "75fc8c40884f4132b4017d3b29500a71",
+          "c2a4c914bd064ede98dc6b3c193050a8"
+        ],
+        "scene_name": "scene-0905",
+        "inference_seconds": 0.09941053006332368,
+        "save_seconds": 0.030504649970680475,
+        "voxel_counts": [
+          54025,
+          55084,
+          58991,
+          64852
+        ],
+        "bytes": 134407,
+        "sha256": "506418213911d554faf655923d5db20d9bb2acfb24a8c081769423dd1e4e4e3c"
+      },
+      {
+        "dataset_index": 3220,
+        "token": "8938bdb987574314ac81e4e310a3f774",
+        "file": "samples/8938bdb987574314ac81e4e310a3f774.npz",
+        "future_tokens": [
+          "8938bdb987574314ac81e4e310a3f774",
+          "b21b443198bc4552ba7593a471abda1f",
+          "3b8d799305e54bfd8da165f83a75a2d0",
+          "5018e6c1e4a44d1d9057b468f1f91c21"
+        ],
+        "scene_name": "scene-0906",
+        "inference_seconds": 0.10287695995066315,
+        "save_seconds": 0.045001429971307516,
+        "voxel_counts": [
+          79159,
+          87158,
+          89233,
+          90303
+        ],
+        "bytes": 190517,
+        "sha256": "c0377aa3a09fc2019e0aae4007e0f1ad7611270ca3130fe0c0ff392165a2e1df"
+      },
+      {
+        "dataset_index": 3470,
+        "token": "f8de6e9a14d34f2791c21a07ce5d47c5",
+        "file": "samples/f8de6e9a14d34f2791c21a07ce5d47c5.npz",
+        "future_tokens": [
+          "f8de6e9a14d34f2791c21a07ce5d47c5",
+          "507225f1a70e4f6d8d876cb1aaed73b7",
+          "10e6d20748d4434986cfff5b74222781",
+          "ecb7bc8b12064ecd8a7e958c7172d46a"
+        ],
+        "scene_name": "scene-0914",
+        "inference_seconds": 0.10135402996093035,
+        "save_seconds": 0.0296716500306502,
+        "voxel_counts": [
+          41099,
+          49292,
+          58762,
+          67840
+        ],
+        "bytes": 126951,
+        "sha256": "ff1fea337ad0535b4accf2be68a422e3b1b6feb37a7ad4a8c1659e301c5bf9df"
+      },
+      {
+        "dataset_index": 3819,
+        "token": "06352dee7bb546dbb5a8dc21aa59f373",
+        "file": "samples/06352dee7bb546dbb5a8dc21aa59f373.npz",
+        "future_tokens": [
+          "06352dee7bb546dbb5a8dc21aa59f373",
+          "a13789ea66f94f3eb89fdd4d77ed1bc9",
+          "711ee097e5764153a25a265cc20292a3",
+          "dcd373ecd06b429f87052dc5f8ac36b7"
+        ],
+        "scene_name": "scene-0794",
+        "inference_seconds": 0.10449319996405393,
+        "save_seconds": 0.03907567006535828,
+        "voxel_counts": [
+          69961,
+          69126,
+          69972,
+          70121
+        ],
+        "bytes": 180644,
+        "sha256": "5403af795abfe528ad85f712ebcec0551c30fb6e29501a1498c89983900de615"
+      },
+      {
+        "dataset_index": 3877,
+        "token": "4fe6f15f0d404c5fa8f7a3a5734d13e0",
+        "file": "samples/4fe6f15f0d404c5fa8f7a3a5734d13e0.npz",
+        "future_tokens": [
+          "4fe6f15f0d404c5fa8f7a3a5734d13e0",
+          "cb83564311ad470fae21ff06fda307ca",
+          "f8883f89a30a4cafb79e49f6f533e4f5",
+          "7bfac34030fa43949b916978edef0f99"
+        ],
+        "scene_name": "scene-0795",
+        "inference_seconds": 0.1824282599845901,
+        "save_seconds": 0.043298030039295554,
+        "voxel_counts": [
+          80350,
+          76725,
+          72430,
+          74521
+        ],
+        "bytes": 180185,
+        "sha256": "b894dfd411be372610472a3c8a70805b0064960f471ac210ffba53b570f91c4f"
+      },
+      {
+        "dataset_index": 3904,
+        "token": "4786b3c0d0a24c8b86b0676d32dd5919",
+        "file": "samples/4786b3c0d0a24c8b86b0676d32dd5919.npz",
+        "future_tokens": [
+          "4786b3c0d0a24c8b86b0676d32dd5919",
+          "ac9af15d1aba4f5786877dde9f0b1c93",
+          "f1fd429830e3437db4ba03ba851f0015",
+          "264c5f3a04744d53a72fd07c1bb6a724"
+        ],
+        "scene_name": "scene-0796",
+        "inference_seconds": 0.1032971499953419,
+        "save_seconds": 0.04906001000199467,
+        "voxel_counts": [
+          82242,
+          78969,
+          77975,
+          73961
+        ],
+        "bytes": 195308,
+        "sha256": "4db29221283945266d59991f4525e6345e556c714adc0fc0e82af45f6b272e1a"
+      },
+      {
+        "dataset_index": 3978,
+        "token": "6a6524079ac745b18acdb79283e454e6",
+        "file": "samples/6a6524079ac745b18acdb79283e454e6.npz",
+        "future_tokens": [
+          "6a6524079ac745b18acdb79283e454e6",
+          "190ad8d6769c4f32ae1a5292d2e5a408",
+          "ef183f507ce945519cc458276a8ae6e2",
+          "1eabb4f61d144fd6ba73bd69b9633981"
+        ],
+        "scene_name": "scene-0798",
+        "inference_seconds": 0.10401914000976831,
+        "save_seconds": 0.047560749924741685,
+        "voxel_counts": [
+          87053,
+          88527,
+          88382,
+          85719
+        ],
+        "bytes": 187932,
+        "sha256": "6eca12f579938e800459c9b3f5ffb431aad69a01630c7acd5266a6e24c20b893"
+      },
+      {
+        "dataset_index": 4072,
+        "token": "713c08361c034a2e93ba00a2151775ef",
+        "file": "samples/713c08361c034a2e93ba00a2151775ef.npz",
+        "future_tokens": [
+          "713c08361c034a2e93ba00a2151775ef",
+          "76af4456724545068bc2b95fc1514216",
+          "ff851eb1de944f529534610264ddd5d2",
+          "aadad53902494b81bf5b1c332f423760"
+        ],
+        "scene_name": "scene-0802",
+        "inference_seconds": 0.10331044998019934,
+        "save_seconds": 0.04235678003169596,
+        "voxel_counts": [
+          82183,
+          78320,
+          81451,
+          78623
+        ],
+        "bytes": 183702,
+        "sha256": "d723b1b8752e534aa4225588d4c87093c43e0ba632544f35ebb7f2b9e0321702"
+      },
+      {
+        "dataset_index": 4192,
+        "token": "eb8088bcbb304f78be87dff12278e05d",
+        "file": "samples/eb8088bcbb304f78be87dff12278e05d.npz",
+        "future_tokens": [
+          "eb8088bcbb304f78be87dff12278e05d",
+          "188fe79624af4474b8b720e2282b406a",
+          "9d99870cd292481e9582d7b5f64cd12f",
+          "0de2bcbcf38b44be9e7cc09cf9bf518d"
+        ],
+        "scene_name": "scene-0919",
+        "inference_seconds": 0.10246008995454758,
+        "save_seconds": 0.04135611990932375,
+        "voxel_counts": [
+          88815,
+          90296,
+          89123,
+          86132
+        ],
+        "bytes": 154211,
+        "sha256": "5788f91440f9d1f43ec5853c3761320eb8caa0b9a7c879bd37d1f30674cb5d2a"
+      },
+      {
+        "dataset_index": 4561,
+        "token": "ff93d6dd1c0e4c569ee4bbc0c965c7f2",
+        "file": "samples/ff93d6dd1c0e4c569ee4bbc0c965c7f2.npz",
+        "future_tokens": [
+          "ff93d6dd1c0e4c569ee4bbc0c965c7f2",
+          "4f0b05fa7dbc4cf6beae80a56d3e2b0e",
+          "506d1d4eb91f43d1ba7f8564ea7a6939",
+          "8783fc957cda4ee2b3de5b114b81cdc8"
+        ],
+        "scene_name": "scene-0930",
+        "inference_seconds": 0.10165830003097653,
+        "save_seconds": 0.032082060002721846,
+        "voxel_counts": [
+          54086,
+          54446,
+          54253,
+          51589
+        ],
+        "bytes": 133522,
+        "sha256": "c58865feb18f85e325dce952c9e0880b4020197e3fc56f5bd176feb25ade82c6"
+      },
+      {
+        "dataset_index": 4735,
+        "token": "1d0ccce7fc284ab5848b6a5055cf6f14",
+        "file": "samples/1d0ccce7fc284ab5848b6a5055cf6f14.npz",
+        "future_tokens": [
+          "1d0ccce7fc284ab5848b6a5055cf6f14",
+          "07984a39f9b042819fd93ef41e4c0981",
+          "1a776100d0974c0b9edc9bb80a842b54",
+          "1283c0973e724bad84a45b7b93124bb1"
+        ],
+        "scene_name": "scene-1062",
+        "inference_seconds": 0.10134208993986249,
+        "save_seconds": 0.03794293000828475,
+        "voxel_counts": [
+          71673,
+          72522,
+          73040,
+          73529
+        ],
+        "bytes": 169702,
+        "sha256": "08c3898cab196d6e2c69bdcae31d257ea7208ce993f8d3bd1f5cffa003f1d91d"
+      },
+      {
+        "dataset_index": 4857,
+        "token": "c880188955834ebaa53cc8bc887327d8",
+        "file": "samples/c880188955834ebaa53cc8bc887327d8.npz",
+        "future_tokens": [
+          "c880188955834ebaa53cc8bc887327d8",
+          "b4526fe3529f423faf52b6165e41e828",
+          "43b92f490cb64c2f98f0534678db42a2",
+          "98bf797f546c458dba043f2a8968bed4"
+        ],
+        "scene_name": "scene-1066",
+        "inference_seconds": 0.10358096996787935,
+        "save_seconds": 0.04835217003710568,
+        "voxel_counts": [
+          88330,
+          84037,
+          84005,
+          78706
+        ],
+        "bytes": 209566,
+        "sha256": "d07971f87ff19b2ac5ea80d56bc37a817b2c5e81b2e000b160c46c624d802003"
+      },
+      {
+        "dataset_index": 4988,
+        "token": "77fa92b807e649bd9b39b2c2efa78177",
+        "file": "samples/77fa92b807e649bd9b39b2c2efa78177.npz",
+        "future_tokens": [
+          "77fa92b807e649bd9b39b2c2efa78177",
+          "a322852092bd4851b21d7b8bb14d3af8",
+          "1efc1f89c0124c18aa5fc06aed91fed6",
+          "45326326fd9c44e18d44e9e698454ef6"
+        ],
+        "scene_name": "scene-1070",
+        "inference_seconds": 0.10237712995149195,
+        "save_seconds": 0.052063259994611144,
+        "voxel_counts": [
+          80555,
+          85190,
+          83452,
+          83761
+        ],
+        "bytes": 211075,
+        "sha256": "2f02a1965e2efbfb6ed2c2803eef16a55cf6277cd61c66a8154a5c0aaa67a42d"
+      }
+    ],
+    "target_metadata": {
+      "source": "endpoint_metadata_only",
+      "root": "/home/huayiming/Workspace/SparseWorld-cache/endpoint_segments_v1_20260926",
+      "manifest_sha256": "add76b72bba8bae310b5a2d20c90068b1be865be26345561ae826064a962d63a",
+      "anchors_sha256": "2bd8aa679b677f85f877659855c88a9b173d7bc089fb7c37ad55a96c4a9898bb",
+      "selected_frame_sha256": {
+        "c855b62fda9748c0a719c329b6e216ec": "c4631cd9057b3130d8ad5d7b5498608d5fb78a47086456a366b65e297bdc6264",
+        "5aa5555debb94e988b4eb8d8ff26c8da": "463b086bc32ab01ef8d25248ae387eefbad39672d4c77ac5b710bc7a155721ab",
+        "7ff6ab92e1c443209f8268fcfb214925": "64f01ce4342d835cfc04b653ccfd49385b440f4adee691b6094a8ff96ab406e1",
+        "ab7f9e0665d24fe79fbde77325627d18": "85a4bee8c9959f8306bb55ad96e79467bf7fd34bbe7e833d47db7ea6092acda5",
+        "68ecb2433f654422a7567d9f349c0708": "25f86ca1238a950740114cb7ccfd25afe62b41f36b4c892bbf88172ef05f3ee0",
+        "cba4c5078d8e40138b80902278069671": "cf47f6621e42da047f9df547938a1fe1b77d4e960d3efeba7e14e7f6ffc9aabb",
+        "c1255d993df4492a9dfa2f67a50f3073": "1b38d036aa1ea8ca7c39c611fc067d2457ee2108892c41422bbd3ddfebc6ce92",
+        "01fbe6d2d7384d20967a88e4142b5678": "7eafe7bde9e947f9c1fb7c2e9d56d07e5a0df185ade4104aed919c1ed4c9ea67",
+        "b07273055da64823bcc2ede3f06ad3b7": "e5b38f933b0234dd08020c543c39bc93366736a4c103b61e45bd9d444905447e",
+        "e9ae8c38b8744ea2a265e4f64829c0d3": "f1999afb8a123e9c9a46d7b1985bb3fdf7b539eb77416a8c7cead4a40b5f1f67",
+        "a484d76a40e24d549a0ab412d0a843d0": "078ceed1a14078785234887e1ed2e6b5e1b3fe0bb2a13a78aa63043e5a942d26",
+        "6cf7822aa27a4e599d4cdd249fca5763": "8348b6b7595850e3584cf7fc948f453e6b0e4d3b9c7e47dc1dcf036e870bc749",
+        "f0e4797551024f9487a016ee9d9e29e1": "8e301611dcd4605bed8c44b3603e6b3072be33939c75a56d550ec6188687896a",
+        "b78605983b3543a1a70df4b3805e4dfc": "6fbe11aae2e0a4e992348eebd1ac213403fefda647534420ef61bde4b6e581f5",
+        "248f5231a8c94b5da0b58e515ad68298": "e84a00a3db49bd79c2fdb4488d076d73d00176eccb0668ce2248dedb09dea48d",
+        "2ff5689a089844f0a2097b1883916003": "008ba2efa67af7a177f4098edd3a8a509e2ae159643b16434caad5a51d56e4a6",
+        "c261faeb1eb0442e98d78100827ede0b": "16983a178b708490d0de3f2e5de37027c913602aa71bffe731e32e7cbbdd7ce2",
+        "3435cdd71e3d4e9185ae6b514ae7651c": "6cf43c521d9d814a72b196af189572bfb879dca5fccf87305b33c7a0a7830c40",
+        "edc5f9bd039342cb9403a18d2cee773d": "e90dba38684601b53edbea7d8c99ae446f98efda35042071b2012963bf78a495",
+        "eb0676ccc9bd45149ae65119cb8d5e7b": "0ac39eb7bd94973565c5b69865ddfb8a20eb5e6088cd197e2a77b1e6de4f9138",
+        "a7795dcadad44c1c85fa27eef18366f6": "b6806d26451c293f8f33b6932602152a985b02fa675d317ea022948367fa6c9b",
+        "7693424bd4b04229b08c578b256a7de4": "94f8f196f4e17830716fdfa973935e2c6b516f6532f6c1be1f44d17c24505b9a",
+        "604a8ce58d0b4f94a93db370813edf94": "849813d7852183e470b5786ef48cc827fed3b392ea565a2f6f48e670052ee69b",
+        "09e58f5b8acb45a9a9c8c186895efa59": "5dccdcd1cbd0e4f81f0088fd8fb813d8b1dd0e284996787788a6cb39f03188ed",
+        "ece036de967b4e73bc8d76d60d2d6852": "2d4089229a7263dbb26282adb7b7feb200fc5ef460804f8d19c63a88328cbf79",
+        "319d9da83ce44598bb9514917fd8d0fe": "ff13b102273945b3af54fe0aa8734504be68ddb23ee5e410e3d0df19d49833f7",
+        "68cc30fac5f043d09cf991e05c47c75e": "9ae4a7f8890d44abf5c9bef3eaae173d2b25934fa464152275e572ab120421a7",
+        "7a80523f99c3434ba5f65a3ddad2b2ea": "c5d7ce119da2a2d4e83a7611943bd8fde71c92d38be1a01a7c978b661849436f",
+        "c0118a0cdb484aa782b3bedc0cfaa757": "6507f31c70d89184b22d8383bae4a9da79368befa72a86819d155f80439bf69c",
+        "e54e8d4a4e38433ead078b6644b4ce70": "3536cadc0aa26d9edfa887a043851687f2ad0e09140ad2a853068cc1d4f7635e",
+        "5001ffaf66384b63a0e51b5083a3bc30": "5dcd5c8e93a9c2e7b609747d86b561293cc653850cc2aaa90d851771b783b2d7",
+        "b027772a1e11420ea815686a03e356a1": "039f971cc088509b6996143da1151b5e4b1c0ccae82c7a85effd7a4e27dee14c",
+        "d0e49a3a29814c37a2d1c8c1b946653c": "75b35d5ed18527ff1cc93b3df84628042e747a9af489b6314a537ac1d8d2d90d",
+        "496be35e27894a3d9e280f514a340562": "4c4c9fc57d666dd90f0fa5fba97914602f1fbad331b4f737df29081d9af36773",
+        "95ed5d5037b64b73b3e4028d4ce99082": "4f7627a9b2fcf7679c6be8b401f7106b4edb61c34f0546467fa56c56d172dc71",
+        "c0e2f27544394606b5edf7b1014705b1": "7bd6770be068066d9702a3b0e9bfa188d0641f6da53580adb93044e0f1225ae9",
+        "ee3ddd9ee0374030bdfece0eadd13bc1": "0620317c228163a0b12031a5dd45ea9c9f3ef01cd34d9804cee3710f0e75728e",
+        "fc2d1d2139ae40a3b781f70004a8fba8": "0ff1d463541eaf9837bd4effef3859c875c1fdbd569dc628434edec9144d8dec",
+        "74f8c38efc604be8a9561e2e5f8dc628": "3d38d859edc7086ecf003622b8e53845022d718d0047f4da83ffda9dfa29b55a",
+        "b767ec169db34739bd573afecd187592": "aef1dfa329b3558e6ba0686083f58b5dad6d8741d7114fa3a1baecda555bb13b",
+        "b4992b8d1b624ea698b8ee2342bf9661": "e5567d8229e1dafb665aa8591972fa862d0374701a22f293d32e4ef2d5861912",
+        "0fe5ba3f01ad436f9a5403efabdb1a1d": "ed3ed5ba06a728d9d1c6b83e30822a7a18182ad94a972045d548ff9b5bf30fe1",
+        "c4cf31f334d04400840d122b2c767fd0": "0b5d30bd919d41194e079fbb0ebed368d318aea0510eed55657cf3aa15d675f4",
+        "367114866964436aa71405df0c57f936": "201ff19eea01376216726db220b5f9cf2a525f9a76840deaaaa31a75b1c512cc",
+        "35216662ddb24864b8c29e89e7c68b13": "82a67191ead391c39310a20ae97097c73008b19af1890db0514bf596a52c9338",
+        "a364a98930634dd7b0885e922421e5fe": "57db29b4b06eaf98c67709514bd5e18fb5fefdb6da1e15ec46617dfb37815f7b",
+        "77d878edfbd24f84a11c82c89e9609e5": "d4fa1e8fcb15abdc5caa0b52d7e4263d719d752928473c489e051e6d23865e16",
+        "bf0f74ae7c364db2a841d11f2cf07199": "fe77c875135a33e713673f21e5fcd0169cf734e9e1d36a003bd3270fb3176689",
+        "c03f62b6658d41b6b889a40723dbc782": "c31b792cef604ff64ef633b8b1ec296f1a22b768b6c4c73cbfdfa345cb4160f9",
+        "17cdd19d7f8d4377be422017a5a7f425": "601a385c55fba83a9d9834fab182afdcf85484844841f65db7455ae303f3e3c7",
+        "dce5b14971d04b86b4221774d0903da7": "bb093cb6064321fef334b9c916a766323947ad7de41dff7b71d58b126328036a",
+        "44dbaeefe4b148dfb4499a37a24a6ad7": "17a2891f001b6412d01f1f93457c454e0b63d6fff0f22a64acfad5d1537afd69",
+        "3acf2395a75643ddb86db4361bc04fd4": "f02ee50c9441cbbb8248861d1b933b15d66f1d454e2d70bf350d1baf741a81f2",
+        "1339ac69572144179cb5734dc86fa60c": "435d7ce7c7430172c656f07e894b6eef98dcbbc3e7e6a23940c77cb996e38397",
+        "4f38413567d14272b4fc9c89cd8405f3": "3bbcacae15b052f7c06b289e60c86d20c56bead58ab3544dbb60418a34022507",
+        "56bd8adb5d1d429eae2c17166e16566c": "539e14bef33c4185c17f0ff4b462e2da4f40e0ff090ea5463f3930f256b09a44",
+        "b082d53392614131a91fedb0a2b2e1ab": "79836a61b23f9a07be2041e481955ea6ec4115d1f09dfe9c35b94cbe5636b6ae",
+        "66a72398011045e0b6f48e58768ea117": "0fcd5ce617fe735fe3954aa2a6f00f3a41b9c16769dd2f4f7c6ad33cc9c36395",
+        "3e7bf19ac4f3459280bbbb4be635eb8d": "4345fc40483b50d34d51b38b272e91224b020d66a45e601ee49c18ef204bfe7e",
+        "a15bd188376049479320d79c39611040": "46e770152a8461c2329d963f3d11997c43e19989c7d7f99848bc5b4483537a73",
+        "6b5497fed3554da7869ab1af98947cb3": "5bc5edbb39c8ed965e11886753e1486c9168afb44b5efd556fbd9fddf47c55bf",
+        "665cf9ea96fb4782b1193025868b4670": "782d4ef771fcc88bb7f71ef13057d8132b36e50a10db6f42e3b7a8237e42de1c",
+        "705b8eb682fb49c98189a06672b1f665": "7129083653c74edc65f875c6815928da377912f84b8a7f6d560bbb6bed4d8860",
+        "ba3c6f4e77ac473c879326d25afa49f1": "60faa0fbcec9dcce5814ec465146982456e5743a047a2cf1ef8ba89e57f1f3fe",
+        "a49f9ebfee6044589286b7f8e279ac18": "56e0cf79783e45382ce1f31f88020e3490ffd0beb377d431025580b84fcb6548",
+        "5392304f5e374296960235eabe9808b8": "b38acc82bcbccd01751684321f1a154694482c3654abbd3f451bbcf03232c0bc",
+        "98e1aaf252bd49faba80f5bd33ada9c5": "8065f27b5b0b1e489d31520952862c49b6edbabeda29574504fcb096a208e8a5",
+        "077d236908154887ad6ff411327ce1e0": "cd96c7fb9692e39d5672b7d7196aee76eeffe2e36dbd8abd64d177ae4ccf4ab4",
+        "3cc7d2152d6042708f0935f99552e0d8": "2aa17390a2477699e04fbb6beb169e75ab235dba668472aa93f3eaac4f2bfbfd",
+        "cae3569ba124483ea18b79c4a61e3a3f": "0ff465109f4aa030da1c78a21f921ab6bf775c30b28a0b0454e28abaee06ed87",
+        "bd19753a386241779be41b3e7869996a": "a2f8332e55e9e3d33b1e4ac9325a783e5997fd2519c37cd3f80dff6318be6393",
+        "8ba8c0aca3e840cdbd68984c998b1adc": "f170ed9079b305ef20fb84c614b72b763da5962a6c99c93b34baa993547006d8",
+        "d0771d9484c24d72a0837d6a6d0c0dc3": "3b02897dba591e6d3ed8a165c1209e747e1dfbb282c6c310ae93e4b7f3bedcf0",
+        "33b36f77c6c241848fa437ad7b516c0d": "4b97d920fd850f5b964cbbd2591f5431a85a1d9e8eb393921210dbf0ef64827b",
+        "b8b5a71f39b047fe83754ba8f9224813": "633e24de5889be8ca29ecdafa04d906109c7400c48f455ea2ee2b866d4a7ddf2",
+        "f552524e70ec4792895fdc00c0a3f856": "bddd9ea73c300401add5f892a566efaf41eabeb5e497c8168237cc1a2337f041",
+        "bc94beb70f694ee8a0399c4e7e1fc2d0": "25963c7cd64f3e255571634cd999c66d496e770d9c0c765972e918cdbdc6b24d",
+        "d07db190a3c14383b739d298818570e6": "388ec598019bd21ff02bbde9db50abe41c6813b7f7f29b85cca896ad91b761a5",
+        "75fc8c40884f4132b4017d3b29500a71": "47017a22a76d7af5e9cdf7ac75cbbb4ff5c03eff86bded81cb04ad6e166572ce",
+        "c2a4c914bd064ede98dc6b3c193050a8": "c2c94302b15ae92c9ea70cd296b95c9e79a2430bc608123971f595d95b8caaad",
+        "8938bdb987574314ac81e4e310a3f774": "069fc4750d1cb0c02902e51a73b96e169dfaedab94f0e6fbca0c83886fbbc9f5",
+        "b21b443198bc4552ba7593a471abda1f": "274346cc46fab4e449df05465436e03161164d0e97be29ee6aa5a44bb10c7f42",
+        "3b8d799305e54bfd8da165f83a75a2d0": "394b38a03d6655dbac9b1f5e498d2aefee8250a2c7e29de8d0d9cf4bb5dce51e",
+        "5018e6c1e4a44d1d9057b468f1f91c21": "5b871fd5bd02d6681f5b40f4e0827b29bad1238d50a6e055e2eb759237c3e7b2",
+        "f8de6e9a14d34f2791c21a07ce5d47c5": "4e48102058f846cb6109659fe2b47a02c2980983774849b04464b3d5aa88a7d8",
+        "507225f1a70e4f6d8d876cb1aaed73b7": "4251d8a1e72f73d2f04f0e81cb4adb0f725c2da424739b24ecbb13f836de7c65",
+        "10e6d20748d4434986cfff5b74222781": "2149c78415bcaa9587577d3be4291d1fc23988bdddc09a559118eb9278cab866",
+        "ecb7bc8b12064ecd8a7e958c7172d46a": "4360064086eeb5d816c711aab585a51a4d159340898a7b681f12e6666960ee38",
+        "06352dee7bb546dbb5a8dc21aa59f373": "1970b86ca54577ba5b5972f3db3de99d7d223250a6174de4166ac1e0cb47023d",
+        "a13789ea66f94f3eb89fdd4d77ed1bc9": "8d34cde04b2019659a98388748044556ecc7b412726a7b3fad8e7755abc93681",
+        "711ee097e5764153a25a265cc20292a3": "fad19efb9e496b45e95edecc2ead94bff88e581f1af1418a8f22fcee2d67a271",
+        "dcd373ecd06b429f87052dc5f8ac36b7": "30bb8950ecc3d4f5915a4773ae40910322aa846ad5cebe9ac343dff677b4f83d",
+        "4fe6f15f0d404c5fa8f7a3a5734d13e0": "ce2fc2c2564db646b9b1a35fb4588012c0d37549a3edf732a368827b29896b2f",
+        "cb83564311ad470fae21ff06fda307ca": "0366953f03c1f0c8cc0fc889e3f5f8c76f969195e043644ededf5c46cbb8f743",
+        "f8883f89a30a4cafb79e49f6f533e4f5": "e8b796d549baeb05bd5ed41cfc42268821dfd098125f3b3f4f411b5905f00337",
+        "7bfac34030fa43949b916978edef0f99": "91ee0932c7651b2a40b4892c9b71720072613aa731b2c112fdfa3d51c70fce35",
+        "4786b3c0d0a24c8b86b0676d32dd5919": "15a838dec524ae9d3aaa794ce15a912ef1c867034864d5bebbc49041c033efc1",
+        "ac9af15d1aba4f5786877dde9f0b1c93": "f4a54d99bedd3ef0953e705d79712c4ed81e93f52eb42fba169c9c9834391f3b",
+        "f1fd429830e3437db4ba03ba851f0015": "84ea5fc629f02bab56d4a959dad696b781e7b94a58550df67bd1a1cdd4265751",
+        "264c5f3a04744d53a72fd07c1bb6a724": "3ef465f2875333c0c39ece5b0e1ac3db15b178301ff63772588e7fe678e8e5a6",
+        "6a6524079ac745b18acdb79283e454e6": "80de61db909c2cb3f3d47c4f536a910b9bdc49c289324ad747e374933056c6bf",
+        "190ad8d6769c4f32ae1a5292d2e5a408": "3f595ba31fea132990b12ca97f45c8c36f23f6b94293b269802726b77db7b8af",
+        "ef183f507ce945519cc458276a8ae6e2": "d38fe6de30eceb57f2fe630ae9498898b8daa4f09040141ff199441f78d80f5b",
+        "1eabb4f61d144fd6ba73bd69b9633981": "9ee73f9dfbb7d640b7a9fc5420e5c5df9c99108561dd38d2a85ca4e4de79523b",
+        "713c08361c034a2e93ba00a2151775ef": "690a4b33b501f28f3ba3e4b9ede76eb0ca1f9a32f5f8df46087edf28f43b9e49",
+        "76af4456724545068bc2b95fc1514216": "09403bb3a85358b15ba09a9e67fcebf9902dbae4b9c62dc95a5a110525940f6a",
+        "ff851eb1de944f529534610264ddd5d2": "49bff8784de986d8eff4f643ca02e8d781e7459c037b9b74f0cd1cf84409d578",
+        "aadad53902494b81bf5b1c332f423760": "a471718299d5af2e976e61244cfcc455bb279cce21de13a0f85756768fb2bb0f",
+        "eb8088bcbb304f78be87dff12278e05d": "09fb34b15141dc4992ec065e3649d4df709746e4fc0f54bc60455d50141ef7a5",
+        "188fe79624af4474b8b720e2282b406a": "ebd015513ea46cecff2e0374d109ae0624a8957a4569ff6e5110b69e3a0e640e",
+        "9d99870cd292481e9582d7b5f64cd12f": "803f9720401b0cda9e359d2929170bb3ffb0d99d89b3bca51d464d0697845ef2",
+        "0de2bcbcf38b44be9e7cc09cf9bf518d": "efe3fb39210a4f81ac9a107e8d16e07df271cb6d7f14926cf76559dbf0212adc",
+        "ff93d6dd1c0e4c569ee4bbc0c965c7f2": "2c9cb0632b249b6003367dbd45d274c2fc699664da4d12dba1a182330435bbc0",
+        "4f0b05fa7dbc4cf6beae80a56d3e2b0e": "9929deaf7cfd22e57141b3149e297ac554b078c0d1264be8459108795b6283a5",
+        "506d1d4eb91f43d1ba7f8564ea7a6939": "3a968c80f0d10e0d031963a192afb1f551e232e02ce30a4c2394bc9b39bf0e08",
+        "8783fc957cda4ee2b3de5b114b81cdc8": "a13a7f3977f075c460ef4b3ff77141c3d4a26777b656b33327f0f0e165c895d1",
+        "1d0ccce7fc284ab5848b6a5055cf6f14": "769d9f428d53c21d29cfaa56a04413d8b6d1dad6c94c6f74a3dc6a908add4fb8",
+        "07984a39f9b042819fd93ef41e4c0981": "2e8791329e6f11919c9dccf5f3fa405a3df98e978941255fc56703e22388a5d3",
+        "1a776100d0974c0b9edc9bb80a842b54": "f9536b8ab763c82fe7c1501df44d94036a64878e3dc08a3a5c03db9918b7c070",
+        "1283c0973e724bad84a45b7b93124bb1": "b327280268509b21a95b27827a594132b3a9c527dc765c5e79daef4550e69e18",
+        "c880188955834ebaa53cc8bc887327d8": "c940c9ba8549e9ff0ea6cdc9084da8c7f5d56d926887696714aecf4568bfa701",
+        "b4526fe3529f423faf52b6165e41e828": "e6bbc9e738ead09139c1da62308fc6fc9edd9de3e18b85bffa463435e96d0579",
+        "43b92f490cb64c2f98f0534678db42a2": "8581cdc1c5c55587962ba4d9fde894e74670beb725b6c547031ed9753a70747b",
+        "98bf797f546c458dba043f2a8968bed4": "a07b6ce3498f75ee00c270747a238bc2bddd5554e51d23d19f81c1d681e2685a",
+        "77fa92b807e649bd9b39b2c2efa78177": "c96cb9f32914cd8cad3629273d8793bb0730836d872f677b70aab5ecb7af212b",
+        "a322852092bd4851b21d7b8bb14d3af8": "a50e101e23dc835af5768f89281c1dc814d865a8abd0a62c1f744641ea94c268",
+        "1efc1f89c0124c18aa5fc06aed91fed6": "ffe49fe2d8d7f524e2e29df3e774e2d23187b782acdb6155f3435f57d8307a1b",
+        "45326326fd9c44e18d44e9e698454ef6": "b1a0a417686cb170aeb30a46611d15e1c54ec2cfea4f5ad7f955cb9d4cda0621"
+      }
+    },
+    "exporter_sha256": "bb69bcb1dd8b928a9eaa0cc13e207c5a6e2ac243ab04929d66c07233dae483f1",
+    "coordinate_contract": {
+      "occ_loc": "xyz voxel indices in each target future ego grid",
+      "raw_normalized_points": "original decoder normalized coordinates in the same future ego grid",
+      "fut2cur": "column-vector transform from each target future ego to anchor ego",
+      "horizon_suffix": "0..3 indices corresponding to future_frames, not frame offsets"
+    },
+    "class_names": [
+      "others",
+      "barrier",
+      "bicycle",
+      "bus",
+      "car",
+      "construction_vehicle",
+      "motorcycle",
+      "pedestrian",
+      "traffic_cone",
+      "trailer",
+      "truck",
+      "driveable_surface",
+      "other_flat",
+      "sidewalk",
+      "terrain",
+      "manmade",
+      "vegetation"
+    ],
+    "protocol": "Original offline FP16 inference; unchanged filtering, voxelization and padding; no training",
+    "limitations": [
+      "No predicted instance identity is inferred from query indices.",
+      "Each horizon output is a semantic occupancy union, not separate actor trajectories."
+    ],
+    "checkpoint_meta": {
+      "epoch": 9,
+      "iter": 26928
+    },
+    "finite_model_tensors": 771,
+    "optimizer_restored": false,
+    "pc_range": [
+      -40.0,
+      -40.0,
+      -1.0,
+      40.0,
+      40.0,
+      5.4
+    ],
+    "voxel_size": [
+      0.4,
+      0.4,
+      0.4
+    ],
+    "effective_model_buffers": {
+      "pc_range": [
+        -40.0,
+        -40.0,
+        -1.0,
+        40.0,
+        40.0,
+        5.400000095367432
+      ],
+      "voxel_size": [
+        0.4000000059604645,
+        0.4000000059604645,
+        0.4000000059604645
+      ]
+    },
+    "grid_shape": [
+      200,
+      200,
+      16
+    ],
+    "test_cfg": {
+      "score_thr": 0.5,
+      "padding": true
+    },
+    "elapsed_seconds": 109.50964497996029,
+    "last_updated_at_utc": "2026-09-27T12:29:34.743987+00:00",
+    "completed_at_utc": "2026-09-27T12:29:35.163194+00:00",
+    "inference_seconds": 16.31830436945893
+  }
+}
