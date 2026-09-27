@@ -1,0 +1,15 @@
+{
+  "at_utc": "2026-09-27T12:11:58.667975+00:00",
+  "checkpoints": [
+    {
+      "name": "epoch_5.pth",
+      "bytes": 977574493,
+      "sha256": "2121b7bc2fb9e160095ece50a6092332a867f4e709c028b41747fd06a47b8bad"
+    },
+    {
+      "name": "best_future.pth",
+      "bytes": 977574493,
+      "sha256": "41380c453f0e7b6f46c8f5b25b9040ff4dfe059f833c6a3a6c313e670710f06a"
+    }
+  ]
+}

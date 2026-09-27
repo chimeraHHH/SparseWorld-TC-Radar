@@ -1,0 +1,97 @@
+{
+  "at_utc": "2026-09-27T12:08:52.116549+00:00",
+  "action": "stopped_censored_path_by_explicit_user_request",
+  "git_revision": "b6599b16044a20097aa4f7797a0713168b430f50",
+  "targeted_pids": [
+    2824722,
+    2829230,
+    2830710,
+    2830711,
+    2830712,
+    2830713,
+    2830714,
+    2830716,
+    2830717,
+    2830718,
+    2830719,
+    2830720,
+    2830721,
+    2830722
+  ],
+  "remaining_live_pids": [],
+  "last_train_row": {
+    "mode": "train",
+    "epoch": 6,
+    "iter": 2450,
+    "lr": 0.00011,
+    "memory": 87964,
+    "data_time": 0.00125,
+    "d0.loss_cls": 0.22899,
+    "d0.loss_pts": 3.75166,
+    "d1.loss_cls": 0.19378,
+    "d1.loss_pts": 1.94459,
+    "d2.loss_cls": 0.17815,
+    "d2.loss_pts": 0.97464,
+    "d3.loss_cls": 0.17278,
+    "d3.loss_pts": 0.65723,
+    "d4.loss_cls": 0.17593,
+    "d4.loss_pts": 0.43184,
+    "init_loss_pts": 5.50831,
+    "loss_censored_sequence": 0.89427,
+    "path_mode_probability_max": 1.0,
+    "path_mode_probability_0": 0.0,
+    "path_mode_separation_m": 0.05158,
+    "path_endpoint_tracks": 19.7375,
+    "path_track_energy": 1.676,
+    "loss": 15.11216,
+    "grad_norm": 7.15277,
+    "time": 3.92313
+  },
+  "checkpoints": [
+    {
+      "name": "best_future.pth",
+      "bytes": 977574493,
+      "symlink_target": null
+    },
+    {
+      "name": "epoch_3.pth",
+      "bytes": 977574493,
+      "symlink_target": null
+    },
+    {
+      "name": "epoch_4.pth",
+      "bytes": 977574493,
+      "symlink_target": null
+    },
+    {
+      "name": "epoch_5.pth",
+      "bytes": 977574493,
+      "symlink_target": null
+    },
+    {
+      "name": "latest.pth",
+      "bytes": 977574493,
+      "symlink_target": "epoch_5.pth"
+    }
+  ],
+  "validation_files": [
+    "validation_epoch_00_subset.json",
+    "validation_epoch_01_subset.json",
+    "validation_epoch_02_subset.json",
+    "validation_epoch_03_subset.json",
+    "validation_epoch_04_subset.json",
+    "validation_epoch_05_subset.json"
+  ],
+  "best_future": {
+    "epoch": 5,
+    "future_mean_miou": 18.826297321359174,
+    "samples": 256
+  },
+  "gpu_processes": [
+    "GPU-000b6236-3632-a001-9667-1f02cbb61c8b, 2829230, 105992 MiB, [Not Found]"
+  ],
+  "files_deleted": false,
+  "checkpoints_preserved": true,
+  "evaluation_queue_cancelled": true,
+  "partial_epoch_not_checkpointed": true
+}
