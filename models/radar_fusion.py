@@ -10,7 +10,7 @@ import torch
 from torch import nn
 
 
-def advect_radar(radar, seconds, max_speed=35.):
+def advect_radar(radar, seconds, max_speed=35., speed_filter=True):
     """Constant-velocity proposal in the fixed current-ego coordinate frame.
 
     Radar positions are measured at t=-age. Ego compensation rotates velocity
@@ -22,7 +22,9 @@ def advect_radar(radar, seconds, max_speed=35.):
     moved = radar.clone()
     moved[..., :2] = radar[..., :2] + radar[..., 3:5] * (radar[..., 6:7] + seconds)
     reliable = (torch.isfinite(radar).all(-1) & (radar[..., 6] >= 0) &
-                (radar[..., 6] <= .5) & (radar[..., 3:5].float().norm(dim=-1) <= max_speed))
+                (radar[..., 6] <= .5))
+    if speed_filter:
+        reliable = reliable & (radar[..., 3:5].float().norm(dim=-1) <= max_speed)
     moved = torch.where(reliable[..., None], moved, torch.zeros_like(moved))
     return moved, reliable
 
@@ -37,7 +39,8 @@ class RadarQueryFusion(nn.Module):
     def __init__(self, embed_dims=256, input_dims=10, num_samples=4,
                  neighbors=8, radius=4.0, max_offset=2.0, gate_bias=-2.0,
                  mode='current', max_speed=35., age_decay=.5, horizon_decay=3.,
-                 velocity_consistency=False, temporal_reliability=False):
+                 velocity_consistency=False, temporal_reliability=False,
+                 speed_filter=True):
         super().__init__()
         if mode not in ('current', 'transport'):
             raise ValueError(mode)
@@ -45,6 +48,7 @@ class RadarQueryFusion(nn.Module):
             raise ValueError('Confidence time scales must be positive')
         self.mode = mode
         self.max_speed = max_speed
+        self.speed_filter = speed_filter
         self.age_decay = age_decay
         self.horizon_decay = horizon_decay
         self.velocity_consistency = velocity_consistency
@@ -121,7 +125,8 @@ class RadarQueryFusion(nn.Module):
             # Also keep parameters in the graph for empty-radar DDP batches.
             return query + sum(p.sum() * 0 for p in self.parameters())
         if self.mode == 'transport':
-            radar, reliable = advect_radar(radar, horizon_seconds, self.max_speed)
+            radar, reliable = advect_radar(radar, horizon_seconds, self.max_speed,
+                                         self.speed_filter)
             valid = valid & reliable
         scale = radar.new_tensor([40., 40., 5., 20., 20., 20., 1., 20., 1., 1.])
         features = self.point_encoder(radar / scale)

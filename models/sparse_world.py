@@ -1,5 +1,6 @@
 import time
 import queue
+import copy
 import torch
 import numpy as np
 from mmcv.runner import force_fp32, auto_fp16
@@ -10,6 +11,67 @@ from mmdet3d.core import bbox3d2result
 from mmdet3d.models.detectors.mvx_two_stage import MVXTwoStageDetector
 from .utils import GridMask, pad_multiple, GpuPhotoMetricDistortion
 # from vis_id import vis_iter
+
+
+_VISUAL_VIEW_META_KEYS = (
+    'filename', 'img_timestamp', 'lidar2img', 'lidar2cam', 'intrinsics',
+    'extrinsics', 'img_shape', 'ori_shape', 'pad_shape',
+)
+
+
+def select_visual_history_input(img, img_metas, visual_history_frames):
+    """Select actual image evidence without changing the eight-slot predictor.
+
+    A one-frame input means the six current camera views, stored first by the
+    dataset. It does not mean one camera. Full inputs may be accepted for
+    dependency tests, but only the current views reach image augmentation and
+    the backbone. Production H1 pipelines should load only those six images.
+    """
+    if visual_history_frames is None:
+        return img
+    if visual_history_frames not in (1, 8) or isinstance(visual_history_frames, bool):
+        raise ValueError('visual_history_frames must be None, 1, or 8')
+    if img.dim() != 5 or len(img_metas) != img.shape[0]:
+        raise ValueError('Visual history requires [B, N, C, H, W] and B metadata records')
+    count = img.shape[1]
+    expected = (6, 48) if visual_history_frames == 1 else (48,)
+    if count not in expected:
+        raise ValueError(f'H{visual_history_frames} received {count} images; expected {expected}')
+    for meta in img_metas:
+        for key in ('filename', 'img_timestamp', 'lidar2img'):
+            if key not in meta or len(meta[key]) not in expected:
+                raise ValueError(f'H{visual_history_frames} requires matching per-view {key}')
+    if visual_history_frames == 8:
+        return img
+    for meta in img_metas:
+        for key in _VISUAL_VIEW_META_KEYS:
+            value = meta.get(key)
+            if isinstance(value, (list, tuple, np.ndarray)) and len(value) in (6, 48):
+                meta[key] = [copy.deepcopy(value[i]) for i in range(6)]
+        meta['visual_history_frames'] = 1
+        meta['visual_history_encoded_images'] = 6
+        meta['visual_history_slots'] = 8
+        meta['visual_history_interface'] = 'current_feature_replication'
+    # A slice of a batched 48-image input is not necessarily contiguous.
+    return img[:, :6].contiguous()
+
+
+def replicate_current_visual_features(img_feats, img_metas):
+    """Replicate current features and their actual camera metadata to 8 slots.
+
+    This preserves official parameter shapes, not the official eight-history
+    prediction. No old image, timestamp or projection is used in these slots.
+    Gradient contributions from the slots sum into their shared current feature.
+    """
+    for feature in img_feats:
+        if feature.dim() != 5 or feature.shape[1] != 6:
+            raise ValueError('Current feature replication requires exactly six camera features')
+    for meta in img_metas:
+        for key in _VISUAL_VIEW_META_KEYS:
+            value = meta.get(key)
+            if isinstance(value, (list, tuple, np.ndarray)) and len(value) == 6:
+                meta[key] = [copy.deepcopy(value[i]) for _ in range(8) for i in range(6)]
+    return [feature.repeat(1, 8, 1, 1, 1) for feature in img_feats]
 
 
 @DETECTORS.register_module()
@@ -33,7 +95,8 @@ class SparseWorld(MVXTwoStageDetector):
                  train_cfg=None,
                  test_cfg=None,
                  pretrained=None,
-                 samplewise_loss=False):
+                 samplewise_loss=False,
+                 visual_history_frames=None):
         super().__init__(pts_voxel_layer, pts_voxel_encoder, pts_middle_encoder,
                          pts_fusion_layer, img_backbone, pts_backbone, img_neck,
                          pts_neck, pts_bbox_head, img_roi_head, img_rpn_head,
@@ -41,6 +104,9 @@ class SparseWorld(MVXTwoStageDetector):
         self.data_aug = data_aug
         self.stop_prev_grad = stop_prev_grad
         self.samplewise_loss = samplewise_loss
+        if visual_history_frames not in (None, 1, 8) or isinstance(visual_history_frames, bool):
+            raise ValueError('visual_history_frames must be None, 1, or 8')
+        self.visual_history_frames = visual_history_frames
         self.color_aug = GpuPhotoMetricDistortion()
         self.grid_mask = GridMask(ratio=0.5, prob=0.7)
         self.use_grid_mask = use_grid_mask
@@ -94,6 +160,8 @@ class SparseWorld(MVXTwoStageDetector):
             img = torch.stack(img, dim=0)
 
         assert img.dim() == 5
+
+        img = select_visual_history_input(img, img_metas, self.visual_history_frames)
 
         B, N, C, H, W = img.size()
         img = img.view(B * N, C, H, W)
@@ -160,6 +228,8 @@ class SparseWorld(MVXTwoStageDetector):
             BN, C, H, W = img_feat.size()
             img_feats_reshaped.append(img_feat.view(B, int(BN / B), C, H, W))
 
+        if self.visual_history_frames == 1:
+            img_feats_reshaped = replicate_current_visual_features(img_feats_reshaped, img_metas)
         return img_feats_reshaped
 
     @force_fp32(apply_to=('img', 'points'))
@@ -280,6 +350,12 @@ class SparseWorld(MVXTwoStageDetector):
         return self.simple_test_pts(img_feats, img_metas, fut2cur, fut_list, rescale=rescale)
 
     def simple_test_online(self, img_metas, fut2cur, fut_list, img=None, rescale=False):
+        if self.visual_history_frames is not None:
+            # Explicit budgets use the same complete-input path as their
+            # offline training/evaluation contract. H1 must never consult old
+            # cache entries; H8 requires all 48 images. Legacy cached online
+            # inference remains available with the default (None) setting.
+            return self.simple_test_offline(img_metas, fut2cur, fut_list, img, rescale)
         self.fp16_enabled = False
         assert len(img_metas) == 1
 
