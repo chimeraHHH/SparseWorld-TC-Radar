@@ -98,10 +98,20 @@ def verify_snapshot(code, manifest):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--gpu', required=True, type=int, choices=[0, 1])
+    parser.add_argument('--campaign-dir', type=Path)
+    parser.add_argument('--recovery-of', type=Path)
     args = parser.parse_args()
     code = Path(__file__).resolve().parents[1]
     os.chdir(code)
-    campaign = ROOT / 'analysis' / CAMPAIGN
+    campaign = args.campaign_dir or ROOT / 'analysis' / CAMPAIGN
+    if bool(args.campaign_dir) != bool(args.recovery_of):
+        raise ValueError('Custom campaign requires its explicit recovery source')
+    recovery = None
+    if args.recovery_of:
+        from recover_history_doppler_campaign import validate_recovery_source
+        recovery = validate_recovery_source(args.recovery_of, code)
+        if campaign.resolve() == args.recovery_of.resolve():
+            raise ValueError('Never overwrite the failed campaign')
     manifest = json.loads((code / 'code_manifest.json').read_text())
     verify_snapshot(code, manifest)
     preflight = json.loads((campaign / 'preflight.json').read_text())
@@ -110,7 +120,8 @@ def main():
     worker_path = campaign / ('gpu%d_worker.json' % args.gpu)
     status = dict(controller_pid=os.getpid(), gpu=args.gpu, gpu_uuid=GPUS[args.gpu],
                   code=str(code), git_revision=manifest['git_revision'], at_utc=utcnow(),
-                  state='waiting_for_gpu_lock', completed_arms=[])
+                  state='waiting_for_gpu_lock', completed_arms=[], recovery_of=str(args.recovery_of) if recovery else None,
+                  original_git_revision=recovery['original_git_revision'] if recovery else None)
     with worker_path.open('x') as stream:
         json.dump(status, stream, indent=2)
     arm_status = None
@@ -127,18 +138,30 @@ def main():
                MKL_NUM_THREADS='4', OPENBLAS_NUM_THREADS='1', PYTHONPATH=str(code),
                PYTHONUNBUFFERED='1', TMPDIR='/tmp',
                TORCH_EXTENSIONS_DIR=str(ROOT / 'cache/torch_extensions'))
+    if recovery:
+        from recover_history_doppler_campaign import EVAL_SPOOL, HOST_MINIMUM_BYTES, host_available_bytes
+        env['SPARSEWORLD_EVAL_TMPDIR'] = EVAL_SPOOL
+        env['SPARSEWORLD_FULL_EVAL_LOCK'] = str(ROOT / 'history_doppler_full_eval.lock')
 
     def admit(abandon_if_claimed=False):
         window = CapacityWindow(minimum_free_mib=132000, quiet_seconds=60)
+        host_since = None
         while True:
             if abandon_if_claimed and not unclaimed(campaign):
                 return False
             snapshot, now = memory_snapshot(GPUS[args.gpu]), time.monotonic()
             processes = other_compute(GPUS[args.gpu])
             allowed = window.observe(0 if processes else snapshot['free_mib'], now)
+            available = host_available_bytes() if recovery else None
+            if recovery:
+                host_since = ((now if host_since is None else host_since)
+                              if available >= HOST_MINIMUM_BYTES else None)
+                allowed = allowed and host_since is not None and now - host_since >= 60
             admission = dict(**snapshot, other_compute=processes,
                 minimum_free_mib=132000, required_stable_seconds=60,
-                observed_stable_seconds=now-window.sufficient_since if window.sufficient_since is not None else 0)
+                observed_stable_seconds=now-window.sufficient_since if window.sufficient_since is not None else 0,
+                host_available_bytes=available, host_minimum_bytes=HOST_MINIMUM_BYTES if recovery else None,
+                host_observed_stable_seconds=now-host_since if host_since is not None else 0)
             record(state='waiting_for_gpu_memory', child_pid=None, memory_admission=admission)
             if allowed:
                 return True
@@ -204,35 +227,60 @@ def main():
                 cfg = 'configs/sw-history-' + arm + '.py'
                 work = ROOT / ('work_dirs/history_' + arm + '_seed0')
                 smoke = ROOT / ('work_dirs/history_' + arm + '_smoke_seed0')
-                if work.exists() or smoke.exists():
+                recovering_h1 = bool(recovery and arm.startswith('h1-'))
+                if not recovering_h1 and (work.exists() or smoke.exists()):
                     raise FileExistsError('New-arm output already exists')
                 cpu = json.loads((campaign / ('cpu_' + arm + '.json')).read_text())
                 if cpu['status'] != 'passed' or cpu['git_revision'] != manifest['git_revision']:
                     raise ValueError('Arm CPU preflight mismatch')
                 schema = cpu['initialization']['state_schema']
-                run(arm, 'cuda_contracts', ['-m', 'pytest', '-q', 'tests/test_m0_contracts.py', '-k', 'cuda'])
-                run(arm, 'parity', ['tools/check_history_doppler_contracts.py', '--config', cfg,
-                    '--device', 'cuda', '--out', str(campaign / ('gpu_' + arm + '.json'))])
-                parity = json.loads((campaign / ('gpu_' + arm + '.json')).read_text())
-                if parity['status'] != 'passed' or parity['git_revision'] != manifest['git_revision']:
-                    raise ValueError('GPU parity receipt mismatch')
-                run(arm, 'smoke', ['train.py', '--config', 'configs/sw-history-' + arm + '-smoke.py'])
-                smoke_audit = audit_checkpoint(smoke / 'iter_24.pth', schema, exact_steps=24)
-                smoke_audit.update(audit_smoke_log((smoke / 'train.log').read_text()))
-                write_json(campaign / ('smoke_' + arm + '.json'), smoke_audit)
-                # Separate process: no smoke weights, optimizer or scaler reused.
-                run(arm, 'train', ['train.py', '--config', cfg])
+                if not recovering_h1:
+                    run(arm, 'cuda_contracts', ['-m', 'pytest', '-q', 'tests/test_m0_contracts.py', '-k', 'cuda'])
+                    run(arm, 'parity', ['tools/check_history_doppler_contracts.py', '--config', cfg,
+                        '--device', 'cuda', '--out', str(campaign / ('gpu_' + arm + '.json'))])
+                    parity = json.loads((campaign / ('gpu_' + arm + '.json')).read_text())
+                    if parity['status'] != 'passed' or parity['git_revision'] != manifest['git_revision']:
+                        raise ValueError('GPU parity receipt mismatch')
+                    run(arm, 'smoke', ['train.py', '--config', 'configs/sw-history-' + arm + '-smoke.py'])
+                    smoke_audit = audit_checkpoint(smoke / 'iter_24.pth', schema, exact_steps=24)
+                    smoke_audit.update(audit_smoke_log((smoke / 'train.log').read_text()))
+                    write_json(campaign / ('smoke_' + arm + '.json'), smoke_audit)
+                    # Separate process: no smoke weights, optimizer or scaler reused.
+                    run(arm, 'train', ['train.py', '--config', cfg])
                 initialization = require_fresh_initialization(work / 'official_initialization.json', cpu['initialization'])
-                final = audit_checkpoint(work / 'epoch_10.pth', schema, expected_epoch=10)
+                checkpoint_hashes = None
+                if recovering_h1:
+                    from recover_history_doppler_campaign import audit_h1_checkpoints
+                    final, best, checkpoint_hashes = audit_h1_checkpoints(work, schema)
+                else:
+                    final = audit_checkpoint(work / 'epoch_10.pth', schema, expected_epoch=10)
                 if final['iterations'] != 29920:
                     raise ValueError('Expected exactly 29920 formal iterations')
                 final_json = work / 'validation_epoch_10_full.json'
                 final_confusions = work / 'confusions_epoch_10_full'
-                require_full_result(final_json, final_confusions)
                 best_meta = json.loads((work / 'best_future.json').read_text())
                 if best_meta['epoch'] not in range(1, 11) or best_meta['samples'] != 256:
                     raise ValueError('Invalid fixed-subset checkpoint selection')
-                best = audit_checkpoint(work / 'best_future.pth', schema, expected_epoch=best_meta['epoch'])
+                if recovering_h1:
+                    from recover_history_doppler_campaign import require_h1_parity
+                    if best_meta['epoch'] != 10:
+                        raise ValueError('This recovery is restricted to the observed epoch10 selections')
+                    write_json(campaign / (arm + '_recovery_checkpoint_audit.json'),
+                        dict(original_git_revision=recovery['original_git_revision'],
+                             training_source=str(args.recovery_of), evaluation_git_revision=manifest['git_revision'],
+                             initialization=initialization, final_audit=final, checkpoint_sha256=checkpoint_hashes))
+                    parity_dir = campaign / (arm + '_recovery_subset_parity')
+                    run(arm, 'recovery_subset_parity', ['tools/evaluate_radar_experiment.py', '--config', cfg,
+                        '--checkpoint', str(work / 'epoch_10.pth'), '--samples', '256', '--output-dir', str(parity_dir)])
+                    parity_audit = require_h1_parity(work / 'validation_epoch_10_subset.json', parity_dir / 'normal.json')
+                    write_json(campaign / (arm + '_recovery_subset_parity.json'), parity_audit)
+                    destination = campaign / (arm + '_final_full')
+                    run(arm, 'final_full', ['tools/evaluate_radar_experiment.py', '--config', cfg,
+                        '--checkpoint', str(work / 'epoch_10.pth'), '--samples', '0', '--output-dir', str(destination)])
+                    final_json, final_confusions = destination / 'normal.json', destination / 'confusions_normal'
+                else:
+                    best = audit_checkpoint(work / 'best_future.pth', schema, expected_epoch=best_meta['epoch'])
+                require_full_result(final_json, final_confusions)
                 if best_meta['epoch'] == 10:
                     best_json, best_confusions = final_json, final_confusions
                 else:
@@ -259,7 +307,13 @@ def main():
                     best_epoch=best_meta['epoch'], official_initialization=initialization,
                     final_audit=final, best_audit=best, final_json=str(final_json), best_json=str(best_json),
                     final_confusions=str(final_confusions), best_confusions=str(best_confusions),
-                    interventions=str(interventions), stage_seconds=dict(status['stage_seconds']))
+                    interventions=str(interventions), stage_seconds=dict(status['stage_seconds']),
+                    recovery_of=str(args.recovery_of) if recovery else None,
+                    training_git_revision=recovery['original_git_revision'] if recovering_h1 else manifest['git_revision'],
+                    evaluation_git_revision=manifest['git_revision'], checkpoint_sha256=checkpoint_hashes,
+                    stage_seconds_scope='recovery evaluation only' if recovering_h1 else 'new arm',
+                    original_training_log=str(args.recovery_of / (arm + '_train.log')) if recovering_h1 else None,
+                    original_gpu_telemetry=str(args.recovery_of / (arm + '_gpu.jsonl')) if recovering_h1 else None)
                 write_json(campaign / (arm + '_result.json'), result)
                 status['completed_arms'].append(arm)
                 record(state='complete', stage='arm_complete', result=result)

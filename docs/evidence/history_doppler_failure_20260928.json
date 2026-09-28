@@ -1,0 +1,96 @@
+{
+  "observed_at_utc": "2026-09-28T15:38:06.998470+00:00",
+  "original_training_revision": "1e95cf1d53c8607efea04341e3d864099a2e48cc",
+  "campaign": "history_doppler_campaign_20260927",
+  "phase": "inline_final_full_validation",
+  "failure_cause": "unconfirmed; SIGKILL does not identify its sender or cause",
+  "arms": {
+    "h1-velocity": {
+      "state": "failed",
+      "controller_at_utc": "2026-09-28T14:54:47.718866+00:00",
+      "child_returncode": -9,
+      "old_trainer_alive": false,
+      "old_controller_alive": false,
+      "last_logged_full_count": 4736,
+      "required_full_count": 5119,
+      "checkpoint_files": [
+        {
+          "name": "best_future.pth",
+          "bytes": 976538841
+        },
+        {
+          "name": "epoch_10.pth",
+          "bytes": 976538841
+        },
+        {
+          "name": "epoch_8.pth",
+          "bytes": 976538841
+        },
+        {
+          "name": "epoch_9.pth",
+          "bytes": 976538841
+        },
+        {
+          "name": "latest.pth",
+          "bytes": 976538841
+        }
+      ],
+      "last_subset": {
+        "epoch": 10,
+        "scope": "subset",
+        "samples": 256,
+        "future_mean_miou": 23.61158150750346,
+        "elapsed_seconds": 32.40386892994866
+      }
+    },
+    "h1-geometry": {
+      "state": "failed",
+      "controller_at_utc": "2026-09-28T14:54:47.718841+00:00",
+      "child_returncode": -9,
+      "old_trainer_alive": false,
+      "old_controller_alive": false,
+      "last_logged_full_count": 4736,
+      "required_full_count": 5119,
+      "checkpoint_files": [
+        {
+          "name": "best_future.pth",
+          "bytes": 976538841
+        },
+        {
+          "name": "epoch_10.pth",
+          "bytes": 976538841
+        },
+        {
+          "name": "epoch_8.pth",
+          "bytes": 976538841
+        },
+        {
+          "name": "epoch_9.pth",
+          "bytes": 976538841
+        },
+        {
+          "name": "latest.pth",
+          "bytes": 976538841
+        }
+      ],
+      "last_subset": {
+        "epoch": 10,
+        "scope": "subset",
+        "samples": 256,
+        "future_mean_miou": 23.303595930402963,
+        "elapsed_seconds": 43.189595700008795
+      }
+    }
+  },
+  "h8_started": false,
+  "recovery_status": "preparing_not_submitted",
+  "archive_sha256": "4f006853feeb671e1bdeaa8716225b8681ee1a4c527688c1460ebbd2a0998273",
+  "archive_verified_files": 63,
+  "known_implementation_risk": "Full validation accumulates all per-anchor predictions in host RAM before computing metrics. Bounded disk spooling is being implemented; this risk is not proven as the SIGKILL cause.",
+  "limitations": [
+    "Kernel logs unavailable to this account.",
+    "Parent cgroup cumulative oom_kill counter cannot identify this incident.",
+    "No valid full5119 output or completed final checkpoint audit at this snapshot.",
+    "No inference about the four-arm hypothesis from the selected subset."
+  ]
+}
