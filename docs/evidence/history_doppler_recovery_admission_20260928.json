@@ -1,0 +1,23 @@
+{
+  "observed_at_utc": "2026-09-28T15:58:59.309613+00:00",
+  "recovery_revision": "3aaf8693d1e270a69fad940145fb28b47859631a",
+  "original_training_revision": "1e95cf1d53c8607efea04341e3d864099a2e48cc",
+  "recovery_campaign": "history_doppler_recovery_20260928",
+  "state": "preflight",
+  "stage": "cpu_tests",
+  "launcher_alive": true,
+  "protected_scientific_source_files": 136,
+  "all_recorded_old_processes_absent": true,
+  "original_snapshot_residuals": [],
+  "spool_filesystem": "ext4",
+  "spool_free_bytes": 3017441382400,
+  "remote_cpu_tests_passed": false,
+  "remote_cpu_tests_state": "running, not failed; results pending",
+  "gpu_recovery_started": false,
+  "cpu_observation_at_utc": "2026-09-28T16:00:05.152033+00:00",
+  "cpu_observation": "Test child in disk sleep at both observations, read_bytes advanced from190107648 to192311296 over5seconds. No cause attribution or runtime ETA.",
+  "first_recovery_attempt": "74e1929 exited before campaign creation because process scan could not resolve protected login helper cwd; corrected by3aaf869 with exact identities and unknown processes still fail closed.",
+  "h1_training_repeated": false,
+  "h8_training_started": false,
+  "limitations": "Admission or startup is not scientific benefit; H1 exact final checkpoint audit/full evaluation and H8 are pending. No new full5119 scores."
+}
