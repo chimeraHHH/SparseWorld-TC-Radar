@@ -95,6 +95,52 @@ class RecoveryGuards(unittest.TestCase):
             recovery.require_old_processes_absent(self.old, self.original, proc=fake_proc)
         self.dead_patch.start()
 
+    def fake_protected_process(self, proc, pid, name, command):
+        directory = proc / str(pid)
+        directory.mkdir(parents=True)
+        uid = os.getuid()
+        (directory / 'status').write_text('Name:\t' + name + '\nUid:\t' + '\t'.join([str(uid)] * 4) + '\n')
+        (directory / 'cmdline').write_bytes(command.encode() + b'\0')
+        return directory / 'cwd'
+
+    def test_verified_protected_login_helpers_are_recorded(self):
+        self.dead_patch.stop()
+        proc = self.root / 'proc'
+        username = recovery.pwd.getpwuid(os.getuid()).pw_name
+        protected = [self.fake_protected_process(proc, 101, '(sd-pam)', '(sd-pam)'),
+                     self.fake_protected_process(proc, 102, 'sshd', 'sshd: ' + username + '@notty')]
+        real_resolve = Path.resolve
+        def resolve(path, *args, **kwargs):
+            if path in protected:
+                raise PermissionError('nondumpable helper')
+            return real_resolve(path, *args, **kwargs)
+        with patch.object(Path, 'resolve', new=resolve):
+            audit = recovery.require_old_processes_absent(self.old, self.original, proc=proc)
+        self.assertEqual(sorted(p['pid'] for p in audit['protected_session_helpers']), [101, 102])
+        self.dead_patch.start()
+
+    def test_unrecognized_protected_python_process_fails_closed(self):
+        self.dead_patch.stop()
+        proc = self.root / 'proc'
+        protected = self.fake_protected_process(proc, 101, 'python', 'python train.py')
+        real_resolve = Path.resolve
+        def resolve(path, *args, **kwargs):
+            if path == protected:
+                raise PermissionError('unknown process')
+            return real_resolve(path, *args, **kwargs)
+        with patch.object(Path, 'resolve', new=resolve):
+            with self.assertRaisesRegex(PermissionError, 'Cannot exclude old-snapshot'):
+                recovery.require_old_processes_absent(self.old, self.original, proc=proc)
+        self.dead_patch.start()
+
+    def test_helper_shaped_recorded_pid_is_still_rejected(self):
+        self.dead_patch.stop()
+        proc = self.root / 'proc'
+        self.fake_protected_process(proc, 90000000, '(sd-pam)', '(sd-pam)')
+        with self.assertRaisesRegex(ValueError, 'Original processes still present'):
+            recovery.require_old_processes_absent(self.old, self.original, proc=proc)
+        self.dead_patch.start()
+
     def test_exact_subset_parity_and_rejection_of_anchor_or_metric_changes(self):
         previous, current = self.root / 'old.json', self.root / 'new.json'
         payload = dict(samples=256, indices=list(range(256)), metrics={'1.0s': {'Semantic mIoU': 23.0}},

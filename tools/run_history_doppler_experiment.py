@@ -251,6 +251,7 @@ def main():
                 checkpoint_hashes = None
                 if recovering_h1:
                     from recover_history_doppler_campaign import audit_h1_checkpoints
+                    record(state='auditing_checkpoint', stage='recovery_checkpoint_audit', child_pid=None)
                     final, best, checkpoint_hashes = audit_h1_checkpoints(work, schema)
                 else:
                     final = audit_checkpoint(work / 'epoch_10.pth', schema, expected_epoch=10)

@@ -9,6 +9,7 @@ import gc
 import hashlib
 import json
 import os
+import pwd
 from pathlib import Path
 import shutil
 import subprocess
@@ -53,28 +54,60 @@ def require_h1_parity(previous, current):
 
 
 def require_old_processes_absent(original_code, original, proc=Path('/proc')):
-    """Fail closed for recorded live PIDs or own residuals in the old checkout."""
+    """Exclude live originals; only verified system helpers may hide their cwd."""
     recorded = set()
     for name in ('gpu0_worker.json', 'gpu1_worker.json'):
         payload = json.loads((original / name).read_text())
         recorded.update(int(payload[k]) for k in ('controller_pid', 'child_pid') if payload.get(k))
     alive = [pid for pid in sorted(recorded) if (proc / str(pid)).exists()]
-    residuals = []
+    # Even a reused or helper-shaped PID is not silently accepted as exited.
+    if alive:
+        raise ValueError('Original processes still present: ' + str(dict(recorded=alive)))
+    residuals, protected_helpers = [], []
+    uid = os.getuid()
+    username = pwd.getpwuid(uid).pw_name
+    original_path = original_code.resolve()
     for directory in proc.iterdir():
         if not directory.name.isdigit():
             continue
         try:
-            if directory.stat().st_uid != os.getuid():
+            if directory.stat().st_uid != uid:
                 continue
-            cwd = (directory / 'cwd').resolve(strict=True)
-            command = (directory / 'cmdline').read_bytes().replace(b'\0', b' ').decode(errors='replace')
-            if cwd == original_code.resolve() or str(original_code) in command:
+            fields = dict(line.split(':', 1) for line in (directory / 'status').read_text().splitlines()
+                          if ':' in line)
+            uids = [int(value) for value in fields['Uid'].split()]
+            name = fields['Name'].strip()
+            if len(uids) != 4:
+                raise ValueError('Malformed UID evidence for process ' + directory.name)
+            if uids[1] != uid:
+                continue
+            command = (directory / 'cmdline').read_bytes().replace(b'\0', b' ').decode(errors='replace').strip()
+            if str(original_code) in command:
+                residuals.append(int(directory.name))
+                continue
+            try:
+                cwd = (directory / 'cwd').resolve(strict=True)
+            except PermissionError as error:
+                # Observed Ubuntu login-session helpers are nondumpable despite
+                # owning UID 1031. Their exact status + command identity rules
+                # out a Python trainer; unfamiliar protected processes block.
+                known_helper = (uids == [uid] * 4 and (
+                    (name == '(sd-pam)' and command == '(sd-pam)') or
+                    (name == 'sshd' and command == 'sshd: ' + username + '@notty')))
+                if not known_helper:
+                    raise PermissionError('Cannot exclude old-snapshot process with unreadable cwd: '
+                                          + directory.name + ' name=' + name) from error
+                protected_helpers.append(dict(pid=int(directory.name), name=name, command=command,
+                    uids=uids, reason='verified nondumpable login-session helper; cwd unreadable'))
+                continue
+            if cwd == original_path:
                 residuals.append(int(directory.name))
         except FileNotFoundError:
             continue  # The process exited during the read.
-    if alive or residuals:
-        raise ValueError('Original processes still present: ' + str(dict(recorded=alive, residuals=residuals)))
-    return dict(recorded_pids=sorted(recorded), live_recorded_pids=[], own_original_snapshot_processes=[])
+    if residuals:
+        raise ValueError('Original processes still present: ' + str(dict(residuals=residuals)))
+    return dict(recorded_pids=sorted(recorded), live_recorded_pids=[], own_original_snapshot_processes=[],
+                protected_session_helpers=protected_helpers)
 
 
 def validate_recovery_source(original, code):
