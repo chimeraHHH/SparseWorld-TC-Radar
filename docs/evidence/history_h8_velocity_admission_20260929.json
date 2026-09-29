@@ -1,0 +1,306 @@
+{
+  "observed_at_utc": "2026-09-29T06:24:38.153710+00:00",
+  "campaign": "history_doppler_recovery_v3_20260929",
+  "source_revision": "e80bca6ece3ceafbb582d8ca21595b2e4128691c",
+  "arm": "h8-velocity",
+  "state": "formal_training_started",
+  "scientific_result": false,
+  "cuda_contracts_passed": 3,
+  "budget": {
+    "batch_size": 8,
+    "epochs": 10,
+    "seed": 0,
+    "cumulative_iters": 1,
+    "fresh_optimizer": true
+  },
+  "input": {
+    "visual_history_frames": 8,
+    "physical_images_per_anchor": 48,
+    "radar_sweeps_per_sensor": 1,
+    "velocity_mode": "processed",
+    "velocity_dependent_point_rejection": false
+  },
+  "real_sample_parity": [
+    {
+      "index": 0,
+      "raw_tensors": 13,
+      "all_raw_tensors_exact": true,
+      "max_abs_difference": 0.0,
+      "voxels_equal": true,
+      "actual_backbone_images": {
+        "new": [
+          48
+        ],
+        "camera_reference": [
+          48
+        ]
+      }
+    },
+    {
+      "index": 1024,
+      "raw_tensors": 13,
+      "all_raw_tensors_exact": true,
+      "max_abs_difference": 0.0,
+      "voxels_equal": true,
+      "actual_backbone_images": {
+        "new": [
+          48
+        ],
+        "camera_reference": [
+          48
+        ]
+      }
+    },
+    {
+      "index": 2048,
+      "raw_tensors": 13,
+      "all_raw_tensors_exact": true,
+      "max_abs_difference": 0.0,
+      "voxels_equal": true,
+      "actual_backbone_images": {
+        "new": [
+          48
+        ],
+        "camera_reference": [
+          48
+        ]
+      }
+    },
+    {
+      "index": 4096,
+      "raw_tensors": 13,
+      "all_raw_tensors_exact": true,
+      "max_abs_difference": 0.0,
+      "voxels_equal": true,
+      "actual_backbone_images": {
+        "new": [
+          48
+        ],
+        "camera_reference": [
+          48
+        ]
+      }
+    }
+  ],
+  "smoke": {
+    "epoch": 1,
+    "iterations": 23,
+    "optimizer_steps": 24,
+    "finite_model_tensors": 771,
+    "state_schema_matches_cpu": true,
+    "optimizer_finite": true,
+    "radar_update_windows": [
+      [
+        0.0340883,
+        0.167414
+      ],
+      [
+        0.0478538,
+        0.336403
+      ],
+      [
+        0.0288023,
+        0.270881
+      ],
+      [
+        0.0250721,
+        0.163155
+      ],
+      [
+        0.0255965,
+        0.0906133
+      ],
+      [
+        0.0236344,
+        0.0456767
+      ]
+    ],
+    "pretrained_update_windows": [
+      {
+        "img_backbone": {
+          "parameter": "module.img_backbone.layer2.0.conv1.weight",
+          "gradient_norm": 0.534990438126296,
+          "parameter_delta": 0.00029232303495518863
+        },
+        "img_neck": {
+          "parameter": "module.img_neck.lateral_convs.0.conv.weight",
+          "gradient_norm": 0.011336126307292737,
+          "parameter_delta": 0.00435065571218729
+        },
+        "pts_bbox_head": {
+          "parameter": "module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight",
+          "gradient_norm": 0.643600253863904,
+          "parameter_delta": 0.00041298309224657714
+        }
+      },
+      {
+        "img_backbone": {
+          "parameter": "module.img_backbone.layer2.0.conv1.weight",
+          "gradient_norm": 0.5825385116976657,
+          "parameter_delta": 0.00039670721162110567
+        },
+        "img_neck": {
+          "parameter": "module.img_neck.lateral_convs.0.conv.weight",
+          "gradient_norm": 0.021156393574423997,
+          "parameter_delta": 0.006855304352939129
+        },
+        "pts_bbox_head": {
+          "parameter": "module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight",
+          "gradient_norm": 0.6460134167990413,
+          "parameter_delta": 0.0007722236914560199
+        }
+      },
+      {
+        "img_backbone": {
+          "parameter": "module.img_backbone.layer2.0.conv1.weight",
+          "gradient_norm": 0.7657469438248391,
+          "parameter_delta": 0.0003082255134359002
+        },
+        "img_neck": {
+          "parameter": "module.img_neck.lateral_convs.0.conv.weight",
+          "gradient_norm": 0.010054491303677903,
+          "parameter_delta": 0.0043554762378335
+        },
+        "pts_bbox_head": {
+          "parameter": "module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight",
+          "gradient_norm": 0.5133857655479678,
+          "parameter_delta": 0.0004168955492787063
+        }
+      },
+      {
+        "img_backbone": {
+          "parameter": "module.img_backbone.layer2.0.conv1.weight",
+          "gradient_norm": 0.5879365769990668,
+          "parameter_delta": 0.00017273874254897237
+        },
+        "img_neck": {
+          "parameter": "module.img_neck.lateral_convs.0.conv.weight",
+          "gradient_norm": 0.008987693102635082,
+          "parameter_delta": 0.002422887599095702
+        },
+        "pts_bbox_head": {
+          "parameter": "module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight",
+          "gradient_norm": 0.3889862016373325,
+          "parameter_delta": 0.000213869585422799
+        }
+      },
+      {
+        "img_backbone": {
+          "parameter": "module.img_backbone.layer2.0.conv1.weight",
+          "gradient_norm": 0.46484458346252094,
+          "parameter_delta": 9.250485891243443e-05
+        },
+        "img_neck": {
+          "parameter": "module.img_neck.lateral_convs.0.conv.weight",
+          "gradient_norm": 0.009226868355660492,
+          "parameter_delta": 0.001161548774689436
+        },
+        "pts_bbox_head": {
+          "parameter": "module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight",
+          "gradient_norm": 0.47725278858651016,
+          "parameter_delta": 0.00013275114179123193
+        }
+      },
+      {
+        "img_backbone": {
+          "parameter": "module.img_backbone.layer2.0.conv1.weight",
+          "gradient_norm": 0.4637280385968688,
+          "parameter_delta": 4.6985358494566754e-05
+        },
+        "img_neck": {
+          "parameter": "module.img_neck.lateral_convs.0.conv.weight",
+          "gradient_norm": 0.008837539708036165,
+          "parameter_delta": 0.0005987535696476698
+        },
+        "pts_bbox_head": {
+          "parameter": "module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight",
+          "gradient_norm": 0.4992310900051038,
+          "parameter_delta": 8.598062413511798e-05
+        }
+      }
+    ]
+  },
+  "smoke_iteration_note": "MMCV iter_24 checkpoint metadata stores zero-based iteration 23 before increment; actual optimizer steps are 24.",
+  "formal_initialization": {
+    "loaded_tensors": 669,
+    "loaded_numel": 79478272,
+    "new_radar_tensors": 102,
+    "zero_residual_outputs": [
+      "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.output",
+      "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.output",
+      "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.output",
+      "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.output",
+      "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.output",
+      "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.output"
+    ],
+    "new_path_tensors": 0,
+    "all_camera_tensors_exact": true,
+    "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
+    "source_epoch": 70,
+    "source_iter": 246190,
+    "optimizer_restored": false,
+    "epoch_reset_to": 0
+  },
+  "formal_at_062345UTC": {
+    "last": {
+      "mode": "train",
+      "epoch": 1,
+      "iter": 30,
+      "lr": 4e-05,
+      "memory": 84568,
+      "data_time": 0.00191,
+      "init_loss_pts": 5.04893,
+      "loss_cls": 0.17366,
+      "loss_pts": 0.32909,
+      "d0.loss_cls": 0.3005,
+      "d0.loss_pts": 2.86519,
+      "d1.loss_cls": 0.23513,
+      "d1.loss_pts": 1.55918,
+      "d2.loss_cls": 0.20578,
+      "d2.loss_pts": 0.85372,
+      "d3.loss_cls": 0.18602,
+      "d3.loss_pts": 0.61406,
+      "d4.loss_cls": 0.17927,
+      "d4.loss_pts": 0.44541,
+      "loss": 12.99591,
+      "grad_norm": 5.07668,
+      "time": 3.28371
+    },
+    "completed_iterations": 30,
+    "nonfinite_loss_windows": 0,
+    "validations": [
+      {
+        "epoch": 0,
+        "scope": "subset",
+        "samples": 256,
+        "future_mean_miou": 24.439717241630664,
+        "elapsed_seconds": 70.71350070997141
+      }
+    ]
+  },
+  "stage_seconds": {
+    "cuda_contracts": 9.940213760128245,
+    "parity": 63.03819298022427,
+    "smoke": 269.6230340700131
+  },
+  "gpu_telemetry_snapshot": {
+    "utilization_percent": 92,
+    "memory_used_mib": 96061,
+    "instantaneous_only": true
+  },
+  "remaining_arm": "h8-geometry unclaimed, GPU0 waiting for unrelated compute",
+  "eta": {
+    "available": false,
+    "reason": "Only 30 formal iterations in main snapshot; no stable window yet. Queue duration unknown."
+  },
+  "source_files_sha256": {
+    "smoke_h8-velocity.json": "6d741927cc81e1c12380b3917ae0fbc4cfe9f75e05042c8decb6ecfc4a2357ef",
+    "gpu_h8-velocity.json": "05519eacb49df32587ad974e571beaadcb139fd7fc85a903b16af2984e1df872",
+    "official_initialization.json": "6294859a7fae3111233a4202b1c0dbb94cbfd58c1072b478e07198cd9d8796dd",
+    "h8-velocity_status.json": "2d5dcf8daec56975f7a74a72ab52951f348ae0062b0077c4351847f2672d9e6b"
+  },
+  "limitations": [
+    "Admission success and initialization validation are not model efficacy evidence.",
+    "H1 partial results were reported separately; H8 full metrics are required for the factorial interaction and history noninferiority tests."
+  ]
+}
