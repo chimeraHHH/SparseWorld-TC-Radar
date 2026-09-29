@@ -1,0 +1,661 @@
+{
+  "original_training_revision": "1e95cf1d53c8607efea04341e3d864099a2e48cc",
+  "failed_recovery_revision": "3aaf8693d1e270a69fad940145fb28b47859631a",
+  "failure": "saved-inline and standalone256 metrics were not exactly equal",
+  "cpu_preflight": {
+    "passed": 101,
+    "skipped_cuda": 3,
+    "cache_items": 29049,
+    "online_rechecks": 128,
+    "protected_scientific_source_files": 136
+  },
+  "arms": [
+    {
+      "arm": "h1-velocity",
+      "saved_future_mean_miou_percent": 23.61158150750346,
+      "recovered_future_mean_miou_percent": 23.61148252953184,
+      "delta_pp": -9.897797161784183e-05,
+      "ordered_indices_equal": true,
+      "checkpoint_audit": {
+        "epoch": 10,
+        "iterations": 29920,
+        "optimizer_steps": 29913,
+        "finite_model_tensors": 771,
+        "state_schema_matches_cpu": true,
+        "optimizer_finite": true
+      },
+      "checkpoint_hashes": {
+        "files": {
+          "epoch_10.pth": "78c43fefdd2979a6627f894e10b991d7f0b0c6e0a6862422c0e45ca2a2857c31",
+          "best_future.pth": "97d6079bc7b5445dca5698304e28c32bffb1f57d91f343a757e3dd685feae11f"
+        },
+        "model_state": {
+          "epoch_10.pth": "6881480226d9ae21f82c09dd9dea1cd704b416203e885b8584281f6e3b8d5b0a",
+          "best_future.pth": "6881480226d9ae21f82c09dd9dea1cd704b416203e885b8584281f6e3b8d5b0a"
+        }
+      },
+      "scene_comparisons": {
+        "0.0s": {
+          "npz_sha256": {
+            "original": "12efb7490e461e67a1aa04c5304519adb02b66ee0db1aff054eea991ca92727e",
+            "recovery": "e298ea3f6067355736463c0375e361c11c8be48a62d3c4eccfe885eb1833d459"
+          },
+          "metadata_equal": {
+            "scene_names": true,
+            "sample_indices": true,
+            "horizon": true
+          },
+          "scene_count": 126,
+          "anchor_count": 256,
+          "shape": [
+            126,
+            18,
+            18
+          ],
+          "dtype": "int64",
+          "histograms_exact_equal": false,
+          "affected_scene_count": 3,
+          "histogram_entries_changed": 12,
+          "scene_histogram_l1_difference": 26,
+          "aggregated_histogram_l1_difference": 24,
+          "maximum_absolute_entry_difference": 3,
+          "total_evaluated_voxels": {
+            "original": 22443251,
+            "recovery": 22443251
+          },
+          "ground_truth_class_totals_equal": true,
+          "miou_percent": {
+            "original": 29.316513144119615,
+            "recovery": 29.316712897462317,
+            "delta_pp": 0.00019975334270228018
+          },
+          "per_class_delta_pp": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -9.005439942200155e-05,
+            0.004026902838688784,
+            -0.0005410416133173612,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "affected_scenes": [
+            {
+              "scene": "scene-0553",
+              "histogram_l1_difference": 18,
+              "entries_changed": 8
+            },
+            {
+              "scene": "scene-0554",
+              "histogram_l1_difference": 2,
+              "entries_changed": 2
+            },
+            {
+              "scene": "scene-0784",
+              "histogram_l1_difference": 6,
+              "entries_changed": 2
+            }
+          ]
+        },
+        "1.0s": {
+          "npz_sha256": {
+            "original": "00c45ccdf315b6ee1a88d41534b5b6d35e4629d21fab84dfb58019d33c2ff13b",
+            "recovery": "900a035de4dc8196a28d455ed62e0f5f5d2df37c5b7f1a679df2f6dab0930f24"
+          },
+          "metadata_equal": {
+            "scene_names": true,
+            "sample_indices": true,
+            "horizon": true
+          },
+          "scene_count": 126,
+          "anchor_count": 256,
+          "shape": [
+            126,
+            18,
+            18
+          ],
+          "dtype": "int64",
+          "histograms_exact_equal": false,
+          "affected_scene_count": 3,
+          "histogram_entries_changed": 9,
+          "scene_histogram_l1_difference": 20,
+          "aggregated_histogram_l1_difference": 20,
+          "maximum_absolute_entry_difference": 6,
+          "total_evaluated_voxels": {
+            "original": 22636535,
+            "recovery": 22636535
+          },
+          "ground_truth_class_totals_equal": true,
+          "miou_percent": {
+            "original": 26.010314858909943,
+            "recovery": 26.010159216152033,
+            "delta_pp": -0.00015564275791035698
+          },
+          "per_class_delta_pp": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.00034709166112634193,
+            -0.002740775166557796,
+            -0.00025224337891671667,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "affected_scenes": [
+            {
+              "scene": "scene-0553",
+              "histogram_l1_difference": 4,
+              "entries_changed": 2
+            },
+            {
+              "scene": "scene-0554",
+              "histogram_l1_difference": 14,
+              "entries_changed": 5
+            },
+            {
+              "scene": "scene-0629",
+              "histogram_l1_difference": 2,
+              "entries_changed": 2
+            }
+          ]
+        },
+        "2.0s": {
+          "npz_sha256": {
+            "original": "42061a5757deb09652dd133700e7a206fb87bd09d4c18b379a5f1729a995311c",
+            "recovery": "a867b380fc715e708039e41b1f4ffb363dcf015faed24ea09335570f6b953563"
+          },
+          "metadata_equal": {
+            "scene_names": true,
+            "sample_indices": true,
+            "horizon": true
+          },
+          "scene_count": 126,
+          "anchor_count": 256,
+          "shape": [
+            126,
+            18,
+            18
+          ],
+          "dtype": "int64",
+          "histograms_exact_equal": false,
+          "affected_scene_count": 5,
+          "histogram_entries_changed": 10,
+          "scene_histogram_l1_difference": 14,
+          "aggregated_histogram_l1_difference": 10,
+          "maximum_absolute_entry_difference": 3,
+          "total_evaluated_voxels": {
+            "original": 22693694,
+            "recovery": 22693694
+          },
+          "ground_truth_class_totals_equal": true,
+          "miou_percent": {
+            "original": 23.376438046892623,
+            "recovery": 23.37645112095058,
+            "delta_pp": 1.3074057957140894e-05
+          },
+          "per_class_delta_pp": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0004704111393358801,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.00017315507595583313,
+            0.0,
+            -7.49970781228626e-05,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "affected_scenes": [
+            {
+              "scene": "scene-0097",
+              "histogram_l1_difference": 2,
+              "entries_changed": 2
+            },
+            {
+              "scene": "scene-0553",
+              "histogram_l1_difference": 2,
+              "entries_changed": 2
+            },
+            {
+              "scene": "scene-0554",
+              "histogram_l1_difference": 6,
+              "entries_changed": 2
+            },
+            {
+              "scene": "scene-0561",
+              "histogram_l1_difference": 2,
+              "entries_changed": 2
+            },
+            {
+              "scene": "scene-0629",
+              "histogram_l1_difference": 2,
+              "entries_changed": 2
+            }
+          ]
+        },
+        "3.0s": {
+          "npz_sha256": {
+            "original": "dbacdaf27227b2a034f7020209bd0f5436be8e9d725de16974028c23850d8e46",
+            "recovery": "347647a866c1481d234cb2d46a85cd0ef7ae9f1eefad55300a6d3b993959f24f"
+          },
+          "metadata_equal": {
+            "scene_names": true,
+            "sample_indices": true,
+            "horizon": true
+          },
+          "scene_count": 126,
+          "anchor_count": 256,
+          "shape": [
+            126,
+            18,
+            18
+          ],
+          "dtype": "int64",
+          "histograms_exact_equal": false,
+          "affected_scene_count": 4,
+          "histogram_entries_changed": 11,
+          "scene_histogram_l1_difference": 20,
+          "aggregated_histogram_l1_difference": 20,
+          "maximum_absolute_entry_difference": 4,
+          "total_evaluated_voxels": {
+            "original": 22646350,
+            "recovery": 22646350
+          },
+          "ground_truth_class_totals_equal": true,
+          "miou_percent": {
+            "original": 21.447991616707814,
+            "recovery": 21.447837251492917,
+            "delta_pp": -0.0001543652148967567
+          },
+          "per_class_delta_pp": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.00047526710011069895,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0003432205663784771,
+            -0.003442696319758909,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "affected_scenes": [
+            {
+              "scene": "scene-0097",
+              "histogram_l1_difference": 6,
+              "entries_changed": 3
+            },
+            {
+              "scene": "scene-0553",
+              "histogram_l1_difference": 2,
+              "entries_changed": 2
+            },
+            {
+              "scene": "scene-0554",
+              "histogram_l1_difference": 4,
+              "entries_changed": 4
+            },
+            {
+              "scene": "scene-0794",
+              "histogram_l1_difference": 8,
+              "entries_changed": 2
+            }
+          ]
+        }
+      }
+    },
+    {
+      "arm": "h1-geometry",
+      "saved_future_mean_miou_percent": 23.303595930402963,
+      "recovered_future_mean_miou_percent": 23.303637287041784,
+      "delta_pp": 4.135663882109952e-05,
+      "ordered_indices_equal": true,
+      "checkpoint_audit": {
+        "epoch": 10,
+        "iterations": 29920,
+        "optimizer_steps": 29913,
+        "finite_model_tensors": 771,
+        "state_schema_matches_cpu": true,
+        "optimizer_finite": true
+      },
+      "checkpoint_hashes": {
+        "files": {
+          "epoch_10.pth": "ebc785a9963d7e4e02c1afcee0611fe92cee8591bc2de374d205bd8ccd9a63da",
+          "best_future.pth": "078910062ae88e773d1ffcd53a19e003314a2ac3f367ed4d7b9c0bc188879359"
+        },
+        "model_state": {
+          "epoch_10.pth": "ffcd034cf25e93eb482d51538fc739d1cd779cdebc01424f13b9b423dafe75d8",
+          "best_future.pth": "ffcd034cf25e93eb482d51538fc739d1cd779cdebc01424f13b9b423dafe75d8"
+        }
+      },
+      "scene_comparisons": {
+        "0.0s": {
+          "npz_sha256": {
+            "original": "2236680d9209f44c9f6915c6c913ca688dc1a697890526e1e367e6ca504f0a4b",
+            "recovery": "e30486cd8fa26540c599425dc2e96b971ece3fcce53402f894917d2081e20429"
+          },
+          "metadata_equal": {
+            "scene_names": true,
+            "sample_indices": true,
+            "horizon": true
+          },
+          "scene_count": 126,
+          "anchor_count": 256,
+          "shape": [
+            126,
+            18,
+            18
+          ],
+          "dtype": "int64",
+          "histograms_exact_equal": false,
+          "affected_scene_count": 3,
+          "histogram_entries_changed": 8,
+          "scene_histogram_l1_difference": 10,
+          "aggregated_histogram_l1_difference": 8,
+          "maximum_absolute_entry_difference": 2,
+          "total_evaluated_voxels": {
+            "original": 22443251,
+            "recovery": 22443251
+          },
+          "ground_truth_class_totals_equal": true,
+          "miou_percent": {
+            "original": 28.95427853092763,
+            "recovery": 28.954287383102866,
+            "delta_pp": 8.85217523460824e-06
+          },
+          "per_class_delta_pp": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.000492043654112706,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.0009238472695685118,
+            -4.143490097874292e-05,
+            0.0006237254954868376,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "affected_scenes": [
+            {
+              "scene": "scene-0097",
+              "histogram_l1_difference": 4,
+              "entries_changed": 2
+            },
+            {
+              "scene": "scene-0554",
+              "histogram_l1_difference": 4,
+              "entries_changed": 4
+            },
+            {
+              "scene": "scene-0794",
+              "histogram_l1_difference": 2,
+              "entries_changed": 2
+            }
+          ]
+        },
+        "1.0s": {
+          "npz_sha256": {
+            "original": "428db68320e103a29c6a5f30ce31b887ca8dbdb2a9302f885bbd0a90eacd4f30",
+            "recovery": "539b985e699ef3642f7c8967bd75f7e9bad7701c7ed4b357697244c17e2dff84"
+          },
+          "metadata_equal": {
+            "scene_names": true,
+            "sample_indices": true,
+            "horizon": true
+          },
+          "scene_count": 126,
+          "anchor_count": 256,
+          "shape": [
+            126,
+            18,
+            18
+          ],
+          "dtype": "int64",
+          "histograms_exact_equal": false,
+          "affected_scene_count": 3,
+          "histogram_entries_changed": 6,
+          "scene_histogram_l1_difference": 10,
+          "aggregated_histogram_l1_difference": 4,
+          "maximum_absolute_entry_difference": 3,
+          "total_evaluated_voxels": {
+            "original": 22636535,
+            "recovery": 22636535
+          },
+          "ground_truth_class_totals_equal": true,
+          "miou_percent": {
+            "original": 25.491477680327563,
+            "recovery": 25.491501059976617,
+            "delta_pp": 2.33796490540783e-05
+          },
+          "per_class_delta_pp": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            4.132804370726717e-05,
+            0.0,
+            0.0003561259902511438,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "affected_scenes": [
+            {
+              "scene": "scene-0553",
+              "histogram_l1_difference": 2,
+              "entries_changed": 2
+            },
+            {
+              "scene": "scene-0557",
+              "histogram_l1_difference": 6,
+              "entries_changed": 2
+            },
+            {
+              "scene": "scene-0629",
+              "histogram_l1_difference": 2,
+              "entries_changed": 2
+            }
+          ]
+        },
+        "2.0s": {
+          "npz_sha256": {
+            "original": "89ce18734ebdc70e7ee255847071cdd21611dd55dec78d0a1554016d424d176e",
+            "recovery": "d02212f75698c2df210b2beff6994d16cf9aa8a3c934655066646f7834f7c1b9"
+          },
+          "metadata_equal": {
+            "scene_names": true,
+            "sample_indices": true,
+            "horizon": true
+          },
+          "scene_count": 126,
+          "anchor_count": 256,
+          "shape": [
+            126,
+            18,
+            18
+          ],
+          "dtype": "int64",
+          "histograms_exact_equal": false,
+          "affected_scene_count": 2,
+          "histogram_entries_changed": 7,
+          "scene_histogram_l1_difference": 10,
+          "aggregated_histogram_l1_difference": 4,
+          "maximum_absolute_entry_difference": 2,
+          "total_evaluated_voxels": {
+            "original": 22693694,
+            "recovery": 22693694
+          },
+          "ground_truth_class_totals_equal": true,
+          "miou_percent": {
+            "original": 23.174039382850356,
+            "recovery": 23.173933967092957,
+            "delta_pp": -0.0001054157573996406
+          },
+          "per_class_delta_pp": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -9.884584355290826e-05,
+            -0.0016932220322090075,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "affected_scenes": [
+            {
+              "scene": "scene-0553",
+              "histogram_l1_difference": 6,
+              "entries_changed": 5
+            },
+            {
+              "scene": "scene-0554",
+              "histogram_l1_difference": 4,
+              "entries_changed": 2
+            }
+          ]
+        },
+        "3.0s": {
+          "npz_sha256": {
+            "original": "8d5e3ccc3c57b47b6a21ca02bdee55b111c75a94c12f686953babc618b6d3640",
+            "recovery": "17f6b695c7ec261bd3c928299ddaca53775231e3546a66a72b3e3d7c5b808958"
+          },
+          "metadata_equal": {
+            "scene_names": true,
+            "sample_indices": true,
+            "horizon": true
+          },
+          "scene_count": 126,
+          "anchor_count": 256,
+          "shape": [
+            126,
+            18,
+            18
+          ],
+          "dtype": "int64",
+          "histograms_exact_equal": false,
+          "affected_scene_count": 3,
+          "histogram_entries_changed": 9,
+          "scene_histogram_l1_difference": 14,
+          "aggregated_histogram_l1_difference": 8,
+          "maximum_absolute_entry_difference": 3,
+          "total_evaluated_voxels": {
+            "original": 22646350,
+            "recovery": 22646350
+          },
+          "ground_truth_class_totals_equal": true,
+          "miou_percent": {
+            "original": 21.24527072803098,
+            "recovery": 21.245476834055783,
+            "delta_pp": 0.00020610602480175544
+          },
+          "per_class_delta_pp": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            6.388910746579768e-05,
+            0.0034399133141889138,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "affected_scenes": [
+            {
+              "scene": "scene-0553",
+              "histogram_l1_difference": 10,
+              "entries_changed": 5
+            },
+            {
+              "scene": "scene-0554",
+              "histogram_l1_difference": 2,
+              "entries_changed": 2
+            },
+            {
+              "scene": "scene-0778",
+              "histogram_l1_difference": 2,
+              "entries_changed": 2
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "raw_archive_sha256": "efebcb3d23c576f840dfb6de202a01de7a66188f9c1f333c60480d9fa4273fb7",
+  "new_authorization": {
+    "date": "2026-09-29",
+    "user_request": "可以放宽校验阈值",
+    "aggregate_absolute_tolerance_pp": 0.001,
+    "per_class_absolute_tolerance_pp": 0.01,
+    "relative_tolerance": 0,
+    "exact_requirements": [
+      "ordered sample indices",
+      "metric key schema and sample counts",
+      "model and optimizer integrity",
+      "same frozen predictions through old list and new disk evaluators"
+    ]
+  },
+  "status": "diagnostic and new recovery being prepared; no completed full5119 results"
+}

@@ -1,5 +1,6 @@
 """Recovery must not repeat H1 training or bypass the original evidence gates."""
 import importlib.util
+import copy
 import json
 import os
 from pathlib import Path
@@ -141,16 +142,160 @@ class RecoveryGuards(unittest.TestCase):
             recovery.require_old_processes_absent(self.old, self.original, proc=proc)
         self.dead_patch.start()
 
-    def test_exact_subset_parity_and_rejection_of_anchor_or_metric_changes(self):
+    def parity_payloads(self):
+        metrics = {h: dict({'Semantic mIoU': 23.0, 'Binary IoU': 40.0, 'evaluated_samples': 256},
+                          **{key: 23.0 for key in recovery.CLASS_METRICS}) for h in recovery.HORIZONS}
+        old = dict(samples=256, indices=list(range(256)), metrics=metrics, future_mean_miou=23.0,
+                   epoch=10, scope='subset', dataset_samples=5119)
+        new = dict(samples=256, indices=list(range(256)), metrics=copy.deepcopy(metrics),
+                   future_mean_miou=23.0, mode='normal', checkpoint_meta={'epoch': 10, 'iter': 29920})
+        return old, new
+
+    def check_parity(self, old, new):
         previous, current = self.root / 'old.json', self.root / 'new.json'
-        payload = dict(samples=256, indices=list(range(256)), metrics={'1.0s': {'Semantic mIoU': 23.0}},
-                       future_mean_miou=23.0, mode='normal')
-        put(previous, payload); put(current, payload)
-        self.assertTrue(recovery.require_h1_parity(previous, current)['exact_metrics'])
-        payload['metrics']['1.0s']['Semantic mIoU'] = 23.000001
-        put(current, payload)
-        with self.assertRaisesRegex(ValueError, 'metrics'):
-            recovery.require_h1_parity(previous, current)
+        put(previous, old); put(current, new)
+        return recovery.require_h1_parity(previous, current)
+
+    def test_authorized_absolute_parity_boundaries_and_complete_audit(self):
+        old, new = self.parity_payloads()
+        new['metrics']['1.0s']['Semantic mIoU'] = 23.001
+        new['metrics']['2.0s']['Binary IoU'] = 39.999
+        new['metrics']['3.0s']['car_IoU'] = 23.01
+        new['future_mean_miou'] = 22.999
+        result = self.check_parity(old, new)
+        self.assertEqual(result['status'], 'passed')
+        self.assertNotIn('exact_metrics', result)
+        self.assertEqual(result['policy']['rtol'], 0)
+        self.assertEqual(len(result['differences']), 77)
+        self.assertEqual(result['differences']['1.0s/Semantic mIoU']['signed_delta_pp'], .001)
+        self.assertEqual(result['differences']['2.0s/Binary IoU']['signed_delta_pp'], -.001)
+        self.assertTrue(result['exact_evaluated_samples'])
+
+    def test_outside_each_tolerance_fails_with_full_delta_audit(self):
+        for key, value in (('Semantic mIoU', 23.0010001), ('Binary IoU', 40.0010001),
+                           ('car_IoU', 23.0100001), ('future_mean_miou', 23.0010001)):
+            with self.subTest(key=key):
+                old, new = self.parity_payloads()
+                if key == 'future_mean_miou':
+                    new[key] = value
+                else:
+                    new['metrics']['1.0s'][key] = value
+                with self.assertRaisesRegex(ValueError, 'authorized parity bounds') as caught:
+                    self.check_parity(old, new)
+                self.assertEqual(caught.exception.parity_audit['status'], 'failed')
+                self.assertEqual(len(caught.exception.parity_audit['differences']), 77)
+
+    def test_missing_extra_or_renamed_metric_and_horizon_keys_rejected(self):
+        for kind in ('missing', 'extra', 'renamed', 'horizon'):
+            old, new = self.parity_payloads()
+            if kind == 'horizon':
+                new['metrics']['0s'] = new['metrics'].pop('0.0s')
+            elif kind == 'extra':
+                new['metrics']['1.0s']['unexpected_IoU'] = 23
+            else:
+                new['metrics']['1.0s'].pop('car_IoU')
+                if kind == 'renamed':
+                    new['metrics']['1.0s']['vehicle_IoU'] = 23
+            with self.subTest(kind=kind), self.assertRaisesRegex(ValueError, 'schema'):
+                self.check_parity(old, new)
+
+    def test_anchor_mode_and_counts_remain_exact(self):
+        changes = (lambda new: new.update(indices=list(reversed(new['indices']))),
+                   lambda new: new['indices'].__setitem__(0, 0.0),
+                   lambda new: new.update(mode='no_radar'),
+                   lambda new: new.update(samples=255),
+                   lambda new: new['metrics']['1.0s'].update(evaluated_samples=255),
+                   lambda new: new['metrics']['1.0s'].update(evaluated_samples=256.0),
+                   lambda new: new.update(checkpoint_meta={'epoch': 9, 'iter': 26928}))
+        for change in changes:
+            old, new = self.parity_payloads()
+            change(new)
+            with self.assertRaises(ValueError):
+                self.check_parity(old, new)
+
+    def test_only_matching_undefined_per_class_iou_is_permitted(self):
+        for missing in (None, float('nan')):
+            old, new = self.parity_payloads()
+            old['metrics']['1.0s']['car_IoU'] = missing
+            new['metrics']['1.0s']['car_IoU'] = missing
+            audit = self.check_parity(old, new)
+            self.assertIsNone(audit['differences']['1.0s/car_IoU']['absolute_delta_pp'])
+        for key, old_value, new_value in (('car_IoU', 23.0, float('nan')),
+                ('car_IoU', float('inf'), float('inf')), ('Semantic mIoU', float('nan'), float('nan')),
+                ('Binary IoU', None, None), ('car_IoU', True, True)):
+            old, new = self.parity_payloads()
+            old['metrics']['1.0s'][key] = old_value
+            new['metrics']['1.0s'][key] = new_value
+            with self.subTest(key=key, old=old_value), self.assertRaisesRegex(ValueError, 'finite metrics'):
+                self.check_parity(old, new)
+
+    def previous_recovery(self):
+        previous, previous_code = self.root / 'previous', self.root / 'previous_code'
+        previous.mkdir(); previous_code.mkdir()
+        put(previous_code / 'code_manifest.json', dict(git_revision=recovery.PREVIOUS_RECOVERY_REVISION, sha256={}))
+        put(previous / 'submission.json', dict(code=str(previous_code), recovery_of=str(self.original),
+            git_revision=recovery.PREVIOUS_RECOVERY_REVISION, launcher_pid=91000000))
+        put(previous / 'preflight.json', dict(state='passed', git_revision=recovery.PREVIOUS_RECOVERY_REVISION))
+        for gpu in (0, 1):
+            put(previous / ('gpu%d_worker.json' % gpu), dict(state='failed', stage='recovery_subset_parity',
+                controller_pid=91000001 + gpu, child_pid=91000003 + gpu))
+        return previous, previous_code
+
+    def test_previous_recovery_must_be_failed_and_untouched(self):
+        previous, old_code = self.previous_recovery()
+        before = {p.name: p.read_bytes() for p in previous.iterdir()}
+        result = recovery.require_previous_recovery_absent(previous, self.original, self.new)
+        self.assertEqual(result['git_revision'], recovery.PREVIOUS_RECOVERY_REVISION)
+        self.assertEqual(before, {p.name: p.read_bytes() for p in previous.iterdir()})
+        with self.assertRaisesRegex(ValueError, 'source reuse'):
+            recovery.require_previous_recovery_absent(previous, self.original, old_code)
+        put(previous / 'gpu0_worker.json', dict(state='running', stage='recovery_subset_parity'))
+        with self.assertRaisesRegex(ValueError, 'not terminal'):
+            recovery.require_previous_recovery_absent(previous, self.original, self.new)
+
+    def test_previous_recovery_started_arm_blocks_relaunch(self):
+        previous, _ = self.previous_recovery()
+        path = previous / 'h8-velocity_claim.json'; path.write_text('{}')
+        with self.assertRaisesRegex(FileExistsError, 'claimed H8'):
+            recovery.require_previous_recovery_absent(previous, self.original, self.new)
+        path.unlink()
+        (previous / 'h1-velocity_result.json').write_text('{}')
+        with self.assertRaisesRegex(FileExistsError, 'completed an arm'):
+            recovery.require_previous_recovery_absent(previous, self.original, self.new)
+
+    def test_previous_recovery_launcher_pid_also_must_be_absent(self):
+        previous, old_code = self.previous_recovery()
+        self.dead_patch.stop()
+        proc = self.root / 'proc'; proc.mkdir(); (proc / '91000000').mkdir()
+        with self.assertRaisesRegex(ValueError, 'Original processes still present'):
+            recovery.require_old_processes_absent(old_code, previous, proc=proc)
+        self.dead_patch.start()
+
+    def diagnostic(self):
+        (self.new / 'finetune_hooks.py').write_text('exact evaluator\n')
+        report = dict(status='complete_observations_only', checkpoint_unchanged=True,
+            optimizer_steps_executed=0, source_revision='new', original_revision=recovery.ORIGINAL_REVISION,
+            current_evaluator_sha256=recovery.sha256_file(self.new / 'finetune_hooks.py'),
+            checkpoint_meta={'epoch': 10, 'iter': 29920}, policies={})
+        for name in ('offline_manual_seed', 'training_deterministic_seed'):
+            report['policies'][name] = dict(spool_arrays_exact=True,
+                fixed_output_storage_comparison=dict(metrics_exact=True, all_scene_arrays_exact=True))
+        return report
+
+    def test_diagnostic_is_exact_version_read_only_and_storage_exact(self):
+        report = self.diagnostic(); path = self.root / 'diagnostic.json'; put(path, report)
+        result = recovery.require_exact_storage_diagnostic(path, self.new, 'new')
+        self.assertTrue(result['all_scene_arrays_exact'])
+        mutations = (lambda r: r.update(status='running'), lambda r: r.update(optimizer_steps_executed=1),
+            lambda r: r.update(checkpoint_unchanged=False), lambda r: r.update(source_revision='previous'),
+            lambda r: r.update(current_evaluator_sha256='different'),
+            lambda r: r['policies']['offline_manual_seed'].update(spool_arrays_exact=False),
+            lambda r: r['policies']['training_deterministic_seed']['fixed_output_storage_comparison'].update(metrics_exact=False),
+            lambda r: r['policies']['offline_manual_seed']['fixed_output_storage_comparison'].update(all_scene_arrays_exact=False))
+        for mutate in mutations:
+            changed = copy.deepcopy(report); mutate(changed); put(path, changed)
+            with self.assertRaises(ValueError):
+                recovery.require_exact_storage_diagnostic(path, self.new, 'new')
 
     def test_host_available_memory_is_parsed_in_bytes(self):
         path = self.root / 'meminfo'

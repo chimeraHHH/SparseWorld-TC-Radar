@@ -5,9 +5,11 @@ reuses smoke weights. Only evaluation/storage/scheduling code may differ from
 the original immutable experiment. Each submission path is reserved once.
 """
 import argparse
+from decimal import Decimal
 import gc
 import hashlib
 import json
+import math
 import os
 import pwd
 from pathlib import Path
@@ -24,6 +26,17 @@ ORIGINAL_REVISION = '1e95cf1d53c8607efea04341e3d864099a2e48cc'
 EVAL_SPOOL = '/home/huayiming/Workspace/SparseWorld-cache/eval_spool_history_recovery_20260928'
 HOST_MINIMUM_BYTES = 64 * 1024 ** 3
 ALLOWED_SOURCE_CHANGES = {'finetune_hooks.py', 'tools/run_history_doppler_experiment.py'}
+PREVIOUS_RECOVERY_REVISION = '3aaf8693d1e270a69fad940145fb28b47859631a'
+HORIZONS = ('0.0s', '1.0s', '2.0s', '3.0s')
+CLASS_METRICS = tuple(name + '_IoU' for name in (
+    'others', 'barrier', 'bicycle', 'bus', 'car', 'construction_vehicle',
+    'motorcycle', 'pedestrian', 'traffic_cone', 'trailer', 'truck',
+    'driveable_surface', 'other_flat', 'sidewalk', 'terrain', 'manmade', 'vegetation'))
+AGGREGATE_METRICS = ('Semantic mIoU', 'Binary IoU')
+PARITY_POLICY = dict(
+    authorization='User explicitly permitted relaxing evaluation parity tolerance on 2026-09-29',
+    units='percentage points', aggregate_atol=0.001, per_class_atol=0.01, rtol=0,
+    scope='Independent saved-checkpoint fixed256 evaluation only; frozen-output storage must remain exact')
 
 
 def sha256_file(path):
@@ -42,15 +55,83 @@ def host_available_bytes(meminfo=Path('/proc/meminfo')):
 
 
 def require_h1_parity(previous, current):
+    """Audit independent inference within explicitly authorized absolute bounds.
+
+    The original inline and standalone evaluators have different metadata
+    schemas. The metric schema and anchor identity remain exact. This tolerance
+    never applies to the same-prediction list/disk comparison.
+    """
     old, new = (json.loads(Path(p).read_text()) for p in (previous, current))
-    for key in ('samples', 'indices', 'metrics', 'future_mean_miou'):
-        if old[key] != new[key]:
-            raise ValueError('Recovered evaluation differs from saved H1 subset: ' + key)
-    if old['samples'] != 256 or new['mode'] != 'normal':
+    if (old.get('scope') != 'subset' or old.get('epoch') != 10
+            or old.get('dataset_samples') != 5119 or old.get('mode', 'normal') != 'normal'
+            or new.get('mode') != 'normal'
+            or new.get('checkpoint_meta') != {'epoch': 10, 'iter': 29920}):
+        raise ValueError('Recovery parity requires original epoch10 inline subset and normal standalone schemas')
+    if any(type(item.get('samples')) is not int or item['samples'] != 256 for item in (old, new)):
         raise ValueError('Recovery parity requires the original fixed 256 normal anchors')
-    return dict(status='passed', samples=256, exact_metrics=True, exact_indices=True,
+    indices = old.get('indices')
+    if (not isinstance(indices, list) or len(indices) != 256 or len(set(indices)) != 256
+            or any(type(index) is not int or not 0 <= index < 5119 for index in indices)
+            or indices != sorted(indices) or new.get('indices') != indices
+            or any(type(index) is not int for index in new['indices'])):
+        raise ValueError('Recovered evaluation differs from saved H1 subset: ordered indices')
+    for item in (old, new):
+        if not isinstance(item.get('metrics'), dict) or set(item['metrics']) != set(HORIZONS):
+            raise ValueError('Recovery parity horizon schema differs')
+        for horizon in HORIZONS:
+            metrics = item['metrics'][horizon]
+            expected = set(AGGREGATE_METRICS + CLASS_METRICS + ('evaluated_samples',))
+            if not isinstance(metrics, dict) or set(metrics) != expected:
+                raise ValueError('Recovery parity metric schema differs: ' + horizon)
+            if type(metrics['evaluated_samples']) is not int or metrics['evaluated_samples'] != 256:
+                raise ValueError('Recovery parity evaluated_samples must remain exactly 256: ' + horizon)
+
+    differences, violations = {}, []
+    def compare(name, reference, observed, tolerance, allow_undefined=False):
+        both_null = reference is None and observed is None
+        both_nan = (isinstance(reference, float) and isinstance(observed, float)
+                    and math.isnan(reference) and math.isnan(observed))
+        # Undefined per-class IoU is produced for unsupported classes; inline
+        # json_safe encodes it as null. Never tolerate a newly undefined class.
+        if allow_undefined and (both_null or both_nan):
+            differences[name] = dict(previous=None, current=None, signed_delta_pp=None,
+                absolute_delta_pp=None, atol_pp=tolerance, within_tolerance=True,
+                matching_undefined='null' if both_null else 'NaN')
+            return
+        if (type(reference) not in (int, float) or type(observed) not in (int, float)
+                or not math.isfinite(reference) or not math.isfinite(observed)):
+            raise ValueError('Recovery parity requires finite metrics or matching undefined classes: ' + name)
+        if not 0 <= reference <= 100 or not 0 <= observed <= 100:
+            raise ValueError('Recovery parity metric outside percentage range: ' + name)
+        # Compare the serialized decimal values to make the inclusive boundary
+        # unambiguous (23.001 - 23.0 must satisfy a 0.001 pp allowance).
+        delta = Decimal(str(observed)) - Decimal(str(reference))
+        passed = abs(delta) <= Decimal(str(tolerance))
+        differences[name] = dict(previous=reference, current=observed,
+            signed_delta_pp=float(delta), absolute_delta_pp=float(abs(delta)),
+            atol_pp=tolerance, within_tolerance=passed)
+        if not passed:
+            violations.append(name)
+
+    for horizon in HORIZONS:
+        for key in AGGREGATE_METRICS + CLASS_METRICS:
+            compare(horizon + '/' + key, old['metrics'][horizon][key], new['metrics'][horizon][key],
+                    PARITY_POLICY['aggregate_atol'] if key in AGGREGATE_METRICS else PARITY_POLICY['per_class_atol'],
+                    allow_undefined=key in CLASS_METRICS)
+    compare('future_mean_miou', old.get('future_mean_miou'), new.get('future_mean_miou'),
+            PARITY_POLICY['aggregate_atol'])
+    audit = dict(status='failed' if violations else 'passed', samples=256,
+                comparison='absolute_tolerance', policy=dict(PARITY_POLICY),
+                exact_indices=True, exact_metric_schema=True, exact_evaluated_samples=True,
+                schemas=dict(previous='inline_epoch10_subset', current='standalone_normal_epoch10'),
+                differences=differences, violations=violations,
                 previous=str(previous), current=str(current), previous_sha256=sha256_file(previous),
                 current_sha256=sha256_file(current))
+    if violations:
+        error = ValueError('Recovered evaluation exceeds authorized parity bounds: ' + ', '.join(violations))
+        error.parity_audit = audit
+        raise error
+    return audit
 
 
 def require_old_processes_absent(original_code, original, proc=Path('/proc')):
@@ -59,6 +140,12 @@ def require_old_processes_absent(original_code, original, proc=Path('/proc')):
     for name in ('gpu0_worker.json', 'gpu1_worker.json'):
         payload = json.loads((original / name).read_text())
         recorded.update(int(payload[k]) for k in ('controller_pid', 'child_pid') if payload.get(k))
+    submission_path = original / 'submission.json'
+    if submission_path.exists():
+        submission = json.loads(submission_path.read_text())
+        if submission.get('launcher_pid'):
+            recorded.add(int(submission['launcher_pid']))
+        recorded.update(int(item['pid']) for item in submission.get('controllers', {}).values() if item.get('pid'))
     alive = [pid for pid in sorted(recorded) if (proc / str(pid)).exists()]
     # Even a reused or helper-shaped PID is not silently accepted as exited.
     if alive:
@@ -108,6 +195,74 @@ def require_old_processes_absent(original_code, original, proc=Path('/proc')):
         raise ValueError('Original processes still present: ' + str(dict(residuals=residuals)))
     return dict(recorded_pids=sorted(recorded), live_recorded_pids=[], own_original_snapshot_processes=[],
                 protected_session_helpers=protected_helpers)
+
+
+def require_previous_recovery_absent(previous, original, code):
+    """Preserve and exclude the observed failed strict-parity recovery."""
+    previous, original, code = Path(previous), Path(original), Path(code)
+    if previous.resolve() == original.resolve():
+        raise ValueError('Previous recovery must be distinct from the original campaign')
+    submission = json.loads((previous / 'submission.json').read_text())
+    preflight = json.loads((previous / 'preflight.json').read_text())
+    old_code = Path(submission['code'])
+    if (submission['git_revision'] != PREVIOUS_RECOVERY_REVISION
+            or preflight['git_revision'] != PREVIOUS_RECOVERY_REVISION
+            or preflight['state'] != 'passed'
+            or Path(submission['recovery_of']).resolve() != original.resolve()
+            or code.resolve() == old_code.resolve()):
+        raise ValueError('Unexpected previous recovery identity or source reuse')
+    manifest = json.loads((old_code / 'code_manifest.json').read_text())
+    if manifest['git_revision'] != PREVIOUS_RECOVERY_REVISION:
+        raise ValueError('Unexpected previous recovery manifest')
+    verify_snapshot(old_code, manifest)
+    states = {}
+    for gpu in (0, 1):
+        path = previous / ('gpu%d_worker.json' % gpu)
+        state = json.loads(path.read_text())
+        if state.get('state') != 'failed' or state.get('stage') != 'recovery_subset_parity':
+            raise ValueError('Previous recovery worker is not terminal at the known parity failure')
+        states[str(gpu)] = dict(state=state['state'], stage=state['stage'], sha256=sha256_file(path))
+    for arm in ARMS:
+        if (previous / (arm + '_result.json')).exists():
+            raise FileExistsError('Previous recovery already completed an arm: ' + arm)
+        if arm.startswith('h8-') and (previous / (arm + '_claim.json')).exists():
+            raise FileExistsError('Previous recovery already claimed H8: ' + arm)
+    process_audit = require_old_processes_absent(old_code, previous)
+    return dict(campaign=str(previous), code=str(old_code), git_revision=PREVIOUS_RECOVERY_REVISION,
+                submission_sha256=sha256_file(previous / 'submission.json'),
+                preflight_sha256=sha256_file(previous / 'preflight.json'),
+                worker_states=states, process_audit=process_audit, preserved=True)
+
+
+def require_exact_storage_diagnostic(path, code, revision):
+    """Tolerance concerns separate inference; the storage implementation is exact."""
+    path, code = Path(path), Path(code)
+    result = json.loads(path.read_text())
+    if (result.get('status') != 'complete_observations_only'
+            or result.get('checkpoint_unchanged') is not True
+            or type(result.get('optimizer_steps_executed')) is not int
+            or result['optimizer_steps_executed'] != 0):
+        raise ValueError('Read-only completed storage diagnostic is required')
+    if (result.get('source_revision') != revision
+            or result.get('original_revision') != ORIGINAL_REVISION
+            or result.get('current_evaluator_sha256') != sha256_file(code / 'finetune_hooks.py')):
+        raise ValueError('Storage diagnostic must use this exact evaluation source')
+    if result.get('checkpoint_meta') != {'epoch': 10, 'iter': 29920}:
+        raise ValueError('Storage diagnostic must use a completed H1 checkpoint')
+    policies = result.get('policies', {})
+    required = ('offline_manual_seed', 'training_deterministic_seed')
+    if set(policies) != set(required):
+        raise ValueError('Storage diagnostic must cover both inference policies')
+    for name in required:
+        policy = policies[name]
+        comparison = policy.get('fixed_output_storage_comparison', {})
+        if (policy.get('spool_arrays_exact') is not True
+                or comparison.get('metrics_exact') is not True
+                or comparison.get('all_scene_arrays_exact') is not True):
+            raise ValueError('Frozen-output storage equality failed: ' + name)
+    return dict(path=str(path), sha256=sha256_file(path), source_revision=revision,
+                frozen_output_arrays_exact=True, metrics_exact=True, all_scene_arrays_exact=True,
+                checkpoint_unchanged=True, optimizer_steps_executed=0)
 
 
 def validate_recovery_source(original, code):
@@ -218,6 +373,9 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--campaign-dir', type=Path, required=True)
     parser.add_argument('--recovery-of', type=Path, default=ROOT / 'analysis' / CAMPAIGN)
+    parser.add_argument('--previous-recovery', type=Path)
+    parser.add_argument('--diagnostic-result', type=Path, required=True,
+                        help='Exact-version completed frozen-output list/disk diagnostic')
     args = parser.parse_args()
     if os.environ.get('CUDA_VISIBLE_DEVICES') != '':
         raise ValueError('Recovery CPU preflight must hide all GPUs')
@@ -228,8 +386,15 @@ def main():
     if manifest['git_revision'] == ORIGINAL_REVISION:
         raise ValueError('Recovery requires its own new committed source snapshot')
     recovery = validate_recovery_source(args.recovery_of, code)
+    recovery['parity_policy'] = dict(PARITY_POLICY)
+    recovery['exact_storage_diagnostic'] = require_exact_storage_diagnostic(
+        args.diagnostic_result, code, manifest['git_revision'])
+    if args.previous_recovery:
+        recovery['previous_recovery'] = require_previous_recovery_absent(
+            args.previous_recovery, args.recovery_of, code)
     campaign = args.campaign_dir
-    if campaign.resolve() == args.recovery_of.resolve():
+    if (campaign.resolve() == args.recovery_of.resolve()
+            or args.previous_recovery and campaign.resolve() == args.previous_recovery.resolve()):
         raise ValueError('Do not overwrite the failed campaign')
     campaign.mkdir(parents=True, exist_ok=False)
     report = dict(state='preflight', launcher_pid=os.getpid(), code=str(code),
@@ -266,6 +431,9 @@ def main():
         write_json(campaign / 'preflight.json', report)
         # Recheck live originals after lengthy CPU preflight, before any worker.
         require_old_processes_absent(Path(recovery['original_code']), args.recovery_of)
+        require_exact_storage_diagnostic(args.diagnostic_result, code, manifest['git_revision'])
+        if args.previous_recovery:
+            require_previous_recovery_absent(args.previous_recovery, args.recovery_of, code)
         controllers = {}
         for gpu in (1, 0):
             log_path = campaign / ('gpu%d_controller.log' % gpu)
