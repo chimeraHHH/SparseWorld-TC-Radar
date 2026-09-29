@@ -1,0 +1,850 @@
+{
+  "at_utc": "2026-09-29T03:36:39.514336+00:00",
+  "campaign": "history_doppler_recovery_v3_20260929",
+  "source_revision": "e80bca6ece3ceafbb582d8ca21595b2e4128691c",
+  "diagnostic": {
+    "status": "complete_observations_only",
+    "source_revision": "e80bca6ece3ceafbb582d8ca21595b2e4128691c",
+    "original_revision": "1e95cf1d53c8607efea04341e3d864099a2e48cc",
+    "checkpoint_sha256": "ebc785a9963d7e4e02c1afcee0611fe92cee8591bc2de374d205bd8ccd9a63da",
+    "indices": [
+      1,
+      483,
+      878,
+      1314,
+      1657,
+      1904,
+      2144,
+      2599,
+      2881,
+      3228,
+      3683,
+      3888,
+      4188,
+      4475,
+      4738,
+      5100
+    ],
+    "elapsed_seconds": 1572.5186278701294,
+    "optimizer_steps_executed": 0,
+    "checkpoint_unchanged": true,
+    "policies": {
+      "offline_manual_seed": {
+        "samples": 16,
+        "raw_forward_comparisons": 64,
+        "raw_tensor_comparisons": 832,
+        "raw_exact": true,
+        "frozen_postprocess_horizon_comparisons": 320,
+        "frozen_postprocess_exact": true,
+        "frozen_raw_unchanged": true,
+        "spool_arrays_exact": true,
+        "metrics_exact": true,
+        "scene_npz": {
+          "0.0s": {
+            "keys_equal": true,
+            "fields": {
+              "scene_names": true,
+              "sample_indices": true,
+              "horizon": true,
+              "histograms": true
+            },
+            "exact": true
+          },
+          "1.0s": {
+            "keys_equal": true,
+            "fields": {
+              "scene_names": true,
+              "sample_indices": true,
+              "horizon": true,
+              "histograms": true
+            },
+            "exact": true
+          },
+          "2.0s": {
+            "keys_equal": true,
+            "fields": {
+              "scene_names": true,
+              "sample_indices": true,
+              "horizon": true,
+              "histograms": true
+            },
+            "exact": true
+          },
+          "3.0s": {
+            "keys_equal": true,
+            "fields": {
+              "scene_names": true,
+              "sample_indices": true,
+              "horizon": true,
+              "histograms": true
+            },
+            "exact": true
+          }
+        },
+        "runtime": {
+          "cudnn_deterministic": false,
+          "cudnn_benchmark": false,
+          "cudnn_allow_tf32": true,
+          "cuda_matmul_allow_tf32": false,
+          "deterministic_algorithms": false,
+          "float32_matmul_precision": "highest",
+          "autocast_enabled": false,
+          "autocast_gpu_dtype": "torch.float16",
+          "torch_threads": 2,
+          "cublas_workspace_config": null
+        }
+      },
+      "training_deterministic_seed": {
+        "samples": 16,
+        "raw_forward_comparisons": 64,
+        "raw_tensor_comparisons": 832,
+        "raw_exact": true,
+        "frozen_postprocess_horizon_comparisons": 320,
+        "frozen_postprocess_exact": true,
+        "frozen_raw_unchanged": true,
+        "spool_arrays_exact": true,
+        "metrics_exact": true,
+        "scene_npz": {
+          "0.0s": {
+            "keys_equal": true,
+            "fields": {
+              "scene_names": true,
+              "sample_indices": true,
+              "horizon": true,
+              "histograms": true
+            },
+            "exact": true
+          },
+          "1.0s": {
+            "keys_equal": true,
+            "fields": {
+              "scene_names": true,
+              "sample_indices": true,
+              "horizon": true,
+              "histograms": true
+            },
+            "exact": true
+          },
+          "2.0s": {
+            "keys_equal": true,
+            "fields": {
+              "scene_names": true,
+              "sample_indices": true,
+              "horizon": true,
+              "histograms": true
+            },
+            "exact": true
+          },
+          "3.0s": {
+            "keys_equal": true,
+            "fields": {
+              "scene_names": true,
+              "sample_indices": true,
+              "horizon": true,
+              "histograms": true
+            },
+            "exact": true
+          }
+        },
+        "runtime": {
+          "cudnn_deterministic": true,
+          "cudnn_benchmark": false,
+          "cudnn_allow_tf32": true,
+          "cuda_matmul_allow_tf32": false,
+          "deterministic_algorithms": false,
+          "float32_matmul_precision": "highest",
+          "autocast_enabled": false,
+          "autocast_gpu_dtype": "torch.float16",
+          "torch_threads": 2,
+          "cublas_workspace_config": null
+        },
+        "optimizer_step_guard_installed": true,
+        "optimizer_state_entries_before_setup": 0,
+        "optimizer_state_entries_after_setup": 0
+      }
+    },
+    "cross_policy": {
+      "samples": 16,
+      "inputs_exact": true,
+      "raw_reference_hashes_exact": true,
+      "final_horizons_exact": true
+    },
+    "limitation": "16 fixed256 anchors on GPU1 did not reproduce the previous difference; this does not identify its cause or establish full-dataset determinism."
+  },
+  "cpu_preflight": {
+    "passed": 109,
+    "skipped_cuda": 3,
+    "seconds": 33.23,
+    "cache_verified": 29049,
+    "independent_online_rechecks": 128,
+    "scientific_source_hashes_unchanged": 136
+  },
+  "h1_velocity_parity": {
+    "status": "passed",
+    "samples": 256,
+    "comparison": "absolute_tolerance",
+    "policy": {
+      "authorization": "User explicitly permitted relaxing evaluation parity tolerance on 2026-09-29",
+      "units": "percentage points",
+      "aggregate_atol": 0.001,
+      "per_class_atol": 0.01,
+      "rtol": 0,
+      "scope": "Independent saved-checkpoint fixed256 evaluation only; frozen-output storage must remain exact"
+    },
+    "exact_indices": true,
+    "exact_metric_schema": true,
+    "exact_evaluated_samples": true,
+    "schemas": {
+      "previous": "inline_epoch10_subset",
+      "current": "standalone_normal_epoch10"
+    },
+    "differences": {
+      "0.0s/Semantic mIoU": {
+        "previous": 29.316513144119615,
+        "current": 29.316728392834968,
+        "signed_delta_pp": 0.000215248715353,
+        "absolute_delta_pp": 0.000215248715353,
+        "atol_pp": 0.001,
+        "within_tolerance": true
+      },
+      "0.0s/Binary IoU": {
+        "previous": 47.96962205103837,
+        "current": 47.96991968731523,
+        "signed_delta_pp": 0.00029763627686,
+        "absolute_delta_pp": 0.00029763627686,
+        "atol_pp": 0.001,
+        "within_tolerance": true
+      },
+      "0.0s/others_IoU": {
+        "previous": 6.098557037843724,
+        "current": 6.098557037843724,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "0.0s/barrier_IoU": {
+        "previous": 30.718760791278182,
+        "current": 30.718760791278182,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "0.0s/bicycle_IoU": {
+        "previous": 13.579000504795557,
+        "current": 13.579000504795557,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "0.0s/bus_IoU": {
+        "previous": 38.071188071188075,
+        "current": 38.071188071188075,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "0.0s/car_IoU": {
+        "previous": 45.35856475792578,
+        "current": 45.35856475792578,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "0.0s/construction_vehicle_IoU": {
+        "previous": 19.99109924343569,
+        "current": 19.99109924343569,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "0.0s/motorcycle_IoU": {
+        "previous": 16.666666666666664,
+        "current": 16.666666666666664,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "0.0s/pedestrian_IoU": {
+        "previous": 15.26893578625495,
+        "current": 15.268170426065165,
+        "signed_delta_pp": -0.000765360189785,
+        "absolute_delta_pp": 0.000765360189785,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "0.0s/traffic_cone_IoU": {
+        "previous": 10.878962536023055,
+        "current": 10.878962536023055,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "0.0s/trailer_IoU": {
+        "previous": 17.93304004175677,
+        "current": 17.93304004175677,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "0.0s/truck_IoU": {
+        "previous": 35.79090441554625,
+        "current": 35.79090441554625,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "0.0s/driveable_surface_IoU": {
+        "previous": 70.75858442544765,
+        "current": 70.75862141655082,
+        "signed_delta_pp": 3.699110317e-05,
+        "absolute_delta_pp": 3.699110317e-05,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "0.0s/other_flat_IoU": {
+        "previous": 36.057044403882564,
+        "current": 36.06107130672125,
+        "signed_delta_pp": 0.004026902838686,
+        "absolute_delta_pp": 0.004026902838686,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "0.0s/sidewalk_IoU": {
+        "previous": 41.019069913397274,
+        "current": 41.01943060780615,
+        "signed_delta_pp": 0.000360694408876,
+        "absolute_delta_pp": 0.000360694408876,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "0.0s/terrain_IoU": {
+        "previous": 37.61110419710749,
+        "current": 37.61110419710749,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "0.0s/manmade_IoU": {
+        "previous": 33.66313004400835,
+        "current": 33.66313004400835,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "0.0s/vegetation_IoU": {
+        "previous": 28.916110613475432,
+        "current": 28.916110613475432,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "1.0s/Semantic mIoU": {
+        "previous": 26.010314858909943,
+        "current": 26.010294046994183,
+        "signed_delta_pp": -2.081191576e-05,
+        "absolute_delta_pp": 2.081191576e-05,
+        "atol_pp": 0.001,
+        "within_tolerance": true
+      },
+      "1.0s/Binary IoU": {
+        "previous": 47.36953433066712,
+        "current": 47.36951969240921,
+        "signed_delta_pp": -1.463825791e-05,
+        "absolute_delta_pp": 1.463825791e-05,
+        "atol_pp": 0.001,
+        "within_tolerance": true
+      },
+      "1.0s/others_IoU": {
+        "previous": 7.483811285846438,
+        "current": 7.483811285846438,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "1.0s/barrier_IoU": {
+        "previous": 30.62444756408257,
+        "current": 30.62444756408257,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "1.0s/bicycle_IoU": {
+        "previous": 10.509209100758396,
+        "current": 10.509209100758396,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "1.0s/bus_IoU": {
+        "previous": 27.346089850249584,
+        "current": 27.346089850249584,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "1.0s/car_IoU": {
+        "previous": 32.35438613066276,
+        "current": 32.35438613066276,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "1.0s/construction_vehicle_IoU": {
+        "previous": 19.658414560510654,
+        "current": 19.658414560510654,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "1.0s/motorcycle_IoU": {
+        "previous": 10.428994082840237,
+        "current": 10.428994082840237,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "1.0s/pedestrian_IoU": {
+        "previous": 5.8919971308535715,
+        "current": 5.8919971308535715,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "1.0s/traffic_cone_IoU": {
+        "previous": 9.118086696562033,
+        "current": 9.118086696562033,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "1.0s/trailer_IoU": {
+        "previous": 13.44609206054989,
+        "current": 13.44609206054989,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "1.0s/truck_IoU": {
+        "previous": 26.05606176780015,
+        "current": 26.05606176780015,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "1.0s/driveable_surface_IoU": {
+        "previous": 71.63347120585428,
+        "current": 71.63351264484578,
+        "signed_delta_pp": 4.14389915e-05,
+        "absolute_delta_pp": 4.14389915e-05,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "1.0s/other_flat_IoU": {
+        "previous": 37.392550143266476,
+        "current": 37.39212513484358,
+        "signed_delta_pp": -0.000425008422896,
+        "absolute_delta_pp": 0.000425008422896,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "1.0s/sidewalk_IoU": {
+        "previous": 41.642476804445,
+        "current": 41.64250657130849,
+        "signed_delta_pp": 2.976686349e-05,
+        "absolute_delta_pp": 2.976686349e-05,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "1.0s/terrain_IoU": {
+        "previous": 37.99868268942369,
+        "current": 37.99868268942369,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "1.0s/manmade_IoU": {
+        "previous": 32.2377114143178,
+        "current": 32.2377114143178,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "1.0s/vegetation_IoU": {
+        "previous": 28.352870113445455,
+        "current": 28.352870113445455,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "2.0s/Semantic mIoU": {
+        "previous": 23.376438046892623,
+        "current": 23.376449996842826,
+        "signed_delta_pp": 1.1949950203e-05,
+        "absolute_delta_pp": 1.1949950203e-05,
+        "atol_pp": 0.001,
+        "within_tolerance": true
+      },
+      "2.0s/Binary IoU": {
+        "previous": 46.427212801961126,
+        "current": 46.4272418745978,
+        "signed_delta_pp": 2.9072636674e-05,
+        "absolute_delta_pp": 2.9072636674e-05,
+        "atol_pp": 0.001,
+        "within_tolerance": true
+      },
+      "2.0s/others_IoU": {
+        "previous": 6.722261771585478,
+        "current": 6.722261771585478,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "2.0s/barrier_IoU": {
+        "previous": 27.621999212908303,
+        "current": 27.621999212908303,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "2.0s/bicycle_IoU": {
+        "previous": 7.932166301969365,
+        "current": 7.932166301969365,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "2.0s/bus_IoU": {
+        "previous": 15.59403968232888,
+        "current": 15.59403968232888,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "2.0s/car_IoU": {
+        "previous": 25.818515382444257,
+        "current": 25.818985793583593,
+        "signed_delta_pp": 0.000470411139336,
+        "absolute_delta_pp": 0.000470411139336,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "2.0s/construction_vehicle_IoU": {
+        "previous": 19.20653235111387,
+        "current": 19.20653235111387,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "2.0s/motorcycle_IoU": {
+        "previous": 7.72626931567329,
+        "current": 7.72626931567329,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "2.0s/pedestrian_IoU": {
+        "previous": 2.2062655625687646,
+        "current": 2.2062655625687646,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "2.0s/traffic_cone_IoU": {
+        "previous": 8.989043824701195,
+        "current": 8.989043824701195,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "2.0s/trailer_IoU": {
+        "previous": 10.994483604045357,
+        "current": 10.994483604045357,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "2.0s/truck_IoU": {
+        "previous": 18.247545242393553,
+        "current": 18.24738455035401,
+        "signed_delta_pp": -0.000160692039543,
+        "absolute_delta_pp": 0.000160692039543,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "2.0s/driveable_surface_IoU": {
+        "previous": 71.44892127273599,
+        "current": 71.44888003361515,
+        "signed_delta_pp": -4.123912084e-05,
+        "absolute_delta_pp": 4.123912084e-05,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "2.0s/other_flat_IoU": {
+        "previous": 37.02708639597168,
+        "current": 37.02708639597168,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "2.0s/sidewalk_IoU": {
+        "previous": 42.13373347288378,
+        "current": 42.13373347288378,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "2.0s/terrain_IoU": {
+        "previous": 37.632538921404304,
+        "current": 37.632538921404304,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "2.0s/manmade_IoU": {
+        "previous": 30.609451671848493,
+        "current": 30.609386341022986,
+        "signed_delta_pp": -6.5330825507e-05,
+        "absolute_delta_pp": 6.5330825507e-05,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "2.0s/vegetation_IoU": {
+        "previous": 27.48859281059803,
+        "current": 27.48859281059803,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "3.0s/Semantic mIoU": {
+        "previous": 21.447991616707814,
+        "current": 21.44792550650935,
+        "signed_delta_pp": -6.6110198464e-05,
+        "absolute_delta_pp": 6.6110198464e-05,
+        "atol_pp": 0.001,
+        "within_tolerance": true
+      },
+      "3.0s/Binary IoU": {
+        "previous": 44.934873421836684,
+        "current": 44.934829784476534,
+        "signed_delta_pp": -4.363736015e-05,
+        "absolute_delta_pp": 4.363736015e-05,
+        "atol_pp": 0.001,
+        "within_tolerance": true
+      },
+      "3.0s/others_IoU": {
+        "previous": 5.8179787828029035,
+        "current": 5.8179787828029035,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "3.0s/barrier_IoU": {
+        "previous": 25.60415122312824,
+        "current": 25.60415122312824,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "3.0s/bicycle_IoU": {
+        "previous": 5.152887882219705,
+        "current": 5.152887882219705,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "3.0s/bus_IoU": {
+        "previous": 11.548763195210336,
+        "current": 11.548763195210336,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "3.0s/car_IoU": {
+        "previous": 22.430706056803924,
+        "current": 22.431181323904035,
+        "signed_delta_pp": 0.000475267100111,
+        "absolute_delta_pp": 0.000475267100111,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "3.0s/construction_vehicle_IoU": {
+        "previous": 15.129331381161542,
+        "current": 15.129331381161542,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "3.0s/motorcycle_IoU": {
+        "previous": 6.037037037037037,
+        "current": 6.037037037037037,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "3.0s/pedestrian_IoU": {
+        "previous": 1.2383521333987249,
+        "current": 1.2383521333987249,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "3.0s/traffic_cone_IoU": {
+        "previous": 7.9814498413473265,
+        "current": 7.9814498413473265,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "3.0s/trailer_IoU": {
+        "previous": 9.720505561979188,
+        "current": 9.720505561979188,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "3.0s/truck_IoU": {
+        "previous": 15.299377327453097,
+        "current": 15.299377327453097,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "3.0s/driveable_surface_IoU": {
+        "previous": 70.15144819688905,
+        "current": 70.15157040457487,
+        "signed_delta_pp": 0.00012220768582,
+        "absolute_delta_pp": 0.00012220768582,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "3.0s/other_flat_IoU": {
+        "previous": 36.3152821289634,
+        "current": 36.31356078080353,
+        "signed_delta_pp": -0.00172134815987,
+        "absolute_delta_pp": 0.00172134815987,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "3.0s/sidewalk_IoU": {
+        "previous": 40.702256549510466,
+        "current": 40.702256549510466,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "3.0s/terrain_IoU": {
+        "previous": 36.26446489272653,
+        "current": 36.26446489272653,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "3.0s/manmade_IoU": {
+        "previous": 28.54299412159947,
+        "current": 28.54299412159947,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "3.0s/vegetation_IoU": {
+        "previous": 26.678871171801916,
+        "current": 26.678871171801916,
+        "signed_delta_pp": 0.0,
+        "absolute_delta_pp": 0.0,
+        "atol_pp": 0.01,
+        "within_tolerance": true
+      },
+      "future_mean_miou": {
+        "previous": 23.61158150750346,
+        "current": 23.61155651678212,
+        "signed_delta_pp": -2.499072134e-05,
+        "absolute_delta_pp": 2.499072134e-05,
+        "atol_pp": 0.001,
+        "within_tolerance": true
+      }
+    },
+    "violations": [],
+    "previous_sha256": "86609fd6c03669f4df92341006b48aaebea069300deb3bf95cf7481d8fbfba8d",
+    "current_sha256": "8749ac202d5f45c4065845ec141f887ea8dc862341177a4a9ac69c60c20ccae9"
+  },
+  "current_stage": "h1-velocity final_full",
+  "h1_retrained": false,
+  "h8_training_started": false,
+  "full5119_complete": false,
+  "gpu0_queue": "unrelated compute task and host memory gate; no intervention",
+  "prediction_window": {
+    "at_utc": "2026-09-29T03:39:49.288681+00:00",
+    "pid_alive": true,
+    "spools": [
+      {
+        "files_observed": 505,
+        "expected_anchors": 5119,
+        "window_anchors": 256,
+        "excluded_latest_files": 2,
+        "seconds_per_anchor": 1.661611764571246,
+        "window_seconds": 423.7109999656677,
+        "conditional_remaining_prediction_minutes": 127.77794469552882,
+        "scope": "file-write prediction throughput only; excludes metric aggregation, interventions, queueing and H8 training"
+      }
+    ]
+  },
+  "archive": {
+    "archive_sha256": "c15b46b9b1611b104989aa5f28aeb0870bcced937859223354e0c434219ca647",
+    "files_verified": 50,
+    "archive_bytes": 361965,
+    "captured_at_utc": "2026-09-29T03:38:03.646286+00:00"
+  }
+}
