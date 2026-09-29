@@ -1,0 +1,26 @@
+{
+  "git_revision": "e80bca6ece3ceafbb582d8ca21595b2e4128691c",
+  "at_utc": "2026-09-29T02:20:21.467221+00:00",
+  "diagnostic_campaign": "history_eval_diagnostic_20260929",
+  "next_recovery_campaign": "history_doppler_recovery_v3_20260929",
+  "source_files_verified": 240,
+  "initial_observed_stage": "cpu_tests",
+  "diagnostic_observations_complete": false,
+  "full_validation_complete": false,
+  "formal_h8_training_started": false,
+  "latest_observation_utc": "2026-09-29T02:25:06.526983+00:00",
+  "stage": "diagnostic",
+  "cpu_tests_passed": 14,
+  "gpu_admission": {
+    "free_mib": 143156,
+    "no_other_compute": true,
+    "host_available_bytes": 104144449536,
+    "stable_seconds": 60.345447649946436
+  },
+  "io_observation": {
+    "seconds": 5,
+    "read_bytes_before": 268316672,
+    "read_bytes_after": 271499264,
+    "scope": "process alive, disk read counter advances; no completed diagnostic output yet"
+  }
+}
