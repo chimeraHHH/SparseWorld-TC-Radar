@@ -1,0 +1,346 @@
+{
+  "observed_at_utc": "2026-09-30T00:22:48.453184+00:00",
+  "campaign": "history_doppler_recovery_v3_20260929",
+  "source_revision": "e80bca6ece3ceafbb582d8ca21595b2e4128691c",
+  "arm": "h8-geometry",
+  "state": "formal_training_started",
+  "scientific_result": false,
+  "cuda_contracts_passed": 3,
+  "budget": {
+    "batch_size": 8,
+    "epochs": 10,
+    "seed": 0,
+    "cumulative_iters": 1,
+    "fresh_optimizer": true
+  },
+  "input": {
+    "visual_history_frames": 8,
+    "physical_images_per_anchor": 48,
+    "velocity_mode": "zero",
+    "velocity_dependent_point_rejection": false
+  },
+  "radar_sweeps_per_sensor": 1,
+  "real_sample_parity": [
+    {
+      "index": 0,
+      "all_raw_tensors_exact": true,
+      "max_abs_difference": 0.0,
+      "voxels_equal": true,
+      "actual_backbone_images": {
+        "new": [
+          48
+        ],
+        "camera_reference": [
+          48
+        ]
+      },
+      "raw_tensors": 13
+    },
+    {
+      "index": 1024,
+      "all_raw_tensors_exact": true,
+      "max_abs_difference": 0.0,
+      "voxels_equal": true,
+      "actual_backbone_images": {
+        "new": [
+          48
+        ],
+        "camera_reference": [
+          48
+        ]
+      },
+      "raw_tensors": 13
+    },
+    {
+      "index": 2048,
+      "all_raw_tensors_exact": true,
+      "max_abs_difference": 0.0,
+      "voxels_equal": true,
+      "actual_backbone_images": {
+        "new": [
+          48
+        ],
+        "camera_reference": [
+          48
+        ]
+      },
+      "raw_tensors": 13
+    },
+    {
+      "index": 4096,
+      "all_raw_tensors_exact": true,
+      "max_abs_difference": 0.0,
+      "voxels_equal": true,
+      "actual_backbone_images": {
+        "new": [
+          48
+        ],
+        "camera_reference": [
+          48
+        ]
+      },
+      "raw_tensors": 13
+    }
+  ],
+  "smoke": {
+    "epoch": 1,
+    "iterations": 23,
+    "optimizer_steps": 24,
+    "finite_model_tensors": 771,
+    "state_schema_matches_cpu": true,
+    "optimizer_finite": true,
+    "radar_update_windows": [
+      [
+        0.0353194,
+        0.165021
+      ],
+      [
+        0.034153,
+        0.336601
+      ],
+      [
+        0.0260113,
+        0.289008
+      ],
+      [
+        0.0238989,
+        0.174837
+      ],
+      [
+        0.029896,
+        0.0927829
+      ],
+      [
+        0.0214171,
+        0.04505
+      ]
+    ],
+    "pretrained_update_windows": [
+      {
+        "img_backbone": {
+          "parameter": "module.img_backbone.layer2.0.conv1.weight",
+          "gradient_norm": 0.47256915022932516,
+          "parameter_delta": 0.00030361846438609064
+        },
+        "img_neck": {
+          "parameter": "module.img_neck.lateral_convs.0.conv.weight",
+          "gradient_norm": 0.01209187129437118,
+          "parameter_delta": 0.004357522819191217
+        },
+        "pts_bbox_head": {
+          "parameter": "module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight",
+          "gradient_norm": 0.5748369431462049,
+          "parameter_delta": 0.0004145700659137219
+        }
+      },
+      {
+        "img_backbone": {
+          "parameter": "module.img_backbone.layer2.0.conv1.weight",
+          "gradient_norm": 0.3904958511478933,
+          "parameter_delta": 0.0003958211455028504
+        },
+        "img_neck": {
+          "parameter": "module.img_neck.lateral_convs.0.conv.weight",
+          "gradient_norm": 0.009659186728137158,
+          "parameter_delta": 0.007017943542450666
+        },
+        "pts_bbox_head": {
+          "parameter": "module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight",
+          "gradient_norm": 0.7501414880807787,
+          "parameter_delta": 0.0006339572137221694
+        }
+      },
+      {
+        "img_backbone": {
+          "parameter": "module.img_backbone.layer2.0.conv1.weight",
+          "gradient_norm": 0.6367211839126219,
+          "parameter_delta": 0.0002467537415213883
+        },
+        "img_neck": {
+          "parameter": "module.img_neck.lateral_convs.0.conv.weight",
+          "gradient_norm": 0.010870981346003136,
+          "parameter_delta": 0.004550687037408352
+        },
+        "pts_bbox_head": {
+          "parameter": "module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight",
+          "gradient_norm": 0.6154844714265834,
+          "parameter_delta": 0.0004150320601183921
+        }
+      },
+      {
+        "img_backbone": {
+          "parameter": "module.img_backbone.layer2.0.conv1.weight",
+          "gradient_norm": 0.4540757694917718,
+          "parameter_delta": 0.00015692033048253506
+        },
+        "img_neck": {
+          "parameter": "module.img_neck.lateral_convs.0.conv.weight",
+          "gradient_norm": 0.007826047379348645,
+          "parameter_delta": 0.002706963336095214
+        },
+        "pts_bbox_head": {
+          "parameter": "module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight",
+          "gradient_norm": 0.5498706242811503,
+          "parameter_delta": 0.00019472457643132657
+        }
+      },
+      {
+        "img_backbone": {
+          "parameter": "module.img_backbone.layer2.0.conv1.weight",
+          "gradient_norm": 0.4299220745315657,
+          "parameter_delta": 7.72214843891561e-05
+        },
+        "img_neck": {
+          "parameter": "module.img_neck.lateral_convs.0.conv.weight",
+          "gradient_norm": 0.01266173877380398,
+          "parameter_delta": 0.0012610128615051508
+        },
+        "pts_bbox_head": {
+          "parameter": "module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight",
+          "gradient_norm": 0.5002242122048546,
+          "parameter_delta": 0.00010745895269792527
+        }
+      },
+      {
+        "img_backbone": {
+          "parameter": "module.img_backbone.layer2.0.conv1.weight",
+          "gradient_norm": 0.48184296007918564,
+          "parameter_delta": 3.808088877121918e-05
+        },
+        "img_neck": {
+          "parameter": "module.img_neck.lateral_convs.0.conv.weight",
+          "gradient_norm": 0.007602774911014017,
+          "parameter_delta": 0.0006316758808679879
+        },
+        "pts_bbox_head": {
+          "parameter": "module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight",
+          "gradient_norm": 0.508513714752618,
+          "parameter_delta": 6.35665564914234e-05
+        }
+      }
+    ]
+  },
+  "official_initialization": {
+    "loaded_tensors": 669,
+    "loaded_numel": 79478272,
+    "new_radar_tensors": 102,
+    "zero_residual_outputs": [
+      "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.output",
+      "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.output",
+      "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.output",
+      "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.output",
+      "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.output",
+      "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.output"
+    ],
+    "new_path_tensors": 0,
+    "all_camera_tensors_exact": true,
+    "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
+    "source_epoch": 70,
+    "source_iter": 246190,
+    "optimizer_restored": false,
+    "epoch_reset_to": 0
+  },
+  "memory_admission": {
+    "free_mib": 143156,
+    "total_mib": 143771,
+    "other_compute": [],
+    "minimum_free_mib": 132000,
+    "required_stable_seconds": 60,
+    "observed_stable_seconds": 60.2400743199978,
+    "host_available_bytes": 112154521600,
+    "host_minimum_bytes": 68719476736,
+    "host_observed_stable_seconds": 60.2400743199978
+  },
+  "evidence_files": [
+    {
+      "file": "history_doppler_recovery_v3_20260929/gpu_h8-geometry.json",
+      "sha256": "39e342f12a1e83c00d33670dd794a6fc66f0a279532256aeb68d481a12315ba5",
+      "bytes": 91628
+    },
+    {
+      "file": "history_doppler_recovery_v3_20260929/smoke_h8-geometry.json",
+      "sha256": "d375ed83ec90fac608b97eb8859deeb6f280b3a57169387b4d831740835f41a1",
+      "bytes": 4410
+    },
+    {
+      "file": "history_doppler_recovery_v3_20260929/h8-geometry_claim.json",
+      "sha256": "8c7ba2a393d91a40c76491d6bb797a14f26b2fc416f43578eeeb637c082071a9",
+      "bytes": 177
+    },
+    {
+      "file": "history_doppler_recovery_v3_20260929/h8-geometry_status.json",
+      "sha256": "175c3723825c4652ac80f17659c817c345965a8d1ba34a940fa895ba71dc9e5a",
+      "bytes": 1518
+    },
+    {
+      "file": "history_doppler_recovery_v3_20260929/h8-geometry_cuda_contracts.log",
+      "sha256": "bf6a9a429d68f9bc27bb80f839d64edc368e5f02e6f4028187df2d49751e5e4f",
+      "bytes": 8260
+    },
+    {
+      "file": "history_doppler_recovery_v3_20260929/h8-geometry_parity.log",
+      "sha256": "d2bb99586229d41e8055de6dd96b7f868f55c20b1773c1e9788d12b5c97fa00f",
+      "bytes": 240568
+    },
+    {
+      "file": "history_h8-velocity_seed0/official_initialization.json",
+      "sha256": "6294859a7fae3111233a4202b1c0dbb94cbfd58c1072b478e07198cd9d8796dd",
+      "bytes": 916
+    },
+    {
+      "file": "history_h8-velocity_seed0/best_future.json",
+      "sha256": "6074fbe2522ad49eaa48b5602e1fd8d058f333a2dace7392207d5aeabf090a04",
+      "bytes": 74
+    },
+    {
+      "file": "history_h8-velocity_seed0/validation_epoch_00_subset.json",
+      "sha256": "c4de5a9bceed8839b27e4b0a68052b85c6b5e9ee9e85131154ae40509ead2c9d",
+      "bytes": 16378
+    },
+    {
+      "file": "history_h8-velocity_seed0/validation_epoch_01_subset.json",
+      "sha256": "318a4f1aec71cb9c0fc4ab830e3fe7f0ad1ad33e0f0aae508677c8e1c58f5bf8",
+      "bytes": 16378
+    },
+    {
+      "file": "history_h8-velocity_seed0/validation_epoch_02_subset.json",
+      "sha256": "5cdab89f5c29f9462cdb5719c5d572784f21c374f31ebca7be7e8cad4c299af9",
+      "bytes": 16354
+    },
+    {
+      "file": "history_h8-velocity_seed0/validation_epoch_03_subset.json",
+      "sha256": "9681a1d14ed4518afe164589f42fa6aa252a77aceb25e2dd8e5f33d138ff999d",
+      "bytes": 16372
+    },
+    {
+      "file": "history_h8-velocity_seed0/validation_epoch_04_subset.json",
+      "sha256": "4e418ce72937b174d88aefa79abc359e94a63b70691d2af98e17912f75c30eed",
+      "bytes": 16376
+    },
+    {
+      "file": "history_h8-velocity_seed0/20260929_061833.log.json",
+      "sha256": "12a4930a26727dff4c5f6ece1ae857d12f3e9bddbeb9d1b517ea3a9fccbfd085",
+      "bytes": 613994
+    },
+    {
+      "file": "history_h8-geometry_seed0/official_initialization.json",
+      "sha256": "6294859a7fae3111233a4202b1c0dbb94cbfd58c1072b478e07198cd9d8796dd",
+      "bytes": 916
+    },
+    {
+      "file": "history_h8-geometry_seed0/validation_epoch_00_subset.json",
+      "sha256": "0034f3caa21c7eafdc2f16f9984ec4fafb9ffd6541270dd6b5a935d1803cd95b",
+      "bytes": 16371
+    },
+    {
+      "file": "history_h8-geometry_seed0/20260929_233500.log.json",
+      "sha256": "9d3d4f8b3f218429a18c1c66d3a6176c42e03420b4b370a724b40750f468ab2b",
+      "bytes": 38545
+    }
+  ],
+  "limits": [
+    "Admission is not a performance result.",
+    "No H8 full evaluation or four-arm comparison yet.",
+    "Single seed; reused validation subset; processed SDK velocity; H1 copied slots."
+  ]
+}
