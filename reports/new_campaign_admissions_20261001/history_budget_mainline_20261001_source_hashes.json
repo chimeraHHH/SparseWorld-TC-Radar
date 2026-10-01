@@ -1,0 +1,70 @@
+{
+  "cpu_h8-geometry.json": {
+    "sha256": "97a706a8cd410cfc0e30a3005a9999c9846e00c76d163c555a6ed33b32476b38",
+    "bytes": 85659
+  },
+  "cpu_h8-geometry.log": {
+    "sha256": "276147d5e1069b1f9c3d0cde17536313e0b5b5cd80c7672f222a357e80e9f2c9",
+    "bytes": 249435
+  },
+  "cpu_tests.log": {
+    "sha256": "b0d9d01d02910ac5a742725c928d5954fa3227b37f93d31dc4102e71c628592c",
+    "bytes": 8326
+  },
+  "cpu_h2-geometry.json": {
+    "sha256": "04de47e980b1a033898270f1ede5f7016abcfee6e642dd93f90513efb8614b0f",
+    "bytes": 85712
+  },
+  "all_visual_sources.log": {
+    "sha256": "4cdd3257e4b73bcd5069c42982398f2f9e52a52bee38b1e200ed45a9e8099741",
+    "bytes": 1324
+  },
+  "cpu_h2-geometry.log": {
+    "sha256": "35e164b428ca2c67c5fb74668e8851901aaff256679e430a291aaf982eed9b9c",
+    "bytes": 249488
+  },
+  "single_sweep_cache.log": {
+    "sha256": "6f358c97e738c45771a05b881a595e81bdb2f715933b5452f0c151cb70b4d8a3",
+    "bytes": 2648
+  },
+  "h8-velocity_cuda.log": {
+    "sha256": "d548ad1831ac7722364bdf05e105cfc9b90cb68d1d2feef1acbf3daae9fe211d",
+    "bytes": 8249
+  },
+  "cpu_h8-velocity.log": {
+    "sha256": "5e77b500075e3a046f6a1d668b2dcd4533fab28e345b47fd6fd370ee7a295a6c",
+    "bytes": 249455
+  },
+  "cpu_h2-velocity.json": {
+    "sha256": "0ca3ce9d2aabdc29129a26d22e525851a9e785770c80327013d752d655ff45a3",
+    "bytes": 85732
+  },
+  "submission.json": {
+    "sha256": "267cc49d4bb3f8de3c833d2bfe03c63ebf5441cdf59f1dda9c589cd460c4671c",
+    "bytes": 388
+  },
+  "cpu_h8-velocity.json": {
+    "sha256": "f30c470ca338ee038a08a387ed073e86576c4ca4f43fe7ed5920cf25869903a8",
+    "bytes": 85679
+  },
+  "h8-velocity_claim.json": {
+    "sha256": "ac9d59ceaec8d1ced1fb2f4f55e8e059f8129c69d3a4e9ed61d2313167c4bec0",
+    "bytes": 177
+  },
+  "launcher.log": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "all_visual_sources.json": {
+    "sha256": "8fc22efee02ca66ebd25fd473b1d58654fa5e767598e8e9abe7a50e09d953a45",
+    "bytes": 773
+  },
+  "status.json": {
+    "sha256": "4039689cbb5c6c19e1ca213ba395bc791f83e0117bb4a65c5ebf5cbf8396052c",
+    "bytes": 1574
+  },
+  "cpu_h2-velocity.log": {
+    "sha256": "640d9417e49997ade598497ec8e263613b92b2db7237a4bc44674394a7cf9dbc",
+    "bytes": 249508
+  }
+}

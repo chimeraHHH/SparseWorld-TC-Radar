@@ -1,0 +1,41 @@
+{
+  "status": "passed",
+  "all_anchors": 29049,
+  "splits": {
+    "train": {
+      "anchors": 23930,
+      "counts": {
+        "plans": 97229,
+        "missing_h2": 700,
+        "missing_h8_slots": 4900,
+        "real_h2": 96529
+      },
+      "h2_history_span_seconds_percentiles": [
+        0.05,
+        0.4,
+        0.5,
+        0.6,
+        0.95
+      ]
+    },
+    "val": {
+      "anchors": 5119,
+      "counts": {
+        "plans": 5119,
+        "missing_h2": 150,
+        "missing_h8_slots": 1050,
+        "real_h2": 4969
+      },
+      "h2_history_span_seconds_percentiles": [
+        0.4,
+        0.5,
+        0.5,
+        0.500003,
+        0.650295
+      ]
+    }
+  },
+  "integer_time_subtraction": true,
+  "no_images_or_labels_read": true,
+  "h2_subset_h8": true
+}

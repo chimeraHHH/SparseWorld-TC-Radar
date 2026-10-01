@@ -15,8 +15,8 @@ import traceback
 from gpu_capacity import CapacityWindow, memory_snapshot
 
 ROOT = Path('/storage/data/metaiot_data/huayiming/SparseWorld')
-CAMPAIGN = ROOT/'analysis/transport_reliable_extension_v2_20261001'
-WORK = ROOT/'work_dirs/transport_reliable_extend20_v2_20261001'
+CAMPAIGN = ROOT/'analysis/transport_reliable_extension_v3_20261001'
+WORK = ROOT/'work_dirs/transport_reliable_extend20_v3_20261001'
 OLD = ROOT/'work_dirs/radar_forecast_transport-reliable_seed0'
 UUID = 'GPU-000b6236-3632-a001-9667-1f02cbb61c8b'
 CONFIG = 'configs/sw-radar-transport-reliable-extend20.py'
@@ -112,8 +112,17 @@ def main():
             assert 'tools/train_transport_extension.py' not in command, (str(x),command)
         prior=json.loads((ROOT/'analysis/transport_reliable_campaign_20260922/transport-reliable_status.json').read_text())
         assert prior['state']=='complete' and not Path('/proc/'+str(prior['controller_pid'])).exists()
-        for directory in (WORK,ROOT/'work_dirs/transport_reliable_extend20_smoke_v2_20261001'):
-            assert not directory.exists() or not any(directory.iterdir()),directory
+        previous=ROOT/'analysis/transport_reliable_extension_v2_20261001'
+        previous_status=json.loads((previous/'status.json').read_text())
+        assert previous_status['state']=='failed_evidence_preserved' and previous_status['child_returncode']==0
+        assert 'checkpoints=list' in previous_status['traceback']
+        assert not Path('/proc/'+str(previous_status['controller_pid'])).exists()
+        assert previous_status['completed_stages']==['cpu_tests','cpu_resume_cache','cuda_contracts','frozen_storage','resume_smoke']
+        previous_code=Path(previous_status['code']);previous_manifest=json.loads((previous_code/'code_manifest.json').read_text())
+        for name in ('tools/transport_extension_hooks.py','tools/transport_extension_spool.py',
+                     'tools/train_transport_extension.py','tools/evaluate_transport_extension.py','tools/check_transport_extension.py'):
+            assert manifest['sha256'][name]==previous_manifest['sha256'][name],name
+        assert not WORK.exists() or not any(WORK.iterdir())
         record(state='waiting_for_gpu_lock')
         with (ROOT/'forecast_gpu1.lock').open('a') as lock:
             fcntl.flock(lock,fcntl.LOCK_EX)
@@ -122,12 +131,17 @@ def main():
                 'tests/test_official_init.py','tests/test_radar_cache.py','tests/test_m0_contracts.py','tests/test_gpu_capacity.py',
                 'tests/test_transport_extension_resume.py','tests/test_transport_extension_spool.py'])
             stage('cpu_resume_cache',['tools/check_transport_extension.py','--device','cpu','--out',str(CAMPAIGN/'cpu_resume_cache.json')])
-            stage('cuda_contracts',['-m','pytest','-q','tests/test_m0_contracts.py','-k','cuda'],gpu=True)
-            stage('frozen_storage',['tools/check_transport_extension.py','--device','cuda','--out',str(CAMPAIGN/'frozen_storage.json')],gpu=True)
-            stage('resume_smoke',['tools/train_transport_extension.py','--config','configs/sw-radar-transport-reliable-extend20-smoke.py'],gpu=True)
+            # Only controller discovery/output paths changed. Reuse already completed
+            # CUDA/storage/smoke evidence after source-hash equality, never smoke weights.
+            for name in ('frozen_storage.json',):
+                receipt=json.loads((previous/name).read_text());assert receipt['status']=='passed' and receipt['all_metrics_exact'] and receipt['scene_confusions_exact']
             smoke=ROOT/'work_dirs/transport_reliable_extend20_smoke_v2_20261001'
-            checkpoints=list(smoke.glob('iter_*.pth'));assert len(checkpoints)==1
-            proof=audit(checkpoints[0],optimizer_steps=29915+24)
+            checkpoint=smoke/'iter_29944.pth';assert checkpoint.is_file()
+            resume=json.loads((smoke/'resume_integrity.json').read_text())
+            assert all(resume[k] for k in ('model_exact','optimizer_exact','amp_scaler_exact')) and resume['iterations']==29920
+            proof=audit(checkpoint,optimizer_steps=29915+24)
+            proof.update(admission_evidence_campaign=str(previous),admission_git_revision=previous_manifest['git_revision'],
+                evidence_reused_after_identical_scientific_source_hashes=True,smoke_weights_reused_for_formal=False)
             components=[];joint=[]
             for line in (smoke/'train.log').read_text().splitlines():
                 if 'RADAR_COMPONENTS' in line:

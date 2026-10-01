@@ -1,0 +1,38 @@
+{
+  "timings.json": {
+    "sha256": "0736e1a42c137e3cd6f0d40ecb56e91dd7b8265834ef15e73247223d32f0cbd8",
+    "bytes": 358
+  },
+  "frozen_storage.log": {
+    "sha256": "8f9a8cfe89f2053144a761e8110a511279e5c4d97689d205ac9d121789a3f144",
+    "bytes": 137442
+  },
+  "cpu_resume_cache.json": {
+    "sha256": "bbf8a5f95d9cd657f8d9c5cb72a01a13288b9e87e700bd002931f2676206790d",
+    "bytes": 620
+  },
+  "cpu_tests.log": {
+    "sha256": "b951c3242afd5cec816ea93134db5da723d324312d232a581bae4b0ab6f8a6a2",
+    "bytes": 8246
+  },
+  "cuda_contracts.log": {
+    "sha256": "aefb9421329d2dbd9a3a7b6ee6246ed99a8b964b98a3800bc286fa44b06814dc",
+    "bytes": 8248
+  },
+  "cpu_resume_cache.log": {
+    "sha256": "55bb1835b4bc0558c9126f2b654848c22fddc5f2b50e192e972835e319d86a9b",
+    "bytes": 138089
+  },
+  "submission.json": {
+    "sha256": "8bb980a3689710dedf748da55025d043ce1861887990bb9433dedb7044085f96",
+    "bytes": 411
+  },
+  "launcher.log": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "status.json": {
+    "sha256": "d83003a5a0405ab8d798ea950438e4e1e7667e8d329b4284c29f1100e8513e55",
+    "bytes": 1176
+  }
+}

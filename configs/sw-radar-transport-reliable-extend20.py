@@ -1,6 +1,6 @@
 """Epoch-10 continuation: ten extra epochs with saved per-group learning rates."""
 _base_ = './sw-radar-forecast-transport-reliable.py'
-work_dir = '/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/transport_reliable_extend20_v2_20261001'
+work_dir = '/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/transport_reliable_extend20_v3_20261001'
 resume_from = '/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_transport-reliable_seed0/epoch_10.pth'
 load_from = None
 resume_epoch_boundary = False

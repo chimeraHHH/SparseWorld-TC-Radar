@@ -1,0 +1,46 @@
+{
+  "timings.json": {
+    "sha256": "6e140bb2c33ae703718bb53afed93c6277bac6897c17f24d6737e679285566ee",
+    "bytes": 592
+  },
+  "frozen_storage.log": {
+    "sha256": "8b2150dc44749141fa5d0118450f811dd0d7b04348e47ca1b4cdf4c5c009a8de",
+    "bytes": 144824
+  },
+  "cpu_resume_cache.json": {
+    "sha256": "bbf8a5f95d9cd657f8d9c5cb72a01a13288b9e87e700bd002931f2676206790d",
+    "bytes": 620
+  },
+  "cpu_tests.log": {
+    "sha256": "2c7044b24b5575e9ce0367ea5fcd1fea2890aa0bda6e806daee2a9e55fadec6b",
+    "bytes": 8247
+  },
+  "cuda_contracts.log": {
+    "sha256": "8610cffb9e437f97e68c622fe69a701897b024d74363ae39b0eea8702f88ced2",
+    "bytes": 8248
+  },
+  "cpu_resume_cache.log": {
+    "sha256": "fbf54024e48fa135f1638e36eca5d99a2165f8f6f9c854f37036d22770c53bb8",
+    "bytes": 138089
+  },
+  "frozen_storage.json": {
+    "sha256": "fcf54179ceebdaa8ef6f56cc398e939272c2aad2dabb8a8d46dfc34e1949d16f",
+    "bytes": 382
+  },
+  "submission.json": {
+    "sha256": "67d38d49841081e98f9c51ab2fa998c2d4be91eb348ecee5be6f241ce8124a60",
+    "bytes": 411
+  },
+  "launcher.log": {
+    "sha256": "8eefd3bb0b05ac9533cca67c5ee2c5d6a0c66eef7b90bb68875de25f8de2bf33",
+    "bytes": 860
+  },
+  "status.json": {
+    "sha256": "aae368f8cdfd0ebe05083d2d49fab345220a6177a8ad7db255a88a76377c9cc3",
+    "bytes": 2028
+  },
+  "resume_smoke.log": {
+    "sha256": "d766cb8de24a91b8542418215c4bbf7607ded0ed942d97fceedbc73720131a9b",
+    "bytes": 8725
+  }
+}

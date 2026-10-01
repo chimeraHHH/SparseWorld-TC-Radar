@@ -19,3 +19,7 @@
 ## v2实现修复
 
 首版565bec1在24步smoke开始前的before_run审计发现IterBasedRunner.resume不恢复AMP元数据（默认scale512，原checkpoint65536），因此零优化步即拒绝；原日志、CPU66pass／全缓存／16真实冻结预测无损指标一致证据保留，不覆盖。v2显式load保存的loss_scaler并再次精确比较，模型/优化器/LR仍原状态，使用新campaign/work目录。正式训练不使用首版或v2 smoke产物。启动前确认旧controller及训练子进程退出。
+
+## v3控制器修复与通过证据复用
+
+v2在24步smoke中模型/优化器/AMP精确恢复、loss与梯度有限，保存iter29944；MMCV在29928的周期存档与29944的save_last存档均留下，控制器“仅一个iter文件”的假设错误，在正式训练前停止。v3明确审计iter29944，原两份checkpoint保留。v3与v2的全部原科学文件、续训/评估wrapper、spool、checker哈希一致，仅控制器发现及正式输出目录改变；重新跑精确v3 CPU回归/缓存，复核v2 CUDA/冻结存储/24步smoke实际优化29939及6窗口组件证据，不重复smoke优化、不使用其权重正式训练。启动前确认v2 controller/child退出，v3正式进程仍独立加载原epoch10/29915优化器和AMP。
