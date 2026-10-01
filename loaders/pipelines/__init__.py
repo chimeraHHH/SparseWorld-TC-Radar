@@ -12,3 +12,5 @@ __all__ = [
 from .radar import LoadCausalRadar
 
 from .endpoint_segments import LoadEndpointSegments
+
+from .history_budget import LoadBudgetedVisualHistory

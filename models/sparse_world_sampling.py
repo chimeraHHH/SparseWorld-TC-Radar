@@ -116,7 +116,7 @@ def sampling_4d(sample_points, mlvl_feats, scale_weights, occ2img, fut2cur, imag
     sample_points_cam = sample_points_cam.permute(0, 1, 3, 2, 4, 5, 6)  # [B, T, G, Q, P, 1, 3]
 
     scale_weights = scale_weights.reshape(B, Q, G, T, P, -1)
-    scale_weights = scale_weights.permute(0, 2, 3, 1, 4, 5)  # [B, G, T, Q, P, _]
+    scale_weights = scale_weights.permute(0, 3, 2, 1, 4, 5)  # [B, T, G, Q, P, L], matching features/coordinates
 
     # reorganize the tensor to stack T and G to the batch dim for better parallelism
     sample_points_cam = sample_points_cam.reshape(B*T*G, Q, P, 3)

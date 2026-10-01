@@ -16,6 +16,7 @@ from .utils import GridMask, pad_multiple, GpuPhotoMetricDistortion
 _VISUAL_VIEW_META_KEYS = (
     'filename', 'img_timestamp', 'lidar2img', 'lidar2cam', 'intrinsics',
     'extrinsics', 'img_shape', 'ori_shape', 'pad_shape',
+    'img_timestamp_us', 'visual_source_kind', 'visual_source_id', 'visual_time_delta_s',
 )
 
 
@@ -29,19 +30,19 @@ def select_visual_history_input(img, img_metas, visual_history_frames):
     """
     if visual_history_frames is None:
         return img
-    if visual_history_frames not in (1, 8) or isinstance(visual_history_frames, bool):
-        raise ValueError('visual_history_frames must be None, 1, or 8')
+    if visual_history_frames not in (1, 2, 8) or isinstance(visual_history_frames, bool):
+        raise ValueError('visual_history_frames must be None, 1, 2, or 8')
     if img.dim() != 5 or len(img_metas) != img.shape[0]:
         raise ValueError('Visual history requires [B, N, C, H, W] and B metadata records')
     count = img.shape[1]
-    expected = (6, 48) if visual_history_frames == 1 else (48,)
+    expected = (6, 48) if visual_history_frames == 1 else ((12,) if visual_history_frames == 2 else (48,))
     if count not in expected:
         raise ValueError(f'H{visual_history_frames} received {count} images; expected {expected}')
     for meta in img_metas:
         for key in ('filename', 'img_timestamp', 'lidar2img'):
             if key not in meta or len(meta[key]) not in expected:
                 raise ValueError(f'H{visual_history_frames} requires matching per-view {key}')
-    if visual_history_frames == 8:
+    if visual_history_frames in (2, 8):
         return img
     for meta in img_metas:
         for key in _VISUAL_VIEW_META_KEYS:
@@ -74,6 +75,22 @@ def replicate_current_visual_features(img_feats, img_metas):
     return [feature.repeat(1, 8, 1, 1, 1) for feature in img_feats]
 
 
+def replicate_two_visual_features(img_feats, img_metas):
+    """Encode current and one actual historical group; repeat the latter in slots1..7."""
+    indices = list(range(6)) + list(range(6, 12)) * 7
+    for feature in img_feats:
+        if feature.ndim != 5 or feature.shape[1] != 12:
+            raise ValueError('H2 requires12 encoded camera views')
+    for meta in img_metas:
+        for key in _VISUAL_VIEW_META_KEYS:
+            value = meta.get(key)
+            if isinstance(value, (list, tuple, np.ndarray)) and len(value) == 12:
+                meta[key] = [copy.deepcopy(value[i]) for i in indices]
+        meta.update(visual_history_frames=2, visual_history_encoded_images=12,
+                    visual_history_slots=8, visual_history_interface='one_real_history_feature_replication')
+    return [torch.cat([f[:, :6], f[:, 6:12].repeat(1, 7, 1, 1, 1)], dim=1) for f in img_feats]
+
+
 @DETECTORS.register_module()
 class SparseWorld(MVXTwoStageDetector):
     def __init__(self,
@@ -104,8 +121,8 @@ class SparseWorld(MVXTwoStageDetector):
         self.data_aug = data_aug
         self.stop_prev_grad = stop_prev_grad
         self.samplewise_loss = samplewise_loss
-        if visual_history_frames not in (None, 1, 8) or isinstance(visual_history_frames, bool):
-            raise ValueError('visual_history_frames must be None, 1, or 8')
+        if visual_history_frames not in (None, 1, 2, 8) or isinstance(visual_history_frames, bool):
+            raise ValueError('visual_history_frames must be None, 1, 2, or 8')
         self.visual_history_frames = visual_history_frames
         self.color_aug = GpuPhotoMetricDistortion()
         self.grid_mask = GridMask(ratio=0.5, prob=0.7)
@@ -230,6 +247,8 @@ class SparseWorld(MVXTwoStageDetector):
 
         if self.visual_history_frames == 1:
             img_feats_reshaped = replicate_current_visual_features(img_feats_reshaped, img_metas)
+        elif self.visual_history_frames == 2:
+            img_feats_reshaped = replicate_two_visual_features(img_feats_reshaped, img_metas)
         return img_feats_reshaped
 
     @force_fp32(apply_to=('img', 'points'))

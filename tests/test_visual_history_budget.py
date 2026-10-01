@@ -156,7 +156,7 @@ def test_default_selection_is_noop_even_for_online_six_view_input():
     assert 'visual_history_slots' not in metas[0]
 
 
-@pytest.mark.parametrize('budget,images', [(1, 12), (8, 6), (8, 42), (2, 12), (True, 6)])
+@pytest.mark.parametrize('budget,images', [(1, 12), (8, 6), (8, 42), (2, 6), (True, 6)])
 def test_bad_visual_budgets_or_counts_fail_instead_of_silent_padding(budget, images):
     with pytest.raises(ValueError):
         m.select_visual_history_input(torch.zeros(1, images, 3, 3, 4), metadata(1, images), budget)

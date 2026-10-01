@@ -94,6 +94,7 @@ class NuScenesOccDataset(NuScenesDataset):
             sample_idx=info['token'],
             scene_name=info['scene_name'],
             timestamp=info['timestamp'] / 1e6,
+            reference_timestamp_us=int(info['timestamp']),
             ego2lidar=ego2lidar,
             ego2global_translation=ego2global_translation,
             ego2global_rotation=ego2global_rotation_mat,
@@ -111,6 +112,7 @@ class NuScenesOccDataset(NuScenesDataset):
         if self.modality['use_camera']:
             img_paths = []
             img_timestamps = []
+            img_timestamps_us = []
             lidar2img_rts = []
             lidar2cam_rts = []
             intrinsics = []
@@ -119,6 +121,7 @@ class NuScenesOccDataset(NuScenesDataset):
             for _, cam_info in info['cams'].items():
                 img_paths.append(os.path.relpath(cam_info['data_path']))
                 img_timestamps.append(cam_info['timestamp'] / 1e6)
+                img_timestamps_us.append(int(cam_info['timestamp']))
 
                 # obtain lidar to image transformation matrix
                 lidar2cam_r = np.linalg.inv(cam_info['sensor2lidar_rotation'])
@@ -146,6 +149,7 @@ class NuScenesOccDataset(NuScenesDataset):
             input_dict.update(dict(
                 img_filename=img_paths,
                 img_timestamp=img_timestamps,
+                img_timestamp_us=img_timestamps_us,
                 lidar2img=lidar2img_rts,
                 lidar2cam=lidar2cam_rts,
                 intrinsics=intrinsics,
