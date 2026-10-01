@@ -59,6 +59,9 @@ class ExtensionResumeAuditHook(Hook):
         assert_equal_state(runner.optimizer.state_dict(), c['optimizer'])
         scalers = [h.loss_scaler for h in runner._hooks if hasattr(h, 'loss_scaler')]
         assert len(scalers) == 1
+        # IterBasedRunner.resume omits checkpoint meta; explicitly restore saved AMP state.
+        scalers[0].load_state_dict(c['meta']['fp16']['loss_scaler'])
+        runner.meta['fp16'] = c['meta']['fp16']
         assert_equal_state(scalers[0].state_dict(), c['meta']['fp16']['loss_scaler'])
         steps = {int(s['step']) for s in runner.optimizer.state.values() if 'step' in s}
         assert steps == {29915}

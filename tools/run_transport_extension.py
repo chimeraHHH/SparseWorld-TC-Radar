@@ -15,8 +15,8 @@ import traceback
 from gpu_capacity import CapacityWindow, memory_snapshot
 
 ROOT = Path('/storage/data/metaiot_data/huayiming/SparseWorld')
-CAMPAIGN = ROOT/'analysis/transport_reliable_extension_20261001'
-WORK = ROOT/'work_dirs/transport_reliable_extend20_20261001'
+CAMPAIGN = ROOT/'analysis/transport_reliable_extension_v2_20261001'
+WORK = ROOT/'work_dirs/transport_reliable_extend20_v2_20261001'
 OLD = ROOT/'work_dirs/radar_forecast_transport-reliable_seed0'
 UUID = 'GPU-000b6236-3632-a001-9667-1f02cbb61c8b'
 CONFIG = 'configs/sw-radar-transport-reliable-extend20.py'
@@ -103,9 +103,16 @@ def main():
         original=json.loads(Path('/home/huayiming/Workspace/SparseWorld-TC-forecast-2fc2feaf5edb/code_manifest.json').read_text())
         for name,expected in original['sha256'].items():
             assert hashlib.sha256((code/name).read_bytes()).hexdigest()==expected,name
+        failed=ROOT/'analysis/transport_reliable_extension_20261001'
+        failure=json.loads((failed/'status.json').read_text())
+        assert failure['state']=='failed_evidence_preserved' and not Path('/proc/'+str(failure['controller_pid'])).exists()
+        for x in Path('/proc').glob('[0-9]*/cmdline'):
+            try: command=x.read_bytes().replace(b'\0',b' ').decode(errors='replace')
+            except (FileNotFoundError,PermissionError,ProcessLookupError): continue
+            assert 'tools/train_transport_extension.py' not in command, (str(x),command)
         prior=json.loads((ROOT/'analysis/transport_reliable_campaign_20260922/transport-reliable_status.json').read_text())
         assert prior['state']=='complete' and not Path('/proc/'+str(prior['controller_pid'])).exists()
-        for directory in (WORK,ROOT/'work_dirs/transport_reliable_extend20_smoke_20261001'):
+        for directory in (WORK,ROOT/'work_dirs/transport_reliable_extend20_smoke_v2_20261001'):
             assert not directory.exists() or not any(directory.iterdir()),directory
         record(state='waiting_for_gpu_lock')
         with (ROOT/'forecast_gpu1.lock').open('a') as lock:
@@ -118,7 +125,7 @@ def main():
             stage('cuda_contracts',['-m','pytest','-q','tests/test_m0_contracts.py','-k','cuda'],gpu=True)
             stage('frozen_storage',['tools/check_transport_extension.py','--device','cuda','--out',str(CAMPAIGN/'frozen_storage.json')],gpu=True)
             stage('resume_smoke',['tools/train_transport_extension.py','--config','configs/sw-radar-transport-reliable-extend20-smoke.py'],gpu=True)
-            smoke=ROOT/'work_dirs/transport_reliable_extend20_smoke_20261001'
+            smoke=ROOT/'work_dirs/transport_reliable_extend20_smoke_v2_20261001'
             checkpoints=list(smoke.glob('iter_*.pth'));assert len(checkpoints)==1
             proof=audit(checkpoints[0],optimizer_steps=29915+24)
             components=[];joint=[]

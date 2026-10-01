@@ -1,5 +1,5 @@
 _base_ = './sw-radar-transport-reliable-extend20.py'
-work_dir = '/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/transport_reliable_extend20_smoke_20261001'
+work_dir = '/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/transport_reliable_extend20_smoke_v2_20261001'
 max_iters = 29944
 lr_config = dict(by_epoch=False)
 checkpoint_config = dict(interval=24, by_epoch=False, max_keep_ckpts=1)
