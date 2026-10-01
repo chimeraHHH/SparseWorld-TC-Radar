@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "device": "cuda",
+  "checkpoint_sha256": "663a7b4bbb6b06721af04324277dddf52889c39fc87ecbe7331349d999cfd8bd",
+  "epoch": 10,
+  "iterations": 29920,
+  "optimizer_steps": 29915,
+  "model_tensors": 801,
+  "real_anchors": 16,
+  "frozen_storage_arrays_exact": true,
+  "all_metrics_exact": true,
+  "scene_confusions_exact": true,
+  "optimizer_steps_executed": 0
+}

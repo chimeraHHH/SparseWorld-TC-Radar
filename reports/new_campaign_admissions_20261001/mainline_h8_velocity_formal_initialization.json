@@ -1,0 +1,21 @@
+{
+  "loaded_tensors": 669,
+  "loaded_numel": 79478272,
+  "new_radar_tensors": 102,
+  "zero_residual_outputs": [
+    "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.output",
+    "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.output",
+    "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.output",
+    "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.output",
+    "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.output",
+    "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.output"
+  ],
+  "new_path_tensors": 0,
+  "all_camera_tensors_exact": true,
+  "path": "artifact:sw-tc-small.pth",
+  "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
+  "source_epoch": 70,
+  "source_iter": 246190,
+  "optimizer_restored": false,
+  "epoch_reset_to": 0
+}

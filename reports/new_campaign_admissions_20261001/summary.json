@@ -10,7 +10,7 @@
     }
   },
   "mainline_revision": "0f33492d1b639da716897d8faa4a1df293354c49",
-  "continuation_revision": "bfb0bd8d51832f842e36529056f76d122b2b57f8",
+  "continuation_revision": "09353b46079dfcb79d824ff65d48bfe9234d735d",
   "continuation_scientific_base": "2fc2feaf5edbf0e1bc839b6b34c694be7e85af83",
   "first_continuation_rejection": {
     "before_optimization": true,
@@ -19,5 +19,16 @@
     "scale_saved": 65536,
     "old_snapshot_preserved": true
   },
-  "boundary": "Admission evidence only. No accuracy or cost improvement is claimed. Formal admission continues on controllers."
+  "boundary": "Admission and formal-start evidence only. No accuracy or cost improvement is claimed. MMCV smoke save meta.iter is pre-increment (23/29943); actual optimizer steps 24/29939 are audited independently.",
+  "at_utc": "2026-10-01T11:52:19.071877+00:00",
+  "continuation_v2_smoke_passed_then_controller_selector_rejected": true,
+  "continuation_v3_reuses_completed_admissions_after_exact_scientific_hash_match": true,
+  "continuation_formal_from_original_epoch10_exact_model_optimizer_scaler": true,
+  "mainline_h8_velocity_in_formal_training": true,
+  "mainline_remaining_arms_queued": [
+    "h8-geometry",
+    "h2-velocity",
+    "h2-geometry"
+  ],
+  "cost_benchmark_run": false
 }
