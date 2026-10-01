@@ -93,3 +93,19 @@ python3 val.py --config configs/sw-tc.py --weights [path_to_the_weight]
 ## Acknowledgements
 
 The project is partially based on some awesome repos: [OPUS](https://github.com/jbwang1997/OPUS), [VGGT](https://github.com/facebookresearch/vggt), and [DrivingForward](https://github.com/fangzhou2000/DrivingForward). Many thanks to these projects for their excellent contributions!
+
+## Radar and visual-history experiment audit
+
+The completed four-arm H1/H8 × SDK velocity/geometry study is documented in the
+[Chinese final report](docs/HISTORY_DOPPLER_FINAL_20261001.md), with saved scene
+confusion matrices, paired bootstrap results and an offline cost ledger. The
+positive interaction does not establish single-frame non-inferiority or measured
+deployment savings. Results are conditional on the frozen implementation, one
+seed and reused validation scenes; known sampling-layout and repeat-inference
+limitations are recorded in the report.
+
+Recompute the published statistics on CPU without model weights or training:
+
+```sh
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python tools/recompute_history_doppler_public.py --evidence-dir docs/evidence/history_doppler_complete_20261001
+```
