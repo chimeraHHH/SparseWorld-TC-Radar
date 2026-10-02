@@ -29,3 +29,9 @@ GPU1的H8几何CUDA4项通过，但原真实样本准入在第三个anchor当前
 GPU1的H2几何CUDA4项通过；四anchor各13原始张量全部精确，四时域体素坐标和类别与独立参考一致。其自身smoke完成24次实际优化更新，771模型张量及优化器有限、schema与CPU一致，六窗口雷达及原backbone/neck/head均有有限正梯度和参数变化。注意smoke文件meta iterations=23而optimizer_steps=24，采用后者作为实际更新审计，未从日志末行推定。
 
 2026-10-02 04:47UTC，独立正式进程已从完整官方669张量和新雷达102张量初始化，所有相机张量精确、optimizer_restored=false、epoch_reset_to=0；实际命令/cwd固定原科学0f版本，无smoke权重重用。04:50UTC已记录第1轮10/20步有限loss与grad，两个新雷达与原backbone/neck/head审计窗口均有有限正梯度和参数变化；已实际推进正式训练。20为观察日志迭代，不能当最终checkpoint精确实际优化步数。初始化及门禁通过不代表精度收益或四臂完成。原始回执逐字节SHA归档，公开摘要见`reports/history_budget_parallel_20261002/`。
+
+## 未执行的针对性取证准备
+
+已准备独立零步工具`tools/diagnose_budget_original_call_parity.py`，不替换原科学文件或正式准入。它核验原失败claim/状态SHA及原进程退出，并在原卡锁和资源门禁后，调用冻结科学版本的原`gpu_contract`。唯一插入点在两模型原native推理均完成后、原raw/体素判断之前：保存已在CPU的两侧13张量、两侧native体素和SHA；全部原语句、调用次序、容差及异常传播保留，不增加模型/get_occ或deterministic调用。CPU存盘仍会改变anchor之间的时间，因此通过也不能解释原失败或当准入许可。
+
+本地3个取证完整性测试通过：真实checker只插入一次CPU回调；raw或体素断言失败前证据已存在、失败继续传播且native调用不增加；未知比较结构拒绝运行。没有执行新的GPU诊断、部署、领取或训练；两张卡继续各自正式主线。此工具仅供后续空卡时的独立取证，原失败记录保持，H8几何根因仍未确定。
