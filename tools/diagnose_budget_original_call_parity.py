@@ -87,15 +87,21 @@ def instrument_contract(function, persist):
     return namespace['gpu_contract'], hashlib.sha256(source.encode()).hexdigest()
 
 
-def failure_evidence():
+def failure_evidence(failed_child_pid):
     evidence = {}
     for name, expected in FAILURE_BINDINGS.items():
         raw = (CAMPAIGN / name).read_bytes()
         if hashlib.sha256(raw).hexdigest() != expected:
             raise ValueError('Original failed evidence changed: ' + name)
         evidence[name] = dict(sha256=expected, bytes=len(raw))
+    failed = json.loads((CAMPAIGN / 'parallel_gpu1_failed_h8_geometry_status_20261002.json').read_text())
+    if not (failed['state'] == 'failed_evidence_preserved' and failed['arm'] == 'h8-geometry'
+            and failed['stage'] == 'h8-geometry_parity' and failed['child_returncode'] == 1):
+        raise ValueError('Not the preserved original parity failure')
+    if type(failed_child_pid) is not int or failed_child_pid <= 0:
+        raise ValueError('Supply the failed child PID from retained private process evidence')
     # Never signal these PIDs. Conservatively reject any extant /proc entry.
-    for pid in (3321425, 3323298):
+    for pid in (failed['controller_pid'], failed_child_pid):
         if Path('/proc/%d' % pid).exists():
             raise RuntimeError('Original failed worker/child must be absent')
     return evidence
@@ -104,6 +110,8 @@ def failure_evidence():
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--out', required=True)
+    parser.add_argument('--failed-child-pid', required=True, type=int,
+                        help='Read from retained private failure process evidence; never signal it')
     args = parser.parse_args()
     output = Path(args.out).resolve()
     output.mkdir(parents=True, exist_ok=False)
@@ -126,7 +134,7 @@ def main():
         if manifest['git_revision'] != REVISION:
             raise ValueError('Wrong frozen science manifest')
         verify_snapshot(SCIENCE, manifest)
-        report['failed_evidence_binding'] = failure_evidence()
+        report['failed_evidence_binding'] = failure_evidence(args.failed_child_pid)
         with (ROOT / 'forecast_gpu1.lock').open('a') as lock:
             fcntl.flock(lock, fcntl.LOCK_EX)
             window = CapacityWindow()
@@ -145,7 +153,7 @@ def main():
                 if admitted:
                     break
                 time.sleep(15)
-            failure_evidence()
+            failure_evidence(args.failed_child_pid)
             os.environ['CUDA_VISIBLE_DEVICES'] = UUID
             import numpy as np
             import torch
