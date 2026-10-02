@@ -1,0 +1,58 @@
+{
+  "at_utc": "2026-10-02T15:37:53.037773+00:00",
+  "science_revision": "0f33492d1b639da716897d8faa4a1df293354c49",
+  "verified_files": 13,
+  "manifest_missing_optional": [
+    "work_dirs/history_budget_h2-velocity_20261001_seed0/radar_initialization.json",
+    "work_dirs/history_budget_h2-velocity_20261001_smoke_seed0/radar_initialization.json"
+  ],
+  "missing_optional_basis": "Separate radar_initialization files are not produced in this official combined loader; complete official_initialization records include the 102 radar tensors.",
+  "cuda_tests_passed": 4,
+  "raw_real_tensors_exact": 52,
+  "voxels_exact_all_anchors": true,
+  "smoke_optimizer_steps": 24,
+  "smoke_model_tensors_finite": 771,
+  "smoke_optimizer_finite": true,
+  "smoke_schema_matches_cpu": true,
+  "new_old_update_windows": 6,
+  "formal_initialization": {
+    "loaded_tensors": 669,
+    "loaded_numel": 79478272,
+    "new_radar_tensors": 102,
+    "zero_residual_outputs": [
+      "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.output",
+      "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.output",
+      "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.output",
+      "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.output",
+      "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.output",
+      "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.output"
+    ],
+    "new_path_tensors": 0,
+    "all_camera_tensors_exact": true,
+    "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
+    "source_epoch": 70,
+    "source_iter": 246190,
+    "optimizer_restored": false,
+    "epoch_reset_to": 0
+  },
+  "formal_initial_subset_future_miou": 21.130742500328733,
+  "formal_uses_smoke_weights": false,
+  "source_sha256": {
+    "analysis/history_budget_mainline_20261001/parallel_gpu0_status.json": "5a5b764e3f08c4ea00c7d45b38182559ba093b3bbd7b4612b6bfbe36323ec699",
+    "analysis/history_budget_mainline_20261001/h2-velocity_claim.json": "3aa2fd9285e90cebdda299eec65cc05859c72861dd0282e52d33f8439ab81e8e",
+    "analysis/history_budget_mainline_20261001/cpu_h2-velocity.json": "0ca3ce9d2aabdc29129a26d22e525851a9e785770c80327013d752d655ff45a3",
+    "analysis/history_budget_mainline_20261001/gpu_h2-velocity.json": "d028cf8531a091bef7d39d1b7721ef56c39d887aec1744e104724c4634cc58d4",
+    "analysis/history_budget_mainline_20261001/smoke_h2-velocity.json": "c65ba9a14ad562c4539c55433892aa306bafca1ace316a7a8e81cd0548805279",
+    "analysis/history_budget_mainline_20261001/h2-velocity_cuda.log": "8fe372a9d81b04bcbed3e301da378d1ce1e06761ec702608154a0c2275efe9d4",
+    "analysis/history_budget_mainline_20261001/h2-velocity_parity.log": "c803e77968d65b3f080a7ab46d22d627bd4506ffe109df7646b8b7d1b08f930b",
+    "work_dirs/history_budget_h2-velocity_20261001_seed0/official_initialization.json": "6294859a7fae3111233a4202b1c0dbb94cbfd58c1072b478e07198cd9d8796dd",
+    "work_dirs/history_budget_h2-velocity_20261001_seed0/resolved_config.py": "774ae69dc0a5c77d9fe839d4bcab879a72a99a0fb9d80642ce64a89743e98425",
+    "work_dirs/history_budget_h2-velocity_20261001_seed0/validation_epoch_00_subset.json": "3c0d3319a9c37fba0cec6b0e6046f38e85694e23431c631624c2ce652fce1b11",
+    "work_dirs/history_budget_h2-velocity_20261001_smoke_seed0/official_initialization.json": "6294859a7fae3111233a4202b1c0dbb94cbfd58c1072b478e07198cd9d8796dd",
+    "work_dirs/history_budget_h2-velocity_20261001_smoke_seed0/resolved_config.py": "8f81eb8e4aedf19c092aea0ee044a6f8c9465f05eafabd8a0348203250f4678a",
+    "work_dirs/history_budget_h2-velocity_20261001_smoke_seed0/train.log": "9c4285ba2174210677f7a96f1a4a8bc79cf9840dcce83dc97ff6f0e7e2fc00c8"
+  },
+  "archive_sha256": "fa362b2a1d6f99c903053ad065afc93929920e3b432f939d367b98a7ebd29ef5",
+  "scope": "Implementation/admission/fresh initialization evidence only; no trained accuracy or cost benefit.",
+  "formal_process_identity_verified": true
+}
