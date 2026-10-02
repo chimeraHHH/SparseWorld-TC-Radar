@@ -1,0 +1,75 @@
+{
+  "at_utc": "2026-10-02T03:43:27.016815+00:00",
+  "status": "passed",
+  "original_archive_sha256": "7cacd74adc093b8d12ab4eebedd8d8832ced9fe9b846a7cfcb98ac23f92815d7",
+  "running_revision": "09353b46079dfcb79d824ff65d48bfe9234d735d",
+  "scientific_base_revision": "2fc2feaf5edbf0e1bc839b6b34c694be7e85af83",
+  "samples": 5119,
+  "scenes": 150,
+  "sample_order_tokens_schema_exact": true,
+  "scene_names_order_exact": true,
+  "per_scene_per_horizon_target_counts_exact": true,
+  "class_iou_and_binary_iou_exact": true,
+  "mean_roundoff_pp": {
+    "e10": {
+      "0.0s": -7.105427357601002e-15,
+      "1.0s": -3.552713678800501e-15,
+      "2.0s": 0.0,
+      "3.0s": 0.0,
+      "future": 3.552713678800501e-15
+    },
+    "e15": {
+      "0.0s": 0.0,
+      "1.0s": 7.105427357601002e-15,
+      "2.0s": 0.0,
+      "3.0s": 0.0,
+      "future": 3.552713678800501e-15
+    }
+  },
+  "source_files": {
+    "e10/metrics_full.json": {
+      "original_name": "validation_epoch_10_full.json",
+      "sha256": "c3c632c8a913b2330e7a372325caacb75d46d8163148115f786be438c43deb6c",
+      "bytes": 258474
+    },
+    "e10/0.0s.npz": {
+      "sha256": "f61b31fcd3e9510a8b9cf48c7fbd27dfa94ac46da545bbd93f497fa086f2bcd5",
+      "bytes": 49858
+    },
+    "e10/1.0s.npz": {
+      "sha256": "f501956c789e0f0ad721f5fc5490e5bbab9c77c1cc2e19a856e0827d28e2ed93",
+      "bytes": 49709
+    },
+    "e10/2.0s.npz": {
+      "sha256": "5179eb8bc3847381b6ab273d2351ee01e408825b0ec3218622fb0c6b9489239b",
+      "bytes": 49243
+    },
+    "e10/3.0s.npz": {
+      "sha256": "96ab5f5267b99aa5163ab358a1fb2a27e0b8abfdb410c7d71d9306916b36756f",
+      "bytes": 48945
+    },
+    "e15/metrics_full.json": {
+      "original_name": "validation_epoch_15_full.json",
+      "sha256": "e557a4163739f39bace8e40d3948f860ac8ca7fda53a11e604b5d0c2f32eb4ee",
+      "bytes": 258460
+    },
+    "e15/0.0s.npz": {
+      "sha256": "c9c091270f8ed66e449077c6135bd5d876ec84986f07eeeaef4db91b2c79f53b",
+      "bytes": 49860
+    },
+    "e15/1.0s.npz": {
+      "sha256": "6ee9657450031536d3427bcaeffae95eaca013bb557d962fa88d660826706387",
+      "bytes": 49638
+    },
+    "e15/2.0s.npz": {
+      "sha256": "3f902f5d2fc23fae49cbe5fe95473d4390a3fdfebc8180706959da61b1544b2f",
+      "bytes": 49416
+    },
+    "e15/3.0s.npz": {
+      "sha256": "cae2e17fbfedd3977a276d82a5048baf1cd0c85ab6d574c81917944c19bb4665",
+      "bytes": 48919
+    }
+  },
+  "checkpoint_scope": "Original e10 exact resume admitted. No independent e15 checkpoint tensor/meta or file SHA audit in this interim report.",
+  "scope": "e15 interim full evaluation only; e20 vs original e10 remains primary. No new checkpoint tensor/meta load or optimizer step count inferred. Reused validation and single seed; bootstrap conditional on trained models. No deployment cost benchmark or equal-budget plainA20 control."
+}
