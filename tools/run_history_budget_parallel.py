@@ -83,10 +83,21 @@ def adopted_completion(campaign, work, log):
                 exit_observation='non-parent process disappearance or zombie')
 
 
+def assigned_arms(gpu, only_h2_geometry):
+    if only_h2_geometry:
+        if gpu != 1:
+            raise ValueError('H2 geometry reroute is assigned to GPU1 only')
+        return ('h2-geometry',)
+    return ASSIGNMENTS[gpu]
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--gpu', type=int, choices=(0, 1), required=True)
+    parser.add_argument('--only-h2-geometry', action='store_true')
     args = parser.parse_args()
+    arms = assigned_arms(args.gpu, args.only_h2_geometry)
+    run_id = 'h2_geometry_first_20261002' if args.only_h2_geometry else 'v1'
     scheduler = Path(__file__).resolve().parents[1]
     scheduler_manifest = json.loads((scheduler/'code_manifest.json').read_text())
     sys.path.insert(0, str(SCIENCE/'tools'))
@@ -102,7 +113,14 @@ def main():
         assert hashlib.sha256((scheduler/name).read_bytes()).hexdigest() == digest, name
     handoff = json.loads((CAMPAIGN/'parallel_handoff_20261002.json').read_text())
     assert handoff['state'] == 'old_controller_exited_trainer_preserved'
-    assert handoff['scheduler_revision'] == scheduler_manifest['git_revision']
+    if args.only_h2_geometry:
+        reroute = json.loads((CAMPAIGN/'h2_geometry_reroute_20261002.json').read_text())
+        assert reroute['scheduler_revision'] == scheduler_manifest['git_revision']
+        assert reroute['science_revision'] == REVISION and reroute['arm'] == 'h2-geometry'
+        assert reroute['failed_h8_geometry_worker_exited'] is True
+        assert reroute['failed_h8_geometry_claim_preserved'] is True
+    else:
+        assert handoff['scheduler_revision'] == scheduler_manifest['git_revision']
     old = handoff['original_status']
     required = ['cpu_tests', 'single_sweep_cache', 'all_visual_sources'] + [
         'cpu_'+arm for arms in ASSIGNMENTS.values() for arm in arms]
@@ -114,12 +132,13 @@ def main():
     uuid = GPUS[gpu]
     status = dict(state='prepared', controller_pid=os.getpid(), gpu=gpu, gpu_uuid=uuid,
                   git_revision=REVISION, code=str(SCIENCE), scheduler_code=str(scheduler),
-                  scheduler_revision=scheduler_manifest['git_revision'], assigned_arms=list(ASSIGNMENTS[gpu]),
+                  scheduler_revision=scheduler_manifest['git_revision'], assigned_arms=list(arms), worker_run_id=run_id,
                   completed_arms=[], completed_stages=[], stage_seconds={}, stage_timing_basis={}, at_utc=now())
     if gpu == 0:
         status['completed_stages'] = list(old['completed_stages'])
         status['stage_seconds'] = dict(old['stage_seconds'])
-    exclusive_json(CAMPAIGN/f'parallel_gpu{gpu}_submission.json', status)
+    submission = f'parallel_gpu{gpu}_submission.json' if run_id == 'v1' else f'parallel_gpu{gpu}_{run_id}_submission.json'
+    exclusive_json(CAMPAIGN/submission, status)
     def record(**values):
         status.update(values, at_utc=now())
         write_json(CAMPAIGN/f'parallel_gpu{gpu}_status.json', status)
@@ -257,7 +276,7 @@ def main():
         with (ROOT/f'forecast_gpu{gpu}.lock').open('a') as lock:
             record(state='waiting_for_original_gpu_lock')
             fcntl.flock(lock, fcntl.LOCK_EX)
-            for arm in ASSIGNMENTS[gpu]:
+            for arm in arms:
                 record(arm=arm)
                 if gpu == 0 and arm == 'h8-velocity':
                     adopt()
@@ -280,7 +299,7 @@ def main():
                     run(arm+'_train', ['train.py', '--config', cfg], True)
                 finish_arm(arm)
             if gpu == 1:
-                record(state='worker_queue_finished', stage='geometry_arms_complete')
+                record(state='worker_queue_finished', stage='assigned_geometry_arms_complete')
                 return
             record(state='waiting_for_peer', stage='waiting_for_four_results', child_pid=None)
             while not all((CAMPAIGN/(a+'_result.json')).exists() for a in sum(ASSIGNMENTS.values(), ())):

@@ -16,6 +16,12 @@ class SchedulingIntegrity(unittest.TestCase):
         stat = '123 (loader (queue)) ' + ' '.join(fields)
         self.assertEqual(p.parse_stat(stat), dict(state='S', ppid=1, pgid=44, sid=44, starttime=12345))
 
+    def test_reroute_only_authorized_h2_geometry(self):
+        self.assertEqual(p.assigned_arms(1, True), ('h2-geometry',))
+        self.assertEqual(p.assigned_arms(0, False), p.ASSIGNMENTS[0])
+        with self.assertRaises(ValueError):
+            p.assigned_arms(0, True)
+
     def test_reused_pid_is_not_adopted(self):
         identity = dict(pid=12, starttime=100, uid=1, cwd='/science', command='python train.py')
         self.assertTrue(p.same_process(dict(identity, state='R'), identity))
