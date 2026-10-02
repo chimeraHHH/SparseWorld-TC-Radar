@@ -1,0 +1,66 @@
+{
+  "state": "old_controller_exited_trainer_preserved",
+  "verified_at_utc": "2026-10-02T04:12:06.870065+00:00",
+  "science_revision": "0f33492d1b639da716897d8faa4a1df293354c49",
+  "scheduler_revision": "368b790850dca6c01a5549884b4503af073426e2",
+  "science_files_verified": 390,
+  "scheduler_archive_sha256": "ef1cbfd81dd2fd13c90c805ad9fb8d41a1da21ec5b0ad88ec33dd28ee5945999",
+  "scheduler_tests": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.002s\n\nOK\n",
+  "existing_h8_velocity_trainer_identity_preserved": true,
+  "old_serial_controller_exited": true,
+  "assignments": {
+    "gpu0": [
+      "h8-velocity",
+      "h2-velocity"
+    ],
+    "gpu1": [
+      "h8-geometry",
+      "h2-geometry"
+    ]
+  },
+  "reused_cpu_and_h8_velocity_evidence": {
+    "cpu_tests.log": {
+      "bytes": 8326,
+      "sha256": "b0d9d01d02910ac5a742725c928d5954fa3227b37f93d31dc4102e71c628592c"
+    },
+    "single_sweep_cache.log": {
+      "bytes": 2648,
+      "sha256": "6f358c97e738c45771a05b881a595e81bdb2f715933b5452f0c151cb70b4d8a3"
+    },
+    "all_visual_sources.json": {
+      "bytes": 773,
+      "sha256": "8fc22efee02ca66ebd25fd473b1d58654fa5e767598e8e9abe7a50e09d953a45"
+    },
+    "cpu_h8-velocity.json": {
+      "bytes": 85679,
+      "sha256": "f30c470ca338ee038a08a387ed073e86576c4ca4f43fe7ed5920cf25869903a8"
+    },
+    "cpu_h2-velocity.json": {
+      "bytes": 85732,
+      "sha256": "0ca3ce9d2aabdc29129a26d22e525851a9e785770c80327013d752d655ff45a3"
+    },
+    "cpu_h8-geometry.json": {
+      "bytes": 85659,
+      "sha256": "97a706a8cd410cfc0e30a3005a9999c9846e00c76d163c555a6ed33b32476b38"
+    },
+    "cpu_h2-geometry.json": {
+      "bytes": 85712,
+      "sha256": "04de47e980b1a033898270f1ede5f7016abcfee6e642dd93f90513efb8614b0f"
+    },
+    "gpu_h8-velocity.json": {
+      "bytes": 91920,
+      "sha256": "895ea0e85c9db93880c44b34181ec81e0e65d3b33b6560ecc12e259e723da5f7"
+    },
+    "smoke_h8-velocity.json": {
+      "bytes": 4429,
+      "sha256": "1b0eaff12515551fcb14fcd698c183d3d0a5945b1a960d28c6cf4e91309ff72f"
+    },
+    "h8-velocity_claim.json": {
+      "bytes": 177,
+      "sha256": "ac9d59ceaec8d1ced1fb2f4f55e8e059f8129c69d3a4e9ed61d2313167c4bec0"
+    }
+  },
+  "raw_handoff_sha256": "856af7bd0a4bf3987d0ef906cc933638b3f70ec314dd3b179c96f8cf5a74f441",
+  "scope": "scheduler handoff and admissions only; no accuracy or cost result",
+  "assignments_scope": "initial handoff only; GPU1 subsequently rerouted to H2 geometry after H8 geometry admission failure"
+}

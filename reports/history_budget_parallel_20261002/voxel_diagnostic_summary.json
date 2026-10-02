@@ -1,0 +1,1464 @@
+{
+  "status": "diagnostic_complete",
+  "optimization_steps": 0,
+  "science_revision": "0f33492d1b639da716897d8faa4a1df293354c49",
+  "script_sha256": "379b3ea80547b1a9f1e0400452ac7ad0057b812b8b007fc5220ef0f96ffbc25a",
+  "scope": "fixed official initialization; repeated postprocessing of identical prediction tensors only; no training, no gate relaxation",
+  "postprocessing": [
+    {
+      "call": 0,
+      "model": "new",
+      "native_deterministic_flag": false,
+      "same_prediction_object": true,
+      "native_repeat_exact": [
+        true,
+        true
+      ],
+      "native_repeat_differences": [
+        [
+          {
+            "horizon": 0,
+            "left_voxels": 51877,
+            "right_voxels": 51877,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 1,
+            "left_voxels": 60207,
+            "right_voxels": 60207,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 2,
+            "left_voxels": 72918,
+            "right_voxels": 72918,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 3,
+            "left_voxels": 74566,
+            "right_voxels": 74566,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          }
+        ],
+        [
+          {
+            "horizon": 0,
+            "left_voxels": 51877,
+            "right_voxels": 51877,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 1,
+            "left_voxels": 60207,
+            "right_voxels": 60207,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 2,
+            "left_voxels": 72918,
+            "right_voxels": 72918,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 3,
+            "left_voxels": 74566,
+            "right_voxels": 74566,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          }
+        ]
+      ],
+      "diagnostic_deterministic_repeat_exact": true,
+      "native_vs_diagnostic_deterministic": [
+        {
+          "horizon": 0,
+          "left_voxels": 51877,
+          "right_voxels": 51877,
+          "coordinate_symmetric_difference": 0,
+          "label_disagreements_on_common": 0
+        },
+        {
+          "horizon": 1,
+          "left_voxels": 60207,
+          "right_voxels": 60207,
+          "coordinate_symmetric_difference": 0,
+          "label_disagreements_on_common": 0
+        },
+        {
+          "horizon": 2,
+          "left_voxels": 72918,
+          "right_voxels": 72918,
+          "coordinate_symmetric_difference": 0,
+          "label_disagreements_on_common": 0
+        },
+        {
+          "horizon": 3,
+          "left_voxels": 74566,
+          "right_voxels": 74566,
+          "coordinate_symmetric_difference": 0,
+          "label_disagreements_on_common": 0
+        }
+      ]
+    },
+    {
+      "call": 1,
+      "model": "reference",
+      "native_deterministic_flag": false,
+      "same_prediction_object": true,
+      "native_repeat_exact": [
+        true,
+        true
+      ],
+      "native_repeat_differences": [
+        [
+          {
+            "horizon": 0,
+            "left_voxels": 51877,
+            "right_voxels": 51877,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 1,
+            "left_voxels": 60207,
+            "right_voxels": 60207,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 2,
+            "left_voxels": 72918,
+            "right_voxels": 72918,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 3,
+            "left_voxels": 74566,
+            "right_voxels": 74566,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          }
+        ],
+        [
+          {
+            "horizon": 0,
+            "left_voxels": 51877,
+            "right_voxels": 51877,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 1,
+            "left_voxels": 60207,
+            "right_voxels": 60207,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 2,
+            "left_voxels": 72918,
+            "right_voxels": 72918,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 3,
+            "left_voxels": 74566,
+            "right_voxels": 74566,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          }
+        ]
+      ],
+      "diagnostic_deterministic_repeat_exact": true,
+      "native_vs_diagnostic_deterministic": [
+        {
+          "horizon": 0,
+          "left_voxels": 51877,
+          "right_voxels": 51877,
+          "coordinate_symmetric_difference": 0,
+          "label_disagreements_on_common": 0
+        },
+        {
+          "horizon": 1,
+          "left_voxels": 60207,
+          "right_voxels": 60207,
+          "coordinate_symmetric_difference": 0,
+          "label_disagreements_on_common": 0
+        },
+        {
+          "horizon": 2,
+          "left_voxels": 72918,
+          "right_voxels": 72918,
+          "coordinate_symmetric_difference": 0,
+          "label_disagreements_on_common": 0
+        },
+        {
+          "horizon": 3,
+          "left_voxels": 74566,
+          "right_voxels": 74566,
+          "coordinate_symmetric_difference": 0,
+          "label_disagreements_on_common": 0
+        }
+      ]
+    },
+    {
+      "call": 2,
+      "model": "new",
+      "native_deterministic_flag": false,
+      "same_prediction_object": true,
+      "native_repeat_exact": [
+        true,
+        true
+      ],
+      "native_repeat_differences": [
+        [
+          {
+            "horizon": 0,
+            "left_voxels": 59838,
+            "right_voxels": 59838,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 1,
+            "left_voxels": 61767,
+            "right_voxels": 61767,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 2,
+            "left_voxels": 59414,
+            "right_voxels": 59414,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 3,
+            "left_voxels": 63163,
+            "right_voxels": 63163,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          }
+        ],
+        [
+          {
+            "horizon": 0,
+            "left_voxels": 59838,
+            "right_voxels": 59838,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 1,
+            "left_voxels": 61767,
+            "right_voxels": 61767,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 2,
+            "left_voxels": 59414,
+            "right_voxels": 59414,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 3,
+            "left_voxels": 63163,
+            "right_voxels": 63163,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          }
+        ]
+      ],
+      "diagnostic_deterministic_repeat_exact": true,
+      "native_vs_diagnostic_deterministic": [
+        {
+          "horizon": 0,
+          "left_voxels": 59838,
+          "right_voxels": 59838,
+          "coordinate_symmetric_difference": 0,
+          "label_disagreements_on_common": 0
+        },
+        {
+          "horizon": 1,
+          "left_voxels": 61767,
+          "right_voxels": 61767,
+          "coordinate_symmetric_difference": 0,
+          "label_disagreements_on_common": 0
+        },
+        {
+          "horizon": 2,
+          "left_voxels": 59414,
+          "right_voxels": 59414,
+          "coordinate_symmetric_difference": 0,
+          "label_disagreements_on_common": 0
+        },
+        {
+          "horizon": 3,
+          "left_voxels": 63163,
+          "right_voxels": 63163,
+          "coordinate_symmetric_difference": 0,
+          "label_disagreements_on_common": 0
+        }
+      ]
+    },
+    {
+      "call": 3,
+      "model": "reference",
+      "native_deterministic_flag": false,
+      "same_prediction_object": true,
+      "native_repeat_exact": [
+        true,
+        true
+      ],
+      "native_repeat_differences": [
+        [
+          {
+            "horizon": 0,
+            "left_voxels": 59838,
+            "right_voxels": 59838,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 1,
+            "left_voxels": 61767,
+            "right_voxels": 61767,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 2,
+            "left_voxels": 59414,
+            "right_voxels": 59414,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 3,
+            "left_voxels": 63163,
+            "right_voxels": 63163,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          }
+        ],
+        [
+          {
+            "horizon": 0,
+            "left_voxels": 59838,
+            "right_voxels": 59838,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 1,
+            "left_voxels": 61767,
+            "right_voxels": 61767,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 2,
+            "left_voxels": 59414,
+            "right_voxels": 59414,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 3,
+            "left_voxels": 63163,
+            "right_voxels": 63163,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          }
+        ]
+      ],
+      "diagnostic_deterministic_repeat_exact": true,
+      "native_vs_diagnostic_deterministic": [
+        {
+          "horizon": 0,
+          "left_voxels": 59838,
+          "right_voxels": 59838,
+          "coordinate_symmetric_difference": 0,
+          "label_disagreements_on_common": 0
+        },
+        {
+          "horizon": 1,
+          "left_voxels": 61767,
+          "right_voxels": 61767,
+          "coordinate_symmetric_difference": 0,
+          "label_disagreements_on_common": 0
+        },
+        {
+          "horizon": 2,
+          "left_voxels": 59414,
+          "right_voxels": 59414,
+          "coordinate_symmetric_difference": 0,
+          "label_disagreements_on_common": 0
+        },
+        {
+          "horizon": 3,
+          "left_voxels": 63163,
+          "right_voxels": 63163,
+          "coordinate_symmetric_difference": 0,
+          "label_disagreements_on_common": 0
+        }
+      ]
+    },
+    {
+      "call": 4,
+      "model": "new",
+      "native_deterministic_flag": false,
+      "same_prediction_object": true,
+      "native_repeat_exact": [
+        true,
+        true
+      ],
+      "native_repeat_differences": [
+        [
+          {
+            "horizon": 0,
+            "left_voxels": 35470,
+            "right_voxels": 35470,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 1,
+            "left_voxels": 35845,
+            "right_voxels": 35845,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 2,
+            "left_voxels": 36170,
+            "right_voxels": 36170,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 3,
+            "left_voxels": 36386,
+            "right_voxels": 36386,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          }
+        ],
+        [
+          {
+            "horizon": 0,
+            "left_voxels": 35470,
+            "right_voxels": 35470,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 1,
+            "left_voxels": 35845,
+            "right_voxels": 35845,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 2,
+            "left_voxels": 36170,
+            "right_voxels": 36170,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 3,
+            "left_voxels": 36386,
+            "right_voxels": 36386,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          }
+        ]
+      ],
+      "diagnostic_deterministic_repeat_exact": true,
+      "native_vs_diagnostic_deterministic": [
+        {
+          "horizon": 0,
+          "left_voxels": 35470,
+          "right_voxels": 35470,
+          "coordinate_symmetric_difference": 0,
+          "label_disagreements_on_common": 0
+        },
+        {
+          "horizon": 1,
+          "left_voxels": 35845,
+          "right_voxels": 35845,
+          "coordinate_symmetric_difference": 0,
+          "label_disagreements_on_common": 0
+        },
+        {
+          "horizon": 2,
+          "left_voxels": 36170,
+          "right_voxels": 36170,
+          "coordinate_symmetric_difference": 0,
+          "label_disagreements_on_common": 0
+        },
+        {
+          "horizon": 3,
+          "left_voxels": 36386,
+          "right_voxels": 36386,
+          "coordinate_symmetric_difference": 0,
+          "label_disagreements_on_common": 0
+        }
+      ]
+    },
+    {
+      "call": 5,
+      "model": "reference",
+      "native_deterministic_flag": false,
+      "same_prediction_object": true,
+      "native_repeat_exact": [
+        true,
+        true
+      ],
+      "native_repeat_differences": [
+        [
+          {
+            "horizon": 0,
+            "left_voxels": 35470,
+            "right_voxels": 35470,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 1,
+            "left_voxels": 35845,
+            "right_voxels": 35845,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 2,
+            "left_voxels": 36170,
+            "right_voxels": 36170,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 3,
+            "left_voxels": 36386,
+            "right_voxels": 36386,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          }
+        ],
+        [
+          {
+            "horizon": 0,
+            "left_voxels": 35470,
+            "right_voxels": 35470,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 1,
+            "left_voxels": 35845,
+            "right_voxels": 35845,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 2,
+            "left_voxels": 36170,
+            "right_voxels": 36170,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 3,
+            "left_voxels": 36386,
+            "right_voxels": 36386,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          }
+        ]
+      ],
+      "diagnostic_deterministic_repeat_exact": true,
+      "native_vs_diagnostic_deterministic": [
+        {
+          "horizon": 0,
+          "left_voxels": 35470,
+          "right_voxels": 35470,
+          "coordinate_symmetric_difference": 0,
+          "label_disagreements_on_common": 0
+        },
+        {
+          "horizon": 1,
+          "left_voxels": 35845,
+          "right_voxels": 35845,
+          "coordinate_symmetric_difference": 0,
+          "label_disagreements_on_common": 0
+        },
+        {
+          "horizon": 2,
+          "left_voxels": 36170,
+          "right_voxels": 36170,
+          "coordinate_symmetric_difference": 0,
+          "label_disagreements_on_common": 0
+        },
+        {
+          "horizon": 3,
+          "left_voxels": 36386,
+          "right_voxels": 36386,
+          "coordinate_symmetric_difference": 0,
+          "label_disagreements_on_common": 0
+        }
+      ]
+    },
+    {
+      "call": 6,
+      "model": "new",
+      "native_deterministic_flag": false,
+      "same_prediction_object": true,
+      "native_repeat_exact": [
+        true,
+        true
+      ],
+      "native_repeat_differences": [
+        [
+          {
+            "horizon": 0,
+            "left_voxels": 88751,
+            "right_voxels": 88751,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 1,
+            "left_voxels": 90822,
+            "right_voxels": 90822,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 2,
+            "left_voxels": 88861,
+            "right_voxels": 88861,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 3,
+            "left_voxels": 80396,
+            "right_voxels": 80396,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          }
+        ],
+        [
+          {
+            "horizon": 0,
+            "left_voxels": 88751,
+            "right_voxels": 88751,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 1,
+            "left_voxels": 90822,
+            "right_voxels": 90822,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 2,
+            "left_voxels": 88861,
+            "right_voxels": 88861,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 3,
+            "left_voxels": 80396,
+            "right_voxels": 80396,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          }
+        ]
+      ],
+      "diagnostic_deterministic_repeat_exact": true,
+      "native_vs_diagnostic_deterministic": [
+        {
+          "horizon": 0,
+          "left_voxels": 88751,
+          "right_voxels": 88751,
+          "coordinate_symmetric_difference": 0,
+          "label_disagreements_on_common": 0
+        },
+        {
+          "horizon": 1,
+          "left_voxels": 90822,
+          "right_voxels": 90822,
+          "coordinate_symmetric_difference": 0,
+          "label_disagreements_on_common": 0
+        },
+        {
+          "horizon": 2,
+          "left_voxels": 88861,
+          "right_voxels": 88861,
+          "coordinate_symmetric_difference": 0,
+          "label_disagreements_on_common": 0
+        },
+        {
+          "horizon": 3,
+          "left_voxels": 80396,
+          "right_voxels": 80396,
+          "coordinate_symmetric_difference": 0,
+          "label_disagreements_on_common": 0
+        }
+      ]
+    },
+    {
+      "call": 7,
+      "model": "reference",
+      "native_deterministic_flag": false,
+      "same_prediction_object": true,
+      "native_repeat_exact": [
+        true,
+        true
+      ],
+      "native_repeat_differences": [
+        [
+          {
+            "horizon": 0,
+            "left_voxels": 88751,
+            "right_voxels": 88751,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 1,
+            "left_voxels": 90822,
+            "right_voxels": 90822,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 2,
+            "left_voxels": 88861,
+            "right_voxels": 88861,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 3,
+            "left_voxels": 80396,
+            "right_voxels": 80396,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          }
+        ],
+        [
+          {
+            "horizon": 0,
+            "left_voxels": 88751,
+            "right_voxels": 88751,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 1,
+            "left_voxels": 90822,
+            "right_voxels": 90822,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 2,
+            "left_voxels": 88861,
+            "right_voxels": 88861,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          },
+          {
+            "horizon": 3,
+            "left_voxels": 80396,
+            "right_voxels": 80396,
+            "coordinate_symmetric_difference": 0,
+            "label_disagreements_on_common": 0
+          }
+        ]
+      ],
+      "diagnostic_deterministic_repeat_exact": true,
+      "native_vs_diagnostic_deterministic": [
+        {
+          "horizon": 0,
+          "left_voxels": 88751,
+          "right_voxels": 88751,
+          "coordinate_symmetric_difference": 0,
+          "label_disagreements_on_common": 0
+        },
+        {
+          "horizon": 1,
+          "left_voxels": 90822,
+          "right_voxels": 90822,
+          "coordinate_symmetric_difference": 0,
+          "label_disagreements_on_common": 0
+        },
+        {
+          "horizon": 2,
+          "left_voxels": 88861,
+          "right_voxels": 88861,
+          "coordinate_symmetric_difference": 0,
+          "label_disagreements_on_common": 0
+        },
+        {
+          "horizon": 3,
+          "left_voxels": 80396,
+          "right_voxels": 80396,
+          "coordinate_symmetric_difference": 0,
+          "label_disagreements_on_common": 0
+        }
+      ]
+    }
+  ],
+  "raw_tensors": [
+    {
+      "label": "sample 0 tensor 0",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        1,
+        3
+      ]
+    },
+    {
+      "label": "sample 0 tensor 1",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        1,
+        17
+      ]
+    },
+    {
+      "label": "sample 0 tensor 2",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        4,
+        17
+      ]
+    },
+    {
+      "label": "sample 0 tensor 3",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        16,
+        17
+      ]
+    },
+    {
+      "label": "sample 0 tensor 4",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        32,
+        17
+      ]
+    },
+    {
+      "label": "sample 0 tensor 5",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        64,
+        17
+      ]
+    },
+    {
+      "label": "sample 0 tensor 6",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        128,
+        17
+      ]
+    },
+    {
+      "label": "sample 0 tensor 7",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        1,
+        3
+      ]
+    },
+    {
+      "label": "sample 0 tensor 8",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        4,
+        3
+      ]
+    },
+    {
+      "label": "sample 0 tensor 9",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        16,
+        3
+      ]
+    },
+    {
+      "label": "sample 0 tensor 10",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        32,
+        3
+      ]
+    },
+    {
+      "label": "sample 0 tensor 11",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        64,
+        3
+      ]
+    },
+    {
+      "label": "sample 0 tensor 12",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        128,
+        3
+      ]
+    },
+    {
+      "label": "sample 1024 tensor 0",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        1,
+        3
+      ]
+    },
+    {
+      "label": "sample 1024 tensor 1",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        1,
+        17
+      ]
+    },
+    {
+      "label": "sample 1024 tensor 2",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        4,
+        17
+      ]
+    },
+    {
+      "label": "sample 1024 tensor 3",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        16,
+        17
+      ]
+    },
+    {
+      "label": "sample 1024 tensor 4",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        32,
+        17
+      ]
+    },
+    {
+      "label": "sample 1024 tensor 5",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        64,
+        17
+      ]
+    },
+    {
+      "label": "sample 1024 tensor 6",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        128,
+        17
+      ]
+    },
+    {
+      "label": "sample 1024 tensor 7",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        1,
+        3
+      ]
+    },
+    {
+      "label": "sample 1024 tensor 8",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        4,
+        3
+      ]
+    },
+    {
+      "label": "sample 1024 tensor 9",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        16,
+        3
+      ]
+    },
+    {
+      "label": "sample 1024 tensor 10",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        32,
+        3
+      ]
+    },
+    {
+      "label": "sample 1024 tensor 11",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        64,
+        3
+      ]
+    },
+    {
+      "label": "sample 1024 tensor 12",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        128,
+        3
+      ]
+    },
+    {
+      "label": "sample 2048 tensor 0",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        1,
+        3
+      ]
+    },
+    {
+      "label": "sample 2048 tensor 1",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        1,
+        17
+      ]
+    },
+    {
+      "label": "sample 2048 tensor 2",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        4,
+        17
+      ]
+    },
+    {
+      "label": "sample 2048 tensor 3",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        16,
+        17
+      ]
+    },
+    {
+      "label": "sample 2048 tensor 4",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        32,
+        17
+      ]
+    },
+    {
+      "label": "sample 2048 tensor 5",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        64,
+        17
+      ]
+    },
+    {
+      "label": "sample 2048 tensor 6",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        128,
+        17
+      ]
+    },
+    {
+      "label": "sample 2048 tensor 7",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        1,
+        3
+      ]
+    },
+    {
+      "label": "sample 2048 tensor 8",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        4,
+        3
+      ]
+    },
+    {
+      "label": "sample 2048 tensor 9",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        16,
+        3
+      ]
+    },
+    {
+      "label": "sample 2048 tensor 10",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        32,
+        3
+      ]
+    },
+    {
+      "label": "sample 2048 tensor 11",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        64,
+        3
+      ]
+    },
+    {
+      "label": "sample 2048 tensor 12",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        128,
+        3
+      ]
+    },
+    {
+      "label": "sample 4096 tensor 0",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        1,
+        3
+      ]
+    },
+    {
+      "label": "sample 4096 tensor 1",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        1,
+        17
+      ]
+    },
+    {
+      "label": "sample 4096 tensor 2",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        4,
+        17
+      ]
+    },
+    {
+      "label": "sample 4096 tensor 3",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        16,
+        17
+      ]
+    },
+    {
+      "label": "sample 4096 tensor 4",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        32,
+        17
+      ]
+    },
+    {
+      "label": "sample 4096 tensor 5",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        64,
+        17
+      ]
+    },
+    {
+      "label": "sample 4096 tensor 6",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        128,
+        17
+      ]
+    },
+    {
+      "label": "sample 4096 tensor 7",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        1,
+        3
+      ]
+    },
+    {
+      "label": "sample 4096 tensor 8",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        4,
+        3
+      ]
+    },
+    {
+      "label": "sample 4096 tensor 9",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        16,
+        3
+      ]
+    },
+    {
+      "label": "sample 4096 tensor 10",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        32,
+        3
+      ]
+    },
+    {
+      "label": "sample 4096 tensor 11",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        64,
+        3
+      ]
+    },
+    {
+      "label": "sample 4096 tensor 12",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "dtype": "torch.float32",
+      "shape": [
+        4,
+        600,
+        128,
+        3
+      ]
+    }
+  ],
+  "original_contract_completed": true,
+  "native_postprocess_repeatability_failed": false,
+  "raw_parity_tensors_observed": 52,
+  "raw_parity_all_exact": true,
+  "finished_at_utc": "2026-10-02T04:29:21.634928+00:00"
+}

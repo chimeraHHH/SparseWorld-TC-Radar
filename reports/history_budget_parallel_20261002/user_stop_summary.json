@@ -1,0 +1,50 @@
+{
+  "user_stopped_continuation": true,
+  "automatic_resume_authorized": false,
+  "stopped_at_utc": "2026-10-02T04:03:23.750485+00:00",
+  "scientific_base_revision": "2fc2feaf5edbf0e1bc839b6b34c694be7e85af83",
+  "continuation_source_revision": "09353b46079dfcb79d824ff65d48bfe9234d735d",
+  "owned_processes_stopped": true,
+  "mainline_identity_unchanged_at_stop": true,
+  "retained_checkpoint_files": [
+    {
+      "name": "epoch_11.pth",
+      "bytes": 976607905
+    },
+    {
+      "name": "latest.pth",
+      "bytes": 976607905
+    },
+    {
+      "name": "best_future.pth",
+      "bytes": 976607905
+    },
+    {
+      "name": "epoch_14.pth",
+      "bytes": 976607905
+    },
+    {
+      "name": "epoch_13.pth",
+      "bytes": 976607905
+    },
+    {
+      "name": "epoch_12.pth",
+      "bytes": 976607905
+    },
+    {
+      "name": "epoch_15.pth",
+      "bytes": 976607905
+    }
+  ],
+  "checkpoint_scope": "existence and file size only; no new tensor/optimizer/hash audit",
+  "last_logged_continuation_iterations": 45800,
+  "saved_epoch15_present": true,
+  "stopped_during_epoch16": true,
+  "final20_completed": false,
+  "e15_future_delta_pp": -7.160009134921e-05,
+  "e15_paired95_ci_pp": [
+    -0.03515014854204894,
+    0.032562290210704246
+  ],
+  "raw_stop_receipt_sha256": "4394977947b6122775c48629e929eb0809a1690a0fc7159fb647f06d831824f7"
+}

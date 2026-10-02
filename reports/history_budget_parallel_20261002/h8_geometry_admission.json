@@ -1,0 +1,26 @@
+{
+  "arm": "h8-geometry",
+  "gpu": 1,
+  "science_revision": "0f33492d1b639da716897d8faa4a1df293354c49",
+  "scheduler_revision": "368b790850dca6c01a5549884b4503af073426e2",
+  "cuda_tests_passed": 4,
+  "cuda_log_sha256": "10e661d21fce2999ef7c571c5fd9331038e5ab1999afc93f10d1b1c4e43e30ca",
+  "cuda_elapsed_seconds": 265.7508404199034,
+  "stage_at_export": "h8-geometry_parity",
+  "state_at_export": "failed_evidence_preserved",
+  "formal_training_started": false,
+  "scope": "Failed initial admission; no smoke or formal training; follow-up zero-step diagnostic did not reproduce the failure.",
+  "state": "failed_evidence_preserved",
+  "failed_stage": "h8-geometry_parity",
+  "smoke_training_started": false,
+  "error": "real input parity: ('voxel coordinates', 0)",
+  "passed_real_samples": [
+    0,
+    1024
+  ],
+  "failed_real_sample": 2048,
+  "diagnosis": "zero-step four-anchor diagnostic complete with 52 exact raw tensors and exact native postprocessing repetitions; original failure not reproduced, root cause unresolved",
+  "failure_log_sha256": "fb9d9dcfc06314e86b1baa7b4dc4dbe6a9b222c1f73f68b8c5f8ad21e829cefb",
+  "diagnostic_revision": "edb2722353511d4a41c4b0a93ad78c88460252e4",
+  "diagnostic_is_admission_permission": false
+}

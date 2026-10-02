@@ -1,0 +1,340 @@
+{
+  "arm": "h2-geometry",
+  "science_revision": "0f33492d1b639da716897d8faa4a1df293354c49",
+  "scheduler_revision": "a0c8485203412d9c5abdafbe7462e70c89f10c85",
+  "failed_h8_geometry_worker_exited": true,
+  "failed_h8_geometry_claim_preserved": true,
+  "failed_status_sha256": "7df7524180687728d931e6e7411fd9f117b98eae551a08ccf7cb53f977c417f3",
+  "failed_claim_sha256": "96324a96c8658cc35a32cff6b43252b65b90c7ad392f45ef2d8675664870c57f",
+  "reason": "Run authorized H2 geometry first; preserve unresolved H8 geometry admission failure after zero-step diagnostic did not reproduce it.",
+  "verified_at_utc": "2026-10-02T04:50:08.281971+00:00",
+  "state": "running",
+  "stage": "h2-geometry_train",
+  "formal_training_started": true,
+  "remaining_h8_geometry": "admission failure preserved; unresolved; not automatically resumed",
+  "raw_reroute_receipt_sha256": "5ceed9107d28defa00520a3e31470f0fba083089c91e0cd3aeee3fe47ca48d70",
+  "formal_optimization_updates_observed": true,
+  "cuda_tests_passed": 4,
+  "real_sample_parity": [
+    {
+      "index": 0,
+      "max_abs_difference": 0.0,
+      "all_raw_tensors_exact": true,
+      "voxels_equal": true,
+      "voxels_per_horizon": [
+        51859,
+        60283,
+        72936,
+        74548
+      ],
+      "actual_backbone_images": {
+        "new": [
+          12
+        ],
+        "camera_reference": [
+          12
+        ]
+      }
+    },
+    {
+      "index": 1024,
+      "max_abs_difference": 0.0,
+      "all_raw_tensors_exact": true,
+      "voxels_equal": true,
+      "voxels_per_horizon": [
+        58448,
+        61107,
+        61769,
+        68482
+      ],
+      "actual_backbone_images": {
+        "new": [
+          12
+        ],
+        "camera_reference": [
+          12
+        ]
+      }
+    },
+    {
+      "index": 2048,
+      "max_abs_difference": 0.0,
+      "all_raw_tensors_exact": true,
+      "voxels_equal": true,
+      "voxels_per_horizon": [
+        36066,
+        36833,
+        36833,
+        36915
+      ],
+      "actual_backbone_images": {
+        "new": [
+          12
+        ],
+        "camera_reference": [
+          12
+        ]
+      }
+    },
+    {
+      "index": 4096,
+      "max_abs_difference": 0.0,
+      "all_raw_tensors_exact": true,
+      "voxels_equal": true,
+      "voxels_per_horizon": [
+        81340,
+        85452,
+        84350,
+        79852
+      ],
+      "actual_backbone_images": {
+        "new": [
+          12
+        ],
+        "camera_reference": [
+          12
+        ]
+      }
+    }
+  ],
+  "smoke": {
+    "epoch": 1,
+    "iterations": 23,
+    "optimizer_steps": 24,
+    "finite_model_tensors": 771,
+    "state_schema_matches_cpu": true,
+    "optimizer_finite": true,
+    "radar_update_windows": [
+      [
+        0.0929721,
+        0.279181
+      ],
+      [
+        0.0955601,
+        0.634834
+      ],
+      [
+        0.0848916,
+        0.414108
+      ],
+      [
+        0.169088,
+        0.212929
+      ],
+      [
+        0.100412,
+        0.12335
+      ],
+      [
+        0.0849208,
+        0.0624667
+      ]
+    ],
+    "pretrained_update_windows": [
+      {
+        "img_backbone": {
+          "parameter": "module.img_backbone.layer2.0.conv1.weight",
+          "gradient_norm": 1.244419946859886,
+          "parameter_delta": 0.0003811711212620139
+        },
+        "img_neck": {
+          "parameter": "module.img_neck.lateral_convs.0.conv.weight",
+          "gradient_norm": 0.01717345187873627,
+          "parameter_delta": 0.005382663570344448
+        },
+        "pts_bbox_head": {
+          "parameter": "module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight",
+          "gradient_norm": 0.7860230552868888,
+          "parameter_delta": 0.0006086415960453451
+        }
+      },
+      {
+        "img_backbone": {
+          "parameter": "module.img_backbone.layer2.0.conv1.weight",
+          "gradient_norm": 0.639271119629293,
+          "parameter_delta": 0.0005404933472163975
+        },
+        "img_neck": {
+          "parameter": "module.img_neck.lateral_convs.0.conv.weight",
+          "gradient_norm": 0.0187200903754926,
+          "parameter_delta": 0.00917847640812397
+        },
+        "pts_bbox_head": {
+          "parameter": "module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight",
+          "gradient_norm": 1.0402528068579788,
+          "parameter_delta": 0.0011541686253622174
+        }
+      },
+      {
+        "img_backbone": {
+          "parameter": "module.img_backbone.layer2.0.conv1.weight",
+          "gradient_norm": 1.6101641895851757,
+          "parameter_delta": 0.0002555761020630598
+        },
+        "img_neck": {
+          "parameter": "module.img_neck.lateral_convs.0.conv.weight",
+          "gradient_norm": 0.021479879797655158,
+          "parameter_delta": 0.005929405335336924
+        },
+        "pts_bbox_head": {
+          "parameter": "module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight",
+          "gradient_norm": 0.8639271248972211,
+          "parameter_delta": 0.0007050224812701344
+        }
+      },
+      {
+        "img_backbone": {
+          "parameter": "module.img_backbone.layer2.0.conv1.weight",
+          "gradient_norm": 1.4964103662506525,
+          "parameter_delta": 0.00015612677088938653
+        },
+        "img_neck": {
+          "parameter": "module.img_neck.lateral_convs.0.conv.weight",
+          "gradient_norm": 0.022591300678913444,
+          "parameter_delta": 0.003911670297384262
+        },
+        "pts_bbox_head": {
+          "parameter": "module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight",
+          "gradient_norm": 0.9087117073460199,
+          "parameter_delta": 0.00045700781629420817
+        }
+      },
+      {
+        "img_backbone": {
+          "parameter": "module.img_backbone.layer2.0.conv1.weight",
+          "gradient_norm": 1.3119331225586182,
+          "parameter_delta": 8.469300519209355e-05
+        },
+        "img_neck": {
+          "parameter": "module.img_neck.lateral_convs.0.conv.weight",
+          "gradient_norm": 0.015732124170106696,
+          "parameter_delta": 0.002110213739797473
+        },
+        "pts_bbox_head": {
+          "parameter": "module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight",
+          "gradient_norm": 1.0397837724018488,
+          "parameter_delta": 0.00026106429868377745
+        }
+      },
+      {
+        "img_backbone": {
+          "parameter": "module.img_backbone.layer2.0.conv1.weight",
+          "gradient_norm": 1.257716346998699,
+          "parameter_delta": 4.825295036425814e-05
+        },
+        "img_neck": {
+          "parameter": "module.img_neck.lateral_convs.0.conv.weight",
+          "gradient_norm": 0.01335800173164344,
+          "parameter_delta": 0.0009395870729349554
+        },
+        "pts_bbox_head": {
+          "parameter": "module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight",
+          "gradient_norm": 1.0902926706537444,
+          "parameter_delta": 0.0001315096887992695
+        }
+      }
+    ]
+  },
+  "fresh_initialization": {
+    "loaded_tensors": 669,
+    "loaded_numel": 79478272,
+    "new_radar_tensors": 102,
+    "zero_residual_outputs": [
+      "pts_bbox_head.transformer.decoder.decoder_layers.0.radar_fusion.output",
+      "pts_bbox_head.transformer.decoder.decoder_layers.1.radar_fusion.output",
+      "pts_bbox_head.transformer.decoder.decoder_layers.2.radar_fusion.output",
+      "pts_bbox_head.transformer.decoder.decoder_layers.3.radar_fusion.output",
+      "pts_bbox_head.transformer.decoder.decoder_layers.4.radar_fusion.output",
+      "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.output"
+    ],
+    "new_path_tensors": 0,
+    "all_camera_tensors_exact": true,
+    "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
+    "source_epoch": 70,
+    "source_iter": 246190,
+    "optimizer_restored": false,
+    "epoch_reset_to": 0
+  },
+  "stage_seconds_before_formal": {
+    "h2-geometry_cuda": 41.58261707983911,
+    "h2-geometry_parity": 44.57475501997396,
+    "h2-geometry_smoke": 197.13529588002712
+  },
+  "stage_seconds_scope": "Parent stage elapsed, includes subprocess internal waits; excludes pre-stage resource admission; no nested elapsed added.",
+  "evidence_sha256": {
+    "campaign/h2-geometry_cuda.log": {
+      "bytes": 8250,
+      "sha256": "0128ded36a593a8269a4c55e8d2b8158ec57b31d9e53790b9dfab88f0e547b35"
+    },
+    "campaign/h2-geometry_parity.log": {
+      "bytes": 240893,
+      "sha256": "d98dcb8d3a6b5da27e542f10794c1a8e0fca5ee91d307a7ce6588a9be35a2578"
+    },
+    "campaign/gpu_h2-geometry.json": {
+      "bytes": 91953,
+      "sha256": "e23ccc9640c47650c10c5288ec86c215fe8e21f9a00ac883be03e17ad672146b"
+    },
+    "campaign/smoke_h2-geometry.json": {
+      "bytes": 4419,
+      "sha256": "68e342f6dfa592a3e56ec4a83e7954ff79d970a1be3a14d0635535d117eb8b93"
+    },
+    "h2-geometry_formal/official_initialization.json": {
+      "bytes": 916,
+      "sha256": "6294859a7fae3111233a4202b1c0dbb94cbfd58c1072b478e07198cd9d8796dd"
+    }
+  },
+  "formal_observed_log_iterations": [
+    10,
+    20
+  ],
+  "formal_loss_grad_finite": true,
+  "formal_pretrained_update_windows": [
+    {
+      "img_backbone": {
+        "parameter": "module.img_backbone.layer2.0.conv1.weight",
+        "gradient_norm": 1.7042830143814527,
+        "parameter_delta": 0.00021773991466034204
+      },
+      "img_neck": {
+        "parameter": "module.img_neck.lateral_convs.0.conv.weight",
+        "gradient_norm": 0.012446657465663908,
+        "parameter_delta": 0.003061339957639575
+      },
+      "pts_bbox_head": {
+        "parameter": "module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight",
+        "gradient_norm": 1.0842400876419582,
+        "parameter_delta": 0.00038870071875862777
+      }
+    },
+    {
+      "img_backbone": {
+        "parameter": "module.img_backbone.layer2.0.conv1.weight",
+        "gradient_norm": 1.4494581821616404,
+        "parameter_delta": 0.00021994381677359343
+      },
+      "img_neck": {
+        "parameter": "module.img_neck.lateral_convs.0.conv.weight",
+        "gradient_norm": 0.016630970629164833,
+        "parameter_delta": 0.003213337855413556
+      },
+      "pts_bbox_head": {
+        "parameter": "module.pts_bbox_head.transformer.decoder.decoder_layers.0.position_encoder.0.weight",
+        "gradient_norm": 1.3208890028733233,
+        "parameter_delta": 0.000394941249396652
+      }
+    }
+  ],
+  "formal_radar_update_windows": [
+    {
+      "logged_iteration": 10,
+      "gradient_norm": 0.0941429,
+      "parameter_delta": 0.187359
+    },
+    {
+      "logged_iteration": 20,
+      "gradient_norm": 0.108465,
+      "parameter_delta": 0.272137
+    }
+  ],
+  "raw_live_identity_and_update_snapshot_sha256": "e3d37bf50d285a8360dab8d36eb665924e4e299739caedd74873c1376117d9a5"
+}
