@@ -22,45 +22,7 @@ def sha(path):
     return h.hexdigest()
 
 
-class FrameCache:
-    """Same per-view identity and transform, no cross-scene or future reuse."""
-    def __init__(self,net,frames,max_groups=16):
-        self.net,self.frames,self.maximum=net,frames,max_groups;self.entries=collections.OrderedDict();self.hits=self.misses=0
-        self.original=net.extract_feat
-    def clear(self):self.entries.clear()
-    @property
-    def bytes(self):return sum(f.numel()*f.element_size() for fs in self.entries.values() for f in fs)
-    def extract(self,net,img,img_metas):
-        assert img.shape[0]==1 and img.shape[1]==self.frames*6
-        original=copy.deepcopy(img_metas[0]);levels=[]
-        for slot in range(self.frames):
-            ids=list(range(slot*6,(slot+1)*6));m={}
-            for k,v in original.items():
-                m[k]=[copy.deepcopy(v[i]) for i in ids] if isinstance(v,(list,tuple)) and len(v)==self.frames*6 else copy.deepcopy(v)
-            key=(tuple(m['filename']),tuple(img.shape[-2:]),str(img.dtype))
-            # Image identity/resolution fix deterministic test augmentation; projections remain anchor-specific.
-            if key in self.entries:self.hits+=1;features=self.entries.pop(key)
-            else:
-                self.misses+=1;budget=net.visual_history_frames;net.visual_history_frames=None
-                try:features=self.original(img[:,ids], [m])
-                finally:net.visual_history_frames=budget
-            self.entries[key]=features
-            while len(self.entries)>self.maximum:self.entries.popitem(last=False)
-            levels.append(features)
-        result=[torch.cat([slot[level] for slot in levels],dim=1) for level in range(len(levels[0]))]
-        if self.frames==2:
-            result=[torch.cat([f[:,:6],f[:,6:12].repeat(1,7,1,1,1)],dim=1) for f in result]
-            indices=list(range(6))+list(range(6,12))*7
-            from models.sparse_world import _VISUAL_VIEW_META_KEYS
-            for key in _VISUAL_VIEW_META_KEYS:
-                value=img_metas[0].get(key)
-                if isinstance(value,(list,tuple,np.ndarray)) and len(value)==12:
-                    img_metas[0][key]=[copy.deepcopy(value[i]) for i in indices]
-        # Original augmentation also writes shapes; test resolution is identical for each group.
-        shape=(img.shape[-2],img.shape[-1],img.shape[-3])
-        for k in ('img_shape','ori_shape','pad_shape'):img_metas[0][k]=[shape]*48
-        img_metas[0]['input_shape']=tuple(img.shape[-2:])
-        return result
+from velocity_feature_cache import FrameCache
 
 
 def summary(rows):
@@ -106,7 +68,8 @@ def main():
     output=dict(protocol=dict(batch_size=1,precision='original wrap_fp16_model',warmup=30,replays=1,planned_paired_replays=3,
         anchors=256,scenes=16,indices=indices,tokens=[base.data_infos[i]['token'] for i in indices],
         complete_horizons_seconds=[0,1,2,3],filesystem_cache='uncontrolled OS cache; never claimed cold disk',
-        cache_scope='causal frame-feature reuse; loader still decodes full inputs; no historical I/O saving claimed',
+        cache_scope='identical whole-image-batch and slot hit reuse; any miss recomputes original whole-anchor batch; loader still decodes full inputs',
+        cache_implementation='whole_anchor_miss_slot_bound_reuse_v2',
         scope='matched corrected version; offline measured costs, cache replay diagnostic after16 exact-voxel/raw parity',
         energy_scope='GPU cumulative energy only; unavailable if unsupported; no whole-system estimate'),arms={})
     try:
@@ -141,20 +104,30 @@ def main():
                         cache.clear();net.extract_feat=MethodType(cache.extract,net)
                         try:right=wrapper(return_loss=False,rescale=True,**copy.deepcopy(batch))
                         finally:net.extract_feat=cache.original
+                        gate_phase='cold_full_batch_miss'
                         try:
                             assert len(raw)==len(captures[-1])==13, 'Require every raw output'
                             proof=[tensor_parity(a,b,f'{arm}:{index}:{j}') for j,(a,b) in enumerate(zip(raw,captures[-1]))];compare_voxels(left,right)
-                            row['cache_parity'].append(dict(index=index,replay=replay,raw_max_abs=max(x['max_abs_difference'] for x in proof),voxels_exact=True))
+                            gate_phase='warm_all_slot_hit'
+                            recomputations=cache.full_batch_recomputations
+                            net.extract_feat=MethodType(cache.extract,net)
+                            try:right=wrapper(return_loss=False,rescale=True,**copy.deepcopy(batch))
+                            finally:net.extract_feat=cache.original
+                            assert cache.full_batch_recomputations==recomputations and cache.reuse_only_calls>0
+                            assert len(captures[-1])==13
+                            warm_proof=[tensor_parity(a,b,f'{arm}:{index}:warm:{j}') for j,(a,b) in enumerate(zip(raw,captures[-1]))];compare_voxels(left,right)
+                            row['cache_parity'].append(dict(index=index,replay=replay,raw_max_abs=max(x['max_abs_difference'] for x in proof),voxels_exact=True,
+                                warm_raw_max_abs=max(x['max_abs_difference'] for x in warm_proof),warm_voxels_exact=True,warm_reuse_without_extraction=True))
                         except (AssertionError,ValueError,FloatingPointError) as error:
                             accepted=False;row['cache_rejected_reason']=repr(error)
                             diagnostic=Path(args.out).with_suffix('.cache_rejected.pt')
-                            torch.save(dict(index=index,reference_raw=raw,cached_raw=captures[-1],reference_voxels=left,cached_voxels=right,error=repr(error)),diagnostic)
+                            torch.save(dict(index=index,gate_phase=gate_phase,reference_raw=raw,cached_raw=captures[-1],reference_voxels=left,cached_voxels=right,error=repr(error)),diagnostic)
                             row['cache_rejection_evidence']=dict(path=str(diagnostic),sha256=sha(diagnostic))
                             break
                 finally:hook.remove()
                 for mode in ('independent_anchor','chronological_no_feature_cache','chronological_feature_cache'):
                     if mode=='chronological_feature_cache' and not accepted:continue
-                    cache.clear();cache.hits=cache.misses=0;previous_scene=None;measure=[];initial_energy=energy()
+                    cache.clear();cache.hits=cache.misses=0;cache.full_batch_recomputations=cache.reuse_only_calls=0;previous_scene=None;measure=[];initial_energy=energy()
                     if mode=='chronological_feature_cache':net.extract_feat=MethodType(cache.extract,net)
                     try:
                         for index in indices:
@@ -178,6 +151,7 @@ def main():
                                 actual_history_span_seconds=(max(stamps)-min(stamps))/1e6,
                                 h2d_image_bytes=image_storage(batch)['bytes'],image_tensor=image_storage(batch),
                                 feature_cache_bytes=cache.bytes,feature_cache_hits=cache.hits,feature_cache_misses=cache.misses,
+                                feature_cache_full_batch_recomputations=cache.full_batch_recomputations,feature_cache_reuse_only_calls=cache.reuse_only_calls,
                                 peak_allocated_bytes=torch.cuda.max_memory_allocated(),peak_reserved_bytes=torch.cuda.max_memory_reserved(),cpu_rss_bytes=rss()))
                             del prediction,batch
                     finally:net.extract_feat=cache.original

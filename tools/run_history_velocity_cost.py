@@ -67,10 +67,28 @@ def process(pid):
                 cwd=os.readlink(root/'cwd'))
 
 
+def exclude_unpaired_cache(combined):
+    """Never combine cached timings from only the replays that passed."""
+    complete = all(
+        not combined['arms'][arm].get('cache_rejections') and
+        len(combined['arms'][arm]['cache_parity']) == 48 and
+        all(p.get('voxels_exact') and p.get('warm_voxels_exact') and p.get('warm_reuse_without_extraction')
+            for p in combined['arms'][arm]['cache_parity']) and
+        {r['replay'] for r in combined['arms'][arm]['replays'] if r['mode']=='chronological_feature_cache'} == {0, 1, 2}
+        for arm in ARMS)
+    combined['feature_cache_claim_eligible'] = complete
+    if not complete:
+        for row in combined['arms'].values():
+            row['excluded_cache_replays'] = [r for r in row['replays'] if r['mode']=='chronological_feature_cache']
+            row['replays'] = [r for r in row['replays'] if r['mode']!='chronological_feature_cache']
+    return combined
+
+
 def main():
     parser = argparse.ArgumentParser()
     for key in ('science', 'source-campaign', 'out', 'gpu-uuid', 'python', 'full-eval-lock'):
         parser.add_argument('--'+key, required=True)
+    parser.add_argument('--legacy-source', help='Preserved source for one zero-update repair diagnostic before the preliminary block')
     args = parser.parse_args()
     science, source, out = Path(args.science), Path(args.source_campaign), Path(args.out)
     code = Path(__file__).resolve().parent
@@ -111,8 +129,8 @@ def main():
                OMP_NUM_THREADS='4', MKL_NUM_THREADS='4', OPENBLAS_NUM_THREADS='1',
                TORCH_EXTENSIONS_DIR=str(root/'cache/torch_extensions'))
 
-    def block(replay, arm):
-        name = ('preliminary_' if replay == -1 else 'paired_')+arm+'_replay'+str(replay)
+    def block(replay, arm, diagnostic=False):
+        name = 'cache_batching_diagnostic' if diagnostic else ('preliminary_' if replay == -1 else 'paired_')+arm+'_replay'+str(replay)
         record(stage=name)
         wait_results((arm,))
         with (root/'forecast_gpu1.lock').open('a') as gpu_lock:
@@ -142,8 +160,9 @@ def main():
                     '--format=csv,noheader'], text=True), host_meminfo=Path('/proc/meminfo').read_text(),
                     role='preliminary; concurrent GPU0 training; excluded from primary paired costs' if replay == -1 else 'paired primary after both velocity arms complete')
                 write(out/(name+'_context.json'), context, True)
-                cmd = [args.python, str(code/'benchmark_history_velocity_block.py'), '--campaign', str(source),
-                       '--out', str(out/(name+'.json')), '--arm', arm, '--replay', str(replay)]
+                cmd = [args.python, str(code/('diagnose_velocity_cache_batching.py' if diagnostic else 'benchmark_history_velocity_block.py')),
+                       '--campaign', str(source), '--out', str(out/(name+'.json'))]
+                cmd += ['--legacy-source', args.legacy_source] if diagnostic else ['--arm', arm, '--replay', str(replay)]
                 started = time.monotonic()
                 with (out/(name+'.log')).open('x') as stream:
                     child = subprocess.Popen(cmd, cwd=science, env=env, stdout=stream, stderr=subprocess.STDOUT)
@@ -160,12 +179,18 @@ def main():
                 if child.returncode:
                     raise RuntimeError(name+' failed; preserve all partial evidence; no automatic retry')
                 result = json.loads((out/(name+'.json')).read_text())
-                assert result['status'] == 'complete' and set(result['arms']) == {arm}
-                assert len(result['arms'][arm]['replays']) in (2, 3)
+                if diagnostic:
+                    assert result['status'] == 'repaired_parity_passed' and result['optimizer_updates'] == 0
+                    status['repair_diagnostic'] = dict(path=str(out/(name+'.json')), sha256=digest(out/(name+'.json')))
+                else:
+                    assert result['status'] == 'complete' and set(result['arms']) == {arm}
+                    assert len(result['arms'][arm]['replays']) in (2, 3)
                 status['completed_blocks'].append(name)
                 record(state='block_complete')
 
     try:
+        if args.legacy_source:
+            block(-1, 'h8-velocity', diagnostic=True)
         block(-1, 'h8-velocity')
         wait_results(ARMS)
         summary_cmd = [args.python, str(code/'summarize_history_velocity.py'), '--campaign', str(source),
@@ -200,7 +225,7 @@ def main():
             target['cache_parity'].extend(row['cache_parity'])
             if 'cache_rejected_reason' in row:
                 target.setdefault('cache_rejections', []).append(dict(replay=replay, reason=row['cache_rejected_reason']))
-        write(out/'cost_benchmark.json', combined, True)
+        write(out/'cost_benchmark.json', exclude_unpaired_cache(combined), True)
         record(state='complete', stage='velocity_cost_complete', result=str(out/'cost_benchmark.json'))
     except BaseException as error:
         record(state='failed_evidence_preserved', error=repr(error), traceback=traceback.format_exc())

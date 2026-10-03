@@ -6,6 +6,10 @@ import tempfile
 import json
 import unittest
 import sys
+import copy
+import collections
+from types import SimpleNamespace, ModuleType
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'tools'))
@@ -53,7 +57,74 @@ class VelocityCostScope(unittest.TestCase):
             return {x.name:ast.dump(x, include_attributes=False) for x in tree.body
                     if isinstance(x,(ast.FunctionDef,ast.ClassDef)) and x.name!='main'}
         left,right=helpers(original),helpers(added)
-        for name,value in left.items():self.assertEqual(right[name], value, name)
+        for name,value in left.items():
+            if name!='FrameCache':self.assertEqual(right[name], value, name)
+
+    def test_cache_failures_cannot_leave_a_partial_paired_cache_claim(self):
+        proof=[dict(voxels_exact=True,warm_voxels_exact=True,warm_reuse_without_extraction=True)]*48
+        row=dict(replays=[dict(mode='chronological_feature_cache',replay=i) for i in range(3)]+[dict(mode='independent_anchor',replay=0)],cache_parity=proof)
+        combined=dict(arms={arm:copy.deepcopy(row) for arm in c.ARMS})
+        self.assertTrue(c.exclude_unpaired_cache(copy.deepcopy(combined))['feature_cache_claim_eligible'])
+        combined['arms']['h2-velocity']['cache_rejections']=[dict(replay=1,reason='exact voxels failed')]
+        result=c.exclude_unpaired_cache(combined)
+        self.assertFalse(result['feature_cache_claim_eligible'])
+        for arm in c.ARMS:
+            self.assertEqual([r['mode'] for r in result['arms'][arm]['replays']],['independent_anchor'])
+            self.assertEqual(len(result['arms'][arm]['excluded_cache_replays']),3)
+
+    def test_cache_preserves_whole_batch_misses_and_fresh_projections(self):
+        import numpy as np
+        class Tensor:
+            def __init__(self,data):self.data=np.asarray(data,dtype=np.float32)
+            @property
+            def shape(self):return self.data.shape
+            @property
+            def dtype(self):return self.data.dtype
+            @property
+            def ndim(self):return self.data.ndim
+            def __getitem__(self,key):return Tensor(self.data[key])
+            def detach(self):return self
+            def clone(self):return Tensor(self.data.copy())
+            def repeat(self,*dims):return Tensor(np.tile(self.data,dims))
+            def numel(self):return self.data.size
+            def element_size(self):return self.data.itemsize
+        torch=SimpleNamespace(cat=lambda values,dim:Tensor(np.concatenate([x.data for x in values],axis=dim)))
+        tree=ast.parse((ROOT/'tools/velocity_feature_cache.py').read_text())
+        cls=next(x for x in tree.body if isinstance(x,ast.ClassDef) and x.name=='FrameCache')
+        namespace=dict(copy=copy,collections=collections,torch=torch)
+        exec(compile(ast.Module(body=[cls],type_ignores=[]),'<cache class>','exec'),namespace)
+        replicate=next(x for x in ast.parse((ROOT/'models/sparse_world.py').read_text()).body if isinstance(x,ast.FunctionDef) and x.name=='replicate_two_visual_features')
+        meta_keys=('filename','img_timestamp','lidar2img','img_shape','ori_shape','pad_shape')
+        rn=dict(copy=copy,torch=torch,np=np,_VISUAL_VIEW_META_KEYS=meta_keys)
+        exec(compile(ast.Module(body=[replicate],type_ignores=[]),'<scientific H2 replication>','exec'),rn)
+        module=ModuleType('models.sparse_world');module.replicate_two_visual_features=rn['replicate_two_visual_features']
+        for frames in (8,2):
+            class Net:
+                training=False
+                calls=[]
+                def extract_feat(self,img,metas):
+                    self.calls.append(img.shape[1]);n=img.shape[1]
+                    # Batch- and slot-dependent output catches the old six-view
+                    # split and accidental duplicate-filename slot reuse.
+                    feature=Tensor(img.data+n+np.arange(n).reshape(1,n,1,1,1))
+                    for key in ('img_shape','ori_shape','pad_shape'):metas[0][key]=[(2,2,3)]*n
+                    metas[0]['input_shape']=(2,2)
+                    return rn['replicate_two_visual_features']([feature],metas) if frames==2 else [feature]
+            net=Net();net.calls=[];cache=namespace['FrameCache'](net,frames)
+            image=Tensor(np.zeros((1,frames*6,3,2,2)))
+            def meta(projection=1):return dict(filename=['same-image']*(frames*6),img_timestamp=list(range(frames*6)),lidar2img=[projection]*(frames*6))
+            cold_meta=meta();cold=cache.extract(net,image,[cold_meta])
+            self.assertEqual(net.calls,[frames*6])
+            warm_meta=meta(7)
+            with patch.dict(sys.modules,{'models.sparse_world':module}):warm=cache.extract(net,image,[warm_meta])
+            np.testing.assert_array_equal(cold[0].data,warm[0].data)
+            self.assertEqual(net.calls,[frames*6]);self.assertEqual(cache.reuse_only_calls,1)
+            self.assertEqual(len(warm_meta['lidar2img']),48);self.assertEqual(set(warm_meta['lidar2img']),{7})
+            self.assertEqual(warm_meta['img_shape'],cold_meta['img_shape'])
+            changed=meta();changed['filename'][0]='new-image'
+            cache.extract(net,image,[changed])
+            self.assertEqual(net.calls,[frames*6,frames*6]);self.assertEqual(cache.full_batch_recomputations,2)
+            self.assertGreater(cache.bytes,0)
 
     def test_no_training_command_or_geometry_config_in_new_queue(self):
         script=(ROOT/'tools/run_history_velocity_cost.py').read_text()
