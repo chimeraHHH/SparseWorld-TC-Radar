@@ -112,8 +112,8 @@ def main():
                 batches.clear()
                 raw_outputs.clear()
                 features = []
-                def capture_features(this, img, metas):
-                    result = extractor(img, metas)
+                def capture_features(this, img, img_metas):
+                    result = extractor(img, img_metas)
                     features.extend(v.detach().cpu().clone() for v in result)
                     return result
                 net.extract_feat = MethodType(capture_features, net)

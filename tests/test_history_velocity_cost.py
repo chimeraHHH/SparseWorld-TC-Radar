@@ -132,6 +132,23 @@ class VelocityCostScope(unittest.TestCase):
         self.assertNotIn('sw-budget-h8-geometry.py', script)
         self.assertNotIn('sw-budget-h2-geometry.py', script)
 
+    def test_diagnostic_capture_accepts_scientific_keyword_call(self):
+        tree=ast.parse((ROOT/'tools/diagnose_velocity_cache_batching.py').read_text())
+        callback=next(x for x in ast.walk(tree) if isinstance(x,ast.FunctionDef) and x.name=='capture_features')
+        tensor=SimpleNamespace()
+        tensor.detach=lambda:tensor
+        tensor.cpu=lambda:tensor
+        tensor.clone=lambda:'frozen feature'
+        image,metadata=object(),object();calls=[];features=[]
+        def extractor(img,img_metas):
+            self.assertIs(img,image);self.assertIs(img_metas,metadata)
+            calls.append((img,img_metas));return [tensor]
+        namespace=dict(extractor=extractor,features=features)
+        exec(compile(ast.Module(body=[callback],type_ignores=[]),'<diagnostic callback>','exec'),namespace)
+        result=namespace['capture_features'](object(),img=image,img_metas=metadata)
+        self.assertEqual(calls,[(image,metadata)])
+        self.assertEqual(features,['frozen feature']);self.assertEqual(result,[tensor])
+
     def test_bootstrap_requires_identical_truth_and_cannot_emit_interaction(self):
         import numpy as np
         import summarize_history_velocity as summary
