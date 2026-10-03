@@ -1,0 +1,82 @@
+{
+  "final/0.0s.npz": {
+    "bytes": 49909,
+    "sha256": "95f75df321bbfda533c17b83504db3320cc9c14c83fb800b6353bd5fde0d1a1f",
+    "source_relative_path": "work_dirs/history_budget_h2-geometry_20261001_seed0/confusions_epoch_10_full/0.0s.npz"
+  },
+  "final/1.0s.npz": {
+    "bytes": 49507,
+    "sha256": "d2ecc65b32a7b34fc11208022cb8deed1745a80292138243db2f7cd55885f013",
+    "source_relative_path": "work_dirs/history_budget_h2-geometry_20261001_seed0/confusions_epoch_10_full/1.0s.npz"
+  },
+  "final/2.0s.npz": {
+    "bytes": 49157,
+    "sha256": "3f57148857b450ce84a527d8d904c8147ace41d31b22a343a51b9f2bda4cf4ee",
+    "source_relative_path": "work_dirs/history_budget_h2-geometry_20261001_seed0/confusions_epoch_10_full/2.0s.npz"
+  },
+  "final/3.0s.npz": {
+    "bytes": 48739,
+    "sha256": "b42c802ecd7840f07110301b1d1377d216b32ca708e253b022439b4075b62fa8",
+    "source_relative_path": "work_dirs/history_budget_h2-geometry_20261001_seed0/confusions_epoch_10_full/3.0s.npz"
+  },
+  "best/0.0s.npz": {
+    "bytes": 49973,
+    "sha256": "fabc73a3a8dae432b49261e662b3fd2f1c3ee52c664d3cb7bf8babee4b5efa7f",
+    "source_relative_path": "analysis/history_budget_mainline_20261001/h2-geometry_best_full/confusions_normal/0.0s.npz"
+  },
+  "best/1.0s.npz": {
+    "bytes": 49508,
+    "sha256": "d3926de22f9ffa5584d5dd8b47950c6f0aa05a85d49f3218fc889c10c4e42dbc",
+    "source_relative_path": "analysis/history_budget_mainline_20261001/h2-geometry_best_full/confusions_normal/1.0s.npz"
+  },
+  "best/2.0s.npz": {
+    "bytes": 49129,
+    "sha256": "1440156ead0750452353b6a259fb970252bae4bb7520b541a689d367ce1c2c12",
+    "source_relative_path": "analysis/history_budget_mainline_20261001/h2-geometry_best_full/confusions_normal/2.0s.npz"
+  },
+  "best/3.0s.npz": {
+    "bytes": 48749,
+    "sha256": "02ed115e6eb602acb324cc90852bafeb05abd0c91e5b843adb1464cdfddb16d6",
+    "source_relative_path": "analysis/history_budget_mainline_20261001/h2-geometry_best_full/confusions_normal/3.0s.npz"
+  },
+  "interventions/normal/0.0s.npz": {
+    "bytes": 23215,
+    "sha256": "fc8a71f0638148fa48b0495bd5857ca4a7f2ab000214bbb2be3b6a456eb6bb48",
+    "source_relative_path": "analysis/history_budget_mainline_20261001/h2-geometry_interventions/confusions_normal/0.0s.npz"
+  },
+  "interventions/normal/1.0s.npz": {
+    "bytes": 23091,
+    "sha256": "76c5398f24ab00fcfb86ee8f930c1d5845b12f2ff5c7b33812acba8ecab8cbe4",
+    "source_relative_path": "analysis/history_budget_mainline_20261001/h2-geometry_interventions/confusions_normal/1.0s.npz"
+  },
+  "interventions/normal/2.0s.npz": {
+    "bytes": 22907,
+    "sha256": "9c246e5f53fd770fbe1b575aabd14b9c4dfeeee2ad01a70ce46d172a290bdf89",
+    "source_relative_path": "analysis/history_budget_mainline_20261001/h2-geometry_interventions/confusions_normal/2.0s.npz"
+  },
+  "interventions/normal/3.0s.npz": {
+    "bytes": 22676,
+    "sha256": "d092c7c0bcc0ddd7e2576880c04f2fc50e491bbcf647c3393de6d80e93896a89",
+    "source_relative_path": "analysis/history_budget_mainline_20261001/h2-geometry_interventions/confusions_normal/3.0s.npz"
+  },
+  "interventions/drop/0.0s.npz": {
+    "bytes": 23046,
+    "sha256": "00958dfe8c271472baddd089279b6e06704e98971fcb322da4b7840e7ed7072a",
+    "source_relative_path": "analysis/history_budget_mainline_20261001/h2-geometry_interventions/confusions_drop/0.0s.npz"
+  },
+  "interventions/drop/1.0s.npz": {
+    "bytes": 23086,
+    "sha256": "ee45bc860b7c28b0c3e7fba998f94a341d72db9723494523085d8c5d1a1c1d5f",
+    "source_relative_path": "analysis/history_budget_mainline_20261001/h2-geometry_interventions/confusions_drop/1.0s.npz"
+  },
+  "interventions/drop/2.0s.npz": {
+    "bytes": 22799,
+    "sha256": "08da9e943e6f538ba3412f8efc6a407988723693a8bc5b1ef129da613e22182b",
+    "source_relative_path": "analysis/history_budget_mainline_20261001/h2-geometry_interventions/confusions_drop/2.0s.npz"
+  },
+  "interventions/drop/3.0s.npz": {
+    "bytes": 22643,
+    "sha256": "c04ef59718d32ecb9837471486a0fdd6bafe7fe6447c01ab4bf98cb217a08db3",
+    "source_relative_path": "analysis/history_budget_mainline_20261001/h2-geometry_interventions/confusions_drop/3.0s.npz"
+  }
+}
