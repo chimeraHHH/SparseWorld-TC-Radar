@@ -20,7 +20,11 @@ def now():
 
 
 def digest(path):
-    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+    h = hashlib.sha256()
+    with Path(path).open('rb') as stream:
+        for raw in iter(lambda: stream.read(8*1024*1024), b''):
+            h.update(raw)
+    return h.hexdigest()
 
 
 def write(path, value, exclusive=False):
@@ -84,12 +88,38 @@ def exclude_unpaired_cache(combined):
     return combined
 
 
+def preserved_native_rejection(path, expected_sha):
+    """Reuse only bound raw-exact evidence; native failure still excludes caching."""
+    if digest(path) != expected_sha:
+        raise ValueError('Preserved diagnostic changed')
+    row = json.loads(Path(path).read_text())
+    if row['status'] != 'repaired_parity_failed' or row['optimizer_updates'] != 0:
+        raise ValueError('Require zero-update preserved native rejection')
+    for name in ('repaired_cold', 'repaired_warm'):
+        proof = row['comparisons'][name]
+        if len(proof['raw']) != 13 or not proof['features']:
+            raise ValueError('Incomplete frozen prediction evidence')
+        if not all(x['exact'] and x['finite'] and x['schema_equal'] and
+                   x['original_tolerance_pass'] and x['max_abs'] == 0
+                   for x in proof['raw']+proof['features']):
+            raise ValueError('The extraction repair is not raw exact')
+    if not any(not row['comparisons'][name]['voxels_exact'] for name in ('repaired_cold', 'repaired_warm')):
+        raise ValueError('No native cache rejection')
+    if digest(row['frozen']['path']) != row['frozen']['sha256']:
+        raise ValueError('Preserved frozen tensors changed')
+    return row
+
+
 def main():
     parser = argparse.ArgumentParser()
     for key in ('science', 'source-campaign', 'out', 'gpu-uuid', 'python', 'full-eval-lock'):
         parser.add_argument('--'+key, required=True)
     parser.add_argument('--legacy-source', help='Preserved source for one zero-update repair diagnostic before the preliminary block')
+    parser.add_argument('--reuse-native-rejection', help='SHA-bound raw-exact diagnostic; exclude cached paths for both paired arms')
+    parser.add_argument('--rejection-sha')
     args = parser.parse_args()
+    assert not (args.legacy_source and args.reuse_native_rejection)
+    assert bool(args.reuse_native_rejection) == bool(args.rejection_sha)
     science, source, out = Path(args.science), Path(args.source_campaign), Path(args.out)
     code = Path(__file__).resolve().parent
     manifest = json.loads((code.parent/'velocity_cost_manifest.json').read_text())
@@ -163,6 +193,8 @@ def main():
                 cmd = [args.python, str(code/('diagnose_velocity_cache_batching.py' if diagnostic else 'benchmark_history_velocity_block.py')),
                        '--campaign', str(source), '--out', str(out/(name+'.json'))]
                 cmd += ['--legacy-source', args.legacy_source] if diagnostic else ['--arm', arm, '--replay', str(replay)]
+                if args.reuse_native_rejection and not diagnostic:
+                    cmd += ['--cache-blocked-evidence', args.reuse_native_rejection]
                 started = time.monotonic()
                 with (out/(name+'.log')).open('x') as stream:
                     child = subprocess.Popen(cmd, cwd=science, env=env, stdout=stream, stderr=subprocess.STDOUT)
@@ -189,6 +221,14 @@ def main():
                 record(state='block_complete')
 
     try:
+        if args.reuse_native_rejection:
+            started = time.monotonic()
+            rejection = preserved_native_rejection(args.reuse_native_rejection, args.rejection_sha)
+            h8 = receipt(source/'h8-velocity_result.json', 'h8-velocity')
+            assert digest(h8['final_audit']['path']) == rejection['checkpoint_sha256']
+            record(reused_repair_diagnostic=dict(path=args.reuse_native_rejection, sha256=args.rejection_sha,
+                   status=rejection['status'], cached_paths_excluded_for_both_arms=True),
+                   native_rejection_cpu_verification_seconds=time.monotonic()-started)
         if args.legacy_source:
             block(-1, 'h8-velocity', diagnostic=True)
         block(-1, 'h8-velocity')

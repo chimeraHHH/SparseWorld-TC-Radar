@@ -55,7 +55,8 @@ def save_output(path,value):
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('--campaign',required=True);p.add_argument('--out',required=True)
-    p.add_argument('--arm',choices=ARMS,required=True);p.add_argument('--replay',type=int,choices=(-1,0,1,2),required=True);args=p.parse_args()
+    p.add_argument('--arm',choices=ARMS,required=True);p.add_argument('--replay',type=int,choices=(-1,0,1,2),required=True)
+    p.add_argument('--cache-blocked-evidence',help='Preserved exact-native gate rejection; never time or claim this cached path');args=p.parse_args()
     assert not Path(args.out).exists(), 'Existing block is evidence; never overwrite or automatically retry'
     root=Path(args.campaign);torch.set_num_threads(4);torch.manual_seed(0)
     cfg0=mmcv.Config.fromfile('configs/sw-budget-h8-velocity.py');base=build_dataset(cfg0.data.val)
@@ -97,9 +98,12 @@ def main():
                 torch.cuda.synchronize();row['model_loading_seconds']=load_seconds;row['warmup_seconds']=time.monotonic()-warm_started
                 captures=[]
                 def capture(_m,_inputs,value):captures.append([v.detach().cpu().clone() for v in [value['init_points']]+value['all_cls_scores']+value['all_refine_pts']])
-                hook=net.pts_bbox_head.register_forward_hook(capture);accepted=True
+                hook=net.pts_bbox_head.register_forward_hook(capture);accepted=not bool(args.cache_blocked_evidence)
+                if not accepted:
+                    row['cache_rejected_reason']='Cached comparison excluded by preserved H8 exact-native gate failure; paired H2 cache is unmeasured, not a failure claim'
+                    row['cache_blocked_evidence']=dict(path=args.cache_blocked_evidence,sha256=sha(args.cache_blocked_evidence))
                 try:
-                    for index in indices[:16]:
+                    for index in indices[:16] if accepted else ():
                         batch=data(index);captures.clear();left=wrapper(return_loss=False,rescale=True,**copy.deepcopy(batch));raw=captures[-1]
                         cache.clear();net.extract_feat=MethodType(cache.extract,net)
                         try:right=wrapper(return_loss=False,rescale=True,**copy.deepcopy(batch))

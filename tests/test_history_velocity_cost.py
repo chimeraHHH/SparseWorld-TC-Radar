@@ -149,6 +149,23 @@ class VelocityCostScope(unittest.TestCase):
         self.assertEqual(calls,[(image,metadata)])
         self.assertEqual(features,['frozen feature']);self.assertEqual(result,[tensor])
 
+    def test_native_rejection_reuse_requires_exact_raw_and_frozen_sha(self):
+        with tempfile.TemporaryDirectory() as folder:
+            base=Path(folder);frozen=base/'frozen.pt';frozen.write_bytes(b'preserved evidence')
+            exact=dict(exact=True,finite=True,schema_equal=True,original_tolerance_pass=True,max_abs=0)
+            proof=dict(raw=[copy.deepcopy(exact) for _ in range(13)],features=[copy.deepcopy(exact) for _ in range(4)],voxels_exact=False)
+            row=dict(status='repaired_parity_failed',optimizer_updates=0,
+                     comparisons={name:copy.deepcopy(proof) for name in ('repaired_cold','repaired_warm')},
+                     frozen=dict(path=str(frozen),sha256=c.digest(frozen)))
+            path=base/'diagnostic.json';path.write_text(json.dumps(row))
+            self.assertEqual(c.preserved_native_rejection(path,c.digest(path)),row)
+            row['comparisons']['repaired_warm']['raw'][0]['exact']=False
+            path.write_text(json.dumps(row))
+            with self.assertRaisesRegex(ValueError,'not raw exact'):c.preserved_native_rejection(path,c.digest(path))
+            row['comparisons']['repaired_warm']['raw']=[exact]*13
+            path.write_text(json.dumps(row));frozen.write_bytes(b'changed evidence')
+            with self.assertRaisesRegex(ValueError,'frozen tensors changed'):c.preserved_native_rejection(path,c.digest(path))
+
     def test_bootstrap_requires_identical_truth_and_cannot_emit_interaction(self):
         import numpy as np
         import summarize_history_velocity as summary
