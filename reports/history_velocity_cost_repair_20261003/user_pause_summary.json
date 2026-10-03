@@ -1,0 +1,12 @@
+{
+  "state": "GPU1_paused_by_user",
+  "automatic_resume_authorized": false,
+  "pause_reason": "用户要求暂停一张卡，直到明确允许继续",
+  "GPU0_existing_H2_velocity_training": "continues_without_restart",
+  "H8_preliminary_cost": "complete_excluded_from_primary_paired_cost",
+  "cached_paths": "excluded_for_both_velocity_arms_after_original_native_rejection",
+  "independent_local_frozen_readback": false,
+  "primary_paired_cost": "not_started_waits_explicit_GPU1_resume_authorization",
+  "scientific_revision": "0f33492d1b639da716897d8faa4a1df293354c49",
+  "last_cost_runtime_revision": "2471d32f92ef76985c1de4128c9559c6ad4de395"
+}
