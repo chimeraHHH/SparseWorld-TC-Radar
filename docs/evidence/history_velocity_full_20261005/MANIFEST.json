@@ -168,6 +168,21 @@
     "summary.json": {
       "bytes": 30987,
       "sha256": "1ae19a3f6e6d16d5c822feaeba4cbde28b89774960982f7875d62dcd8496e5e8"
+    },
+    "h8_final.json": {
+      "bytes": 258460,
+      "sha256": "78253d72b22e51ef95e9c85a1ddea405128704e2bb9e56b12c0bf8558e8bfd2f",
+      "original_bytes_preserved": true
+    },
+    "h2_final.json": {
+      "bytes": 258463,
+      "sha256": "1ba755824819bf851c430acc5472e350e8f2e6636a657528c959803efdac3878",
+      "original_bytes_preserved": true
+    },
+    "h2_subset.json": {
+      "bytes": 16371,
+      "sha256": "82ce0f6268944312159f4e868bce1577de2cba579cfce4ea9b36a7e86bf1889d",
+      "original_bytes_preserved": true
     }
   },
   "private_accounts_processes_and_paths_removed": true
