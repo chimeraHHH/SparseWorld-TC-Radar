@@ -4,9 +4,8 @@
     "arm": "belief",
     "gpu": 1,
     "gpu_uuid": "GPU-000b6236-3632-a001-9667-1f02cbb61c8b",
-    "controller_pid": 1245456,
     "git_revision": "79f8c811f505e3d3d1a009558ac32e653e50cea4",
-    "code": "/home/huayiming/Workspace/SparseWorld-TC-forecast-79f8c811f505",
+    "code": "<WORKSPACE>/SparseWorld-TC-forecast-79f8c811f505",
     "completed_stages": [
       "gpu_contracts",
       "gpu_parity",
@@ -15,7 +14,6 @@
     "state": "running",
     "at_utc": "2026-09-20T12:39:17.690578+00:00",
     "stage": "train",
-    "child_pid": 1247047,
     "memory_admission": {
       "free_mib": 143156,
       "total_mib": 143771,
@@ -24,28 +22,27 @@
       "observed_stable_seconds": 45.120050359983
     },
     "command": [
-      "/storage/data/metaiot_data/huayiming/SparseWorld/envs/hym_sparseworld/bin/python",
+      "<PROJECT_ROOT>/envs/hym_sparseworld/bin/python",
       "train.py",
       "--config",
       "configs/sw-radar-forecast-belief.py"
     ],
-    "log": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/belief_campaign_20260920/belief_train.log",
+    "log": "<PROJECT_ROOT>/analysis/belief_campaign_20260920/belief_train.log",
     "gpu_snapshot": "70, 88483, 357.89",
-    "controller_pid_exists": true,
-    "child_pid_exists": true
+    "controller_process_exists": true,
+    "child_process_exists": true
   },
   "camera_status": {
     "arm": "camera",
     "gpu": 0,
     "gpu_uuid": "GPU-74b9b73f-c405-55bc-bf76-f8aa85d1e7fe",
-    "controller_pid": 1245457,
     "git_revision": "79f8c811f505e3d3d1a009558ac32e653e50cea4",
-    "code": "/home/huayiming/Workspace/SparseWorld-TC-forecast-79f8c811f505",
+    "code": "<WORKSPACE>/SparseWorld-TC-forecast-79f8c811f505",
     "completed_stages": [],
     "state": "waiting_for_A_completion",
     "at_utc": "2026-09-20T12:38:57.947243+00:00",
-    "dependency": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/forecast_campaign_20260920/transport_status.json",
-    "controller_pid_exists": true
+    "dependency": "<PROJECT_ROOT>/analysis/forecast_campaign_20260920/transport_status.json",
+    "controller_process_exists": true
   },
   "belief_train": {
     "last_steps": [
@@ -74,10 +71,6 @@
   "gpu": [
     "0, GPU-74b9b73f-c405-55bc-bf76-f8aa85d1e7fe, 91 %, 104047 MiB, 39110 MiB, 397.55 W",
     "1, GPU-000b6236-3632-a001-9667-1f02cbb61c8b, 88 %, 88483 MiB, 54674 MiB, 321.99 W"
-  ],
-  "gpu_processes": [
-    "GPU-74b9b73f-c405-55bc-bf76-f8aa85d1e7fe, 1044769, 104022 MiB, /storage/data/metaiot_data/huayiming/SparseWorld/envs/hym_sparseworld/bin/python",
-    "GPU-000b6236-3632-a001-9667-1f02cbb61c8b, 1247047, 88460 MiB, /storage/data/metaiot_data/huayiming/SparseWorld/envs/hym_sparseworld/bin/python"
   ],
   "note": "Formal belief epoch1 iteration20/2992 confirmed after fresh official initialization and initial256 validation; finite losses and positive component/pretrained updates. Camera queued behind A. B stopped by user. No trained validation accuracy yet."
 }

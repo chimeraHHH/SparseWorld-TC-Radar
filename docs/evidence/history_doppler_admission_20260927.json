@@ -1,6 +1,6 @@
 {
   "at_utc": "2026-09-27T13:49:47.605250+00:00",
-  "campaign": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/history_doppler_campaign_20260927",
+  "campaign": "<PROJECT_ROOT>/analysis/history_doppler_campaign_20260927",
   "files": {
     "cpu_h1-geometry.json": {
       "sha256": "e80c5a616552cfd9600d0fa54070a78f0c52ce014bad6597c505be2e48b0c5a0",
@@ -22,7 +22,7 @@
           ],
           "new_path_tensors": 0,
           "all_camera_tensors_exact": true,
-          "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+          "path": "<PROJECT_ROOT>/checkpoints/sw-tc-small.pth",
           "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
           "source_epoch": 70,
           "source_iter": 246190,
@@ -38,7 +38,7 @@
           "zero_residual_outputs": [],
           "new_path_tensors": 0,
           "all_camera_tensors_exact": true,
-          "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+          "path": "<PROJECT_ROOT>/checkpoints/sw-tc-small.pth",
           "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
           "source_epoch": 70,
           "source_iter": 246190,
@@ -53,29 +53,29 @@
           "radar_stages": {
             "train": {
               "type": "LoadSingleSweepRadar",
-              "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes/",
+              "data_root": "<DATA_ROOT>/nuscenes/",
               "sweeps_num": 1,
               "max_age": 0.5,
               "max_points": 4096,
-              "cache_root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+              "cache_root": "<WORKSPACE>/SparseWorld-cache/radar_single_sweep_v1_20260927",
               "velocity_mode": "zero"
             },
             "val": {
               "type": "LoadSingleSweepRadar",
-              "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes/",
+              "data_root": "<DATA_ROOT>/nuscenes/",
               "sweeps_num": 1,
               "max_age": 0.5,
               "max_points": 4096,
-              "cache_root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+              "cache_root": "<WORKSPACE>/SparseWorld-cache/radar_single_sweep_v1_20260927",
               "velocity_mode": "zero"
             },
             "test": {
               "type": "LoadSingleSweepRadar",
-              "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes/",
+              "data_root": "<DATA_ROOT>/nuscenes/",
               "sweeps_num": 1,
               "max_age": 0.5,
               "max_points": 4096,
-              "cache_root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+              "cache_root": "<WORKSPACE>/SparseWorld-cache/radar_single_sweep_v1_20260927",
               "velocity_mode": "zero"
             }
           },
@@ -100,7 +100,7 @@
         },
         "fresh_optimizer": true,
         "cache": {
-          "root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+          "root": "<WORKSPACE>/SparseWorld-cache/radar_single_sweep_v1_20260927",
           "entries": 29049,
           "protocol_sha256": "4fb08586ec4b2968590e4fc59c9bfbd2cb5e873bff78aa767b24d9e43a2451d5",
           "train_samples": 23930,
@@ -393,7 +393,7 @@
           ],
           "new_path_tensors": 0,
           "all_camera_tensors_exact": true,
-          "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+          "path": "<PROJECT_ROOT>/checkpoints/sw-tc-small.pth",
           "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
           "source_epoch": 70,
           "source_iter": 246190,
@@ -409,7 +409,7 @@
           "zero_residual_outputs": [],
           "new_path_tensors": 0,
           "all_camera_tensors_exact": true,
-          "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+          "path": "<PROJECT_ROOT>/checkpoints/sw-tc-small.pth",
           "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
           "source_epoch": 70,
           "source_iter": 246190,
@@ -424,29 +424,29 @@
           "radar_stages": {
             "train": {
               "type": "LoadSingleSweepRadar",
-              "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes/",
+              "data_root": "<DATA_ROOT>/nuscenes/",
               "sweeps_num": 1,
               "max_age": 0.5,
               "max_points": 4096,
-              "cache_root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+              "cache_root": "<WORKSPACE>/SparseWorld-cache/radar_single_sweep_v1_20260927",
               "velocity_mode": "processed"
             },
             "val": {
               "type": "LoadSingleSweepRadar",
-              "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes/",
+              "data_root": "<DATA_ROOT>/nuscenes/",
               "sweeps_num": 1,
               "max_age": 0.5,
               "max_points": 4096,
-              "cache_root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+              "cache_root": "<WORKSPACE>/SparseWorld-cache/radar_single_sweep_v1_20260927",
               "velocity_mode": "processed"
             },
             "test": {
               "type": "LoadSingleSweepRadar",
-              "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes/",
+              "data_root": "<DATA_ROOT>/nuscenes/",
               "sweeps_num": 1,
               "max_age": 0.5,
               "max_points": 4096,
-              "cache_root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+              "cache_root": "<WORKSPACE>/SparseWorld-cache/radar_single_sweep_v1_20260927",
               "velocity_mode": "processed"
             }
           },
@@ -471,7 +471,7 @@
         },
         "fresh_optimizer": true,
         "cache": {
-          "root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+          "root": "<WORKSPACE>/SparseWorld-cache/radar_single_sweep_v1_20260927",
           "entries": 29049,
           "protocol_sha256": "4fb08586ec4b2968590e4fc59c9bfbd2cb5e873bff78aa767b24d9e43a2451d5",
           "train_samples": 23930,
@@ -764,7 +764,7 @@
           ],
           "new_path_tensors": 0,
           "all_camera_tensors_exact": true,
-          "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+          "path": "<PROJECT_ROOT>/checkpoints/sw-tc-small.pth",
           "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
           "source_epoch": 70,
           "source_iter": 246190,
@@ -780,7 +780,7 @@
           "zero_residual_outputs": [],
           "new_path_tensors": 0,
           "all_camera_tensors_exact": true,
-          "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+          "path": "<PROJECT_ROOT>/checkpoints/sw-tc-small.pth",
           "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
           "source_epoch": 70,
           "source_iter": 246190,
@@ -795,29 +795,29 @@
           "radar_stages": {
             "train": {
               "type": "LoadSingleSweepRadar",
-              "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes/",
+              "data_root": "<DATA_ROOT>/nuscenes/",
               "sweeps_num": 1,
               "max_age": 0.5,
               "max_points": 4096,
-              "cache_root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+              "cache_root": "<WORKSPACE>/SparseWorld-cache/radar_single_sweep_v1_20260927",
               "velocity_mode": "zero"
             },
             "val": {
               "type": "LoadSingleSweepRadar",
-              "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes/",
+              "data_root": "<DATA_ROOT>/nuscenes/",
               "sweeps_num": 1,
               "max_age": 0.5,
               "max_points": 4096,
-              "cache_root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+              "cache_root": "<WORKSPACE>/SparseWorld-cache/radar_single_sweep_v1_20260927",
               "velocity_mode": "zero"
             },
             "test": {
               "type": "LoadSingleSweepRadar",
-              "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes/",
+              "data_root": "<DATA_ROOT>/nuscenes/",
               "sweeps_num": 1,
               "max_age": 0.5,
               "max_points": 4096,
-              "cache_root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+              "cache_root": "<WORKSPACE>/SparseWorld-cache/radar_single_sweep_v1_20260927",
               "velocity_mode": "zero"
             }
           },
@@ -842,7 +842,7 @@
         },
         "fresh_optimizer": true,
         "cache": {
-          "root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+          "root": "<WORKSPACE>/SparseWorld-cache/radar_single_sweep_v1_20260927",
           "entries": 29049,
           "protocol_sha256": "4fb08586ec4b2968590e4fc59c9bfbd2cb5e873bff78aa767b24d9e43a2451d5",
           "train_samples": 23930,
@@ -1135,7 +1135,7 @@
           ],
           "new_path_tensors": 0,
           "all_camera_tensors_exact": true,
-          "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+          "path": "<PROJECT_ROOT>/checkpoints/sw-tc-small.pth",
           "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
           "source_epoch": 70,
           "source_iter": 246190,
@@ -1151,7 +1151,7 @@
           "zero_residual_outputs": [],
           "new_path_tensors": 0,
           "all_camera_tensors_exact": true,
-          "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+          "path": "<PROJECT_ROOT>/checkpoints/sw-tc-small.pth",
           "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
           "source_epoch": 70,
           "source_iter": 246190,
@@ -1166,29 +1166,29 @@
           "radar_stages": {
             "train": {
               "type": "LoadSingleSweepRadar",
-              "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes/",
+              "data_root": "<DATA_ROOT>/nuscenes/",
               "sweeps_num": 1,
               "max_age": 0.5,
               "max_points": 4096,
-              "cache_root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+              "cache_root": "<WORKSPACE>/SparseWorld-cache/radar_single_sweep_v1_20260927",
               "velocity_mode": "processed"
             },
             "val": {
               "type": "LoadSingleSweepRadar",
-              "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes/",
+              "data_root": "<DATA_ROOT>/nuscenes/",
               "sweeps_num": 1,
               "max_age": 0.5,
               "max_points": 4096,
-              "cache_root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+              "cache_root": "<WORKSPACE>/SparseWorld-cache/radar_single_sweep_v1_20260927",
               "velocity_mode": "processed"
             },
             "test": {
               "type": "LoadSingleSweepRadar",
-              "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes/",
+              "data_root": "<DATA_ROOT>/nuscenes/",
               "sweeps_num": 1,
               "max_age": 0.5,
               "max_points": 4096,
-              "cache_root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+              "cache_root": "<WORKSPACE>/SparseWorld-cache/radar_single_sweep_v1_20260927",
               "velocity_mode": "processed"
             }
           },
@@ -1213,7 +1213,7 @@
         },
         "fresh_optimizer": true,
         "cache": {
-          "root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+          "root": "<WORKSPACE>/SparseWorld-cache/radar_single_sweep_v1_20260927",
           "entries": 29049,
           "protocol_sha256": "4fb08586ec4b2968590e4fc59c9bfbd2cb5e873bff78aa767b24d9e43a2451d5",
           "train_samples": 23930,
@@ -1489,17 +1489,15 @@
     "gpu0_worker.json": {
       "sha256": "b5687b70de7996feebf185e94e10541d029ebf0f9a05dcfa932f465485840931",
       "content": {
-        "controller_pid": 3037592,
         "gpu": 0,
         "gpu_uuid": "GPU-74b9b73f-c405-55bc-bf76-f8aa85d1e7fe",
-        "code": "/home/huayiming/Workspace/SparseWorld-TC-forecast-1e95cf1d53c8",
+        "code": "<WORKSPACE>/SparseWorld-TC-forecast-1e95cf1d53c8",
         "git_revision": "1e95cf1d53c8607efea04341e3d864099a2e48cc",
         "at_utc": "2026-09-27T13:49:22.415228+00:00",
         "state": "running",
         "completed_arms": [],
         "stage": "train",
         "arm": "h1-velocity",
-        "child_pid": 3040421,
         "memory_admission": {
           "free_mib": 143156,
           "total_mib": 143771,
@@ -1519,12 +1517,12 @@
           "smoke": 169.36613541003317
         },
         "command": [
-          "/storage/data/metaiot_data/huayiming/SparseWorld/envs/hym_sparseworld/bin/python",
+          "<PROJECT_ROOT>/envs/hym_sparseworld/bin/python",
           "train.py",
           "--config",
           "configs/sw-history-h1-velocity.py"
         ],
-        "log": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/history_doppler_campaign_20260927/h1-velocity_train.log",
+        "log": "<PROJECT_ROOT>/analysis/history_doppler_campaign_20260927/h1-velocity_train.log",
         "child_returncode": 0,
         "gpu_snapshot": "100, 61899, 369.96"
       }
@@ -1532,17 +1530,15 @@
     "gpu1_worker.json": {
       "sha256": "df4dd5bb9936420437f6cfaa15445c62fdd73ca691bcf4ab74d184b2daee931e",
       "content": {
-        "controller_pid": 3037591,
         "gpu": 1,
         "gpu_uuid": "GPU-000b6236-3632-a001-9667-1f02cbb61c8b",
-        "code": "/home/huayiming/Workspace/SparseWorld-TC-forecast-1e95cf1d53c8",
+        "code": "<WORKSPACE>/SparseWorld-TC-forecast-1e95cf1d53c8",
         "git_revision": "1e95cf1d53c8607efea04341e3d864099a2e48cc",
         "at_utc": "2026-09-27T13:49:22.690141+00:00",
         "state": "running",
         "completed_arms": [],
         "stage": "train",
         "arm": "h1-geometry",
-        "child_pid": 3040426,
         "memory_admission": {
           "free_mib": 143156,
           "total_mib": 143771,
@@ -1562,12 +1558,12 @@
           "smoke": 169.76552773988806
         },
         "command": [
-          "/storage/data/metaiot_data/huayiming/SparseWorld/envs/hym_sparseworld/bin/python",
+          "<PROJECT_ROOT>/envs/hym_sparseworld/bin/python",
           "train.py",
           "--config",
           "configs/sw-history-h1-geometry.py"
         ],
-        "log": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/history_doppler_campaign_20260927/h1-geometry_train.log",
+        "log": "<PROJECT_ROOT>/analysis/history_doppler_campaign_20260927/h1-geometry_train.log",
         "child_returncode": 0,
         "gpu_snapshot": "95, 61899, 232.21"
       }
@@ -1592,7 +1588,7 @@
           ],
           "new_path_tensors": 0,
           "all_camera_tensors_exact": true,
-          "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+          "path": "<PROJECT_ROOT>/checkpoints/sw-tc-small.pth",
           "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
           "source_epoch": 70,
           "source_iter": 246190,
@@ -1608,7 +1604,7 @@
           "zero_residual_outputs": [],
           "new_path_tensors": 0,
           "all_camera_tensors_exact": true,
-          "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+          "path": "<PROJECT_ROOT>/checkpoints/sw-tc-small.pth",
           "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
           "source_epoch": 70,
           "source_iter": 246190,
@@ -1623,29 +1619,29 @@
           "radar_stages": {
             "train": {
               "type": "LoadSingleSweepRadar",
-              "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes/",
+              "data_root": "<DATA_ROOT>/nuscenes/",
               "sweeps_num": 1,
               "max_age": 0.5,
               "max_points": 4096,
-              "cache_root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+              "cache_root": "<WORKSPACE>/SparseWorld-cache/radar_single_sweep_v1_20260927",
               "velocity_mode": "zero"
             },
             "val": {
               "type": "LoadSingleSweepRadar",
-              "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes/",
+              "data_root": "<DATA_ROOT>/nuscenes/",
               "sweeps_num": 1,
               "max_age": 0.5,
               "max_points": 4096,
-              "cache_root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+              "cache_root": "<WORKSPACE>/SparseWorld-cache/radar_single_sweep_v1_20260927",
               "velocity_mode": "zero"
             },
             "test": {
               "type": "LoadSingleSweepRadar",
-              "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes/",
+              "data_root": "<DATA_ROOT>/nuscenes/",
               "sweeps_num": 1,
               "max_age": 0.5,
               "max_points": 4096,
-              "cache_root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+              "cache_root": "<WORKSPACE>/SparseWorld-cache/radar_single_sweep_v1_20260927",
               "velocity_mode": "zero"
             }
           },
@@ -2424,7 +2420,7 @@
           ],
           "new_path_tensors": 0,
           "all_camera_tensors_exact": true,
-          "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+          "path": "<PROJECT_ROOT>/checkpoints/sw-tc-small.pth",
           "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
           "source_epoch": 70,
           "source_iter": 246190,
@@ -2440,7 +2436,7 @@
           "zero_residual_outputs": [],
           "new_path_tensors": 0,
           "all_camera_tensors_exact": true,
-          "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+          "path": "<PROJECT_ROOT>/checkpoints/sw-tc-small.pth",
           "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
           "source_epoch": 70,
           "source_iter": 246190,
@@ -2455,29 +2451,29 @@
           "radar_stages": {
             "train": {
               "type": "LoadSingleSweepRadar",
-              "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes/",
+              "data_root": "<DATA_ROOT>/nuscenes/",
               "sweeps_num": 1,
               "max_age": 0.5,
               "max_points": 4096,
-              "cache_root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+              "cache_root": "<WORKSPACE>/SparseWorld-cache/radar_single_sweep_v1_20260927",
               "velocity_mode": "processed"
             },
             "val": {
               "type": "LoadSingleSweepRadar",
-              "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes/",
+              "data_root": "<DATA_ROOT>/nuscenes/",
               "sweeps_num": 1,
               "max_age": 0.5,
               "max_points": 4096,
-              "cache_root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+              "cache_root": "<WORKSPACE>/SparseWorld-cache/radar_single_sweep_v1_20260927",
               "velocity_mode": "processed"
             },
             "test": {
               "type": "LoadSingleSweepRadar",
-              "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes/",
+              "data_root": "<DATA_ROOT>/nuscenes/",
               "sweeps_num": 1,
               "max_age": 0.5,
               "max_points": 4096,
-              "cache_root": "/home/huayiming/Workspace/SparseWorld-cache/radar_single_sweep_v1_20260927",
+              "cache_root": "<WORKSPACE>/SparseWorld-cache/radar_single_sweep_v1_20260927",
               "velocity_mode": "processed"
             }
           },
@@ -3241,7 +3237,6 @@
       "content": {
         "arm": "h1-geometry",
         "gpu": 1,
-        "controller_pid": 3037591,
         "git_revision": "1e95cf1d53c8607efea04341e3d864099a2e48cc",
         "at_utc": "2026-09-27T13:37:00.620656+00:00"
       }
@@ -3249,17 +3244,15 @@
     "h1-geometry_status.json": {
       "sha256": "df4dd5bb9936420437f6cfaa15445c62fdd73ca691bcf4ab74d184b2daee931e",
       "content": {
-        "controller_pid": 3037591,
         "gpu": 1,
         "gpu_uuid": "GPU-000b6236-3632-a001-9667-1f02cbb61c8b",
-        "code": "/home/huayiming/Workspace/SparseWorld-TC-forecast-1e95cf1d53c8",
+        "code": "<WORKSPACE>/SparseWorld-TC-forecast-1e95cf1d53c8",
         "git_revision": "1e95cf1d53c8607efea04341e3d864099a2e48cc",
         "at_utc": "2026-09-27T13:49:22.690141+00:00",
         "state": "running",
         "completed_arms": [],
         "stage": "train",
         "arm": "h1-geometry",
-        "child_pid": 3040426,
         "memory_admission": {
           "free_mib": 143156,
           "total_mib": 143771,
@@ -3279,12 +3272,12 @@
           "smoke": 169.76552773988806
         },
         "command": [
-          "/storage/data/metaiot_data/huayiming/SparseWorld/envs/hym_sparseworld/bin/python",
+          "<PROJECT_ROOT>/envs/hym_sparseworld/bin/python",
           "train.py",
           "--config",
           "configs/sw-history-h1-geometry.py"
         ],
-        "log": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/history_doppler_campaign_20260927/h1-geometry_train.log",
+        "log": "<PROJECT_ROOT>/analysis/history_doppler_campaign_20260927/h1-geometry_train.log",
         "child_returncode": 0,
         "gpu_snapshot": "95, 61899, 232.21"
       }
@@ -3294,7 +3287,6 @@
       "content": {
         "arm": "h1-velocity",
         "gpu": 0,
-        "controller_pid": 3037592,
         "git_revision": "1e95cf1d53c8607efea04341e3d864099a2e48cc",
         "at_utc": "2026-09-27T13:37:00.616600+00:00"
       }
@@ -3302,17 +3294,15 @@
     "h1-velocity_status.json": {
       "sha256": "b5687b70de7996feebf185e94e10541d029ebf0f9a05dcfa932f465485840931",
       "content": {
-        "controller_pid": 3037592,
         "gpu": 0,
         "gpu_uuid": "GPU-74b9b73f-c405-55bc-bf76-f8aa85d1e7fe",
-        "code": "/home/huayiming/Workspace/SparseWorld-TC-forecast-1e95cf1d53c8",
+        "code": "<WORKSPACE>/SparseWorld-TC-forecast-1e95cf1d53c8",
         "git_revision": "1e95cf1d53c8607efea04341e3d864099a2e48cc",
         "at_utc": "2026-09-27T13:49:22.415228+00:00",
         "state": "running",
         "completed_arms": [],
         "stage": "train",
         "arm": "h1-velocity",
-        "child_pid": 3040421,
         "memory_admission": {
           "free_mib": 143156,
           "total_mib": 143771,
@@ -3332,12 +3322,12 @@
           "smoke": 169.36613541003317
         },
         "command": [
-          "/storage/data/metaiot_data/huayiming/SparseWorld/envs/hym_sparseworld/bin/python",
+          "<PROJECT_ROOT>/envs/hym_sparseworld/bin/python",
           "train.py",
           "--config",
           "configs/sw-history-h1-velocity.py"
         ],
-        "log": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/history_doppler_campaign_20260927/h1-velocity_train.log",
+        "log": "<PROJECT_ROOT>/analysis/history_doppler_campaign_20260927/h1-velocity_train.log",
         "child_returncode": 0,
         "gpu_snapshot": "100, 61899, 369.96"
       }
@@ -3346,8 +3336,7 @@
       "sha256": "33e6b5955cb726b5a1992b20f7e173dbb8762424b9f5d06b85034af1052b5e24",
       "content": {
         "state": "passed",
-        "launcher_pid": 3036312,
-        "code": "/home/huayiming/Workspace/SparseWorld-TC-forecast-1e95cf1d53c8",
+        "code": "<WORKSPACE>/SparseWorld-TC-forecast-1e95cf1d53c8",
         "git_revision": "1e95cf1d53c8607efea04341e3d864099a2e48cc",
         "at_utc": "2026-09-27T13:36:00.251315+00:00",
         "stage": "cpu_h8-geometry"
@@ -3356,7 +3345,7 @@
     "smoke_h1-geometry.json": {
       "sha256": "5dec7752ea8d4884bc2fa56926a3411d1fb43dcd19ffff894f96c3fb61fec3d9",
       "content": {
-        "path": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/history_h1-geometry_smoke_seed0/iter_24.pth",
+        "path": "<PROJECT_ROOT>/work_dirs/history_h1-geometry_smoke_seed0/iter_24.pth",
         "epoch": 1,
         "iterations": 23,
         "optimizer_steps": 24,
@@ -3498,7 +3487,7 @@
     "smoke_h1-velocity.json": {
       "sha256": "2c6dd7c992b95234dce2126d9ce870ee2880f169eac324ba5f08aa757a9f8282",
       "content": {
-        "path": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/history_h1-velocity_smoke_seed0/iter_24.pth",
+        "path": "<PROJECT_ROOT>/work_dirs/history_h1-velocity_smoke_seed0/iter_24.pth",
         "epoch": 1,
         "iterations": 23,
         "optimizer_steps": 24,
@@ -3641,19 +3630,16 @@
       "sha256": "76e024f6a5f9eb7ba184ee00941d6712e277075b9abbda74bf89be89bb4f496c",
       "content": {
         "state": "submitted",
-        "launcher_pid": 3036312,
-        "code": "/home/huayiming/Workspace/SparseWorld-TC-forecast-1e95cf1d53c8",
+        "code": "<WORKSPACE>/SparseWorld-TC-forecast-1e95cf1d53c8",
         "git_revision": "1e95cf1d53c8607efea04341e3d864099a2e48cc",
         "at_utc": "2026-09-27T13:36:00.256908+00:00",
         "stage": "cpu_h8-geometry",
         "controllers": {
           "1": {
-            "pid": 3037591,
-            "log": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/history_doppler_campaign_20260927/gpu1_controller.log"
+            "log": "<PROJECT_ROOT>/analysis/history_doppler_campaign_20260927/gpu1_controller.log"
           },
           "0": {
-            "pid": 3037592,
-            "log": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/history_doppler_campaign_20260927/gpu0_controller.log"
+            "log": "<PROJECT_ROOT>/analysis/history_doppler_campaign_20260927/gpu0_controller.log"
           }
         }
       }
@@ -3675,11 +3661,11 @@
     },
     "annotations": {
       "train": {
-        "path": "/storage/data/metaiot_data/huayiming/SparseWorld/datasets/infos/nuscenes_infos_train_sweep_occ.pkl",
+        "path": "<PROJECT_ROOT>/datasets/infos/nuscenes_infos_train_sweep_occ.pkl",
         "sha256": "dfe6dd24bdc884070c08bbf549d3dea0594e88c63b2b1c8fdc05d39294421c35"
       },
       "val": {
-        "path": "/storage/data/metaiot_data/huayiming/SparseWorld/datasets/infos/nuscenes_infos_val_sweep_occ.pkl",
+        "path": "<PROJECT_ROOT>/datasets/infos/nuscenes_infos_val_sweep_occ.pkl",
         "sha256": "3c7f870e67dc52a5b59f7645c93f72396c683ce32c7f5e1d56cc3e5c176d3090"
       }
     },
@@ -3701,7 +3687,7 @@
   },
   "cache_protocol.json": {
     "schema": "latest_causal_single_sweep_lidar_ego_v1",
-    "data_root": "/storage/data/metaiot_data/public_dataset/nuscenes",
+    "data_root": "<DATA_ROOT>/nuscenes",
     "version": "v1.0-trainval",
     "fields": [
       "x",
@@ -3784,7 +3770,7 @@
     ],
     "new_path_tensors": 0,
     "all_camera_tensors_exact": true,
-    "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+    "path": "<PROJECT_ROOT>/checkpoints/sw-tc-small.pth",
     "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
     "source_epoch": 70,
     "source_iter": 246190,
@@ -3901,7 +3887,7 @@
     ],
     "new_path_tensors": 0,
     "all_camera_tensors_exact": true,
-    "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+    "path": "<PROJECT_ROOT>/checkpoints/sw-tc-small.pth",
     "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
     "source_epoch": 70,
     "source_iter": 246190,

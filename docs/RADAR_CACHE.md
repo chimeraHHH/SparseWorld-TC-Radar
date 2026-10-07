@@ -18,7 +18,7 @@ Run from the repository root in the existing training environment:
 CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 \
 python tools/precompute_causal_radar.py \
   --config configs/sw-radar-m0-single-bs8.py \
-  --output /home/huayiming/Workspace/SparseWorld-cache/radar_m0_v2_20260918 \
+  --output <WORKSPACE>/SparseWorld-cache/radar_m0_v2_20260918 \
   --workers 4
 ```
 

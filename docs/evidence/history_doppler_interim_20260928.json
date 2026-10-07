@@ -1430,38 +1430,14 @@
       "stage": "train",
       "arm": "h1-velocity",
       "gpu": 0,
-      "git_revision": "1e95cf1d53c8607efea04341e3d864099a2e48cc",
-      "controller_pid": 3037592,
-      "child_pid": 3040421,
-      "controller_pid_live": {
-        "alive": true,
-        "command": "/storage/data/metaiot_data/huayiming/SparseWorld/envs/hym_sparseworld/bin/python tools/run_history_doppler_experiment.py --gpu 0 ",
-        "cwd": "/home/huayiming/Workspace/SparseWorld-TC-forecast-1e95cf1d53c8"
-      },
-      "child_pid_live": {
-        "alive": true,
-        "command": "/storage/data/metaiot_data/huayiming/SparseWorld/envs/hym_sparseworld/bin/python train.py --config configs/sw-history-h1-velocity.py ",
-        "cwd": "/home/huayiming/Workspace/SparseWorld-TC-forecast-1e95cf1d53c8"
-      }
+      "git_revision": "1e95cf1d53c8607efea04341e3d864099a2e48cc"
     },
     "gpu1_worker": {
       "state": "running",
       "stage": "train",
       "arm": "h1-geometry",
       "gpu": 1,
-      "git_revision": "1e95cf1d53c8607efea04341e3d864099a2e48cc",
-      "controller_pid": 3037591,
-      "child_pid": 3040426,
-      "controller_pid_live": {
-        "alive": true,
-        "command": "/storage/data/metaiot_data/huayiming/SparseWorld/envs/hym_sparseworld/bin/python tools/run_history_doppler_experiment.py --gpu 1 ",
-        "cwd": "/home/huayiming/Workspace/SparseWorld-TC-forecast-1e95cf1d53c8"
-      },
-      "child_pid_live": {
-        "alive": true,
-        "command": "/storage/data/metaiot_data/huayiming/SparseWorld/envs/hym_sparseworld/bin/python train.py --config configs/sw-history-h1-geometry.py ",
-        "cwd": "/home/huayiming/Workspace/SparseWorld-TC-forecast-1e95cf1d53c8"
-      }
+      "git_revision": "1e95cf1d53c8607efea04341e3d864099a2e48cc"
     }
   },
   "h8_status": "unclaimed_queued",

@@ -1,0 +1,160 @@
+{
+  "scope": "Existing public documents projected for privacy; original private bytes retained separately. No experiments rerun.",
+  "changes": "Machine paths and account labels replaced with portable placeholders; process identity numbers and raw process listings omitted. Presence/live state booleans retained with neutral labels. Scientific numerical fields unchanged.",
+  "prior_history_velocity_full_numeric_evidence_unchanged": true,
+  "files": [
+    {
+      "file": "docs/M0_PROTOCOL.md",
+      "original_private_bytes": 10213,
+      "original_private_sha256": "a83fb05db70a6cf026666facc2e2cc7fff145c75898f14d6e158914680c84e86",
+      "public_bytes": 10213,
+      "public_sha256": "cfcf1dda8cc2963c0da4936700bf9d88b32fb8da13ccfc64ac3d9308aa18d7df",
+      "retained_numerical_or_state_fields": null,
+      "scientific_numerical_fields_unchanged": true
+    },
+    {
+      "file": "docs/RADAR_CACHE.md",
+      "original_private_bytes": 3981,
+      "original_private_sha256": "d6a6141b58e87576df58b4647a184236a11f1f089a6fb98d7e006d3dbbebacb8",
+      "public_bytes": 3967,
+      "public_sha256": "d72cd085da3f2d35e27c46f50b4628f4552f2974a2ffb305ba6a0ca00a655588",
+      "retained_numerical_or_state_fields": null,
+      "scientific_numerical_fields_unchanged": true
+    },
+    {
+      "file": "docs/evidence/censored_path_admission_20260926.json",
+      "original_private_bytes": 191551,
+      "original_private_sha256": "833b565dc2e8412276292bc5939d38dff097bf93e0e736a08ae47eb9ccfb2f77",
+      "public_bytes": 190198,
+      "public_sha256": "f9f24fcfec1d80178253aeb1176bdd6462ebd1ed613f1298738c56443cd209d6",
+      "retained_numerical_or_state_fields": 2497,
+      "scientific_numerical_fields_unchanged": true
+    },
+    {
+      "file": "docs/evidence/censored_path_failed_attempt_c60be1b.json",
+      "original_private_bytes": 182546,
+      "original_private_sha256": "f2ee8cc82cc7adc224c1274903bd3a0be3b998d22d56a55b26005b928515c9c5",
+      "public_bytes": 182167,
+      "public_sha256": "7e2e24acbda031eee71cb8b26aa8500ebdf88f01dbadc6dcde693ade9d8cc8bd",
+      "retained_numerical_or_state_fields": 2360,
+      "scientific_numerical_fields_unchanged": true
+    },
+    {
+      "file": "docs/evidence/censored_path_failure_audit_c60be1b.json",
+      "original_private_bytes": 188564,
+      "original_private_sha256": "9af3ca1f628a2be22edaff4e71a75b3d4e92015989619aaef72d10dbd0fc7606",
+      "public_bytes": 186027,
+      "public_sha256": "b2aac5c8887bf9784194e4199f7fa820d870ec22e0a5a5b457b8625ee3e1bc65",
+      "retained_numerical_or_state_fields": 2434,
+      "scientific_numerical_fields_unchanged": true
+    },
+    {
+      "file": "docs/evidence/completed_radar_campaign_20260923.json",
+      "original_private_bytes": 164335,
+      "original_private_sha256": "6bd91ab64b638e0c9e60de969177660c1d4d5f4c154f404219cd197de58e9aeb",
+      "public_bytes": 161717,
+      "public_sha256": "81224e54767259f00c09b45e2fe07be248265e95a9a9a0039dd40d78414021d6",
+      "retained_numerical_or_state_fields": 3328,
+      "scientific_numerical_fields_unchanged": true
+    },
+    {
+      "file": "docs/evidence/event_label_support_20260927.json",
+      "original_private_bytes": 450338,
+      "original_private_sha256": "fd5a6ef163c92c535a5e98b6850fbc480d9fe73a9c3e431ca95a3c65ff4aeae2",
+      "public_bytes": 638100,
+      "public_sha256": "e7c5f90674008faffbe9179e939e04b3796985e72f7a9fc7a78e37fe666577d5",
+      "retained_numerical_or_state_fields": 15447,
+      "scientific_numerical_fields_unchanged": true
+    },
+    {
+      "file": "docs/evidence/event_sequences_20260927.json",
+      "original_private_bytes": 670196,
+      "original_private_sha256": "0b2d8093de684939414153c03cd1af4ce1655fc48f934b39196fbc286c02f8af",
+      "public_bytes": 1530648,
+      "public_sha256": "1c1df61ba3acf65bf8ed082e145abd98308f8ce51136ed71db43528a73dcb36a",
+      "retained_numerical_or_state_fields": 38860,
+      "scientific_numerical_fields_unchanged": true
+    },
+    {
+      "file": "docs/evidence/forecast_baselines_20260920.json",
+      "original_private_bytes": 32724,
+      "original_private_sha256": "c8237d7c598430e27f2073056b96ff1abc9bb0e9a685976bf440de45723c2a21",
+      "public_bytes": 32521,
+      "public_sha256": "25e42ea934017e182480305adb6c5550d48614965b67d517eefb5a1c32fcdd90",
+      "retained_numerical_or_state_fields": 605,
+      "scientific_numerical_fields_unchanged": true
+    },
+    {
+      "file": "docs/evidence/frozen_A_changes_v3_20260927.json",
+      "original_private_bytes": 534830,
+      "original_private_sha256": "6b377c074b4f82f6ce28d5cd3a53c5cd2fef9900e0f314bf7edd059d7778f7f1",
+      "public_bytes": 2869721,
+      "public_sha256": "9c94102c4c6451a6f4ce004af4cc9f2cb730cea5fcb9a9ea7e26a8577a8f6a86",
+      "retained_numerical_or_state_fields": 126566,
+      "scientific_numerical_fields_unchanged": true
+    },
+    {
+      "file": "docs/evidence/frozen_A_complete_20260927.json",
+      "original_private_bytes": 45104,
+      "original_private_sha256": "10dcbd4da324aa0d3499d31be403943b24ca0074083b28991bed8b95856bc645",
+      "public_bytes": 44697,
+      "public_sha256": "0035bf1a0785c5f1e8ccd4fbfc921cf5b7aa4d2f24eb313ec475160d6a9b2ae4",
+      "retained_numerical_or_state_fields": 334,
+      "scientific_numerical_fields_unchanged": true
+    },
+    {
+      "file": "docs/evidence/frozen_A_released_20260927.json",
+      "original_private_bytes": 11044,
+      "original_private_sha256": "372c4c720a14677aac3df2437efd9ac87852efdf677821b62a9154f45d614ba6",
+      "public_bytes": 9916,
+      "public_sha256": "c1c070af06b890898be18ce675608d5e3356ef45256c4ab2408862f11e22abe9",
+      "retained_numerical_or_state_fields": 13,
+      "scientific_numerical_fields_unchanged": true
+    },
+    {
+      "file": "docs/evidence/history_doppler_admission_20260927.json",
+      "original_private_bytes": 144180,
+      "original_private_sha256": "4806136ef19f7680b90d3474fda6899918be7c2843f222acf68b2dde6e0ad599",
+      "public_bytes": 141780,
+      "public_sha256": "596928b7987f3b8dba5a208e760b4dd185f3d7a83b093fa58741b07a7cf8b267",
+      "retained_numerical_or_state_fields": 2009,
+      "scientific_numerical_fields_unchanged": true
+    },
+    {
+      "file": "docs/evidence/history_doppler_interim_20260928.json",
+      "original_private_bytes": 61141,
+      "original_private_sha256": "aad44e28975136c4ce8fe50f1a52bdff5f3433c454c40b205bf7c65816328d17",
+      "public_bytes": 59841,
+      "public_sha256": "2b42e65fbd1996e1ba630ff96b1bbd3fc38154083f9afd9bcc3fb9e6d3e08add",
+      "retained_numerical_or_state_fields": 1120,
+      "scientific_numerical_fields_unchanged": true
+    },
+    {
+      "file": "docs/evidence/radar_belief_preflight_20260920.json",
+      "original_private_bytes": 9045,
+      "original_private_sha256": "f324c904f26294d0d5f2ccdedb9805682812f6cbdb4632c585b6cc08687be92f",
+      "public_bytes": 8875,
+      "public_sha256": "20387e20bc2e6dd23ad13bb3ac07787ed01c4d2a3ba67fbced6b108e57c0be63",
+      "retained_numerical_or_state_fields": 113,
+      "scientific_numerical_fields_unchanged": true
+    },
+    {
+      "file": "docs/evidence/radar_belief_submission_20260920.json",
+      "original_private_bytes": 7271,
+      "original_private_sha256": "502209ae5e8789ddc7bc04e303e0e9d3f7dda3d72545ae43b0c791e6fb3af1a5",
+      "public_bytes": 6739,
+      "public_sha256": "b9db91d7710c3a782fd7bbc389f7dffb8c962bea663b0e496c0dbcf8b0bf747b",
+      "retained_numerical_or_state_fields": 13,
+      "scientific_numerical_fields_unchanged": true
+    },
+    {
+      "file": "docs/evidence/transport_reliable_preflight_20260922.json",
+      "original_private_bytes": 8105,
+      "original_private_sha256": "77c8172e26e6c79240a0e4de4177d22834682b0701d81f3325afaf1e5cc050a2",
+      "public_bytes": 7799,
+      "public_sha256": "926a8ddd2aac9ecf4d361a566ddaed7c5209e7b351c2b072d7983d13fe4077c4",
+      "retained_numerical_or_state_fields": 86,
+      "scientific_numerical_fields_unchanged": true
+    }
+  ]
+}

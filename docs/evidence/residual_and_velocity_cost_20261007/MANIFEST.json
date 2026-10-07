@@ -1,0 +1,462 @@
+{
+  "files": [
+    {
+      "file": "independent/final_full/0.0s.npz",
+      "bytes": 46180,
+      "sha256": "8a804cc59f79956ee3ea662ec146965e7392fd98b779c89edec743adf5029f7b",
+      "original_sha256": "8a804cc59f79956ee3ea662ec146965e7392fd98b779c89edec743adf5029f7b",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "independent/final_full/1.0s.npz",
+      "bytes": 46622,
+      "sha256": "cc1716b3f4fa6d866c4af3a2ae1df39572bda2dfcb1b474e73981914c45eb574",
+      "original_sha256": "cc1716b3f4fa6d866c4af3a2ae1df39572bda2dfcb1b474e73981914c45eb574",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "independent/final_full/2.0s.npz",
+      "bytes": 47566,
+      "sha256": "df5dd174b5f6276ce89a7ddcdf24ed2ec5647bbb977c8a65e77ed8930d8fa31c",
+      "original_sha256": "df5dd174b5f6276ce89a7ddcdf24ed2ec5647bbb977c8a65e77ed8930d8fa31c",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "independent/final_full/3.0s.npz",
+      "bytes": 48486,
+      "sha256": "d1d906b288d73b2151cb6e041dabecf17aa88eac921149b4707eae78711e8cb3",
+      "original_sha256": "d1d906b288d73b2151cb6e041dabecf17aa88eac921149b4707eae78711e8cb3",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "independent/best_subset/0.0s.npz",
+      "bytes": 21564,
+      "sha256": "45c3dc738068a537f770fb55ed127924171fa6f025743c9a65db3dae00d2bda5",
+      "original_sha256": "45c3dc738068a537f770fb55ed127924171fa6f025743c9a65db3dae00d2bda5",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "independent/best_subset/1.0s.npz",
+      "bytes": 21736,
+      "sha256": "cf5d257fef4a2907a78f3dedd2f179392bb57c939cf65be3a51d547bf8929027",
+      "original_sha256": "cf5d257fef4a2907a78f3dedd2f179392bb57c939cf65be3a51d547bf8929027",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "independent/best_subset/2.0s.npz",
+      "bytes": 22052,
+      "sha256": "a82b8a0160acdbc207b6ea9d91ee498300ec49560681d43839d6109557e3957b",
+      "original_sha256": "a82b8a0160acdbc207b6ea9d91ee498300ec49560681d43839d6109557e3957b",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "independent/best_subset/3.0s.npz",
+      "bytes": 22332,
+      "sha256": "6e19ae674e9eb531f7476ed05e8ebacd88e1baa4b026088eda38ea640115d591",
+      "original_sha256": "6e19ae674e9eb531f7476ed05e8ebacd88e1baa4b026088eda38ea640115d591",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "independent/best_full/0.0s.npz",
+      "bytes": 46153,
+      "sha256": "e11b7e499ca23a517a2a5e0789632ddec24a69034cb5e6fdfe75bf558c8fe4c9",
+      "original_sha256": "e11b7e499ca23a517a2a5e0789632ddec24a69034cb5e6fdfe75bf558c8fe4c9",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "independent/best_full/1.0s.npz",
+      "bytes": 46478,
+      "sha256": "c6eba08668e601044733530b21246c161430c8c34204b1514075a0a34cae968d",
+      "original_sha256": "c6eba08668e601044733530b21246c161430c8c34204b1514075a0a34cae968d",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "independent/best_full/2.0s.npz",
+      "bytes": 47469,
+      "sha256": "254fe5a3ba1bc676c3893a8f3da76ffb5d4d0adabc32b149b35ba691e45d89ca",
+      "original_sha256": "254fe5a3ba1bc676c3893a8f3da76ffb5d4d0adabc32b149b35ba691e45d89ca",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "independent/best_full/3.0s.npz",
+      "bytes": 48458,
+      "sha256": "0afc5b2c8ccf05252d5182262a05f8c5955c86180b74244619aa56e1e52cd316",
+      "original_sha256": "0afc5b2c8ccf05252d5182262a05f8c5955c86180b74244619aa56e1e52cd316",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "independent/interventions/normal/0.0s.npz",
+      "bytes": 21563,
+      "sha256": "0e042bba45b057d4410d4352d6afa7a2c5c9062f937e66b5eb278fa7d56e7878",
+      "original_sha256": "0e042bba45b057d4410d4352d6afa7a2c5c9062f937e66b5eb278fa7d56e7878",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "independent/interventions/normal/1.0s.npz",
+      "bytes": 21738,
+      "sha256": "55113557f97db8ad3ab7fe1d01ede9a82dce9b2144a812411ef1d41717dcb37b",
+      "original_sha256": "55113557f97db8ad3ab7fe1d01ede9a82dce9b2144a812411ef1d41717dcb37b",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "independent/interventions/normal/2.0s.npz",
+      "bytes": 22053,
+      "sha256": "6af1ca1f763147a7c5dc443d4fc577fa330bc2cde90506b5a3d6c60e17522af8",
+      "original_sha256": "6af1ca1f763147a7c5dc443d4fc577fa330bc2cde90506b5a3d6c60e17522af8",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "independent/interventions/normal/3.0s.npz",
+      "bytes": 22331,
+      "sha256": "a4b2407ec32cd6392be6842621fe4633b49629ca11d76d4846434f4c93505195",
+      "original_sha256": "a4b2407ec32cd6392be6842621fe4633b49629ca11d76d4846434f4c93505195",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "independent/interventions/drop/0.0s.npz",
+      "bytes": 21564,
+      "sha256": "45c3dc738068a537f770fb55ed127924171fa6f025743c9a65db3dae00d2bda5",
+      "original_sha256": "45c3dc738068a537f770fb55ed127924171fa6f025743c9a65db3dae00d2bda5",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "independent/interventions/drop/1.0s.npz",
+      "bytes": 21740,
+      "sha256": "6723f0ce636eedc18ad3fca958ab2d7d25ed43ad197e5b01ac713a1e5b1806db",
+      "original_sha256": "6723f0ce636eedc18ad3fca958ab2d7d25ed43ad197e5b01ac713a1e5b1806db",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "independent/interventions/drop/2.0s.npz",
+      "bytes": 22052,
+      "sha256": "21b201fbed80d95836b10790245ec9828e70ae6e26913281f67ae1a13c83f298",
+      "original_sha256": "21b201fbed80d95836b10790245ec9828e70ae6e26913281f67ae1a13c83f298",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "independent/interventions/drop/3.0s.npz",
+      "bytes": 22332,
+      "sha256": "cdc0058dcd59e20fa1330be73d908d582518e76d4fed929c75f6e5cea54bbaaf",
+      "original_sha256": "cdc0058dcd59e20fa1330be73d908d582518e76d4fed929c75f6e5cea54bbaaf",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "independent/interventions/zero_velocity/0.0s.npz",
+      "bytes": 21563,
+      "sha256": "03d251e9d976202c211eb2b306d119620c6bb6a47c4aecd7ce554e089f5643b6",
+      "original_sha256": "03d251e9d976202c211eb2b306d119620c6bb6a47c4aecd7ce554e089f5643b6",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "independent/interventions/zero_velocity/1.0s.npz",
+      "bytes": 21739,
+      "sha256": "eccaed0ae9c3edfcd4f35ee77cd822de4235aeeea8c03462feb614e724b4659c",
+      "original_sha256": "eccaed0ae9c3edfcd4f35ee77cd822de4235aeeea8c03462feb614e724b4659c",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "independent/interventions/zero_velocity/2.0s.npz",
+      "bytes": 22054,
+      "sha256": "1a9a200c5be4f62efd7bf9345949077c26b7f0dfb1d955af6d1743ebbc228bb6",
+      "original_sha256": "1a9a200c5be4f62efd7bf9345949077c26b7f0dfb1d955af6d1743ebbc228bb6",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "independent/interventions/zero_velocity/3.0s.npz",
+      "bytes": 22331,
+      "sha256": "55bf9c816070255b5fe00e5580a44a21a63924579d5935e0856623afd3d4f3af",
+      "original_sha256": "55bf9c816070255b5fe00e5580a44a21a63924579d5935e0856623afd3d4f3af",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "independent/interventions/shuffle_velocity/0.0s.npz",
+      "bytes": 21563,
+      "sha256": "9c214709cf60a1ccf622bd1336d7b73a765a55619b780ed6df99abfabff9f55c",
+      "original_sha256": "9c214709cf60a1ccf622bd1336d7b73a765a55619b780ed6df99abfabff9f55c",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "independent/interventions/shuffle_velocity/1.0s.npz",
+      "bytes": 21737,
+      "sha256": "847681a486421737f24a0fd25417d12078a83531314872832142913f32cc0583",
+      "original_sha256": "847681a486421737f24a0fd25417d12078a83531314872832142913f32cc0583",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "independent/interventions/shuffle_velocity/2.0s.npz",
+      "bytes": 22052,
+      "sha256": "68ac895436c3f451d4915b4f49d797a52de91d5ca8c90173c4853cc5da8fa0af",
+      "original_sha256": "68ac895436c3f451d4915b4f49d797a52de91d5ca8c90173c4853cc5da8fa0af",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "independent/interventions/shuffle_velocity/3.0s.npz",
+      "bytes": 22333,
+      "sha256": "a6c02c7e325ee60abc1ab86257659f83b843b204cd94ef0cd1d2764599f011a7",
+      "original_sha256": "a6c02c7e325ee60abc1ab86257659f83b843b204cd94ef0cd1d2764599f011a7",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "independent/final_tokens.json",
+      "bytes": 258465,
+      "sha256": "a70447ddbd7f215e8ac2fcffaf32450bae6ddb78aadac5f036ce2aa73d96000e",
+      "original_sha256": "a70447ddbd7f215e8ac2fcffaf32450bae6ddb78aadac5f036ce2aa73d96000e",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "independent/best_subset_tokens.json",
+      "bytes": 16384,
+      "sha256": "7fac69e396390d83dfb7fe9996a86dfe56793f9483ddf1e60cc882769ea4623b",
+      "original_sha256": "7fac69e396390d83dfb7fe9996a86dfe56793f9483ddf1e60cc882769ea4623b",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "shared/final_full/0.0s.npz",
+      "bytes": 46151,
+      "sha256": "cf7698a76f131b76b39886ca90edc07c6bb7842086628864abd6de860c54f752",
+      "original_sha256": "cf7698a76f131b76b39886ca90edc07c6bb7842086628864abd6de860c54f752",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "shared/final_full/1.0s.npz",
+      "bytes": 46670,
+      "sha256": "594f1633904e81b99a28ebed7103d25011b7da3d44e648cc3b4d40709db9d3d4",
+      "original_sha256": "594f1633904e81b99a28ebed7103d25011b7da3d44e648cc3b4d40709db9d3d4",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "shared/final_full/2.0s.npz",
+      "bytes": 47464,
+      "sha256": "516f8d4c364fd2c06ed12567fcb9e13aa556386907df746c377602b848a6b74f",
+      "original_sha256": "516f8d4c364fd2c06ed12567fcb9e13aa556386907df746c377602b848a6b74f",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "shared/final_full/3.0s.npz",
+      "bytes": 48360,
+      "sha256": "4853f8152784a372dc0f295c4748ab8b4117996bcec4f9383ffecfd2c13bd7f5",
+      "original_sha256": "4853f8152784a372dc0f295c4748ab8b4117996bcec4f9383ffecfd2c13bd7f5",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "shared/interventions/normal/0.0s.npz",
+      "bytes": 21718,
+      "sha256": "fb832292af378e73cb93d914222b6a6376263477ccbc1371c318c935eba8e085",
+      "original_sha256": "fb832292af378e73cb93d914222b6a6376263477ccbc1371c318c935eba8e085",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "shared/interventions/normal/1.0s.npz",
+      "bytes": 21789,
+      "sha256": "69e19ee10df49a56f5a4f1fa4f53978bc05b80d82e1ce2d4a2d91736e5b48099",
+      "original_sha256": "69e19ee10df49a56f5a4f1fa4f53978bc05b80d82e1ce2d4a2d91736e5b48099",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "shared/interventions/normal/2.0s.npz",
+      "bytes": 22061,
+      "sha256": "71c9586e51d5bb6f608bd5b127f4751af8360fad4f6f3e26b3d1b27c3a36553a",
+      "original_sha256": "71c9586e51d5bb6f608bd5b127f4751af8360fad4f6f3e26b3d1b27c3a36553a",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "shared/interventions/normal/3.0s.npz",
+      "bytes": 22275,
+      "sha256": "73d1c0cc3e05b6ee2add22e8acef628a314c24ab03dd64d52f1bd3a1f0851139",
+      "original_sha256": "73d1c0cc3e05b6ee2add22e8acef628a314c24ab03dd64d52f1bd3a1f0851139",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "shared/interventions/drop/0.0s.npz",
+      "bytes": 21719,
+      "sha256": "6b95c4e201ebc508654b84e79406506ad2359458c65b7fda8f3a675a510a47a1",
+      "original_sha256": "6b95c4e201ebc508654b84e79406506ad2359458c65b7fda8f3a675a510a47a1",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "shared/interventions/drop/1.0s.npz",
+      "bytes": 21790,
+      "sha256": "257163e205c138eee67429be951494ea466447c3b1099c3c76ff6fed494c8e1f",
+      "original_sha256": "257163e205c138eee67429be951494ea466447c3b1099c3c76ff6fed494c8e1f",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "shared/interventions/drop/2.0s.npz",
+      "bytes": 22062,
+      "sha256": "de83140d7a499f1e333d88bee106482f48524700a54f5da742d54b7e8d98f6be",
+      "original_sha256": "de83140d7a499f1e333d88bee106482f48524700a54f5da742d54b7e8d98f6be",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "shared/interventions/drop/3.0s.npz",
+      "bytes": 22278,
+      "sha256": "edeb8fbe6b729ce0104a9c6d9650f30db2bfd8e02c6513cf316c561ddcafd085",
+      "original_sha256": "edeb8fbe6b729ce0104a9c6d9650f30db2bfd8e02c6513cf316c561ddcafd085",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "shared/interventions/zero_velocity/0.0s.npz",
+      "bytes": 21718,
+      "sha256": "ca50a78fbae13757a28668fb088f725a5203e6e926ec3d897ab427dc09446f0b",
+      "original_sha256": "ca50a78fbae13757a28668fb088f725a5203e6e926ec3d897ab427dc09446f0b",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "shared/interventions/zero_velocity/1.0s.npz",
+      "bytes": 21791,
+      "sha256": "5ef18f5a77a134d2b0a31fe8c228b914631c1f0fcb9748108c91aafd4fafe65e",
+      "original_sha256": "5ef18f5a77a134d2b0a31fe8c228b914631c1f0fcb9748108c91aafd4fafe65e",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "shared/interventions/zero_velocity/2.0s.npz",
+      "bytes": 22059,
+      "sha256": "f50cb26f89f583ee019307602e9d28f51cff4adece7f703196d9ea7cd19d0eb7",
+      "original_sha256": "f50cb26f89f583ee019307602e9d28f51cff4adece7f703196d9ea7cd19d0eb7",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "shared/interventions/zero_velocity/3.0s.npz",
+      "bytes": 22277,
+      "sha256": "786b5fd6a731e91c7cb8913bfb916e9dd3a5dcd16505ba533c811dcda2bcbbaa",
+      "original_sha256": "786b5fd6a731e91c7cb8913bfb916e9dd3a5dcd16505ba533c811dcda2bcbbaa",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "shared/interventions/shuffle_velocity/0.0s.npz",
+      "bytes": 21719,
+      "sha256": "813e4536c884243435b2636820f2db394b8b91506d859602fe14f32f99aed903",
+      "original_sha256": "813e4536c884243435b2636820f2db394b8b91506d859602fe14f32f99aed903",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "shared/interventions/shuffle_velocity/1.0s.npz",
+      "bytes": 21792,
+      "sha256": "6787a8c756ad47cc82ae10b99e0799bfc0fb6f4963777e4109ec314deb1e67b3",
+      "original_sha256": "6787a8c756ad47cc82ae10b99e0799bfc0fb6f4963777e4109ec314deb1e67b3",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "shared/interventions/shuffle_velocity/2.0s.npz",
+      "bytes": 22060,
+      "sha256": "912c08363edb492ecd1abdbfb00838f54c3d665ed2c87df316ea01b41203caae",
+      "original_sha256": "912c08363edb492ecd1abdbfb00838f54c3d665ed2c87df316ea01b41203caae",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "shared/interventions/shuffle_velocity/3.0s.npz",
+      "bytes": 22277,
+      "sha256": "5af232aa1f7b7019c3055147844089a68364f23bc29470db4bc07c16af2450ea",
+      "original_sha256": "5af232aa1f7b7019c3055147844089a68364f23bc29470db4bc07c16af2450ea",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "shared/best_subset/0.0s.npz",
+      "bytes": 21718,
+      "sha256": "0144f67ce3c50ddeeaedde2ff6cbcb9085156d61a6b8b98d6c6b7c901e57a008",
+      "original_sha256": "0144f67ce3c50ddeeaedde2ff6cbcb9085156d61a6b8b98d6c6b7c901e57a008",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "shared/best_subset/1.0s.npz",
+      "bytes": 21789,
+      "sha256": "c8e6032b8a27bb6c6728080d93ed1965efe0033bc6d6736b2c2b957e658c5679",
+      "original_sha256": "c8e6032b8a27bb6c6728080d93ed1965efe0033bc6d6736b2c2b957e658c5679",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "shared/best_subset/2.0s.npz",
+      "bytes": 22060,
+      "sha256": "6da663fabf5af21f4dd184b35ff02791d32ba159dee98f0e96a061a1cac29857",
+      "original_sha256": "6da663fabf5af21f4dd184b35ff02791d32ba159dee98f0e96a061a1cac29857",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "shared/best_subset/3.0s.npz",
+      "bytes": 22277,
+      "sha256": "e06c010110e137cc3ce4654280de835b22f3ede2e4b4cbaeb6c0e1f2cc9c1aa5",
+      "original_sha256": "e06c010110e137cc3ce4654280de835b22f3ede2e4b4cbaeb6c0e1f2cc9c1aa5",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "shared/final_tokens.json",
+      "bytes": 258469,
+      "sha256": "27767391572d93d96851ef8253f6c13d256a23d1194fcff1b9cb105ec7968b71",
+      "original_sha256": "27767391572d93d96851ef8253f6c13d256a23d1194fcff1b9cb105ec7968b71",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "shared/best_subset_tokens.json",
+      "bytes": 16358,
+      "sha256": "c0577484e2300d34093abf36d576d61ddde8f26d723ff2ff6d5f60f14ec075c3",
+      "original_sha256": "c0577484e2300d34093abf36d576d61ddde8f26d723ff2ff6d5f60f14ec075c3",
+      "publication_changes": "Original numeric bytes unchanged."
+    },
+    {
+      "file": "residual_summary.json",
+      "bytes": 109647,
+      "sha256": "d8b8865f36b9861c9e141fda3006a14996046bb925172b7b0da03d6d1b22c3ea",
+      "original_sha256": null,
+      "publication_changes": "Numeric projection of completed private audits; machine paths and process identities omitted."
+    },
+    {
+      "file": "velocity_cost/paired_h8-velocity_replay0.json",
+      "bytes": 588330,
+      "sha256": "e5e115d88d412c976432e4e7ef86548e14f1a0be56f39ba69e46f0fd656e1288",
+      "original_sha256": "a7d71b8d750d7bde266a999f146930d3f981b940c8f2ab3eed495e660b31dc66",
+      "publication_changes": "Checkpoint and excluded-diagnostic private path fields omitted; all numeric rows, protocol, tokens, checkpoint SHA, and timings preserved."
+    },
+    {
+      "file": "velocity_cost/paired_h2-velocity_replay0.json",
+      "bytes": 587826,
+      "sha256": "f93347fc4cc13a7358c14bdfd6dfe223994bf68ec81e50a8f78d9274a56fe81f",
+      "original_sha256": "2eb248c496099b55035c290c9c5c043d11403320412df7826bc8aae53f2c8264",
+      "publication_changes": "Checkpoint and excluded-diagnostic private path fields omitted; all numeric rows, protocol, tokens, checkpoint SHA, and timings preserved."
+    },
+    {
+      "file": "velocity_cost/paired_h2-velocity_replay1.json",
+      "bytes": 587852,
+      "sha256": "5755a684e8883ec32d1c689b87913a34b020dbfc6b62675ae54daae599a92003",
+      "original_sha256": "109a287c8a5a730eb2fc04fb875ba3bdf0ed56cc27529e98a932c50b6b066153",
+      "publication_changes": "Checkpoint and excluded-diagnostic private path fields omitted; all numeric rows, protocol, tokens, checkpoint SHA, and timings preserved."
+    },
+    {
+      "file": "velocity_cost/paired_h8-velocity_replay1.json",
+      "bytes": 588316,
+      "sha256": "23599efb46add5e0f2a7faef95f32638ab1d1a8808906d3881dd37515b6559e2",
+      "original_sha256": "9bd2e22dc24e94d79d72d324036ced4fa23cb2558c76047cdf5de81037cf9c78",
+      "publication_changes": "Checkpoint and excluded-diagnostic private path fields omitted; all numeric rows, protocol, tokens, checkpoint SHA, and timings preserved."
+    },
+    {
+      "file": "velocity_cost/paired_h8-velocity_replay2.json",
+      "bytes": 588320,
+      "sha256": "50f0c7f0e172d420fcd90575ca3ed81a03d6b24e3f0e469634160b891048e275",
+      "original_sha256": "b89d0c1bcb1e5c20a9487c84e7771b25e3fe948d1431667e3878e089ead18ff7",
+      "publication_changes": "Checkpoint and excluded-diagnostic private path fields omitted; all numeric rows, protocol, tokens, checkpoint SHA, and timings preserved."
+    },
+    {
+      "file": "velocity_cost/paired_h2-velocity_replay2.json",
+      "bytes": 587862,
+      "sha256": "1ea440c228df6fcf387d6f1ebc1707cb8376e4bb667466d226ca88739ece4dd3",
+      "original_sha256": "7289893466d893207f31093ba40620d5013c33a898d10dedbaed3f4b4762b4df",
+      "publication_changes": "Checkpoint and excluded-diagnostic private path fields omitted; all numeric rows, protocol, tokens, checkpoint SHA, and timings preserved."
+    },
+    {
+      "file": "velocity_cost_summary.json",
+      "bytes": 25722,
+      "sha256": "0d547d66297c81602bcf3b664ff6e8f85b786a264b62ddbf0fd3006513a6863c",
+      "original_sha256": null,
+      "publication_changes": "Independent row reduction and privacy-safe projection of original formal contexts and audits."
+    },
+    {
+      "file": "README.md",
+      "bytes": 1280,
+      "sha256": "742a6b31c64a32574600e1f8b223be30131667a748c4be8d624d8483f0d94648",
+      "original_sha256": null,
+      "publication_changes": "Evidence-scope documentation."
+    }
+  ],
+  "original_npz_count": 52,
+  "original_token_json_count": 4,
+  "formal_cost_blocks": 6
+}

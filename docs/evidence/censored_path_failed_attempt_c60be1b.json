@@ -3,9 +3,8 @@
   "receipts": {
     "submission": {
       "state": "submitted",
-      "code": "/home/huayiming/Workspace/SparseWorld-TC-forecast-c60be1b24e9a",
+      "code": "<WORKSPACE>/SparseWorld-TC-forecast-c60be1b24e9a",
       "git_revision": "c60be1b24e9a81d94933a31ce1c54ca69c1bedde",
-      "controller_pid": 2804764,
       "gpu": 1,
       "at_utc": "2026-09-26T16:02:58.670506+00:00"
     },
@@ -31,7 +30,7 @@
         ],
         "new_path_tensors": 15,
         "all_camera_tensors_exact": true,
-        "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+        "path": "<PROJECT_ROOT>/checkpoints/sw-tc-small.pth",
         "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
         "source_epoch": 70,
         "source_iter": 246190,
@@ -2655,7 +2654,7 @@
         "zero_residual_outputs": [],
         "new_path_tensors": 0,
         "all_camera_tensors_exact": true,
-        "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+        "path": "<PROJECT_ROOT>/checkpoints/sw-tc-small.pth",
         "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
         "source_epoch": 70,
         "source_iter": 246190,
@@ -2688,7 +2687,7 @@
       "fresh_optimizer": true,
       "radar_cache_samples": 23930,
       "endpoint_cache": {
-        "manifest": "/home/huayiming/Workspace/SparseWorld-cache/endpoint_segments_v1_20260926/manifest.json",
+        "manifest": "<WORKSPACE>/SparseWorld-cache/endpoint_segments_v1_20260926/manifest.json",
         "manifest_sha256": "add76b72bba8bae310b5a2d20c90068b1be865be26345561ae826064a962d63a",
         "samples": {
           "train": 23930,
@@ -2721,7 +2720,7 @@
         ],
         "new_path_tensors": 15,
         "all_camera_tensors_exact": true,
-        "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+        "path": "<PROJECT_ROOT>/checkpoints/sw-tc-small.pth",
         "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
         "source_epoch": 70,
         "source_iter": 246190,
@@ -5345,7 +5344,7 @@
         "zero_residual_outputs": [],
         "new_path_tensors": 0,
         "all_camera_tensors_exact": true,
-        "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+        "path": "<PROJECT_ROOT>/checkpoints/sw-tc-small.pth",
         "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
         "source_epoch": 70,
         "source_iter": 246190,
@@ -5439,9 +5438,8 @@
       "arm": "censored-path",
       "gpu": 1,
       "gpu_uuid": "GPU-000b6236-3632-a001-9667-1f02cbb61c8b",
-      "controller_pid": 2804764,
       "git_revision": "c60be1b24e9a81d94933a31ce1c54ca69c1bedde",
-      "code": "/home/huayiming/Workspace/SparseWorld-TC-forecast-c60be1b24e9a",
+      "code": "<WORKSPACE>/SparseWorld-TC-forecast-c60be1b24e9a",
       "completed_stages": [
         "gpu_contracts",
         "gpu_parity",
@@ -5450,7 +5448,6 @@
       "state": "failed",
       "at_utc": "2026-09-26T16:11:29.562139+00:00",
       "stage": "smoke",
-      "child_pid": null,
       "memory_admission": {
         "free_mib": 132806,
         "total_mib": 143771,
@@ -5459,16 +5456,16 @@
         "observed_stable_seconds": 60.155778210028075
       },
       "command": [
-        "/storage/data/metaiot_data/huayiming/SparseWorld/envs/hym_sparseworld/bin/python",
+        "<PROJECT_ROOT>/envs/hym_sparseworld/bin/python",
         "train.py",
         "--config",
         "configs/sw-radar-forecast-censored-path-smoke.py"
       ],
-      "log": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/censored_path_campaign_20260926/censored-path_smoke.log",
+      "log": "<PROJECT_ROOT>/analysis/censored_path_campaign_20260926/censored-path_smoke.log",
       "child_returncode": 0,
       "gpu_snapshot": "0, 106299, 97.88",
       "error": "ValueError({'missing': [], 'unexpected': ['pts_bbox_head.censored_path.scene_extent']})",
-      "traceback": "Traceback (most recent call last):\n  File \"/home/huayiming/Workspace/SparseWorld-TC-forecast-c60be1b24e9a/tools/run_censored_path_experiment.py\", line 274, in main\n    smoke_audit = audit_checkpoint(smoke / 'iter_24.pth', schema, exact_steps=24)\n  File \"/home/huayiming/Workspace/SparseWorld-TC-forecast-c60be1b24e9a/tools/run_censored_path_experiment.py\", line 66, in audit_checkpoint\n    validate_state_schema(state, schema)\n  File \"/home/huayiming/Workspace/SparseWorld-TC-forecast-c60be1b24e9a/tools/run_censored_path_experiment.py\", line 52, in validate_state_schema\n    raise ValueError(dict(missing=sorted(set(schema) - set(state)),\nValueError: {'missing': [], 'unexpected': ['pts_bbox_head.censored_path.scene_extent']}\n"
+      "traceback": "Traceback (most recent call last):\n  File \"<WORKSPACE>/SparseWorld-TC-forecast-c60be1b24e9a/tools/run_censored_path_experiment.py\", line 274, in main\n    smoke_audit = audit_checkpoint(smoke / 'iter_24.pth', schema, exact_steps=24)\n  File \"<WORKSPACE>/SparseWorld-TC-forecast-c60be1b24e9a/tools/run_censored_path_experiment.py\", line 66, in audit_checkpoint\n    validate_state_schema(state, schema)\n  File \"<WORKSPACE>/SparseWorld-TC-forecast-c60be1b24e9a/tools/run_censored_path_experiment.py\", line 52, in validate_state_schema\n    raise ValueError(dict(missing=sorted(set(schema) - set(state)),\nValueError: {'missing': [], 'unexpected': ['pts_bbox_head.censored_path.scene_extent']}\n"
     }
   },
   "extensions": {

@@ -3,7 +3,7 @@
   "evaluations": {
     "m0_best_full/normal.json": {
       "config": "configs/sw-radar-m0-official-ft.py",
-      "checkpoint": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/m0_official_ft_seed0/best_future.pth",
+      "checkpoint": "<PROJECT_ROOT>/work_dirs/m0_official_ft_seed0/best_future.pth",
       "checkpoint_meta": {
         "epoch": 1,
         "iter": 2992
@@ -106,7 +106,7 @@
     },
     "m0_final_counterfactual/drop.json": {
       "config": "configs/sw-radar-m0-official-ft.py",
-      "checkpoint": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/m0_official_ft_seed0/epoch_10.pth",
+      "checkpoint": "<PROJECT_ROOT>/work_dirs/m0_official_ft_seed0/epoch_10.pth",
       "checkpoint_meta": {
         "epoch": 10,
         "iter": 29920
@@ -209,7 +209,7 @@
     },
     "m0_final_counterfactual/normal.json": {
       "config": "configs/sw-radar-m0-official-ft.py",
-      "checkpoint": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/m0_official_ft_seed0/epoch_10.pth",
+      "checkpoint": "<PROJECT_ROOT>/work_dirs/m0_official_ft_seed0/epoch_10.pth",
       "checkpoint_meta": {
         "epoch": 10,
         "iter": 29920
@@ -312,7 +312,7 @@
     },
     "m0_final_counterfactual/zero_velocity.json": {
       "config": "configs/sw-radar-m0-official-ft.py",
-      "checkpoint": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/m0_official_ft_seed0/epoch_10.pth",
+      "checkpoint": "<PROJECT_ROOT>/work_dirs/m0_official_ft_seed0/epoch_10.pth",
       "checkpoint_meta": {
         "epoch": 10,
         "iter": 29920
@@ -415,7 +415,7 @@
     },
     "official_full/normal.json": {
       "config": "configs/sw-radar-m0-official-ft.py",
-      "checkpoint": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+      "checkpoint": "<PROJECT_ROOT>/checkpoints/sw-tc-small.pth",
       "checkpoint_meta": {
         "loaded_tensors": 669,
         "loaded_numel": 79478272,
@@ -429,7 +429,7 @@
           "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.output"
         ],
         "all_camera_tensors_exact": true,
-        "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+        "path": "<PROJECT_ROOT>/checkpoints/sw-tc-small.pth",
         "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
         "source_epoch": 70,
         "source_iter": 246190,

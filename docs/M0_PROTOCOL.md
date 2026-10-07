@@ -32,7 +32,7 @@
 
 ## 初始训练与对照
 
-- H200 / huayiming，GPU 仅在启动前验证空闲后指定 UUID。
+- H200 / <ACCOUNT>，GPU 仅在启动前验证空闲后指定 UUID。
 - 8 帧 × 6相机，256×704；所有预测尺度保持上游配置。
 - 官方 R50 backbone 初始化，SHA256：4096396018c0cf59fbe0eb1afe6e269f4676b34460bed5eedde5d7680d58bb4e。
 - AdamW，lr=2e-4，weight_decay=.01，batch=1/GPU，累积8步形成 effective batch8；FP16 dynamic loss scale (initial512)，clip norm35，70epochs，warmup4000 microsteps=500optimizer updates，seed0。此处是计划配置，实际以 resolved config 为准。

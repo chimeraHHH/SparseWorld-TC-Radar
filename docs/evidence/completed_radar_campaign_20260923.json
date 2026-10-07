@@ -8,7 +8,7 @@
         "git_revision": "b0c98b3e7768d263c43c6e1ed73299b065e2fb6a",
         "best_epoch": 9,
         "final_audit": {
-          "path": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_transport_seed0/epoch_10.pth",
+          "path": "<PROJECT_ROOT>/work_dirs/radar_forecast_transport_seed0/epoch_10.pth",
           "epoch": 10,
           "iterations": 29920,
           "optimizer_steps": 29914,
@@ -16,21 +16,21 @@
           "optimizer_finite": true
         },
         "best_audit": {
-          "path": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_transport_seed0/best_future.pth",
+          "path": "<PROJECT_ROOT>/work_dirs/radar_forecast_transport_seed0/best_future.pth",
           "epoch": 9,
           "iterations": 26928,
           "optimizer_steps": 26923,
           "finite_model_tensors": 771,
           "optimizer_finite": true
         },
-        "final_json": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_transport_seed0/validation_epoch_10_full.json",
-        "best_json": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/forecast_campaign_20260920/transport_best_full/normal.json",
-        "best_confusions": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/forecast_campaign_20260920/transport_best_full/confusions_normal",
-        "final_confusions": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_transport_seed0/confusions_epoch_10_full"
+        "final_json": "<PROJECT_ROOT>/work_dirs/radar_forecast_transport_seed0/validation_epoch_10_full.json",
+        "best_json": "<PROJECT_ROOT>/analysis/forecast_campaign_20260920/transport_best_full/normal.json",
+        "best_confusions": "<PROJECT_ROOT>/analysis/forecast_campaign_20260920/transport_best_full/confusions_normal",
+        "final_confusions": "<PROJECT_ROOT>/work_dirs/radar_forecast_transport_seed0/confusions_epoch_10_full"
       },
       "best": {
         "config": "configs/sw-radar-forecast-transport.py",
-        "checkpoint": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_transport_seed0/best_future.pth",
+        "checkpoint": "<PROJECT_ROOT>/work_dirs/radar_forecast_transport_seed0/best_future.pth",
         "checkpoint_meta": {
           "epoch": 9,
           "iter": 26928
@@ -244,7 +244,7 @@
       "interventions": {
         "drop": {
           "config": "configs/sw-radar-forecast-transport.py",
-          "checkpoint": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_transport_seed0/best_future.pth",
+          "checkpoint": "<PROJECT_ROOT>/work_dirs/radar_forecast_transport_seed0/best_future.pth",
           "checkpoint_meta": {
             "epoch": 9,
             "iter": 26928
@@ -347,7 +347,7 @@
         },
         "normal": {
           "config": "configs/sw-radar-forecast-transport.py",
-          "checkpoint": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_transport_seed0/best_future.pth",
+          "checkpoint": "<PROJECT_ROOT>/work_dirs/radar_forecast_transport_seed0/best_future.pth",
           "checkpoint_meta": {
             "epoch": 9,
             "iter": 26928
@@ -450,7 +450,7 @@
         },
         "zero_velocity": {
           "config": "configs/sw-radar-forecast-transport.py",
-          "checkpoint": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_transport_seed0/best_future.pth",
+          "checkpoint": "<PROJECT_ROOT>/work_dirs/radar_forecast_transport_seed0/best_future.pth",
           "checkpoint_meta": {
             "epoch": 9,
             "iter": 26928
@@ -560,7 +560,7 @@
         "git_revision": "79f8c811f505e3d3d1a009558ac32e653e50cea4",
         "best_epoch": 8,
         "final_audit": {
-          "path": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_belief_seed0/epoch_10.pth",
+          "path": "<PROJECT_ROOT>/work_dirs/radar_forecast_belief_seed0/epoch_10.pth",
           "epoch": 10,
           "iterations": 29920,
           "optimizer_steps": 29914,
@@ -568,21 +568,21 @@
           "optimizer_finite": true
         },
         "best_audit": {
-          "path": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_belief_seed0/best_future.pth",
+          "path": "<PROJECT_ROOT>/work_dirs/radar_forecast_belief_seed0/best_future.pth",
           "epoch": 8,
           "iterations": 23936,
           "optimizer_steps": 23932,
           "finite_model_tensors": 707,
           "optimizer_finite": true
         },
-        "final_json": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_belief_seed0/validation_epoch_10_full.json",
-        "best_json": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/belief_campaign_20260920/belief_best_full/normal.json",
-        "best_confusions": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/belief_campaign_20260920/belief_best_full/confusions_normal",
-        "final_confusions": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_belief_seed0/confusions_epoch_10_full"
+        "final_json": "<PROJECT_ROOT>/work_dirs/radar_forecast_belief_seed0/validation_epoch_10_full.json",
+        "best_json": "<PROJECT_ROOT>/analysis/belief_campaign_20260920/belief_best_full/normal.json",
+        "best_confusions": "<PROJECT_ROOT>/analysis/belief_campaign_20260920/belief_best_full/confusions_normal",
+        "final_confusions": "<PROJECT_ROOT>/work_dirs/radar_forecast_belief_seed0/confusions_epoch_10_full"
       },
       "best": {
         "config": "configs/sw-radar-forecast-belief.py",
-        "checkpoint": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_belief_seed0/best_future.pth",
+        "checkpoint": "<PROJECT_ROOT>/work_dirs/radar_forecast_belief_seed0/best_future.pth",
         "checkpoint_meta": {
           "epoch": 8,
           "iter": 23936
@@ -796,7 +796,7 @@
       "interventions": {
         "drop": {
           "config": "configs/sw-radar-forecast-belief.py",
-          "checkpoint": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_belief_seed0/best_future.pth",
+          "checkpoint": "<PROJECT_ROOT>/work_dirs/radar_forecast_belief_seed0/best_future.pth",
           "checkpoint_meta": {
             "epoch": 8,
             "iter": 23936
@@ -899,7 +899,7 @@
         },
         "normal": {
           "config": "configs/sw-radar-forecast-belief.py",
-          "checkpoint": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_belief_seed0/best_future.pth",
+          "checkpoint": "<PROJECT_ROOT>/work_dirs/radar_forecast_belief_seed0/best_future.pth",
           "checkpoint_meta": {
             "epoch": 8,
             "iter": 23936
@@ -1002,7 +1002,7 @@
         },
         "shuffle_velocity": {
           "config": "configs/sw-radar-forecast-belief.py",
-          "checkpoint": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_belief_seed0/best_future.pth",
+          "checkpoint": "<PROJECT_ROOT>/work_dirs/radar_forecast_belief_seed0/best_future.pth",
           "checkpoint_meta": {
             "epoch": 8,
             "iter": 23936
@@ -1105,7 +1105,7 @@
         },
         "zero_velocity": {
           "config": "configs/sw-radar-forecast-belief.py",
-          "checkpoint": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_belief_seed0/best_future.pth",
+          "checkpoint": "<PROJECT_ROOT>/work_dirs/radar_forecast_belief_seed0/best_future.pth",
           "checkpoint_meta": {
             "epoch": 8,
             "iter": 23936
@@ -1215,7 +1215,7 @@
         "git_revision": "79f8c811f505e3d3d1a009558ac32e653e50cea4",
         "best_epoch": 7,
         "final_audit": {
-          "path": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_camera_seed0/epoch_10.pth",
+          "path": "<PROJECT_ROOT>/work_dirs/radar_forecast_camera_seed0/epoch_10.pth",
           "epoch": 10,
           "iterations": 29920,
           "optimizer_steps": 29914,
@@ -1223,21 +1223,21 @@
           "optimizer_finite": true
         },
         "best_audit": {
-          "path": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_camera_seed0/best_future.pth",
+          "path": "<PROJECT_ROOT>/work_dirs/radar_forecast_camera_seed0/best_future.pth",
           "epoch": 7,
           "iterations": 20944,
           "optimizer_steps": 20941,
           "finite_model_tensors": 669,
           "optimizer_finite": true
         },
-        "final_json": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_camera_seed0/validation_epoch_10_full.json",
-        "best_json": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/belief_campaign_20260920/camera_best_full/normal.json",
-        "best_confusions": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/belief_campaign_20260920/camera_best_full/confusions_normal",
-        "final_confusions": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_camera_seed0/confusions_epoch_10_full"
+        "final_json": "<PROJECT_ROOT>/work_dirs/radar_forecast_camera_seed0/validation_epoch_10_full.json",
+        "best_json": "<PROJECT_ROOT>/analysis/belief_campaign_20260920/camera_best_full/normal.json",
+        "best_confusions": "<PROJECT_ROOT>/analysis/belief_campaign_20260920/camera_best_full/confusions_normal",
+        "final_confusions": "<PROJECT_ROOT>/work_dirs/radar_forecast_camera_seed0/confusions_epoch_10_full"
       },
       "best": {
         "config": "configs/sw-radar-forecast-camera.py",
-        "checkpoint": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_camera_seed0/best_future.pth",
+        "checkpoint": "<PROJECT_ROOT>/work_dirs/radar_forecast_camera_seed0/best_future.pth",
         "checkpoint_meta": {
           "epoch": 7,
           "iter": 20944
@@ -1457,7 +1457,7 @@
         "git_revision": "2fc2feaf5edbf0e1bc839b6b34c694be7e85af83",
         "best_epoch": 9,
         "final_audit": {
-          "path": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_transport-reliable_seed0/epoch_10.pth",
+          "path": "<PROJECT_ROOT>/work_dirs/radar_forecast_transport-reliable_seed0/epoch_10.pth",
           "epoch": 10,
           "iterations": 29920,
           "optimizer_steps": 29915,
@@ -1465,25 +1465,25 @@
           "optimizer_finite": true
         },
         "best_audit": {
-          "path": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_transport-reliable_seed0/best_future.pth",
+          "path": "<PROJECT_ROOT>/work_dirs/radar_forecast_transport-reliable_seed0/best_future.pth",
           "epoch": 9,
           "iterations": 26928,
           "optimizer_steps": 26923,
           "finite_model_tensors": 801,
           "optimizer_finite": true
         },
-        "final_json": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_transport-reliable_seed0/validation_epoch_10_full.json",
-        "best_json": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/transport_reliable_campaign_20260922/transport-reliable_best_full/normal.json",
-        "best_confusions": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/transport_reliable_campaign_20260922/transport-reliable_best_full/confusions_normal",
-        "final_confusions": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_transport-reliable_seed0/confusions_epoch_10_full",
+        "final_json": "<PROJECT_ROOT>/work_dirs/radar_forecast_transport-reliable_seed0/validation_epoch_10_full.json",
+        "best_json": "<PROJECT_ROOT>/analysis/transport_reliable_campaign_20260922/transport-reliable_best_full/normal.json",
+        "best_confusions": "<PROJECT_ROOT>/analysis/transport_reliable_campaign_20260922/transport-reliable_best_full/confusions_normal",
+        "final_confusions": "<PROJECT_ROOT>/work_dirs/radar_forecast_transport-reliable_seed0/confusions_epoch_10_full",
         "paired_A_comparisons": {
-          "best": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/transport_reliable_campaign_20260922/A_vs_transport_reliable_best.json",
-          "final": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/transport_reliable_campaign_20260922/A_vs_transport_reliable_final.json"
+          "best": "<PROJECT_ROOT>/analysis/transport_reliable_campaign_20260922/A_vs_transport_reliable_best.json",
+          "final": "<PROJECT_ROOT>/analysis/transport_reliable_campaign_20260922/A_vs_transport_reliable_final.json"
         }
       },
       "best": {
         "config": "configs/sw-radar-forecast-transport-reliable.py",
-        "checkpoint": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_transport-reliable_seed0/best_future.pth",
+        "checkpoint": "<PROJECT_ROOT>/work_dirs/radar_forecast_transport-reliable_seed0/best_future.pth",
         "checkpoint_meta": {
           "epoch": 9,
           "iter": 26928
@@ -1697,7 +1697,7 @@
       "interventions": {
         "drop": {
           "config": "configs/sw-radar-forecast-transport-reliable.py",
-          "checkpoint": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_transport-reliable_seed0/best_future.pth",
+          "checkpoint": "<PROJECT_ROOT>/work_dirs/radar_forecast_transport-reliable_seed0/best_future.pth",
           "checkpoint_meta": {
             "epoch": 9,
             "iter": 26928
@@ -1800,7 +1800,7 @@
         },
         "normal": {
           "config": "configs/sw-radar-forecast-transport-reliable.py",
-          "checkpoint": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_transport-reliable_seed0/best_future.pth",
+          "checkpoint": "<PROJECT_ROOT>/work_dirs/radar_forecast_transport-reliable_seed0/best_future.pth",
           "checkpoint_meta": {
             "epoch": 9,
             "iter": 26928
@@ -1903,7 +1903,7 @@
         },
         "shuffle_velocity": {
           "config": "configs/sw-radar-forecast-transport-reliable.py",
-          "checkpoint": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_transport-reliable_seed0/best_future.pth",
+          "checkpoint": "<PROJECT_ROOT>/work_dirs/radar_forecast_transport-reliable_seed0/best_future.pth",
           "checkpoint_meta": {
             "epoch": 9,
             "iter": 26928
@@ -2006,7 +2006,7 @@
         },
         "zero_velocity": {
           "config": "configs/sw-radar-forecast-transport-reliable.py",
-          "checkpoint": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_transport-reliable_seed0/best_future.pth",
+          "checkpoint": "<PROJECT_ROOT>/work_dirs/radar_forecast_transport-reliable_seed0/best_future.pth",
           "checkpoint_meta": {
             "epoch": 9,
             "iter": 26928
@@ -2113,7 +2113,7 @@
   "references": {
     "official": {
       "config": "configs/sw-radar-m0-official-ft.py",
-      "checkpoint": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+      "checkpoint": "<PROJECT_ROOT>/checkpoints/sw-tc-small.pth",
       "checkpoint_meta": {
         "loaded_tensors": 669,
         "loaded_numel": 79478272,
@@ -2127,7 +2127,7 @@
           "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.output"
         ],
         "all_camera_tensors_exact": true,
-        "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+        "path": "<PROJECT_ROOT>/checkpoints/sw-tc-small.pth",
         "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
         "source_epoch": 70,
         "source_iter": 246190,
@@ -2232,7 +2232,7 @@
     },
     "M0_final": {
       "config": "configs/sw-radar-m0-official-ft.py",
-      "checkpoint": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/m0_official_ft_seed0/epoch_10.pth",
+      "checkpoint": "<PROJECT_ROOT>/work_dirs/m0_official_ft_seed0/epoch_10.pth",
       "checkpoint_meta": {
         "epoch": 10,
         "iter": 29920
@@ -2335,7 +2335,7 @@
     },
     "M0_best": {
       "config": "configs/sw-radar-m0-official-ft.py",
-      "checkpoint": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/m0_official_ft_seed0/best_future.pth",
+      "checkpoint": "<PROJECT_ROOT>/work_dirs/m0_official_ft_seed0/best_future.pth",
       "checkpoint_meta": {
         "epoch": 1,
         "iter": 2992
@@ -2541,8 +2541,8 @@
       ],
       "engineering_threshold_pass": true,
       "interpretation": "Conditional on fixed selected checkpoints; not multi-seed or held-out-test evidence.",
-      "reference": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/belief_campaign_20260920/camera_best_full/confusions_normal",
-      "candidate": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/forecast_campaign_20260920/transport_best_full/confusions_normal",
+      "reference": "<PROJECT_ROOT>/analysis/belief_campaign_20260920/camera_best_full/confusions_normal",
+      "candidate": "<PROJECT_ROOT>/analysis/forecast_campaign_20260920/transport_best_full/confusions_normal",
       "anchors": 5119
     },
     "belief_vs_camera_best": {
@@ -2648,8 +2648,8 @@
       ],
       "engineering_threshold_pass": false,
       "interpretation": "Conditional on fixed selected checkpoints; not multi-seed or held-out-test evidence.",
-      "reference": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/belief_campaign_20260920/camera_best_full/confusions_normal",
-      "candidate": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/belief_campaign_20260920/belief_best_full/confusions_normal",
+      "reference": "<PROJECT_ROOT>/analysis/belief_campaign_20260920/camera_best_full/confusions_normal",
+      "candidate": "<PROJECT_ROOT>/analysis/belief_campaign_20260920/belief_best_full/confusions_normal",
       "anchors": 5119
     },
     "transport-reliable_vs_camera_best": {
@@ -2755,8 +2755,8 @@
       ],
       "engineering_threshold_pass": true,
       "interpretation": "Conditional on fixed selected checkpoints; not multi-seed or held-out-test evidence.",
-      "reference": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/belief_campaign_20260920/camera_best_full/confusions_normal",
-      "candidate": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/transport_reliable_campaign_20260922/transport-reliable_best_full/confusions_normal",
+      "reference": "<PROJECT_ROOT>/analysis/belief_campaign_20260920/camera_best_full/confusions_normal",
+      "candidate": "<PROJECT_ROOT>/analysis/transport_reliable_campaign_20260922/transport-reliable_best_full/confusions_normal",
       "anchors": 5119
     },
     "transport-reliable_vs_A_best": {
@@ -2862,8 +2862,8 @@
       ],
       "engineering_threshold_pass": false,
       "interpretation": "Conditional on fixed selected checkpoints; not multi-seed or held-out-test evidence.",
-      "reference": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/forecast_campaign_20260920/transport_best_full/confusions_normal",
-      "candidate": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/transport_reliable_campaign_20260922/transport-reliable_best_full/confusions_normal",
+      "reference": "<PROJECT_ROOT>/analysis/forecast_campaign_20260920/transport_best_full/confusions_normal",
+      "candidate": "<PROJECT_ROOT>/analysis/transport_reliable_campaign_20260922/transport-reliable_best_full/confusions_normal",
       "anchors": 5119
     },
     "transport_vs_camera_final": {
@@ -2969,8 +2969,8 @@
       ],
       "engineering_threshold_pass": true,
       "interpretation": "Conditional on fixed selected checkpoints; not multi-seed or held-out-test evidence.",
-      "reference": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_camera_seed0/confusions_epoch_10_full",
-      "candidate": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_transport_seed0/confusions_epoch_10_full",
+      "reference": "<PROJECT_ROOT>/work_dirs/radar_forecast_camera_seed0/confusions_epoch_10_full",
+      "candidate": "<PROJECT_ROOT>/work_dirs/radar_forecast_transport_seed0/confusions_epoch_10_full",
       "anchors": 5119
     },
     "belief_vs_camera_final": {
@@ -3076,8 +3076,8 @@
       ],
       "engineering_threshold_pass": false,
       "interpretation": "Conditional on fixed selected checkpoints; not multi-seed or held-out-test evidence.",
-      "reference": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_camera_seed0/confusions_epoch_10_full",
-      "candidate": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_belief_seed0/confusions_epoch_10_full",
+      "reference": "<PROJECT_ROOT>/work_dirs/radar_forecast_camera_seed0/confusions_epoch_10_full",
+      "candidate": "<PROJECT_ROOT>/work_dirs/radar_forecast_belief_seed0/confusions_epoch_10_full",
       "anchors": 5119
     },
     "transport-reliable_vs_camera_final": {
@@ -3183,8 +3183,8 @@
       ],
       "engineering_threshold_pass": true,
       "interpretation": "Conditional on fixed selected checkpoints; not multi-seed or held-out-test evidence.",
-      "reference": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_camera_seed0/confusions_epoch_10_full",
-      "candidate": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_transport-reliable_seed0/confusions_epoch_10_full",
+      "reference": "<PROJECT_ROOT>/work_dirs/radar_forecast_camera_seed0/confusions_epoch_10_full",
+      "candidate": "<PROJECT_ROOT>/work_dirs/radar_forecast_transport-reliable_seed0/confusions_epoch_10_full",
       "anchors": 5119
     },
     "transport-reliable_vs_A_final": {
@@ -3290,8 +3290,8 @@
       ],
       "engineering_threshold_pass": false,
       "interpretation": "Conditional on fixed selected checkpoints; not multi-seed or held-out-test evidence.",
-      "reference": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_transport_seed0/confusions_epoch_10_full",
-      "candidate": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_transport-reliable_seed0/confusions_epoch_10_full",
+      "reference": "<PROJECT_ROOT>/work_dirs/radar_forecast_transport_seed0/confusions_epoch_10_full",
+      "candidate": "<PROJECT_ROOT>/work_dirs/radar_forecast_transport-reliable_seed0/confusions_epoch_10_full",
       "anchors": 5119
     },
     "transport_best_vs_official": {
@@ -3397,8 +3397,8 @@
       ],
       "engineering_threshold_pass": true,
       "interpretation": "Conditional on fixed selected checkpoints; not multi-seed or held-out-test evidence.",
-      "reference": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/forecast_campaign_20260920/reference_official/confusions_normal",
-      "candidate": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/forecast_campaign_20260920/transport_best_full/confusions_normal",
+      "reference": "<PROJECT_ROOT>/analysis/forecast_campaign_20260920/reference_official/confusions_normal",
+      "candidate": "<PROJECT_ROOT>/analysis/forecast_campaign_20260920/transport_best_full/confusions_normal",
       "anchors": 5119
     },
     "transport_best_vs_M0_final": {
@@ -3504,8 +3504,8 @@
       ],
       "engineering_threshold_pass": true,
       "interpretation": "Conditional on fixed selected checkpoints; not multi-seed or held-out-test evidence.",
-      "reference": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/forecast_campaign_20260920/reference_m0_final/confusions_normal",
-      "candidate": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/forecast_campaign_20260920/transport_best_full/confusions_normal",
+      "reference": "<PROJECT_ROOT>/analysis/forecast_campaign_20260920/reference_m0_final/confusions_normal",
+      "candidate": "<PROJECT_ROOT>/analysis/forecast_campaign_20260920/transport_best_full/confusions_normal",
       "anchors": 5119
     },
     "belief_best_vs_official": {
@@ -3611,8 +3611,8 @@
       ],
       "engineering_threshold_pass": false,
       "interpretation": "Conditional on fixed selected checkpoints; not multi-seed or held-out-test evidence.",
-      "reference": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/forecast_campaign_20260920/reference_official/confusions_normal",
-      "candidate": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/belief_campaign_20260920/belief_best_full/confusions_normal",
+      "reference": "<PROJECT_ROOT>/analysis/forecast_campaign_20260920/reference_official/confusions_normal",
+      "candidate": "<PROJECT_ROOT>/analysis/belief_campaign_20260920/belief_best_full/confusions_normal",
       "anchors": 5119
     },
     "belief_best_vs_M0_final": {
@@ -3718,8 +3718,8 @@
       ],
       "engineering_threshold_pass": false,
       "interpretation": "Conditional on fixed selected checkpoints; not multi-seed or held-out-test evidence.",
-      "reference": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/forecast_campaign_20260920/reference_m0_final/confusions_normal",
-      "candidate": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/belief_campaign_20260920/belief_best_full/confusions_normal",
+      "reference": "<PROJECT_ROOT>/analysis/forecast_campaign_20260920/reference_m0_final/confusions_normal",
+      "candidate": "<PROJECT_ROOT>/analysis/belief_campaign_20260920/belief_best_full/confusions_normal",
       "anchors": 5119
     },
     "camera_best_vs_official": {
@@ -3825,8 +3825,8 @@
       ],
       "engineering_threshold_pass": false,
       "interpretation": "Conditional on fixed selected checkpoints; not multi-seed or held-out-test evidence.",
-      "reference": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/forecast_campaign_20260920/reference_official/confusions_normal",
-      "candidate": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/belief_campaign_20260920/camera_best_full/confusions_normal",
+      "reference": "<PROJECT_ROOT>/analysis/forecast_campaign_20260920/reference_official/confusions_normal",
+      "candidate": "<PROJECT_ROOT>/analysis/belief_campaign_20260920/camera_best_full/confusions_normal",
       "anchors": 5119
     },
     "camera_best_vs_M0_final": {
@@ -3932,8 +3932,8 @@
       ],
       "engineering_threshold_pass": false,
       "interpretation": "Conditional on fixed selected checkpoints; not multi-seed or held-out-test evidence.",
-      "reference": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/forecast_campaign_20260920/reference_m0_final/confusions_normal",
-      "candidate": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/belief_campaign_20260920/camera_best_full/confusions_normal",
+      "reference": "<PROJECT_ROOT>/analysis/forecast_campaign_20260920/reference_m0_final/confusions_normal",
+      "candidate": "<PROJECT_ROOT>/analysis/belief_campaign_20260920/camera_best_full/confusions_normal",
       "anchors": 5119
     },
     "transport-reliable_best_vs_official": {
@@ -4039,8 +4039,8 @@
       ],
       "engineering_threshold_pass": true,
       "interpretation": "Conditional on fixed selected checkpoints; not multi-seed or held-out-test evidence.",
-      "reference": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/forecast_campaign_20260920/reference_official/confusions_normal",
-      "candidate": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/transport_reliable_campaign_20260922/transport-reliable_best_full/confusions_normal",
+      "reference": "<PROJECT_ROOT>/analysis/forecast_campaign_20260920/reference_official/confusions_normal",
+      "candidate": "<PROJECT_ROOT>/analysis/transport_reliable_campaign_20260922/transport-reliable_best_full/confusions_normal",
       "anchors": 5119
     },
     "transport-reliable_best_vs_M0_final": {
@@ -4146,8 +4146,8 @@
       ],
       "engineering_threshold_pass": true,
       "interpretation": "Conditional on fixed selected checkpoints; not multi-seed or held-out-test evidence.",
-      "reference": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/forecast_campaign_20260920/reference_m0_final/confusions_normal",
-      "candidate": "/storage/data/metaiot_data/huayiming/SparseWorld/analysis/transport_reliable_campaign_20260922/transport-reliable_best_full/confusions_normal",
+      "reference": "<PROJECT_ROOT>/analysis/forecast_campaign_20260920/reference_m0_final/confusions_normal",
+      "candidate": "<PROJECT_ROOT>/analysis/transport_reliable_campaign_20260922/transport-reliable_best_full/confusions_normal",
       "anchors": 5119
     }
   },

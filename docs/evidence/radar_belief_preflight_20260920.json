@@ -21,7 +21,7 @@
         "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.output"
       ],
       "all_camera_tensors_exact": true,
-      "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+      "path": "<PROJECT_ROOT>/checkpoints/sw-tc-small.pth",
       "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
       "source_epoch": 70,
       "source_iter": 246190,
@@ -47,7 +47,7 @@
       "new_radar_tensors": 0,
       "zero_residual_outputs": [],
       "all_camera_tensors_exact": true,
-      "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+      "path": "<PROJECT_ROOT>/checkpoints/sw-tc-small.pth",
       "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
       "source_epoch": 70,
       "source_iter": 246190,
@@ -79,7 +79,7 @@
         "pts_bbox_head.transformer.decoder.decoder_layers.5.radar_fusion.output"
       ],
       "all_camera_tensors_exact": true,
-      "path": "/storage/data/metaiot_data/huayiming/SparseWorld/checkpoints/sw-tc-small.pth",
+      "path": "<PROJECT_ROOT>/checkpoints/sw-tc-small.pth",
       "sha256": "871c4da344fbb71f9e0a8067c7f10f6ba55edc6cedd4955878bd9076c6920a6a",
       "source_epoch": 70,
       "source_iter": 246190,
@@ -112,7 +112,7 @@
     "status": "passed"
   },
   "smoke_belief": {
-    "path": "/storage/data/metaiot_data/huayiming/SparseWorld/work_dirs/radar_forecast_belief_smoke_seed0/iter_24.pth",
+    "path": "<PROJECT_ROOT>/work_dirs/radar_forecast_belief_smoke_seed0/iter_24.pth",
     "epoch": 1,
     "iterations": 23,
     "optimizer_steps": 24,
@@ -257,7 +257,7 @@
     "all_audited_gradient_and_update_norms_positive": true
   },
   "belief_gpu_contracts_tail": [
-    "  /storage/data/metaiot_data/huayiming/SparseWorld/envs/hym_sparseworld/lib/python3.10/site-packages/mmcv/cnn/bricks/transformer.py:440: DeprecationWarning: The arguments `dropout` in MultiheadAttention has been deprecated, now you can separately set `attn_drop`(float), proj_drop(float), and `dropout_layer`(dict) ",
+    "  <PROJECT_ROOT>/envs/hym_sparseworld/lib/python3.10/site-packages/mmcv/cnn/bricks/transformer.py:440: DeprecationWarning: The arguments `dropout` in MultiheadAttention has been deprecated, now you can separately set `attn_drop`(float), proj_drop(float), and `dropout_layer`(dict) ",
     "    warnings.warn(",
     "",
     "-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html",
